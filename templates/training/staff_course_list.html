@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Training Courses{% endblock %}
+
+{% block content %}
+<section class="section-shell pt-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
+      <div>
+        <p class="section-kicker">Staff Management</p>
+        <h1 class="section-title mt-3">Training courses</h1>
+        <p class="section-copy mt-3">Open a course to manage modules, lessons, schedules, enrollments, and certificates.</p>
+      </div>
+      <a href="{% url 'training:staff_course_create' %}" class="hero-btn hero-btn-primary">Create course</a>
+    </div>
+
+    <div class="grid gap-6">
+      {% for course in courses %}
+        <div class="info-card">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div>
+              <p class="text-sm font-semibold text-[#1f5ca8]">{{ course.get_delivery_type_display }}</p>
+              <h2 class="text-2xl font-bold maroon-text mt-2">{{ course.title }}</h2>
+              <p class="section-copy mt-2">{{ course.short_description }}</p>
+              <div class="mt-4 flex flex-wrap gap-3 text-sm text-slate-500">
+                <span>{{ course.module_total }} modules</span>
+                <span>{{ course.schedule_total }} schedules</span>
+                <span>{{ course.enrollment_total }} enrollments</span>
+                <span>{% if course.is_published %}Published{% else %}Draft{% endif %}</span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="{% url 'training:staff_course_detail' course.id %}" class="hero-btn hero-btn-primary">Manage</a>
+              <a href="{% url 'training:staff_course_edit' course.id %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Edit</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="feature-card text-center">
+          <h2 class="text-2xl font-bold maroon-text">No courses yet</h2>
+          <p class="section-copy mt-3">Create the first FPSPA training course to get started.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,514 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<section class="premium-hero">
+  <div class="max-w-7xl mx-auto px-6 py-20 lg:py-28 hero-panel">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-center">
+      <div data-aos="fade-up">
+        <span class="hero-chip"><i class="fas fa-star"></i> Leadership. Advocacy. Excellence.</span>
+        <h1 class="hero-heading animate-hero">
+          Strengthening <span class="hero-highlight">primary school leadership</span> across Fiji.
+        </h1>
+        <p class="hero-subtext mt-6">
+          The Fiji Primary School Principals Association supports school leaders with national advocacy, professional development, practical resources, and a connected network of peers working for stronger schools and student outcomes.
+        </p>
+        <p class="mt-6 text-lg font-semibold text-[#f8e7a5]">Leading schools. Shaping futures.</p>
+
+        <div class="hero-actions">
+          <a href="{% url 'register' %}" class="hero-btn hero-btn-primary">
+            <i class="fas fa-user-plus"></i> Join FPSPA
+          </a>
+          <a href="{% url 'services' %}" class="hero-btn hero-btn-secondary">
+            <i class="fas fa-compass"></i> Explore Services
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>National</strong>
+            <span>Representation for primary school principals and school leaders</span>
+          </div>
+          <div class="hero-stat">
+            <strong>Practical</strong>
+            <span>Resources, guidance, and peer support for everyday leadership</span>
+          </div>
+          <div class="hero-stat">
+            <strong>Connected</strong>
+            <span>Regional networks, events, and executive collaboration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 lg:p-5" data-aos="fade-left">
+        <div class="relative overflow-hidden rounded-[1.8rem] shadow-2xl">
+          <img src="{% static 'assets/images/fpspa/headteachers-forum.jpg' %}" alt="FPSPA leaders at a headteachers forum" class="h-[420px] w-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#06162f]/90 via-[#06162f]/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <p class="text-sm uppercase tracking-[0.25em] text-[#f8e7a5]">FPSPA in action</p>
+            <h2 class="mt-2 text-3xl font-bold">Real leaders, real conversations, real service.</h2>
+            <p class="mt-3 text-white/80">Association forums and national gatherings keep principals connected to the issues that shape Fiji's primary schools.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] items-center">
+      <div>
+        <p class="section-kicker">Authentic FPSPA Moments</p>
+        <h2 class="section-title mt-3">A living network of principals and education leaders</h2>
+        <p class="section-copy mt-4">These images reflect the people behind the association: principals, executives, and partners meeting through conferences, district symposia, and professional learning sessions.</p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-3">
+          <div class="feature-card !p-5">
+            <strong class="text-2xl maroon-text">Forums</strong>
+            <p class="section-copy mt-2">National conversations for school leadership.</p>
+          </div>
+          <div class="feature-card !p-5">
+            <strong class="text-2xl maroon-text">Workshops</strong>
+            <p class="section-copy mt-2">Professional learning for principals.</p>
+          </div>
+          <div class="feature-card !p-5">
+            <strong class="text-2xl maroon-text">Networks</strong>
+            <p class="section-copy mt-2">Peer connection across Fiji.</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="{% static 'assets/images/fpspa/annual-conference.webp' %}" alt="FPSPA annual conference group photo" class="rounded-[1.6rem] h-56 w-full object-cover shadow-lg col-span-2">
+        <img src="{% static 'assets/images/fpspa/district-symposium.webp' %}" alt="FPSPA district symposium participants" class="rounded-[1.4rem] h-44 w-full object-cover shadow-lg">
+        <img src="{% static 'assets/images/fpspa/member-session.webp' %}" alt="FPSPA members attending a leadership session" class="rounded-[1.4rem] h-44 w-full object-cover shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+      <div>
+        <p class="section-kicker">Latest Updates</p>
+        <h2 class="section-title mt-3">News and announcements for members</h2>
+        <p class="section-copy mt-3 max-w-3xl">Stay informed with association notices, sector updates, event highlights, and stories from across our leadership network.</p>
+      </div>
+      <a href="{% url 'news:news_list' %}" class="hero-btn hero-btn-primary self-start lg:self-auto">View all news</a>
+    </div>
+
+    {% if latest_news %}
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {% for news in latest_news %}
+          {% if news.slug %}
+            {% url 'news:news_detail' news.slug as item_url %}
+          {% else %}
+            {% url 'news:photo_news_detail' news.pk as item_url %}
+          {% endif %}
+          <a href="{{ item_url }}" class="news-card block hover:-translate-y-1 transition duration-300">
+            {% if news.image %}
+              <img src="{{ news.image.url }}" alt="{{ news.title }}" class="w-full h-48 object-cover rounded-2xl mb-5">
+            {% endif %}
+            <p class="text-sm font-semibold text-[#1f5ca8]">{{ news.date_posted|date:"d M Y" }}</p>
+            <h3 class="mt-2 text-2xl font-bold maroon-text">{{ news.title }}</h3>
+            <p class="section-copy mt-3">{{ news.content|striptags|truncatewords:18 }}</p>
+            <p class="mt-4 text-sm text-slate-500">{{ news.date_posted|naturaltime }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="feature-card text-center">
+        <h3 class="text-2xl font-bold maroon-text">News is coming soon</h3>
+        <p class="section-copy mt-3">Publish updates here to keep members connected with current association activity.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section-shell accent-panel">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <div class="feature-icon !text-white !bg-white/10"><i class="fas fa-briefcase"></i></div>
+        <h3 class="mt-4 text-2xl font-bold">Leadership support</h3>
+        <p class="mt-3 text-white/80">Guidance for school operations, leadership decision-making, and principal development.</p>
+      </div>
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <div class="feature-icon !text-white !bg-white/10"><i class="fas fa-file-signature"></i></div>
+        <h3 class="mt-4 text-2xl font-bold">Representation and advocacy</h3>
+        <p class="mt-3 text-white/80">Collective representation on matters affecting principals, schools, and the wider education system.</p>
+      </div>
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <div class="feature-icon !text-white !bg-white/10"><i class="fas fa-graduation-cap"></i></div>
+        <h3 class="mt-4 text-2xl font-bold">Professional growth</h3>
+        <p class="mt-3 text-white/80">Events, forums, and shared learning to strengthen school leadership practice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+      <div>
+        <p class="section-kicker">Upcoming Events</p>
+        <h2 class="section-title mt-3">Conferences, workshops, and meetings</h2>
+        <p class="section-copy mt-3 max-w-3xl">Join the next FPSPA gathering and stay connected to national leadership conversations and local engagement.</p>
+      </div>
+    </div>
+
+    {% if events %}
+      <div class="grid gap-6 lg:grid-cols-3">
+        {% for event in events %}
+          <div class="info-card cursor-pointer event-card hover:-translate-y-1 transition duration-300" data-event-id="{{ event.id }}">
+            {% if event.image %}
+              <img src="{{ event.image.url }}" class="rounded-2xl mb-5 h-48 w-full object-cover" alt="{{ event.title }}">
+            {% endif %}
+            <p class="text-sm font-semibold text-[#1f5ca8]">{{ event.start|date:"d M Y · H:i" }}</p>
+            <h3 class="mt-2 text-2xl font-bold maroon-text">{{ event.title }}</h3>
+            <p class="section-copy mt-3">{{ event.description|striptags|truncatewords:25 }}</p>
+          </div>
+
+          <div id="modal-{{ event.id }}" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+            <div class="bg-white rounded-[1.8rem] p-8 w-full max-w-3xl relative shadow-2xl max-h-[90vh] overflow-y-auto">
+              <button class="absolute top-4 right-5 text-2xl font-bold text-slate-500 close-modal">&times;</button>
+              {% if event.image %}
+                <img src="{{ event.image.url }}" class="rounded-2xl mb-5 h-64 w-full object-cover" alt="{{ event.title }}">
+              {% endif %}
+              <p class="text-sm font-semibold text-[#1f5ca8]">{{ event.start|date:"d M Y · H:i" }}{% if event.end %} to {{ event.end|date:"d M Y · H:i" }}{% endif %}</p>
+              <h3 class="section-title mt-2 text-4xl">{{ event.title }}</h3>
+              <div class="prose max-w-none mt-5">{{ event.description|safe }}</div>
+              <div class="mt-6 grid gap-3 md:grid-cols-3">
+                <div class="feature-card !p-4"><strong>Location</strong><p class="section-copy mt-2">{{ event.location }}</p></div>
+                <div class="feature-card !p-4"><strong>Organizer</strong><p class="section-copy mt-2">{{ event.organizer }}</p></div>
+                {% if event.capacity %}<div class="feature-card !p-4"><strong>Capacity</strong><p class="section-copy mt-2">{{ event.capacity }}</p></div>{% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="feature-card text-center">
+        <h3 class="text-2xl font-bold maroon-text">No upcoming events yet</h3>
+        <p class="section-copy mt-3">Add events in the existing app and they will appear here automatically.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-10">
+      <p class="section-kicker">Regional Presence</p>
+      <h2 class="section-title mt-3">Connect with your area network</h2>
+      <p class="section-copy mt-3 max-w-3xl mx-auto">FPSPA’s structure continues to use the same area and branch logic already built into the project, now presented with refreshed association branding.</p>
+    </div>
+
+    <div class="flex flex-wrap gap-3 justify-center mb-5">
+      {% for area in areas %}
+        <button command="show-modal" commandfor="dialog-{{ area.id }}" class="hero-btn hero-btn-primary">
+          {{ area.name }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <p class="text-center text-slate-500">Select an area to view branches, representatives, and contact details.</p>
+
+    {% for area in areas %}
+      <dialog id="dialog-{{ area.id }}" class="fixed inset-0 z-50 size-auto max-h-none max-w-none overflow-y-auto bg-transparent" aria-labelledby="dialog-title-{{ area.id }}">
+        <div class="fixed inset-0 bg-slate-900/70" data-backdrop></div>
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div class="relative transform overflow-hidden rounded-[1.8rem] bg-white text-left shadow-xl sm:my-8 sm:w-full sm:max-w-4xl">
+            <div class="px-6 py-6">
+              <div class="flex items-start gap-4">
+                <div class="feature-icon"><i class="fas fa-location-dot"></i></div>
+                <div class="flex-1">
+                  <h3 id="dialog-title-{{ area.id }}" class="text-3xl font-bold maroon-text">{{ area.name }} Area Network</h3>
+                  {% if area.summary %}<p class="section-copy mt-2">{{ area.summary }}</p>{% endif %}
+                </div>
+              </div>
+
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <h4 class="text-2xl font-bold maroon-text">Branches</h4>
+                  <ul class="mt-3 space-y-3">
+                    {% for branch in area.branches.all %}
+                      <li class="feature-card !p-4 flex items-center justify-between gap-3">
+                        <div>
+                          <div class="font-bold text-slate-800">{{ branch.name }} Branch</div>
+                          {% if branch.address %}<div class="text-sm text-slate-500">{{ branch.address }}</div>{% endif %}
+                        </div>
+                        <div class="flex flex-col items-end gap-2">
+                          <button type="button" class="text-sm text-[#1f5ca8] view-branch-map" data-branch-id="{{ branch.id }}" data-lat="{{ branch.latitude }}" data-lng="{{ branch.longitude }}">View on map</button>
+                          <button type="button" class="hero-btn hero-btn-primary !px-4 !py-2 open-branch-details" data-branch-id="{{ branch.id }}">Contact</button>
+                        </div>
+                      </li>
+                    {% empty %}
+                      <li class="section-copy">No branches listed.</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="text-2xl font-bold maroon-text">Representatives</h4>
+                  <ul class="mt-3 space-y-3">
+                    {% for rep in area.reps.all %}
+                      <li class="feature-card !p-4 flex items-start gap-3">
+                        <div class="w-14 h-14 rounded-full bg-slate-100 overflow-hidden flex items-center justify-center">
+                          {% if rep.photo %}
+                            <img src="{{ rep.photo.url }}" alt="{{ rep.name }}" class="w-full h-full object-cover">
+                          {% else %}
+                            <span class="font-bold text-slate-500">{{ rep.name|slice:":1" }}</span>
+                          {% endif %}
+                        </div>
+                        <div class="flex-1">
+                          <div class="font-bold maroon-text">{{ rep.name }}</div>
+                          <div class="text-sm text-slate-700">{{ rep.role }}</div>
+                          <div class="text-sm mt-2">
+                            {% if rep.phone %}<a href="tel:{{ rep.phone }}" class="block text-[#1f5ca8]">{{ rep.phone }}</a>{% endif %}
+                            {% if rep.email %}<a href="mailto:{{ rep.email }}" class="block text-[#1f5ca8]">{{ rep.email }}</a>{% endif %}
+                          </div>
+                        </div>
+                      </li>
+                    {% empty %}
+                      <li class="section-copy">No representatives listed.</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-5">
+                <div id="map-area-{{ area.id }}" data-area-id="{{ area.id }}" class="hidden h-52 rounded-2xl overflow-hidden border"></div>
+              </div>
+            </div>
+            <div class="bg-slate-50 px-6 py-4 flex justify-end">
+              <button type="button" command="close" commandfor="dialog-{{ area.id }}" class="hero-btn hero-btn-primary">Close</button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    {% endfor %}
+
+    <div id="branchDetailsModal" class="hidden fixed inset-0 z-60 bg-black/60 flex items-center justify-center p-4">
+      <div class="bg-white rounded-[1.5rem] max-w-md w-full p-5 relative">
+        <button id="branchDetailsClose" class="absolute top-3 right-4 text-xl text-gray-600">&times;</button>
+        <div id="branchDetailsContent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="cta-card p-8 lg:p-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] items-center">
+      <div>
+        <p class="section-kicker">Membership</p>
+        <h2 class="section-title mt-3">Join the national voice of primary school principals</h2>
+        <p class="section-copy mt-3">Register through the existing membership workflow and become part of a network focused on school leadership, shared learning, and collective advocacy.</p>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:justify-end">
+        <a href="{% url 'register' %}" class="hero-btn hero-btn-primary">Create Account</a>
+        <a href="{% url 'staff_members:team' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Meet the Executive</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const branches = window.branches_data = {{ branches_json|safe }};
+  const areaMaps = {};
+  let openModals = [];
+
+  function openDialogById(id) {
+    const dialog = document.getElementById(id);
+    if (!dialog) return;
+    dialog.showModal();
+    dialog.classList.remove('hidden');
+    if (!openModals.includes(id)) openModals.push(id);
+    document.body.style.overflow = 'hidden';
+    const mapContainer = dialog.querySelector('[id^="map-area-"]');
+    if (mapContainer && mapContainer.dataset.areaId) initializeAreaMapIfNeeded(mapContainer);
+  }
+
+  function closeDialogById(id) {
+    const dialog = document.getElementById(id);
+    if (!dialog) return;
+    dialog.close();
+    dialog.classList.add('hidden');
+    openModals = openModals.filter(modalId => modalId !== id);
+    if (openModals.length === 0) document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function (e) {
+    const showBtn = e.target.closest('[command="show-modal"]');
+    if (showBtn) {
+      e.preventDefault();
+      openDialogById(showBtn.getAttribute('commandfor'));
+      return;
+    }
+
+    const closeBtn = e.target.closest('[command="close"]');
+    if (closeBtn) {
+      e.preventDefault();
+      closeDialogById(closeBtn.getAttribute('commandfor'));
+      return;
+    }
+
+    const backdrop = e.target.closest('[data-backdrop]');
+    if (backdrop) {
+      const parentDialog = backdrop.closest('dialog');
+      if (parentDialog && parentDialog.id) closeDialogById(parentDialog.id);
+      return;
+    }
+
+    const clickedDialog = e.target.closest('dialog');
+    if (clickedDialog && e.target === clickedDialog) closeDialogById(clickedDialog.id);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      const branchModal = document.getElementById('branchDetailsModal');
+      if (branchModal && !branchModal.classList.contains('hidden')) {
+        branchModal.classList.add('hidden');
+        return;
+      }
+      if (openModals.length > 0) closeDialogById(openModals[openModals.length - 1]);
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    const openBranchBtn = e.target.closest('.open-branch-details');
+    if (openBranchBtn) {
+      e.stopPropagation();
+      openBranchDetails(openBranchBtn.dataset.branchId);
+      return;
+    }
+
+    const viewOnMapBtn = e.target.closest('.view-branch-map');
+    if (viewOnMapBtn) {
+      e.stopPropagation();
+      const lat = parseFloat(viewOnMapBtn.dataset.lat);
+      const lng = parseFloat(viewOnMapBtn.dataset.lng);
+      const areaDialog = viewOnMapBtn.closest('dialog');
+      if (!isNaN(lat) && !isNaN(lng) && areaDialog) {
+        const mapContainer = areaDialog.querySelector('#map-area-' + areaDialog.id.replace('dialog-', ''));
+        initializeAreaMapIfNeeded(mapContainer, [lat, lng]);
+      } else {
+        openBranchDetails(viewOnMapBtn.dataset.branchId);
+      }
+    }
+  });
+
+  document.getElementById('branchDetailsClose')?.addEventListener('click', function () {
+    document.getElementById('branchDetailsModal').classList.add('hidden');
+  });
+
+  document.getElementById('branchDetailsModal')?.addEventListener('click', function (e) {
+    if (e.target.id === 'branchDetailsModal') document.getElementById('branchDetailsModal').classList.add('hidden');
+  });
+
+  function initializeAreaMapIfNeeded(container, focusCoords = null) {
+    if (!container) return;
+    if (container.classList.contains('hidden')) container.classList.remove('hidden');
+    const areaId = container.dataset.areaId;
+    if (!areaId) return;
+    if (areaMaps[areaId]) {
+      if (focusCoords && areaMaps[areaId].map) areaMaps[areaId].map.setView(focusCoords, 13);
+      return;
+    }
+
+    const map = L.map(container, { zoomControl: true }).setView([-17.7134, 178.0650], 5.2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const group = L.layerGroup().addTo(map);
+    branches.filter(b => String(b.area_id) === String(areaId)).forEach(b => {
+      if (b.lat == null || b.lng == null) return;
+      const marker = L.marker([b.lat, b.lng]).addTo(group);
+      marker.bindPopup(`<strong>${escapeHtml(b.name)}</strong><br><small>${escapeHtml(b.address || '')}</small>`);
+      marker.on('click', () => openBranchDetails(b.id));
+    });
+
+    areaMaps[areaId] = { map, group, container };
+    if (focusCoords) map.setView(focusCoords, 13, { animate: true });
+  }
+
+  function openBranchDetails(branchId) {
+    const branchObj = branches.find(b => String(b.id) === String(branchId));
+    const container = document.getElementById('branchDetailsContent');
+    if (!branchObj) {
+      container.innerHTML = '<div class="text-sm text-gray-500">Branch details not available.</div>';
+    } else {
+      let repsHtml = '';
+      if (branchObj.reps && branchObj.reps.length) {
+        repsHtml = '<h4 class="font-semibold text-lg maroon-text">Representatives</h4><ul class="mt-3 space-y-2 text-sm">';
+        branchObj.reps.forEach(r => {
+          repsHtml += `<li><div class="font-medium">${escapeHtml(r.name)}</div>`;
+          if (r.role) repsHtml += `<div class="text-xs text-gray-500">${escapeHtml(r.role)}</div>`;
+          if (r.phone) repsHtml += `<div class="mt-1"><a href="tel:${escapeHtml(r.phone)}" class="text-blue-600">${escapeHtml(r.phone)}</a></div>`;
+          if (r.email) repsHtml += `<div><a href="mailto:${escapeHtml(r.email)}" class="text-blue-600">${escapeHtml(r.email)}</a></div>`;
+          repsHtml += '</li>';
+        });
+        repsHtml += '</ul>';
+      } else {
+        repsHtml = '<div class="text-sm text-gray-500">No representatives listed for this branch.</div>';
+      }
+
+      container.innerHTML = `
+        <h3 class="text-2xl font-bold maroon-text">${escapeHtml(branchObj.name)}</h3>
+        ${branchObj.address ? `<div class="text-sm text-gray-500 mb-3">${escapeHtml(branchObj.address)}</div>` : ''}
+        ${repsHtml}
+      `;
+    }
+    document.getElementById('branchDetailsModal').classList.remove('hidden');
+  }
+
+  function escapeHtml(value) {
+    if (!value) return '';
+    return String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+  }
+
+  document.querySelectorAll('.event-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const modal = document.getElementById('modal-' + card.getAttribute('data-event-id'));
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  document.querySelectorAll('.close-modal').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const modal = btn.closest("[id^='modal-']");
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  document.querySelectorAll("[id^='modal-']").forEach(modal => {
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+});
+</script>
+{% endblock %}

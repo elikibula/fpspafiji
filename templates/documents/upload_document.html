@@ -1,0 +1,504 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Upload Document - FPSPA DMS{% endblock %}
+
+{% block content %}
+<div class="min-h-screen maroon-bg py-12">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+      <!-- Header -->
+      <div class="flex items-center justify-between gap-4 px-6 py-5 bg-gradient-to-r from-[#0ea5e9] to-[#6366f1]">
+        <div class="flex items-center gap-4">
+          <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA" class="h-10 w-auto rounded-md bg-white/10 p-1">
+          <div>
+            <h1 class="text-xl font-semibold maroon-text">Upload New Document</h1>
+            <p class="text-sm text-white/90">Add a new document to the FPSPA Document Management System</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="{% url 'documents:document_list' %}" class="inline-flex items-center text-white/90 hover:text-white text-sm">
+            ← Back to DMS
+          </a>
+        </div>
+      </div>
+
+      <div class="p-8">
+        <!-- Note: data-subcat-url exposes the AJAX endpoint to JS -->
+        <form method="post" enctype="multipart/form-data" class="space-y-6" id="document-upload-form" novalidate
+              data-subcat-url="{% url 'documents:ajax_subcategories' %}">
+          {% csrf_token %}
+
+          <!-- Document Information -->
+          <section class="rounded-lg border border-gray-100 p-6 bg-white">
+            <h2 class="text-lg font-medium maroon-text mb-4">Document Information</h2>
+
+            <div class="grid grid-cols-1 gap-4">
+              <!-- Title -->
+              <div>
+                <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                  Document Title <span class="text-red-500">*</span>
+                </label>
+                <div class="relative">
+                  {{ form.title }}
+                </div>
+                <p id="help-title" class="mt-1 text-xs text-gray-500">Short, descriptive title (5–120 characters).</p>
+                <p id="err-title" class="mt-1 text-sm text-red-600 hidden"></p>
+                {% if form.title.errors %}
+                  <p class="mt-1 text-sm text-red-600">{{ form.title.errors.0 }}</p>
+                {% endif %}
+              </div>
+
+              <!-- File Upload -->
+              <div>
+                <label for="{{ form.file.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                  Document File <span class="text-red-500">*</span>
+                </label>
+                <div class="flex items-start gap-4">
+                  <div class="w-full">
+                    {{ form.file }}
+                    <p id="help-file" class="mt-1 text-xs text-gray-500">PDF/images preferred. Max 10 MB.</p>
+                    <p id="err-file" class="mt-1 text-sm text-red-600 hidden"></p>
+                    {% if form.file.errors %}
+                      <p class="mt-1 text-sm text-red-600">{{ form.file.errors.0 }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <!-- Preview area -->
+                <div id="file-preview" class="mt-4 hidden">
+                  <div class="border border-gray-200 rounded-lg p-3 bg-white">
+                    <p class="text-sm text-gray-600 mb-2">Preview</p>
+                    <div id="preview-content" class="w-full">
+                      <!-- image or pdf preview injected here -->
+                    </div>
+                    <p id="preview-filename" class="mt-2 text-xs text-gray-500"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Categorization -->
+          <section class="rounded-lg border border-gray-100 p-6 bg-white">
+            <h2 class="text-lg font-medium maroon-text mb-4">Categorization</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Category -->
+              <div>
+                <label for="{{ form.category.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                  Category <span class="text-red-500">*</span>
+                </label>
+                {{ form.category }}
+                <p id="err-category" class="mt-1 text-sm text-red-600 hidden"></p>
+                <p id="help-category" class="mt-1 text-xs text-gray-500">Choose a category that best fits the document.</p>
+                {% if form.category.errors %}
+                  <p class="mt-1 text-sm text-red-600">{{ form.category.errors.0 }}</p>
+                {% endif %}
+              </div>
+
+              <!-- Subcategory -->
+              <div>
+                <label for="{{ form.subcategory.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                  Subcategory
+                </label>
+                {{ form.subcategory }}
+                <p id="help-subcategory" class="mt-1 text-xs text-gray-500">Optional — refine the category.</p>
+                {% if form.subcategory.errors %}
+                  <p class="mt-1 text-sm text-red-600">{{ form.subcategory.errors.0 }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </section>
+
+          <!-- Description & Access -->
+          <section class="rounded-lg border border-gray-100 p-6 bg-white">
+            <h2 class="text-lg font-medium maroon-text mb-4">Description & Access Control</h2>
+
+            <!-- Description -->
+            <div class="mb-4">
+              <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                Description
+              </label>
+              {{ form.description }}
+              <p id="help-description" class="mt-1 text-xs text-gray-500">Optional—add context, purpose or instructions for the document.</p>
+              <p id="err-description" class="mt-1 text-sm text-red-600 hidden"></p>
+              {% if form.description.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+              {% endif %}
+            </div>
+
+            <!-- Access Groups -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Access Groups <span class="text-red-500">*</span>
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-56 overflow-y-auto border border-gray-100 rounded-lg p-4 bg-gray-50">
+                {{ form.groups }}
+              </div>
+              <p id="err-groups" class="mt-1 text-sm text-red-600 hidden"></p>
+              <p class="text-xs text-gray-500 mt-2">Select groups who should be able to view the document.</p>
+              {% if form.groups.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.groups.errors.0 }}</p>
+              {% endif %}
+            </div>
+          </section>
+
+          <!-- Actions -->
+          <div class="flex items-center justify-between gap-4">
+            <a href="{% url 'documents:document_list' %}"
+               class="inline-flex items-center px-4 py-2 maroon-bg rounded-lg border border-gray-200 text-sm text-white hover:bg-gray-50 transition">
+              Cancel
+            </a>
+
+            <div class="flex items-center gap-3">
+              <button type="submit"
+                      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#800000] hover:bg-[#6b0000] text-white font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f97316] transition-shadow shadow"
+                      id="btn-submit">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                Upload Document
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Client-side logic: preview + validation + dynamic subcategory loading -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Elements
+  const form = document.getElementById('document-upload-form');
+  const titleEl = document.getElementById('{{ form.title.id_for_label }}') || document.getElementById('id_title');
+  const fileEl = document.getElementById('{{ form.file.id_for_label }}') || document.getElementById('id_file');
+  const categoryEl = document.getElementById('{{ form.category.id_for_label }}') || document.getElementById('id_category');
+  const subcategoryEl = document.getElementById('{{ form.subcategory.id_for_label }}') || document.getElementById('id_subcategory');
+  const groupsEl = document.querySelectorAll('#id_groups input[type="checkbox"], #id_groups input[type="radio"]');
+  const descriptionEl = document.getElementById('{{ form.description.id_for_label }}') || document.getElementById('id_description');
+
+  const errTitle = document.getElementById('err-title');
+  const errFile = document.getElementById('err-file');
+  const errCategory = document.getElementById('err-category');
+  const errGroups = document.getElementById('err-groups');
+  const errDescription = document.getElementById('err-description');
+
+  const previewBox = document.getElementById('file-preview');
+  const previewContent = document.getElementById('preview-content');
+  const previewFilename = document.getElementById('preview-filename');
+
+  const MAX_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
+  const VALID_TYPES = [
+    'application/pdf',
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'image/webp',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/vnd.ms-powerpoint',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+  ];
+
+  // Helper: show/hide error
+  function showError(el, msg) {
+    if (!el) return;
+    el.textContent = msg || '';
+    if (msg) el.classList.remove('hidden'); else el.classList.add('hidden');
+  }
+
+  // Validate title
+  function validateTitle() {
+    if (!titleEl) return true;
+    const v = titleEl.value.trim();
+    if (!v) { showError(errTitle, 'Title is required.'); return false; }
+    if (v.length < 5) { showError(errTitle, 'Title must be at least 5 characters.'); return false; }
+    if (v.length > 120) { showError(errTitle, 'Title cannot exceed 120 characters.'); return false; }
+    showError(errTitle, '');
+    return true;
+  }
+
+  // Validate file
+  function validateFile() {
+    if (!fileEl) return true;
+    const f = fileEl.files && fileEl.files[0];
+    if (!f) { showError(errFile, 'Please choose a file to upload.'); return false; }
+    if (f.size > MAX_SIZE_BYTES) { showError(errFile, 'File is too large (max 10 MB).'); return false; }
+    if (!VALID_TYPES.includes(f.type)) {
+      // allow some UI-friendly fallback: check extension if type is empty
+      const ext = (f.name.split('.').pop() || '').toLowerCase();
+      const allowedExts = ['pdf','jpg','jpeg','png','gif','webp','doc','docx','xls','xlsx','ppt','pptx'];
+      if (!allowedExts.includes(ext)) {
+        showError(errFile, 'Unsupported file type.');
+        return false;
+      }
+    }
+    showError(errFile, '');
+    return true;
+  }
+
+  // Validate category
+  function validateCategory() {
+    if (!categoryEl) return true;
+    const v = categoryEl.value;
+    if (!v) { showError(errCategory, 'Please select a category.'); return false; }
+    showError(errCategory, '');
+    return true;
+  }
+
+  // Validate groups (at least one)
+  function validateGroups() {
+    if (!groupsEl || groupsEl.length === 0) return true; // no groups widget present
+    const checked = Array.from(groupsEl).some(cb => cb.checked);
+    if (!checked) { showError(errGroups, 'Select at least one access group.'); return false; }
+    showError(errGroups, '');
+    return true;
+  }
+
+  // Validate description (optional, but limit length)
+  function validateDescription() {
+    if (!descriptionEl) return true;
+    const v = descriptionEl.value.trim();
+    if (v.length > 2000) { showError(errDescription, 'Description is too long (max 2000 characters).'); return false; }
+    showError(errDescription, '');
+    return true;
+  }
+
+  // File preview
+  function renderPreview(file) {
+    previewContent.innerHTML = '';
+    previewFilename.textContent = '';
+    if (!file) {
+      previewBox.classList.add('hidden');
+      return;
+    }
+
+    const type = file.type;
+    const name = file.name;
+    previewFilename.textContent = name;
+
+    // Image preview
+    if (type && type.startsWith('image/')) {
+      const img = document.createElement('img');
+      img.className = 'max-w-full h-auto rounded-md';
+      img.alt = name;
+      img.src = URL.createObjectURL(file);
+      previewContent.appendChild(img);
+      previewBox.classList.remove('hidden');
+      img.onload = () => URL.revokeObjectURL(img.src);
+      return;
+    }
+
+    // PDF preview (embed)
+    if (type === 'application/pdf' || name.toLowerCase().endsWith('.pdf')) {
+      const obj = document.createElement('object');
+      obj.className = 'w-full h-[480px] rounded-md border';
+      obj.type = 'application/pdf';
+      obj.data = URL.createObjectURL(file);
+      obj.innerHTML = `<p>Your browser does not support inline PDF preview. <a href="${obj.data}" target="_blank" class="text-sm text-blue-600 underline">Open PDF</a></p>`;
+      previewContent.appendChild(obj);
+      previewBox.classList.remove('hidden');
+      return;
+    }
+
+    // Fallback: show file icon + download link
+    const wrapper = document.createElement('div');
+    wrapper.className = 'flex items-center gap-3';
+    wrapper.innerHTML = `
+      <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+      </svg>
+      <div>
+        <div class="text-sm font-medium text-gray-800">${name}</div>
+        <a class="text-xs text-blue-600 underline" href="#" id="preview-download">Download</a>
+      </div>
+    `;
+    previewContent.appendChild(wrapper);
+    const link = wrapper.querySelector('#preview-download');
+    const url = URL.createObjectURL(file);
+    link.href = url;
+    link.download = name;
+    previewBox.classList.remove('hidden');
+  }
+
+  // Event listeners
+  if (titleEl) titleEl.addEventListener('input', validateTitle);
+  if (fileEl) {
+    fileEl.addEventListener('change', (e) => {
+      validateFile();
+      const f = fileEl.files && fileEl.files[0];
+      renderPreview(f);
+    });
+  }
+  if (categoryEl) categoryEl.addEventListener('change', (e) => {
+    validateCategory();
+    // subcategory loader will also be triggered below (if set up)
+  });
+  if (descriptionEl) descriptionEl.addEventListener('input', validateDescription);
+  if (groupsEl && groupsEl.length) {
+    groupsEl.forEach(cb => cb.addEventListener('change', validateGroups));
+  }
+
+  // Reset button clears previews and errors
+  const btnReset = document.getElementById('btn-reset');
+  if (btnReset) {
+    btnReset.addEventListener('click', () => {
+      previewContent.innerHTML = '';
+      previewFilename.textContent = '';
+      previewBox.classList.add('hidden');
+      [errTitle, errFile, errCategory, errGroups, errDescription].forEach(el => { if (el) el.classList.add('hidden'); });
+      // reset subcategory state to initial
+      if (subcategoryEl) {
+        subcategoryEl.value = '';
+      }
+    });
+  }
+
+  // On submit: run client-side validation and prevent submit if any fail
+  if (form) {
+    form.addEventListener('submit', (ev) => {
+      const ok = validateTitle() & validateFile() & validateCategory() & validateGroups() & validateDescription();
+      if (!ok) {
+        ev.preventDefault();
+        // focus the first error field
+        if (errTitle && !errTitle.classList.contains('hidden')) titleEl.focus();
+        else if (errFile && !errFile.classList.contains('hidden')) fileEl.focus();
+        else if (errCategory && !errCategory.classList.contains('hidden')) categoryEl.focus();
+        else if (errGroups && !errGroups.classList.contains('hidden')) {
+          const first = document.querySelector('#id_groups input[type="checkbox"], #id_groups input[type="radio"]');
+          if (first) first.focus();
+        }
+      } else {
+        // disable submit to prevent double submit
+        const submitBtn = document.getElementById('btn-submit');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+        }
+      }
+    });
+  }
+
+  // Initial class additions for consistent design
+  (function styleFormControls() {
+    if (!form) return;
+    const inputs = form.querySelectorAll('input[type="text"], input[type="file"], textarea, select');
+    inputs.forEach(el => {
+      el.classList.add(
+        'w-full', 'px-4', 'py-2.5', 'border', 'border-gray-200', 'rounded-lg',
+        'text-sm', 'bg-white', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[#0ea5e9]', 'transition'
+      );
+      el.style.maxWidth = '100%';
+    });
+
+    const checkboxes = form.querySelectorAll('input[type="checkbox"], input[type="radio"]');
+    checkboxes.forEach(cb => {
+      cb.classList.add('mr-2', 'h-4', 'w-4', 'text-[#800000]', 'focus:ring-[#0ea5e9]');
+      const parent = cb.closest('li') || cb.parentElement;
+      if (parent) parent.classList.add('flex', 'items-center', 'text-sm', 'text-gray-700');
+    });
+  })();
+
+
+  /* --------------------------
+     Dynamic Subcategory Loader
+     -------------------------- */
+  (function setupSubcategoryLoader() {
+    if (!form) return;
+    const subcatUrl = form.getAttribute('data-subcat-url') || '/documents/ajax/subcategories/';
+    if (!categoryEl || !subcategoryEl) return;
+
+    // Helpers
+    function clearSubcatOptions(placeholderText = 'Select a subcategory') {
+      subcategoryEl.innerHTML = '';
+      const opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = placeholderText;
+      subcategoryEl.appendChild(opt);
+    }
+
+    function populateSubcatOptions(items = [], keepValue = null) {
+      clearSubcatOptions();
+      items.forEach(it => {
+        const o = document.createElement('option');
+        o.value = it.id;
+        o.textContent = it.name;
+        subcategoryEl.appendChild(o);
+      });
+      if (keepValue) {
+        const exists = Array.from(subcategoryEl.options).some(o => o.value === String(keepValue));
+        if (exists) subcategoryEl.value = keepValue;
+        else subcategoryEl.value = '';
+      }
+    }
+
+    function setLoadingState() {
+      subcategoryEl.innerHTML = '';
+      const opt = document.createElement('option');
+      opt.textContent = 'Loading...';
+      opt.value = '';
+      subcategoryEl.appendChild(opt);
+      subcategoryEl.disabled = true;
+    }
+
+    function setNoCategoryState() {
+      clearSubcatOptions('Choose a category first');
+      subcategoryEl.disabled = true;
+    }
+
+    async function fetchAndPopulate(categoryId) {
+      if (!categoryId) {
+        setNoCategoryState();
+        return;
+      }
+      setLoadingState();
+      try {
+        const u = new URL(subcatUrl, window.location.origin);
+        u.searchParams.set('category_id', categoryId);
+
+        const resp = await fetch(u.toString(), { method: 'GET', credentials: 'same-origin' });
+        if (!resp.ok) throw new Error('Network response not ok');
+        const data = await resp.json();
+        const items = Array.isArray(data.results) ? data.results : [];
+        const current = subcategoryEl.value || null;
+        populateSubcatOptions(items, current);
+        subcategoryEl.disabled = items.length === 0;
+        if (items.length === 0) {
+          clearSubcatOptions('No subcategories available');
+        }
+      } catch (err) {
+        clearSubcatOptions('Could not load subcategories');
+        subcategoryEl.disabled = true;
+        console.error('Failed to load subcategories', err);
+      }
+    }
+
+    // When category changes, fetch subcategories
+    categoryEl.addEventListener('change', (e) => {
+      const catVal = categoryEl.value;
+      // call the existing validateCategory if present
+      try { if (typeof validateCategory === 'function') validateCategory(); } catch (_) {}
+      fetchAndPopulate(catVal);
+    });
+
+    // Initial population for edit forms
+    const initialCategory = categoryEl.value;
+    if (initialCategory) {
+      // Slight delay so server-rendered select options (if any) are preserved then clobbered by fetch result.
+      fetchAndPopulate(initialCategory);
+    } else {
+      setNoCategoryState();
+    }
+  })();
+
+});
+</script>
+{% endblock %}
+
+

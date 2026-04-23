@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}FPSPA Services{% endblock %}
+
+{% block content %}
+<section class="hero-bg3 text-white">
+  <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 text-center">
+    <p class="hero-chip justify-center mx-auto"><i class="fas fa-briefcase"></i> Member Services</p>
+    <h1 class="hero-heading animate-hero">Services designed for school leaders</h1>
+    <p class="hero-subtext mt-6 mx-auto">FPSPA keeps the project’s original service logic while refocusing the message on primary school principals, professional leadership, and practical support.</p>
+  </div>
+  <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="servicesWave" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f2f5f" />
+        <stop offset="100%" stop-color="#153f7a" />
+      </linearGradient>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#servicesWave)" opacity="0.7"/>
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#servicesWave)" opacity="0.5"/>
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#servicesWave)" opacity="0.3"/>
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#servicesWave)" opacity="1"/>
+    </g>
+  </svg>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] items-center">
+      <div class="feature-card !p-0 overflow-hidden">
+        <img src="{% static 'assets/images/fpspa/district-symposium.webp' %}" alt="FPSPA district symposium leadership gathering" class="h-[380px] w-full object-cover">
+      </div>
+      <div>
+        <p class="section-kicker">Support in Practice</p>
+        <h2 class="section-title mt-3">Services shaped by real principal gatherings</h2>
+        <p class="section-copy mt-4">FPSPA services are not abstract website features. They support the same work members already do through district symposia, conferences, professional dialogue, and peer-to-peer leadership support.</p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="info-card !p-5">
+            <h3 class="font-bold maroon-text text-xl">Training</h3>
+            <p class="section-copy mt-2">Workshops and online learning for leadership practice.</p>
+          </div>
+          <div class="info-card !p-5">
+            <h3 class="font-bold maroon-text text-xl">Engagement</h3>
+            <p class="section-copy mt-2">Events and notices that keep members informed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-10">
+      <p class="section-kicker">Association Support</p>
+      <h2 class="section-title mt-3">What members can access through FPSPA</h2>
+      <p class="section-copy mt-3 max-w-3xl mx-auto">These service categories preserve the site’s structure while speaking directly to the needs of primary school principals and education leaders.</p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Advocacy and representation</h3>
+        <p class="section-copy mt-3">Support with school leadership issues, professional representation, and collective engagement on sector matters.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Member welfare</h3>
+        <p class="section-copy mt-3">Member-centered support pathways that can continue to be managed through the existing app structure.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-book-open-reader"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Professional learning</h3>
+        <p class="section-copy mt-3">Leadership workshops, shared learning sessions, and development opportunities for principals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-folder-open"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Resources and documents</h3>
+        <p class="section-copy mt-3">Access downloadable forms, important circulars, and practical reference materials.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-users"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Area and branch network</h3>
+        <p class="section-copy mt-3">Stay connected with local representatives and association structures around the country.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-headset"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Help desk access</h3>
+        <p class="section-copy mt-3">Use the same integrated helpdesk workflow for member questions, requests, and support tickets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell accent-panel">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto">
+      <p class="section-kicker">How It Works</p>
+      <h2 class="section-title mt-3">Using FPSPA services is straightforward</h2>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <h3 class="text-2xl font-bold">1. Create your account</h3>
+        <p class="mt-3 text-white/80">Register through the existing account and membership flow so your information is stored in the current project apps.</p>
+      </div>
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <h3 class="text-2xl font-bold">2. Access what you need</h3>
+        <p class="mt-3 text-white/80">Use the same news, documents, events, and helpdesk tools already built into the site.</p>
+      </div>
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <h3 class="text-2xl font-bold">3. Stay engaged</h3>
+        <p class="mt-3 text-white/80">Remain connected with executive updates, regional representatives, and association events.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="cta-card p-8 lg:p-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] items-center">
+      <div>
+        <p class="section-kicker">Next Steps</p>
+        <h2 class="section-title mt-3">Need support or ready to join?</h2>
+        <p class="section-copy mt-3">Use the existing registration, FAQ, and helpdesk pages to engage with the updated FPSPA site experience.</p>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:justify-end">
+        <a href="{% url 'register' %}" class="hero-btn hero-btn-primary">Join FPSPA</a>
+        <a href="{% url 'faq_list' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">View FAQs</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static news_filters %}
+
+{% block extra_head %}
+  {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+  <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-6">
+    <p class="font-semibold mb-2">Please correct the following errors:</p>
+    <ul class="list-disc pl-6 space-y-1 text-sm">
+      {% for field in form %}
+        {% for error in field.errors %}
+          <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+<!-- Form Section -->
+<section class="py-16 maroon-bg">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-200 p-10 hover:shadow-[0_0_25px_rgba(255,215,0,0.3)] transition-all duration-300">
+      
+      <!-- Header aligned to right -->
+      <h2 class="text-3xl font-semibold maroon-text mb-8 text-right">
+        {% if news %}📰 Update News Article{% else %}📰 Publish a News Article{% endif %}
+      </h2>
+
+      <form method="POST" enctype="multipart/form-data" class="space-y-8">
+        {% csrf_token %}
+
+        <!-- Title -->
+        <div>
+          <label for="id_title" class="block text-gray-700 font-semibold mb-2">Title</label>
+          {{ form.title|add_class:"w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-fta-gold focus:border-fta-gold transition duration-200" }}
+        </div>
+
+        <!-- Category -->
+        <div>
+          <label for="id_category" class="block text-gray-700 font-semibold mb-2">Category</label>
+          {{ form.category|add_class:"w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-fta-gold focus:border-fta-gold" }}
+        </div>
+
+        <!-- Content -->
+        <div>
+          <label for="id_content" class="block text-gray-700 font-semibold mb-2">Content</label>
+          <div class="ckeditor-wrapper border border-gray-300 rounded-lg overflow-hidden">
+            {{ form.content }}
+          </div>
+        </div>
+
+        <!-- Image Upload -->
+        <div>
+          <label for="id_image" class="block text-gray-700 font-semibold mb-2">Attach Image(s)</label>
+          {{ form.image|add_class:"w-full border border-gray-300 rounded-lg px-4 py-3 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-fta-gold" }}
+          {% if news and news.image %}
+            <p class="mt-2 text-sm text-gray-500">Current image: <span class="font-medium">{{ news.image.name|basename }}</span></p>
+            <img src="{{ news.image.url }}" class="mt-2 w-full h-48 object-cover rounded-lg" alt="{{ news.title }}">
+          {% endif %}
+          <p class="text-sm text-gray-500 mt-1">You can upload new image(s) (optional)</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-center gap-5 pt-6">
+          <button type="submit"
+                  class="maroon-bg text-white font-semibold py-3 px-10 rounded-full shadow-md 
+                         hover:bg-maroon-800 hover:shadow-[0_0_20px_rgba(255,215,0,0.5)] 
+                         transition-transform duration-300 transform hover:scale-105">
+            Save Changes
+          </button>
+
+          <a href="{% url 'news:news_admin_list' %}"
+             class="bg-gray-200 text-gray-800 font-semibold py-3 px-10 rounded-full shadow 
+                    hover:bg-gray-300 hover:scale-105 transition-all duration-300">
+            Cancel
+          </a>
+
+          {% if news %}
+            <form method="post" action="{% url 'news:delete_news' news.slug %}" class="inline" onsubmit="return confirm('Are you sure you want to delete this news item?');">
+              {% csrf_token %}
+              <button type="submit" class="inline-flex items-center gap-2 px-3 py-2 rounded bg-red-100 hover:bg-red-200 text-red-800 text-sm">
+                Delete
+              </button>
+            </form>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

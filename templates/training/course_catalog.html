@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}FPSPA Training and Workshops{% endblock %}
+
+{% block content %}
+<section class="hero-bg3 text-white">
+  <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 text-center">
+    <p class="hero-chip justify-center mx-auto"><i class="fas fa-graduation-cap"></i> Online Training and Workshops</p>
+    <h1 class="hero-heading animate-hero">Learn, enroll, and earn certificates online</h1>
+    <p class="hero-subtext mt-6 mx-auto">The training app gives FPSPA members a place to enroll in online courses and workshops, follow lesson content, track progress, and complete certificate-ready learning.</p>
+  </div>
+  <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="trainingWave" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f2f5f" />
+        <stop offset="100%" stop-color="#153f7a" />
+      </linearGradient>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#trainingWave)" opacity="0.7"/>
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#trainingWave)" opacity="0.5"/>
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#trainingWave)" opacity="0.3"/>
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#trainingWave)" opacity="1"/>
+    </g>
+  </svg>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="cta-card p-6 mb-10">
+      <form method="get" class="grid gap-4 md:grid-cols-[1fr_220px_160px] items-end">
+        <div>
+          <label for="q" class="block text-sm font-semibold text-slate-700 mb-2">Search courses</label>
+          <input id="q" name="q" value="{{ query }}" class="w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1f5ca8]" placeholder="Leadership, governance, workshop...">
+        </div>
+        <div>
+          <label for="delivery" class="block text-sm font-semibold text-slate-700 mb-2">Delivery</label>
+          <select id="delivery" name="delivery" class="w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1f5ca8]">
+            <option value="">All types</option>
+            {% for value, label in delivery_choices %}
+              <option value="{{ value }}" {% if delivery == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="hero-btn hero-btn-primary justify-center h-[52px]">Filter</button>
+      </form>
+    </div>
+
+    {% if featured_courses %}
+      <div class="mb-12">
+        <p class="section-kicker">Featured Learning</p>
+        <h2 class="section-title mt-3 text-4xl">Highlighted programs</h2>
+        <div class="mt-6 grid gap-6 lg:grid-cols-3">
+          {% for course in featured_courses %}
+            <a href="{% url 'training:course_detail' course.slug %}" class="feature-card block hover:-translate-y-1 transition duration-300">
+              {% if course.thumbnail %}
+                <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}" class="w-full h-52 object-cover rounded-2xl mb-5">
+              {% endif %}
+              <p class="text-sm font-semibold text-[#1f5ca8]">{{ course.get_delivery_type_display }}</p>
+              <h3 class="mt-2 text-2xl font-bold maroon-text">{{ course.title }}</h3>
+              <p class="section-copy mt-3">{{ course.short_description }}</p>
+              <p class="mt-4 text-sm text-slate-500">{{ course.duration_hours }} hour{{ course.duration_hours|pluralize }} • {{ course.lesson_count }} lesson{{ course.lesson_count|pluralize }}</p>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div>
+      <p class="section-kicker">Course Catalogue</p>
+      <h2 class="section-title mt-3 text-4xl">Available training and workshops</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {% for course in courses %}
+          <div class="info-card flex flex-col">
+            {% if course.thumbnail %}
+              <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover rounded-2xl mb-5">
+            {% endif %}
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex rounded-full bg-[#0f2f5f]/8 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#0f2f5f]">{{ course.get_delivery_type_display }}</span>
+              <span class="text-sm text-slate-500">{{ course.duration_hours }}h</span>
+            </div>
+            <h3 class="mt-4 text-2xl font-bold maroon-text">{{ course.title }}</h3>
+            <p class="section-copy mt-3 flex-1">{{ course.short_description }}</p>
+            <div class="mt-5 text-sm text-slate-500">
+              {{ course.modules.count }} module{{ course.modules.count|pluralize }} • {{ course.lesson_count }} lesson{{ course.lesson_count|pluralize }}
+            </div>
+            <div class="mt-6">
+              <a href="{% url 'training:course_detail' course.slug %}" class="hero-btn hero-btn-primary">View course</a>
+            </div>
+          </div>
+        {% empty %}
+          <div class="feature-card md:col-span-2 xl:col-span-3 text-center">
+            <h3 class="text-2xl font-bold maroon-text">No courses match your filters</h3>
+            <p class="section-copy mt-3">Try clearing the search or delivery filter, or publish new courses in the admin.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

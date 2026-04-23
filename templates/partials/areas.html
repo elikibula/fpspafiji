@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% block title %}FPSPA Areas & Representatives{% endblock %}
+
+{% block content %}
+<div class="py-12 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-6">
+      <h2 class="text-base maroon-text font-semibold tracking-wide uppercase">Where are we?</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight sm:text-4xl maroon-text">
+        We are represented Fiji wide
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-3 justify-center mb-6">
+      {% for area in areas %}
+        <button command="show-modal" commandfor="dialog-{{ area.id }}"
+                class="rounded-md bg-white/90 px-4 py-2 text-xl font-semibold text-gray-900 hover:bg-gray-100 shadow">
+          {{ area.name }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <p class="text-center text-sm text-gray-500 mb-6">Click an area to view branches and representatives.</p>
+
+    <!-- Optional: Overview grid fallback (shows first 6 areas) -->
+     <!--
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for area in areas|slice:":6" %}
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="font-semibold text-gray-800">{{ area.name }}</h3>
+          <p class="text-sm text-gray-500 mt-1">{{ area.summary|default:"" }}</p>
+          <div class="mt-3">
+            <button command="show-modal" commandfor="dialog-{{ area.id }}" class="text-maroon-700 text-sm font-medium">View details</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div> -->
+</div>
+
+<!-- Per-area modals (one per area) -->
+{% for area in areas %}
+<dialog id="dialog-{{ area.id }}" class="fixed inset-0 z-50 size-auto max-h-none max-w-none overflow-y-auto bg-transparent" aria-labelledby="dialog-title-{{ area.id }}">
+  <div class="fixed inset-0 bg-gray-900/60" data-backdrop></div>
+
+  <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+    <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 sm:w-full sm:max-w-3xl">
+      <div class="px-6 py-5">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-maroon-100 flex items-center justify-center">
+            
+          </div>
+          <div class="flex-1">
+            <h3 id="dialog-title-{{ area.id }}" class="text-lg font-semibold text-gray-900">{{ area.name }}</h3>
+            {% if area.summary %}
+              <p class="text-sm text-gray-500 mt-1">{{ area.summary }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="text-sm font-semibold text-gray-700">Branches</h4>
+            <ul class="mt-2 space-y-2">
+              {% for branch in area.branches.all %}
+                <li class="bg-gray-50 rounded-md p-3 flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-gray-800">{{ branch.name }}</div>
+                    {% if branch.address %}<div class="text-xs text-gray-500">{{ branch.address }}</div>{% endif %}
+                  </div>
+                  <div class="flex flex-col items-end">
+                    <button type="button" class="view-branch-map text-sm text-blue-600" data-branch-id="{{ branch.id }}" data-lat="{{ branch.latitude }}" data-lng="{{ branch.longitude }}">View on map</button>
+                    <button type="button" class="open-branch-details mt-2 inline-block bg-maroon-700 text-white px-3 py-1 rounded text-sm" data-branch-id="{{ branch.id }}">Contact</button>
+                  </div>
+                </li>
+              {% empty %}
+                <li class="text-sm text-gray-500">No branches listed.</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold text-gray-700">Representatives</h4>
+            <ul class="mt-2 space-y-3">
+              {% for rep in area.reps.all %}
+                <li class="flex items-start gap-3 bg-gray-50 rounded-md p-3">
+                  <div class="w-12 h-12 rounded-full bg-gray-100 overflow-hidden flex items-center justify-center">
+                    {% if rep.photo %}
+                      <img src="{{ rep.photo.url }}" alt="{{ rep.name }}" class="w-full h-full object-cover">
+                    {% else %}
+                      <span class="text-sm text-gray-600">{{ rep.name|slice:":1" }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-medium text-gray-800">{{ rep.name }}</div>
+                    <div class="text-xs text-gray-500">{{ rep.role }}</div>
+                    <div class="text-sm text-gray-700 mt-1">
+                      {% if rep.phone %}<a href="tel:{{ rep.phone }}" class="block">{{ rep.phone }}</a>{% endif %}
+                      {% if rep.email %}<a href="mailto:{{ rep.email }}" class="block text-blue-600">{{ rep.email }}</a>{% endif %}
+                    </div>
+                    {% if rep.branch %}<div class="text-xs mt-1 text-gray-500">Branch: {{ rep.branch.name }}</div>{% endif %}
+                  </div>
+                </li>
+              {% empty %}
+                <li class="text-sm text-gray-500">No representatives listed.</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Optional inline map container; Leaflet will initialize when modal opens -->
+        <div class="mt-4">
+          <div id="map-area-{{ area.id }}" data-area-id="{{ area.id }}" class="hidden h-48 rounded-md overflow-hidden border"></div>
+        </div>
+
+      </div>
+
+      <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+        <button type="button" command="close" commandfor="dialog-{{ area.id }}" class="inline-flex w-full justify-center rounded-md bg-maroon-700 px-3 py-2 text-sm font-semibold text-maroon-800 sm:ml-3 sm:w-auto">Close</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+{% endfor %}
+
+<!-- Branch details modal (reusable small modal) -->
+<div id="branchDetailsModal" class="hidden fixed inset-0 z-60 bg-black bg-opacity-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg max-w-md w-full p-4 relative">
+    <button id="branchDetailsClose" class="absolute top-3 right-3 text-xl text-gray-600">&times;</button>
+    <div id="branchDetailsContent"></div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- Leaflet (optional map support) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+(() => {
+  document.addEventListener('DOMContentLoaded', function () {
+    const branches = window.branches_data = {{ branches_json|safe }};
+    const areaMaps = {};
+
+    function openDialogById(id) {
+      const dialog = document.getElementById(id);
+      if (!dialog) return;
+      dialog.classList.remove('hidden');
+      dialog.setAttribute('open','');
+      document.body.style.overflow = 'hidden';
+      const mapContainer = dialog.querySelector('[id^="map-area-"]');
+      if (mapContainer && mapContainer.dataset.areaId) {
+        initializeAreaMapIfNeeded(mapContainer);
+      }
+    }
+
+    function closeDialogById(id) {
+      const dialog = document.getElementById(id);
+      if (!dialog) return;
+      dialog.classList.add('hidden');
+      dialog.removeAttribute('open');
+      if (!document.querySelector('dialog:not(.hidden)')) document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function (e) {
+      const showBtn = e.target.closest('[command="show-modal"]');
+      if (showBtn) {
+        e.preventDefault();
+        openDialogById(showBtn.getAttribute('commandfor'));
+        return;
+      }
+      const closeBtn = e.target.closest('[command="close"]');
+      if (closeBtn) {
+        e.preventDefault();
+        closeDialogById(closeBtn.getAttribute('commandfor'));
+        return;
+      }
+      const backdrop = e.target.closest('[data-backdrop]');
+      if (backdrop) {
+        const parentDialog = backdrop.closest('dialog');
+        if (parentDialog && parentDialog.id) closeDialogById(parentDialog.id);
+        return;
+      }
+      const clickedDialog = e.target.closest('dialog');
+      if (clickedDialog && e.target === clickedDialog) closeDialogById(clickedDialog.id);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('dialog').forEach(d => { d.classList.add('hidden'); d.removeAttribute('open'); });
+        document.getElementById('branchDetailsModal')?.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+
+    function initializeAreaMapIfNeeded(container, focusCoords=null) {
+      if (!container) return;
+      if (container.classList.contains('hidden')) container.classList.remove('hidden');
+      const areaId = container.dataset.areaId;
+      if (!areaId) return;
+      if (areaMaps[areaId]) {
+        if (focusCoords && areaMaps[areaId].map) areaMaps[areaId].map.setView(focusCoords, 13);
+        return;
+      }
+
+      const map = L.map(container, { zoomControl: true }).setView([-17.7134, 178.0650], 5.2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '© OpenStreetMap contributors' }).addTo(map);
+
+      const group = L.layerGroup().addTo(map);
+      branches.filter(b => String(b.area_id) === String(areaId)).forEach(b => {
+        if (b.lat == null || b.lng == null) return;
+        const m = L.marker([b.lat, b.lng]).addTo(group);
+        m.bindPopup(`<strong>${escapeHtml(b.name)}</strong><br/><small>${escapeHtml(b.address || '')}</small>`);
+        m.on('click', () => openBranchDetails(b.id));
+      });
+
+      areaMaps[areaId] = { map, group, container };
+      if (focusCoords) map.setView(focusCoords, 13, { animate: true });
+    }
+
+    function openBranchDetails(branchId) {
+      const branchObj = branches.find(b => String(b.id) === String(branchId));
+      const container = document.getElementById('branchDetailsContent');
+      if (!branchObj) {
+        container.innerHTML = '<div class="text-sm text-gray-500">Branch details not available.</div>';
+      } else {
+        let repsHtml = '';
+        if (branchObj.reps && branchObj.reps.length) {
+          repsHtml = '<h4 class="font-semibold">Representatives</h4><ul class="mt-2 space-y-2 text-sm">';
+          branchObj.reps.forEach(r => {
+            repsHtml += `<li><div class="font-medium">${escapeHtml(r.name)}</div>`;
+            if (r.role) repsHtml += `<div class="text-xs text-gray-500">${escapeHtml(r.role)}</div>`;
+            if (r.phone) repsHtml += `<div class="mt-1"><a href="tel:${escapeHtml(r.phone)}" class="text-blue-600">${escapeHtml(r.phone)}</a></div>`;
+            if (r.email) repsHtml += `<div><a href="mailto:${escapeHtml(r.email)}" class="text-blue-600">${escapeHtml(r.email)}</a></div>`;
+            repsHtml += '</li>';
+          });
+          repsHtml += '</ul>';
+        } else {
+          repsHtml = '<div class="text-sm text-gray-500">No reps listed for this branch.</div>';
+        }
+
+        container.innerHTML = `<h3 class="text-lg font-semibold">${escapeHtml(branchObj.name)}</h3>${branchObj.address ? `<div class="text-xs text-gray-500 mb-2">${escapeHtml(branchObj.address)}</div>` : ''}${repsHtml}`;
+      }
+      document.getElementById('branchDetailsModal').classList.remove('hidden');
+    }
+
+    function escapeHtml(s) {
+      if (!s) return '';
+      return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+    }
+  });
+})();
+</script>
+{% endblock %}
+
+

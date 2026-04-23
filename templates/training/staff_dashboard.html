@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Training Staff Dashboard{% endblock %}
+
+{% block content %}
+<div class="min-h-screen maroon-bg py-10">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="rounded-2xl shadow-lg mb-6 overflow-hidden">
+      <div class="bg-gradient-to-r from-[#800000] via-[#8B0000] to-[#4B0000] px-6 py-6">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-bold gold-text">Training and Workshops Dashboard</h1>
+            <p class="gold-text mt-1">Manage FPSPA courses, schedules, learning content, enrollments, and certificates outside Django admin.</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="{% url 'training:staff_course_create' %}" class="inline-flex items-center px-4 py-2 bg-[#FFDF01] text-[#800000] rounded-lg font-semibold hover:bg-yellow-300 transition">Create Course</a>
+            <a href="{% url 'training:staff_course_list' %}" class="inline-flex items-center px-4 py-2 bg-white/10 text-white rounded-lg font-semibold hover:bg-white/20 transition">Manage Courses</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6 mb-6">
+      <div class="bg-white rounded-xl shadow-lg p-6"><p class="text-sm text-gray-500">Total Courses</p><h2 class="text-3xl font-bold maroon-text mt-2">{{ stats.total_courses }}</h2></div>
+      <div class="bg-white rounded-xl shadow-lg p-6"><p class="text-sm text-gray-500">Published</p><h2 class="text-3xl font-bold maroon-text mt-2">{{ stats.published_courses }}</h2></div>
+      <div class="bg-white rounded-xl shadow-lg p-6"><p class="text-sm text-gray-500">Enrollments</p><h2 class="text-3xl font-bold maroon-text mt-2">{{ stats.total_enrollments }}</h2></div>
+      <div class="bg-white rounded-xl shadow-lg p-6"><p class="text-sm text-gray-500">Completed</p><h2 class="text-3xl font-bold maroon-text mt-2">{{ stats.completed_enrollments }}</h2></div>
+      <div class="bg-white rounded-xl shadow-lg p-6"><p class="text-sm text-gray-500">Certificates</p><h2 class="text-3xl font-bold maroon-text mt-2">{{ stats.certificates_issued }}</h2></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold maroon-text">Recent Courses</h2>
+        </div>
+        <div class="p-6 space-y-4">
+          {% for course in recent_courses %}
+            <div class="rounded-xl border border-gray-200 p-4 flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-semibold text-gray-900">{{ course.title }}</h3>
+                <p class="text-sm text-gray-500 mt-1">{{ course.get_delivery_type_display }} • Updated {{ course.updated_at|date:"d M Y" }}</p>
+              </div>
+              <a href="{% url 'training:staff_course_detail' course.id %}" class="text-sm font-semibold text-[#800000] hover:underline">Open</a>
+            </div>
+          {% empty %}
+            <p class="text-gray-500">No training courses created yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-xl font-semibold maroon-text">Upcoming Schedules</h2>
+        </div>
+        <div class="p-6 space-y-4">
+          {% for schedule in upcoming_schedules %}
+            <div class="rounded-xl border border-gray-200 p-4">
+              <h3 class="font-semibold text-gray-900">{{ schedule.title }}</h3>
+              <p class="text-sm text-gray-500 mt-1">{{ schedule.course.title }}</p>
+              <p class="text-sm text-gray-500 mt-1">{{ schedule.start_datetime|date:"d M Y H:i" }} to {{ schedule.end_datetime|date:"d M Y H:i" }}</p>
+              {% if schedule.location %}<p class="text-sm text-gray-500 mt-1">{{ schedule.location }}</p>{% endif %}
+            </div>
+          {% empty %}
+            <p class="text-gray-500">No upcoming workshop schedules yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

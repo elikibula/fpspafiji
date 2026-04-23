@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load training_extras %}
+
+{% block title %}Manage {{ course.title }}{% endblock %}
+{% block extra_head %}
+  {{ lesson_media }}
+  {{ module_media }}
+  {{ schedule_media }}
+  {{ quiz_media }}
+{% endblock %}
+
+{% block content %}
+<section class="section-shell pt-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
+      <div>
+        {% if course.thumbnail %}
+          <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}" class="w-full max-w-sm object-cover rounded-2xl shadow-lg mb-5">
+        {% endif %}
+        <p class="section-kicker">Course Management</p>
+        <h1 class="section-title mt-3">{{ course.title }}</h1>
+        <p class="section-copy mt-3">{{ course.short_description }}</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="{% url 'training:staff_course_edit' course.id %}" class="hero-btn hero-btn-primary">Edit course</a>
+        <a href="{% url 'training:staff_course_list' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Back to courses</a>
+      </div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-4 mb-8">
+      <div class="feature-card !p-5"><strong class="text-3xl maroon-text">{{ course.modules.count }}</strong><p class="section-copy mt-2">Modules</p></div>
+      <div class="feature-card !p-5"><strong class="text-3xl maroon-text">{{ course.schedules.count }}</strong><p class="section-copy mt-2">Schedules</p></div>
+      <div class="feature-card !p-5"><strong class="text-3xl maroon-text">{{ enrollments.count }}</strong><p class="section-copy mt-2">Enrollments</p></div>
+      <div class="feature-card !p-5"><strong class="text-3xl maroon-text">{{ course.quiz_questions.count }}</strong><p class="section-copy mt-2">Quiz Questions</p></div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+      <div class="space-y-6">
+        <div class="info-card">
+          <h2 class="text-2xl font-bold maroon-text">Modules and lessons</h2>
+          <div class="mt-5 space-y-5">
+            {% for module in course.modules.all %}
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <h3 class="text-xl font-bold maroon-text">{{ module.order }}. {{ module.title }}</h3>
+                    {% if module.overview %}<div class="section-copy mt-2 prose max-w-none">{{ module.overview|safe }}</div>{% endif %}
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <a href="{% url 'training:staff_module_edit' module.id %}" class="text-sm font-semibold text-[#1f5ca8]">Edit</a>
+                    <a href="{% url 'training:staff_module_delete' module.id %}" class="text-sm font-semibold text-red-600">Delete</a>
+                  </div>
+                </div>
+
+                <div class="mt-4 space-y-3">
+                  {% for lesson in module.lessons.all %}
+                    <div class="rounded-xl bg-slate-50 px-4 py-3 flex items-center justify-between gap-4">
+                      <div>
+                        <div class="font-semibold text-slate-800">{{ lesson.title }}</div>
+                        <div class="text-sm text-slate-500">{{ lesson.duration_minutes }} min{% if lesson.video_url %} • Video linked{% endif %}{% if lesson.resource_file %} • Resource attached{% endif %}</div>
+                      </div>
+                      <div class="flex flex-wrap items-center gap-3">
+                        <span class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{% if lesson.is_preview %}Preview{% else %}Member only{% endif %}</span>
+                        <a href="{% url 'training:staff_lesson_edit' lesson.id %}" class="text-sm font-semibold text-[#1f5ca8]">Edit</a>
+                        <a href="{% url 'training:staff_lesson_delete' lesson.id %}" class="text-sm font-semibold text-red-600">Delete</a>
+                      </div>
+                    </div>
+                  {% empty %}
+                    <p class="text-sm text-slate-500">No lessons yet.</p>
+                  {% endfor %}
+                </div>
+
+                <div class="mt-6 border-t border-slate-200 pt-5">
+                  <h4 class="text-lg font-bold maroon-text">Add lesson</h4>
+                  <form method="post" enctype="multipart/form-data" class="mt-4 grid gap-4 md:grid-cols-2">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="add_lesson">
+                    <input type="hidden" name="module_id" value="{{ module.id }}">
+                    {% for field in lesson_forms|get_item:module.id %}
+                      <div class="{% if field.name == 'content' %}md:col-span-2{% endif %}">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}<p class="text-sm text-red-600 mt-2">{{ field.errors|striptags }}</p>{% endif %}
+                      </div>
+                    {% endfor %}
+                    <div class="md:col-span-2">
+                      <button type="submit" class="hero-btn hero-btn-primary">Add lesson</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            {% empty %}
+              <p class="section-copy">No modules created yet. Use the form on the right to add the first one.</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2 class="text-2xl font-bold maroon-text">Assessment questions</h2>
+          <div class="mt-4 space-y-3">
+            {% for question in course.quiz_questions.all %}
+              <div class="rounded-xl border border-slate-200 p-4">
+                <div class="flex items-center justify-between gap-3">
+                  <div>
+                    <div class="font-semibold text-slate-800">Question {{ question.order }}</div>
+                    <p class="text-sm text-slate-500 mt-1">{{ question.question_text }}</p>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <a href="{% url 'training:staff_quiz_question_edit' question.id %}" class="text-sm font-semibold text-[#1f5ca8]">Edit</a>
+                    <a href="{% url 'training:staff_quiz_question_delete' question.id %}" class="text-sm font-semibold text-red-600">Delete</a>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <p class="text-slate-500">No quiz questions added yet.</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2 class="text-2xl font-bold maroon-text">Enrollments</h2>
+          <div class="mt-5 overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead>
+                <tr class="border-b border-slate-200 text-left text-slate-500">
+                  <th class="py-3 pr-4">Member</th>
+                  <th class="py-3 pr-4">Status</th>
+                  <th class="py-3 pr-4">Progress</th>
+                  <th class="py-3 pr-4">Schedule</th>
+                  <th class="py-3">Certificate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for enrollment in enrollments %}
+                  <tr class="border-b border-slate-100">
+                    <td class="py-3 pr-4">{{ enrollment.member.full_name }}</td>
+                    <td class="py-3 pr-4">{{ enrollment.get_status_display }}</td>
+                    <td class="py-3 pr-4">{{ enrollment.progress_percent }}%</td>
+                    <td class="py-3 pr-4">{% if enrollment.selected_schedule %}{{ enrollment.selected_schedule.title }}{% else %}-{% endif %}</td>
+                    <td class="py-3">{% if enrollment.certificate %}{{ enrollment.certificate.certificate_number }}{% else %}-{% endif %}</td>
+                  </tr>
+                {% empty %}
+                  <tr><td colspan="5" class="py-4 text-slate-500">No enrollments yet.</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="cta-card p-6">
+          <h2 class="text-2xl font-bold maroon-text">Add module</h2>
+          <form method="post" class="mt-5 space-y-4">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="add_module">
+            {% for field in module_form %}
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<p class="text-sm text-red-600 mt-2">{{ field.errors|striptags }}</p>{% endif %}
+              </div>
+            {% endfor %}
+            <button type="submit" class="hero-btn hero-btn-primary">Add module</button>
+          </form>
+        </div>
+
+        <div class="cta-card p-6">
+          <h2 class="text-2xl font-bold maroon-text">Add quiz question</h2>
+          <form method="post" class="mt-5 space-y-4">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="add_quiz_question">
+            {% for field in quiz_form %}
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<p class="text-sm text-red-600 mt-2">{{ field.errors|striptags }}</p>{% endif %}
+              </div>
+            {% endfor %}
+            <button type="submit" class="hero-btn hero-btn-primary">Add question</button>
+          </form>
+        </div>
+
+        <div class="cta-card p-6">
+          <h2 class="text-2xl font-bold maroon-text">Add schedule</h2>
+          <form method="post" class="mt-5 space-y-4">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="add_schedule">
+            {% for field in schedule_form %}
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<p class="text-sm text-red-600 mt-2">{{ field.errors|striptags }}</p>{% endif %}
+              </div>
+            {% endfor %}
+            <button type="submit" class="hero-btn hero-btn-primary">Add schedule</button>
+          </form>
+        </div>
+
+        <div class="info-card">
+          <h2 class="text-2xl font-bold maroon-text">Current schedules</h2>
+          <div class="mt-4 space-y-3">
+            {% for schedule in course.schedules.all %}
+              <div class="rounded-xl border border-slate-200 p-4">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="font-semibold text-slate-800">{{ schedule.title }}</div>
+                  <div class="flex flex-wrap gap-2">
+                    <a href="{% url 'training:staff_schedule_edit' schedule.id %}" class="text-sm font-semibold text-[#1f5ca8]">Edit</a>
+                    <a href="{% url 'training:staff_schedule_attendance' schedule.id %}" class="text-sm font-semibold text-[#1f5ca8]">Attendance</a>
+                    <a href="{% url 'training:staff_schedule_delete' schedule.id %}" class="text-sm font-semibold text-red-600">Delete</a>
+                  </div>
+                </div>
+                <p class="text-sm text-slate-500 mt-1">{{ schedule.start_datetime|date:"d M Y H:i" }} to {{ schedule.end_datetime|date:"d M Y H:i" }}</p>
+                {% if schedule.facilitator %}<p class="text-sm text-slate-500">{{ schedule.facilitator }}</p>{% endif %}
+                {% if schedule.location %}<p class="text-sm text-slate-500">{{ schedule.location }}</p>{% endif %}
+                <p class="text-sm text-slate-500 mt-1">QR check-in: {% if schedule.qr_checkin_enabled %}Enabled{% else %}Disabled{% endif %}</p>
+              </div>
+            {% empty %}
+              <p class="text-slate-500">No schedules added yet.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

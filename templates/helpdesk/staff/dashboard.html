@@ -1,0 +1,169 @@
+<!-- templates/helpdesk/staff/dashboard.html -->
+{% extends "helpdesk/staff/base_staff.html" %}
+
+{% block title %}Staff Dashboard - FPSPA Help Desk{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 maroon-bg">
+    <!-- Welcome Section -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold maroon-text">FPSPA Helpdesk Ticket Dashboard</h1>
+        <p class="text-gray-600 mt-2">Overview of help desk operations and ticket metrics</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Total Tickets -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                    <i class="fas fa-ticket-alt text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-2xl font-bold text-gray-900">{{ total_tickets }}</h3>
+                    <p class="text-gray-600">Total Tickets</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Open Tickets -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                    <i class="fas fa-clock text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-2xl font-bold text-gray-900">{{ open_tickets }}</h3>
+                    <p class="text-gray-600">Open Tickets</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Overdue Tickets -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-red-100 text-red-600">
+                    <i class="fas fa-exclamation-triangle text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-2xl font-bold text-gray-900">{{ overdue_tickets }}</h3>
+                    <p class="text-gray-600">Overdue Response</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- My Tickets -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                    <i class="fas fa-user text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-2xl font-bold text-gray-900">{{ my_tickets }}</h3>
+                    <p class="text-gray-600">Assigned to Me</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Recent Tickets -->
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-semibold text-gray-900">Recent Tickets</h2>
+                        <a href="{% url 'helpdesk:staff_ticket_list' %}" class="text-[#800000] hover:text-[#600000] text-sm font-medium">
+                            View All →
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    {% if recent_tickets %}
+                    <div class="space-y-4">
+                        {% for ticket in recent_tickets %}
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3">
+                                    <span class="font-mono text-sm text-gray-500">#{{ ticket.ticket_number }}</span>
+                                    <span class="px-2 py-1 text-xs rounded-full {{ ticket.status.color|default:'bg-gray-100 text-gray-800' }}" style="background-color: {{ ticket.status.color }}20; color: {{ ticket.status.color }};">
+                                        {{ ticket.status.name }}
+                                    </span>
+                                </div>
+                                <h3 class="font-medium text-gray-900 mt-1">{{ ticket.title }}</h3>
+                                <div class="flex items-center space-x-4 text-sm text-gray-600 mt-1">
+                                    <span>{{ ticket.category.name|default:"No Category" }}</span>
+                                    <span>•</span>
+                                    <span>{{ ticket.created_by.get_full_name|default:ticket.created_by.username }}</span>
+                                    <span>•</span>
+                                    <span>{{ ticket.created_at|timesince }} ago</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                {% if ticket.assigned_to %}
+                                <span class="text-sm text-gray-600">{{ ticket.assigned_to.get_full_name|default:ticket.assigned_to.username }}</span>
+                                {% else %}
+                                <span class="text-sm text-gray-400">Unassigned</span>
+                                {% endif %}
+                                <a href="{% url 'helpdesk:staff_ticket_detail' ticket.ticket_number %}" 
+                                   class="text-[#800000] hover:text-[#600000] text-sm font-medium">
+                                    View
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-8">
+                        <i class="fas fa-ticket-alt text-4xl text-gray-300 mb-3"></i>
+                        <p class="text-gray-600">No tickets yet</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions & Status -->
+        <div class="space-y-6">
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
+                <div class="space-y-3">
+                    <a href="{% url 'helpdesk:staff_create_ticket' %}" 
+                       class="w-full flex items-center justify-center bg-[#800000] text-white py-2 px-4 rounded-md hover:bg-[#600000] transition">
+                        <i class="fas fa-plus mr-2"></i>
+                        Create New Ticket
+                    </a>
+                    <a href="{% url 'helpdesk:staff_my_tickets' %}" 
+                       class="w-full flex items-center justify-center bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 transition">
+                        <i class="fas fa-list mr-2"></i>
+                        View My Tickets
+                    </a>
+                    <a href="{% url 'helpdesk:staff_ticket_list' %}?assigned=unassigned" 
+                       class="w-full flex items-center justify-center bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 transition">
+                        <i class="fas fa-users mr-2"></i>
+                        Unassigned Tickets
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ticket Status Overview -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Ticket Status</h2>
+                <div class="space-y-3">
+                    {% for status in status_counts %}
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">{{ status.status__name }}</span>
+                        <span class="px-2 py-1 text-xs rounded-full text-white" style="background-color: {{ status.status__color }};">
+                            {{ status.count }}
+                        </span>
+                    </div>
+                    {% empty %}
+                    <p class="text-gray-600 text-sm text-center">No status data available</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

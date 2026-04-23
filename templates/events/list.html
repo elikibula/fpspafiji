@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-12">
+  <h1 class="text-3xl font-bold mb-6">Upcoming Events</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for event in events %}
+      <!-- Event Card -->
+      <div class="event-card bg-white rounded-xl shadow hover:shadow-lg p-5 cursor-pointer transition transform hover:-translate-y-1"
+           data-event-id="{{ event.id }}">
+        {% if event.image %}
+          <img src="{{ event.image.url }}" class="rounded-lg mb-3 h-48 w-full object-cover" alt="{{ event.title }}">
+        {% endif %}
+        <h2 class="text-xl font-semibold mb-1 text-gray-800">{{ event.title }}</h2>
+        <p class="text-sm text-gray-500">
+          {{ event.start|date:"M d, Y H:i" }}
+          {% if event.end %}– {{ event.end|date:"M d, Y H:i" }}{% endif %}
+        </p>
+        <p class="mt-2 text-gray-700 line-clamp-3">
+          {{ event.description|striptags|truncatewords:25 }}
+        </p>
+      </div>
+
+      <!-- Event Modal -->
+      <div id="modal-{{ event.id }}" class="hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-2xl relative shadow-xl">
+          <button class="absolute top-3 right-3 text-gray-600 text-2xl font-bold hover:text-gray-800 close-modal">&times;</button>
+
+          {% if event.image %}
+            <img src="{{ event.image.url }}" class="rounded-lg mb-4 h-56 w-full object-cover" alt="{{ event.title }}">
+          {% endif %}
+          <h1 class="text-2xl font-bold mb-2">{{ event.title }}</h1>
+          <p class="text-sm text-gray-500 mb-4">
+            {{ event.start|date:"M d, Y H:i" }}
+            {% if event.end %}– {{ event.end|date:"M d, Y H:i" }}{% endif %}
+          </p>
+
+          <div class="prose max-w-none">{{ event.description|safe }}</div>
+
+          <div class="mt-6 text-sm text-gray-700 space-y-1">
+            <p><strong>Location:</strong> {{ event.location }}</p>
+            <p><strong>Organizer:</strong> {{ event.organizer }}</p>
+            {% if event.capacity %}
+              <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(() => {
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get all event cards
+    const cards = document.querySelectorAll(".event-card");
+
+    // When card is clicked → show its modal
+    cards.forEach(card => {
+      const id = card.getAttribute("data-event-id");
+      const modal = document.getElementById("modal-" + id);
+
+      if (modal) {
+        card.addEventListener("click", () => {
+          modal.classList.remove("hidden");
+        });
+
+        // Close when clicking the ×
+        const closeBtn = modal.querySelector(".close-modal");
+        closeBtn.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
+
+        // Close when clicking outside the modal content
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) modal.classList.add("hidden");
+        });
+      }
+    });
+
+    // Close all modals on ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.querySelectorAll("[id^='modal-']").forEach(m => m.classList.add("hidden"));
+      }
+    });
+  });
+})();
+</script>
+
+{% endblock %}

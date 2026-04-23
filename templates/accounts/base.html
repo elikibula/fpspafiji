@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">My App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                {% if user.is_authenticated %}
+                    {% if user.role in 'admin staff' %}
+                        <!-- Staff Navigation -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'staff_dashboard' %}">Staff Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                        </li>
+                    {% else %}
+                        <!-- Member Navigation -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'member_dashboard' %}">Member Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Helpdesk</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            {{ user.username }} 
+                            <span class="badge 
+                                {% if user.role == 'admin' %}bg-danger
+                                {% elif user.role == 'staff' %}bg-primary
+                                {% else %}bg-success{% endif %}">
+                                {{ user.get_role_display }}
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

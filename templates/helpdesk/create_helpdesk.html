@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="flex maroon-bg">
+<div class="max-w-6xl mx-auto px-4 py-8 maroon-bg">
+  <!-- Header -->
+  <div class="flex items-center mb-8 gap-4">
+    <a href="{% url 'helpdesk:ticket_list' %}" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="flex-1">
+      <h1 class="text-2xl font-extrabold gold-text">Create Support Ticket</h1>
+      <p class="text-sm gold-text mt-1">Submit a new request for technical assistance or support</p>
+    </div>
+
+    <div class="hidden md:block">
+      <span class="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-sm text-gray-700">
+        <i class="fas fa-clock mr-2"></i> Response: 24 hrs
+      </span>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Main Column -->
+    <div class="lg:col-span-8">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <!-- Card header -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center"
+               style="background-color: rgba(128,0,0,0.12);">
+            <i class="fas fa-ticket-alt text-red-800"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-semibold text-gray-900">New Ticket Details</h2>
+            <p class="text-sm text-gray-500">Complete all required fields to submit your request</p>
+          </div>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="space-y-6 needs-validation" novalidate>
+          {% csrf_token %}
+
+          <!-- Info -->
+          <div class="bg-red-50 border border-red-100 text-red-800 rounded-lg p-3 flex items-start gap-3">
+            <i class="fas fa-info-circle mt-0.5"></i>
+            <div class="text-sm">
+              <span class="font-medium">Fields marked with <span class="text-red-600">*</span> are required</span>
+            </div>
+          </div>
+
+          <!-- Subject -->
+          <div>
+            <label for="id_title" class="block text-sm font-medium text-gray-800">
+              Subject <span class="text-red-600">*</span>
+            </label>
+            <div class="mt-2 flex">
+              <span class="inline-flex items-center px-3 rounded-l-lg bg-gray-100 border border-r-0 border-gray-200 text-gray-500">
+                <i class="fas fa-heading"></i>
+              </span>
+              <input id="id_title" name="title" type="text"
+                     class="flex-1 block w-full rounded-r-lg border border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500"
+                     placeholder="Brief description of your issue"
+                     value="{{ form.title.value|default:'' }}" required>
+            </div>
+            {% if form.title.help_text %}
+            <p class="text-xs text-gray-500 mt-1">{{ form.title.help_text }}</p>
+            {% endif %}
+            {% for error in form.title.errors %}
+            <p class="text-xs text-red-600 mt-1 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i>{{ error }}</p>
+            {% endfor %}
+          </div>
+
+          <!-- Category & Priority -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Category -->
+            <div>
+              <label for="id_category" class="block text-sm font-medium text-gray-800">
+                Category <span class="text-red-600">*</span>
+              </label>
+              <div class="mt-2 flex">
+                <span class="inline-flex items-center px-3 rounded-l-lg bg-gray-100 border border-r-0 border-gray-200 text-gray-500">
+                  <i class="fas fa-folder"></i>
+                </span>
+                <select id="id_category" name="category" required
+                        class="flex-1 block w-full rounded-r-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 bg-white">
+                  <option value="">Select a category</option>
+                  {% for value, label in form.category.field.choices %}
+                    {% if value %}
+                      <option value="{{ value }}" {% if form.category.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+              {% for error in form.category.errors %}
+              <p class="text-xs text-red-600 mt-1 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i>{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <!-- Priority -->
+            <div>
+              <label for="id_priority" class="block text-sm font-medium text-gray-800">
+                Priority <span class="text-red-600">*</span>
+              </label>
+              <div class="mt-2 flex">
+                <span class="inline-flex items-center px-3 rounded-l-lg bg-gray-100 border border-r-0 border-gray-200 text-gray-500">
+                  <i class="fas fa-flag"></i>
+                </span>
+                <select id="id_priority" name="priority" required
+                        class="flex-1 block w-full rounded-r-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 bg-white">
+                  <option value="">Select priority</option>
+                  {% for value, label in form.priority.field.choices %}
+                    {% if value %}
+                      <option value="{{ value }}" {% if form.priority.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+              {% for error in form.priority.errors %}
+              <p class="text-xs text-red-600 mt-1 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i>{{ error }}</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <div class="flex items-center justify-between">
+              <label for="id_description" class="text-sm font-medium text-gray-800">Description <span class="text-red-600">*</span></label>
+              <div class="text-sm text-gray-500"><span id="charCount">0</span> characters</div>
+            </div>
+            <textarea id="id_description" name="description" rows="6" required
+                      class="mt-2 block w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 resize-vertical min-h-[150px]"
+                      placeholder="Please provide detailed information about your issue...">{{ form.description.value|default:'' }}</textarea>
+            {% if form.description.help_text %}
+            <p class="text-xs text-gray-500 mt-1">{{ form.description.help_text }}</p>
+            {% endif %}
+            {% for error in form.description.errors %}
+            <p class="text-xs text-red-600 mt-1 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i>{{ error }}</p>
+            {% endfor %}
+          </div>
+
+          <!-- Attachment -->
+          <div>
+            <label for="id_attachment" class="block text-sm font-medium text-gray-800">
+              <i class="fas fa-paperclip mr-2"></i>Attachment
+            </label>
+            <div class="mt-2">
+              <input id="id_attachment" name="attachment" type="file" class="block w-full text-sm text-gray-600">
+            </div>
+            {% if form.attachment.help_text %}
+            <p class="text-xs text-gray-500 mt-1">{{ form.attachment.help_text }}</p>
+            {% endif %}
+            {% for error in form.attachment.errors %}
+            <p class="text-xs text-red-600 mt-1 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i>{{ error }}</p>
+            {% endfor %}
+          </div>
+
+          <!-- Actions -->
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <div class="text-sm text-gray-500">
+              <i class="fas fa-clock mr-1"></i> We typically respond within 24 hours
+            </div>
+
+            <div class="flex items-center gap-3">
+              <a href="{% url 'helpdesk:ticket_list' %}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-sm text-gray-700 hover:bg-gray-50">
+                <i class="fas fa-times"></i> Cancel
+              </a>
+              <button type="submit" class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-red-600 text-white text-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-200">
+                <i class="fas fa-plus"></i> Create Ticket
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="lg:col-span-4 space-y-6">
+      <!-- Tips card -->
+      <div class="bg-white rounded-2xl shadow p-4">
+        <h3 class="text-sm font-semibold text-gray-900 mb-3">
+          <i class="fas fa-question-circle text-red-600 mr-2"></i> Submission Tips
+        </h3>
+        <ul class="space-y-3">
+          <li class="flex gap-3 items-start">
+            <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-medium text-gray-900">Be Specific</h4>
+              <p class="text-xs text-gray-500">Provide detailed information to help us resolve your issue faster.</p>
+            </div>
+          </li>
+
+          <li class="flex gap-3 items-start">
+            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+              <i class="fas fa-paperclip"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-medium text-gray-900">Attach Files</h4>
+              <p class="text-xs text-gray-500">Include screenshots or documents that illustrate the problem.</p>
+            </div>
+          </li>
+
+          <li class="flex gap-3 items-start">
+            <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+              <i class="fas fa-flag"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-medium text-gray-900">Set Priority</h4>
+              <p class="text-xs text-gray-500">Choose appropriate priority level based on urgency.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact card -->
+      <div class="bg-white rounded-2xl shadow p-4">
+        <h3 class="text-sm font-semibold text-gray-900 mb-3">
+          <i class="fas fa-phone text-red-600 mr-2"></i> Need Immediate Help?
+        </h3>
+        <p class="text-xs text-gray-500 mb-3">For urgent issues requiring immediate assistance, please contact:</p>
+
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fas fa-phone-alt text-red-600"></i>
+          <span class="font-medium">(+679) 9921113 / 7084299</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <i class="fas fa-envelope text-red-600"></i>
+          <span class="font-medium">info@fpspa.org.fj</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Character counter
+  const description = document.getElementById('id_description');
+  const charCount = document.getElementById('charCount');
+  if (description && charCount) {
+    charCount.textContent = description.value ? description.value.length : 0;
+    description.addEventListener('input', function () {
+      charCount.textContent = this.value.length;
+    });
+  }
+
+  // Simple Tailwind-friendly validation visual feedback
+  const form = document.querySelector('.needs-validation');
+  if (!form) return;
+
+  const fields = form.querySelectorAll('input, select, textarea');
+
+  function markValid(el) {
+    el.classList.remove('border-red-500', 'ring-red-100');
+    el.classList.add('border-green-500', 'ring-green-100');
+    // ensure focus ring present
+    el.classList.add('focus:ring-2');
+  }
+
+  function markInvalid(el) {
+    el.classList.remove('border-green-500', 'ring-green-100');
+    el.classList.add('border-red-500', 'ring-red-100');
+    el.classList.add('focus:ring-2');
+  }
+
+  fields.forEach(field => {
+    // on blur, check validity
+    field.addEventListener('blur', function () {
+      if (field.checkValidity()) markValid(field);
+      else markInvalid(field);
+    });
+
+    // on input, clear error state if valid
+    field.addEventListener('input', function () {
+      if (field.checkValidity()) markValid(field);
+      else field.classList.remove('border-green-500', 'border-red-500', 'ring-green-100', 'ring-red-100');
+    });
+  });
+
+  // On submit, prevent when invalid and mark invalid fields
+  form.addEventListener('submit', function (e) {
+    let valid = true;
+    fields.forEach(field => {
+      if (!field.checkValidity()) {
+        valid = false;
+        markInvalid(field);
+      }
+    });
+    if (!valid) {
+      e.preventDefault();
+      e.stopPropagation();
+      // scroll to first invalid field
+      const firstInvalid = form.querySelector(':invalid');
+      if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+});
+</script>
+{% endblock %}
+

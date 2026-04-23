@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}FPSPA Document Management System{% endblock %}
+
+{% block content %}
+<div class="min-h-screen maroon-bg py-10">
+    <div class="max-w-7xl mx-auto px-4">
+
+        <!-- Welcome Header -->
+    <div class="rounded-2xl shadow-lg mb-6 overflow-hidden" style="box-shadow: 0 0 0 3px #FFD700, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);">
+        <div class="bg-gradient-to-r from-[#800000] via-[#8B0000] to-[#4B0000] px-6 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA" class="h-12 w-auto rounded-md bg-white/10 p-2">
+                  <div>
+                    <h1 class="text-2xl font-bold gold-text">Document Management</h1>
+                    <p class="gold-text mt-1">Welcome back, {{ user.get_full_name|default:user.username }}!</p>
+                  </div>
+                </div>
+                <a href="{% url 'documents:upload_document' %}" 
+                       class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        Upload Document
+                </a>
+              </div>
+        </div>
+    </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600">Total Categories</p>
+                        <h3 class="text-2xl font-bold maroon-text mt-1">{{ categories.count }}</h3>
+                    </div>
+                    <div class="p-3 bg-blue-100 rounded-lg">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600">Total Documents</p>
+                        <h3 class="text-2xl font-bold maroon-text mt-1">
+                            {{ total_documents }}
+                        </h3>
+                    </div>
+                    <div class="p-3 bg-green-100 rounded-lg">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-600">Available Subcategories</p>
+                        <h3 class="text-2xl font-bold maroon-text mt-1">
+                            {{ total_subcategories }}
+                        </h3>
+
+                    </div>
+                    <div class="p-3 bg-purple-100 rounded-lg">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for category in categories %}
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold maroon-text">{{ category.name }}</h3>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            {{ category.document_count }} docs
+                        </span>
+                    </div>
+                    
+                    {% if category.subcategories.all %}
+                    <div class="space-y-2 mb-4">
+                        {% for subcategory in category.subcategories.all %}
+                        <a href="{% url 'documents:subcategory_detail' pk=subcategory.pk %}" 
+                           class="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors group">
+                            <span class="text-sm text-gray-700 group-hover:text-blue-600">{{ subcategory.name }}</span>
+                            <span class="text-xs text-gray-500">{{ subcategory.document_set.count }} files</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-gray-500 text-sm mb-4">No subcategories available</p>
+                    {% endif %}
+                    
+                    <a href="{% url 'documents:category_detail' pk=category.pk %}" 
+                       class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white maroon-bg hover:bg-sky-700 transition-colors">
+                        View All Documents
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No document categories available</h3>
+                <p class="text-gray-500">Contact your administrator to set up document categories.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Quick Links -->
+        <div class="mt-8 bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+            <h2 class="text-lg font-semibold maroon-text mb-4">Quick Access</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="{% url 'documents:downloads' %}" class="flex items-center gap-3 p-4 rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200">
+                    <div class="p-2 bg-blue-100 rounded-lg">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                    </div>
+                    <span class="font-medium text-gray-700">Public Downloads</span>
+                </a>
+                
+                <a href="{% url 'documents:upload_document' %}" class="flex items-center gap-3 p-4 rounded-lg border border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all duration-200">
+                    <div class="p-2 bg-green-100 rounded-lg">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                    </div>
+                    <span class="font-medium text-gray-700">Upload New Document</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

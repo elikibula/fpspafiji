@@ -1,0 +1,82 @@
+<!-- templates/helpdesk/faq_list.html -->
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }} - FPSPA Help Desk{% endblock %}
+
+{% block content %}
+<div class="maroon-bg">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 maroon-bg">
+    <!-- Header -->
+    <div class="mb-8 text-center">
+        <h1 class="text-3xl font-bold gold-text">{{ page_title }}</h1>
+        <p class="gold-text mt-2">Find answers to commonly asked questions</p>
+    </div>
+
+    <!-- FAQ Categories -->
+    {% if faq_categories %}
+    <div class="space-y-8">
+        {% for category in faq_categories %}
+        <div id="category-{{ category.id }}" class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-semibold maroon-text">{{ category.name }}</h2>
+                {% if category.description %}
+                <p class="text-gray-800 mt-1">{{ category.description }}</p>
+                {% endif %}
+            </div>
+            <div class="p-6">
+                <div class="space-y-6">
+                    {% for faq in category.faq_set.all %}
+                    <div class="border border-gray-200 rounded-lg hover:border-gray-300 transition">
+                        <button onclick="toggleFAQ('faq-{{ faq.id }}')" 
+                                class="w-full text-left p-4 flex justify-between items-center hover:bg-gray-50 rounded-lg transition">
+                            <span class="font-medium maroon-text">{{ faq.question }}</span>
+                            <i class="fas fa-chevron-down text-gray-400 transition-transform" id="icon-faq-{{ faq.id }}"></i>
+                        </button>
+                        <div id="faq-{{ faq.id }}" class="hidden px-4 pb-4">
+                            <div class="border-t border-gray-200 pt-4">
+                                <p class="text-gray-900 whitespace-pre-line">{{ faq.answer }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="bg-white rounded-lg shadow p-8 text-center">
+        <i class="fas fa-question-circle text-4xl text-gray-300 mb-4"></i>
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">No FAQs Available</h3>
+        <p class="text-gray-600">Please check back later or contact support for assistance.</p>
+    </div>
+    {% endif %}
+
+    <!-- Still Need Help -->
+    <div class="mt-12 bg-gradient-to-r from-[#800000] to-[#600000] rounded-lg shadow-lg text-white p-8 text-center">
+        <h2 class="text-2xl font-bold mb-4">Still Need Help?</h2>
+        <p class="text-red-100 mb-6">Can't find what you're looking for? Our support team is here to help.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'helpdesk:create_ticket' %}" 
+               class="bg-white text-[#800000] py-2 px-6 rounded-md hover:bg-gray-100 transition font-medium">
+                Create Support Ticket
+            </a>
+            <a href="{% url 'helpdesk:helpdesk_dashboard' %}" 
+               class="border border-white text-white py-2 px-6 rounded-md hover:bg-white hover:text-[#800000] transition font-medium">
+                Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+function toggleFAQ(faqId) {
+    const faqContent = document.getElementById(faqId);
+    const faqIcon = document.getElementById('icon-' + faqId);
+    
+    faqContent.classList.toggle('hidden');
+    faqIcon.classList.toggle('rotate-180');
+}
+</script>
+{% endblock %}

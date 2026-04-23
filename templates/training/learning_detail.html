@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load training_extras %}
+
+{% block title %}{{ enrollment.course.title }}{% endblock %}
+
+{% block content %}
+<section class="section-shell pt-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-10">
+      <div>
+        <p class="section-kicker">Learning Progress</p>
+        <h1 class="section-title mt-3">{{ enrollment.course.title }}</h1>
+        <p class="section-copy mt-3">{{ enrollment.course.short_description }}</p>
+      </div>
+      <div class="feature-card !p-5 lg:w-80">
+        <div class="flex justify-between text-sm font-semibold text-slate-700">
+          <span>{{ enrollment.get_status_display }}</span>
+          <span>{{ enrollment.progress_percent }}%</span>
+        </div>
+        <div class="mt-3 h-3 rounded-full bg-slate-200 overflow-hidden">
+          <div class="h-full bg-[#1f5ca8]" style="width: {{ enrollment.progress_percent }}%"></div>
+        </div>
+        {% if enrollment.selected_schedule %}
+          <p class="text-sm text-slate-500 mt-4">Workshop session: {{ enrollment.selected_schedule.title }}</p>
+        {% endif %}
+        {% if quiz_questions %}
+          <p class="text-sm text-slate-500 mt-3">Quiz required: {{ enrollment.course.passing_score }}% to pass</p>
+          {% if latest_quiz_attempt %}
+            <p class="text-sm text-slate-500 mt-1">Latest quiz score: {{ latest_quiz_attempt.score }}% ({% if latest_quiz_attempt.passed %}Passed{% else %}Not passed{% endif %})</p>
+          {% endif %}
+        {% endif %}
+        {% if enrollment.status == 'completed' and enrollment.certificate %}
+          <a href="{% url 'training:certificate_detail' enrollment.certificate.id %}" class="hero-btn hero-btn-primary mt-5">View certificate</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid gap-6">
+      {% for module in enrollment.course.modules.all %}
+        <div class="info-card">
+          <h2 class="text-2xl font-bold maroon-text">{{ module.order }}. {{ module.title }}</h2>
+          {% if module.overview %}<p class="section-copy mt-3">{{ module.overview }}</p>{% endif %}
+          <div class="mt-5 space-y-4">
+            {% for lesson in module.lessons.all %}
+              {% with progress=progress_map|get_item:lesson.id %}
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-slate-800">{{ lesson.title }}</h3>
+                    <p class="text-sm text-slate-500 mt-1">{{ lesson.duration_minutes }} minutes</p>
+                    <div class="section-copy mt-4 whitespace-pre-line">{{ lesson.content }}</div>
+                    <div class="mt-4 flex flex-wrap gap-4">
+                      {% if lesson.video_url %}<a href="{{ lesson.video_url }}" target="_blank" rel="noopener noreferrer" class="text-[#1f5ca8] font-semibold">Open video</a>{% endif %}
+                      {% if lesson.resource_file %}<a href="{{ lesson.resource_file.url }}" target="_blank" rel="noopener noreferrer" class="text-[#1f5ca8] font-semibold">Download resource</a>{% endif %}
+                    </div>
+                  </div>
+                  <div class="lg:w-52">
+                    {% if progress and progress.is_completed %}
+                      <span class="inline-flex rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-800">Completed</span>
+                      <p class="text-sm text-slate-500 mt-3">{{ progress.completed_at|date:"d M Y H:i" }}</p>
+                    {% else %}
+                      <form method="post" action="{% url 'training:mark_lesson_complete' enrollment.id lesson.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="hero-btn hero-btn-primary w-full justify-center">Mark complete</button>
+                      </form>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endwith %}
+            {% empty %}
+              <p class="section-copy">No lessons added yet.</p>
+            {% endfor %}
+          </div>
+        </div>
+      {% empty %}
+        <div class="feature-card text-center">
+          <h2 class="text-2xl font-bold maroon-text">This course has no modules yet</h2>
+        </div>
+      {% endfor %}
+
+      {% if quiz_questions %}
+        <div class="info-card">
+          <h2 class="text-2xl font-bold maroon-text">Course assessment</h2>
+          <p class="section-copy mt-3">Complete the assessment after finishing the lessons. You need at least {{ enrollment.course.passing_score }}% to complete the course.</p>
+          <form method="post" action="{% url 'training:submit_quiz' enrollment.id %}" class="mt-6 space-y-6">
+            {% csrf_token %}
+            {% for question in quiz_questions %}
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <h3 class="text-lg font-bold text-slate-800">{{ question.order }}. {{ question.question_text }}</h3>
+                <div class="mt-4 space-y-3">
+                  <label class="flex items-start gap-3 rounded-xl bg-slate-50 px-4 py-3">
+                    <input type="radio" name="question_{{ question.id }}" value="A" class="mt-1">
+                    <span>{{ question.option_a }}</span>
+                  </label>
+                  <label class="flex items-start gap-3 rounded-xl bg-slate-50 px-4 py-3">
+                    <input type="radio" name="question_{{ question.id }}" value="B" class="mt-1">
+                    <span>{{ question.option_b }}</span>
+                  </label>
+                  {% if question.option_c %}
+                    <label class="flex items-start gap-3 rounded-xl bg-slate-50 px-4 py-3">
+                      <input type="radio" name="question_{{ question.id }}" value="C" class="mt-1">
+                      <span>{{ question.option_c }}</span>
+                    </label>
+                  {% endif %}
+                  {% if question.option_d %}
+                    <label class="flex items-start gap-3 rounded-xl bg-slate-50 px-4 py-3">
+                      <input type="radio" name="question_{{ question.id }}" value="D" class="mt-1">
+                      <span>{{ question.option_d }}</span>
+                    </label>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+            <button type="submit" class="hero-btn hero-btn-primary">Submit assessment</button>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

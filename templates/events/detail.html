@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto px-6 py-12">
+  <article class="bg-white rounded-2xl p-8 shadow">
+    <h1 class="text-3xl font-bold">{{ event.title }}</h1>
+    <p class="text-sm text-gray-500">
+      {{ event.start|date:"M d, Y H:i" }}
+      {% if event.end %}
+        — {{ event.end|date:"M d, Y H:i" }}
+      {% endif %}
+    </p>
+
+    <div class="mt-4 prose max-w-none">
+      {{ event.description|safe }}
+    </div>
+
+    <div class="mt-6 space-y-2">
+      <p><strong>Location:</strong> {{ event.location }}</p>
+      <p><strong>Organizer:</strong> {{ event.organizer }}</p>
+      {% if event.capacity %}
+        <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+      {% endif %}
+    </div>
+  </article>
+</div>
+{% endblock %}

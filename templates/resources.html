@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}FPSPA Resources Hub{% endblock %}
+
+{% block content %}
+  <section class="relative hero-bg3 bg-cover bg-center text-center text-white overflow-hidden">
+
+      <!-- Content -->
+    <div class="relative z-10 container mx-auto px-6 py-32 flex flex-col items-center justify-center">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 animate-hero"
+            data-aos="fade-down">
+        
+            <span class="text-[color:#FFD700] animate-shimmer-pulse">FPSPA Resources Hub</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-6" data-aos="fade-up">
+          Download forms, policies, templates, and leadership resources.
+        </p>
+
+        <p class="text-xl italic font-semibold gold-text mb-10 typewriter"
+            data-aos="fade-up" data-aos-delay="100">
+            “Service Before Self”
+        </p>
+      
+    </div>
+
+    <!-- Maroon Waves -->
+    <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28"
+      preserveAspectRatio="none" shape-rendering="auto">
+
+      <defs>
+        <linearGradient id="maroonGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#800000" />   <!-- Dark maroon -->
+          <stop offset="100%" stop-color="#800000" /> <!-- Light maroon -->
+        </linearGradient>
+        <path id="gentle-wave"
+          d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+      </defs>
+
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#maroonGradient)" opacity="0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#maroonGradient)" opacity="0.5" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#maroonGradient)" opacity="0.3" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#maroonGradient)" opacity="1" />
+      </g>
+    </svg>
+</section>
+<!--END HERO SECTION-->
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="cta-card p-6 lg:p-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] items-center">
+      <img src="{% static 'assets/images/fpspa/principals-audience.webp' %}" alt="FPSPA members using conference resources" class="rounded-[1.6rem] h-72 w-full object-cover shadow-lg">
+      <div>
+        <p class="section-kicker">Member Resources</p>
+        <h2 class="section-title mt-3">Documents that support real school leadership work</h2>
+        <p class="section-copy mt-4">Use this hub to access forms, guidance, templates, and materials that help principals prepare for meetings, workshops, and school leadership responsibilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+
+    <h1 class="text-3xl font-bold mb-6 text-center maroon-text">
+        {% if downloads_category %}
+           FPSPA Forms & Documents
+        {% else %}
+            FPSPA Forms & Documents
+        {% endif %}
+    </h1>
+
+    <!-- Filter & Search -->
+    <form method="get" class="mb-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+        <div class="flex items-center gap-2">
+            <label for="subcategory" class="font-medium">Subcategory:</label>
+            <select name="subcategory" id="subcategory"
+                    class="border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">All</option>
+                {% for subcat in downloads_category.subcategories.all %}
+                    <option value="{{ subcat.id }}" {% if subcat.id|stringformat:"s" == selected_subcat_id %}selected{% endif %}>
+                        {{ subcat.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <label for="q" class="font-medium">Search:</label>
+            <input type="text" name="q" id="q" value="{{ request.GET.q|default:'' }}"
+                   placeholder="Enter document title or description"
+                   class="border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <button type="submit" class="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Apply
+        </button>
+    </form>
+
+    {% if downloads_category.subcategories.all %}
+        {% for subcat in downloads_category.subcategories.all %}
+            {% with docs=subcat.document_set.all %}
+            {% if docs %}
+                <div class="mb-8">
+                    <!-- Subcategory Heading -->
+                    <h2 class="text-xl font-semibold maroon-text mb-3 text-center">{{ subcat.name }}</h2>
+
+                    <!-- Desktop Table View -->
+                    <div class="hidden md:block overflow-x-auto border rounded-lg shadow-sm">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Document</th>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Description</th>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Uploaded On</th>
+                                    <th class="px-4 py-2 text-center text-sm font-medium text-gray-700">Download</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                {% for doc in docs %}
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2">{{ doc.title }}</td>
+                                        <td class="px-4 py-2">{{ doc.description|default:"-" }}</td>
+                                        <td class="px-4 py-2">{{ doc.date_posted|date:"d M, Y" }}</td>
+                                        <td class="px-4 py-2 text-center">
+                                            <a href="{{ doc.file.url }}" target="_blank"
+                                               class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
+                                               Download
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div class="md:hidden space-y-6">
+                        {% for doc in docs %}
+                            <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-4 mx-2 sm:mx-4 flex flex-col items-center text-center break-words">
+                                <div class="mb-3">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ doc.title }}</h3>
+                                    {% if doc.description %}
+                                        <p class="text-gray-600 mb-1">{{ doc.description }}</p>
+                                    {% endif %}
+                                    <p class="text-gray-500 text-sm">Uploaded: {{ doc.uploaded_at|date:"M d, Y" }}</p>
+                                </div>
+
+                                <a href="{{ doc.file.url }}" target="_blank"
+                                   class="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                                   Download
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            {% endwith %}
+        {% endfor %}
+    {% else %}
+        <p class="text-center text-gray-600">No downloads available at the moment.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

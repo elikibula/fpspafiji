@@ -1,0 +1,233 @@
+<!-- templates/helpdesk/staff/ticket_detail.html -->
+{% extends "helpdesk/staff/base_staff.html" %}
+
+{% block title %}{{ page_title }} - FPSPA Help Desk{% endblock %}
+
+{% block content %}
+<div class=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <div class="mb-6">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="{% url 'helpdesk:staff_ticket_list' %}" 
+                   class="inline-flex items-center text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Tickets
+                </a>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">{{ page_title }}</h1>
+                    <p class="text-gray-600">{{ ticket.title }}</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                {% if ticket.is_overdue %}
+                <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>Overdue
+                </span>
+                {% endif %}
+                <span class="text-sm text-gray-500">Created {{ ticket.created_at|timesince }} ago</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content -->
+        <div class="lg:col-span-2 space-y-6">
+            <!-- Ticket Information -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Ticket Information</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500">Description</h3>
+                            <p class="mt-1 text-gray-900 whitespace-pre-line">{{ ticket.description }}</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500">Stream & Source</h3>
+                                <p class="mt-1 text-gray-900">
+                                    <span class="inline-block px-2 py-1 text-xs bg-gray-100 rounded">{{ ticket.stream.name }}</span>
+                                    <span class="inline-block px-2 py-1 text-xs bg-blue-100 rounded ml-2">{{ ticket.get_source_display }}</span>
+                                </p>
+                            </div>
+                            {% if ticket.attachment %}
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500">Attachment</h3>
+                                <a href="{{ ticket.attachment.url }}" target="_blank" class="mt-1 inline-flex items-center text-[#800000] hover:text-[#600000]">
+                                    <i class="fas fa-paperclip mr-1"></i>
+                                    {{ ticket.attachment.name|slice:"20:" }}
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Update Ticket Form -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Update Ticket</h2>
+                </div>
+                <div class="p-6">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="update_ticket" value="true">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {{ update_form.status }}
+                            {{ update_form.priority }}
+                            {{ update_form.assigned_to }}
+                            {{ update_form.category }}
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="bg-[#800000] text-white py-2 px-4 rounded-md hover:bg-[#600000] transition">
+                                Update Ticket
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Responses -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Responses & Notes</h2>
+                </div>
+                <div class="p-6">
+                    {% if responses %}
+                    <div class="space-y-6">
+                        {% for response in responses %}
+                        <div class="border-l-4 {% if response.visibility == 'internal' %}border-orange-500 bg-orange-50{% elif response.response_type == 'system' %}border-gray-500 bg-gray-50{% else %}border-blue-500 bg-blue-50{% endif %} p-4 rounded-r-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-medium text-gray-900">{{ response.author.get_full_name|default:response.author.username }}</span>
+                                    {% if response.visibility == 'internal' %}
+                                    <span class="px-2 py-1 text-xs bg-orange-100 text-orange-800 rounded">Internal</span>
+                                    {% elif response.response_type == 'system' %}
+                                    <span class="px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded">System</span>
+                                    {% endif %}
+                                </div>
+                                <span class="text-sm text-gray-500">{{ response.created_at|timesince }} ago</span>
+                            </div>
+                            <p class="text-gray-700 whitespace-pre-line">{{ response.message }}</p>
+                            {% if response.attachment %}
+                            <div class="mt-2">
+                                <a href="{{ response.attachment.url }}" target="_blank" class="inline-flex items-center text-sm text-[#800000] hover:text-[#600000]">
+                                    <i class="fas fa-paperclip mr-1"></i>
+                                    Attachment
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-gray-600 text-center py-4">No responses yet</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Add Response Form -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Add Response</h2>
+                </div>
+                <div class="p-6">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="add_response" value="true">
+                        <div class="space-y-4">
+                            {{ response_form.message }}
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {{ response_form.visibility }}
+                                {{ response_form.response_type }}
+                            </div>
+                            {{ response_form.attachment }}
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="bg-[#800000] text-white py-2 px-4 rounded-md hover:bg-[#600000] transition">
+                                Add Response
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+            <!-- Ticket Details -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Ticket Details</h3>
+                <div class="space-y-3">
+                    <div>
+                        <span class="text-sm text-gray-500">Ticket Number</span>
+                        <p class="font-mono text-gray-900">#{{ ticket.ticket_number }}</p>
+                    </div>
+                    <div>
+                        <span class="text-sm text-gray-500">Created By</span>
+                        <p class="text-gray-900">{{ ticket.created_by.get_full_name|default:ticket.created_by.username }}</p>
+                    </div>
+                    <div>
+                        <span class="text-sm text-gray-500">Category</span>
+                        <p class="text-gray-900">{{ ticket.category.name|default:"Not set" }}</p>
+                    </div>
+                    <div>
+                        <span class="text-sm text-gray-500">Created</span>
+                        <p class="text-gray-900">{{ ticket.created_at|date:"M d, Y H:i" }}</p>
+                    </div>
+                    {% if ticket.due_date %}
+                    <div>
+                        <span class="text-sm text-gray-500">Response Due</span>
+                        <p class="text-gray-900 {% if ticket.is_overdue %}text-red-600 font-medium{% endif %}">
+                            {{ ticket.due_date|date:"M d, Y H:i" }}
+                            {% if ticket.is_overdue %}(Overdue){% endif %}
+                        </p>
+                    </div>
+                    {% endif %}
+                    {% if ticket.first_response_at %}
+                    <div>
+                        <span class="text-sm text-gray-500">First Response</span>
+                        <p class="text-gray-900">{{ ticket.first_response_at|date:"M d, Y H:i" }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                <div class="space-y-2">
+                    {% if not ticket.assigned_to or ticket.assigned_to == user %}
+                    <form method="post" class="inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="update_ticket" value="true">
+                        <input type="hidden" name="assigned_to" value="{{ user.id }}">
+                        <button type="submit" class="w-full text-left px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition">
+                            {% if ticket.assigned_to == user %}
+                            <i class="fas fa-user-check mr-2"></i>Assigned to Me
+                            {% else %}
+                            <i class="fas fa-user-plus mr-2"></i>Assign to Me
+                            {% endif %}
+                        </button>
+                    </form>
+                    {% endif %}
+                    
+                    {% if ticket.assigned_to %}
+                    <form method="post" class="inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="update_ticket" value="true">
+                        <input type="hidden" name="assigned_to" value="">
+                        <button type="submit" class="w-full text-left px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition">
+                            <i class="fas fa-user-times mr-2"></i>Unassign
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

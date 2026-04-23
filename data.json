@@ -1,0 +1,931 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Soya0wNxN6awapRsXZ5hO9$L39+e+WK4vfbDIcQ5LgLRFBFzrgoKk/LHVm6NndW/MY=",
+    "last_login": "2025-10-08T23:19:36.179Z",
+    "is_superuser": true,
+    "username": "lixtronics",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-06T22:51:56.465Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$QrTJmfpEPwhDTTxwNiD3wG$I/7gR0stFpUUxQhLC4oA6b4qXBu2MTxPJVSk+0sKuFQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lixtronics@nadraki.com",
+    "first_name": "Totoka",
+    "last_name": "Nadraki",
+    "email": "lixtronics@nadraki.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-15T20:39:38.594Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$W7fyfJ43LrWDYNBbHlWSwg$DKhKZrlVCJsvLUsh0ZmLAQCLUD604YPLnMKmwLLypyc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lixtronics_khk0",
+    "first_name": "Totoka",
+    "last_name": "Nadraki",
+    "email": "lixtronics@nadraki.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-15T20:52:54.591Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$i2mcpfGe8TST0LDhljtDcd$r7Gc/Z+I8C3IHPfiz3Z0hoe+3WSGCGFSyzkvTcRql3w=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mada_e1jv",
+    "first_name": "Tovolea",
+    "last_name": "Tale",
+    "email": "mada@duaqo.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-15T22:29:35.990Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$zxdW34LK0FeEf4II7JRcms$QxCg2MeDl5UNB3BcOhELrxohWYmCKFKvd8sMw/CPYtE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "again_e44j",
+    "first_name": "Once Ag",
+    "last_name": "Again",
+    "email": "again@email.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-15T22:49:04.080Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$KuKJEBfhasBEkPny8ckM3t$Aw0HDsbuYUeps82AEaLzgXRklrVBPpOAqhRf6SU2QhA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dua_un5f",
+    "first_name": "Dua",
+    "last_name": "Tale",
+    "email": "dua@tale.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-15T22:55:34.508Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5n8qcq9zeqpywr4bpf0g6e5ocypvev5r",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQBf-FsyFAgYJH7_0GssuCVA0kpT0Z_9026UGvb2bemwXY1hK2npYwE7syyS6_G0J8pnoAekC9Nx5bXZcZ-aHwk3Y-NUqv2-n-HRToZa-NUYQiI3hKDmMeB-GRcEBQRBZIJiG89C4pdKM0WQ5W086js946rdnnCw_aOGM:1v6dRY:XKBjxReEzXD5UVJNXJDRlPGB7iyJxalrPzH2nxR7tRk",
+    "expire_date": "2025-10-22T23:19:36.187Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "racms5kmb8chrr0wlbo8hyqnc4yzkt97",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQBf-FsyFAgYJH7_0GssuCVA0kpT0Z_9026UGvb2bemwXY1hK2npYwE7syyS6_G0J8pnoAekC9Nx5bXZcZ-aHwk3Y-NUqv2-n-HRToZa-NUYQiI3hKDmMeB-GRcEBQRBZIJiG89C4pdKM0WQ5W086js946rdnnCw_aOGM:1v5u3y:mjp9rCQxGlpYGJoKL_KRb54NGJgNKlPxFngWRH9p6kk",
+    "expire_date": "2025-10-20T22:52:14.723Z"
+  }
+},
+{
+  "model": "news.category",
+  "pk": 1,
+  "fields": {
+    "name": "Current News",
+    "slug": "current-news"
+  }
+},
+{
+  "model": "news.category",
+  "pk": 2,
+  "fields": {
+    "name": "Historical News",
+    "slug": "historical-news"
+  }
+},
+{
+  "model": "news.category",
+  "pk": 3,
+  "fields": {
+    "name": "Media News",
+    "slug": "media-news"
+  }
+},
+{
+  "model": "news.news",
+  "pk": 1,
+  "fields": {
+    "title": "TEST 1",
+    "slug": "test-1",
+    "content": "A senior Fiji Corrections Service officer has been charged and will be appear in the Suva Magistrates Court today.\r\n\r\nPolice say following consultations with the Office of the Director of Public Prosecutions, the senior executive has been charged with one count of criminal intimidation.\r\n\r\nIt is alleged that in July this year, he threatened a member of his support staff.\r\n\r\nA complaint was lodged by the victim earlier at CID headquarters.",
+    "author": [
+      "lixtronics"
+    ],
+    "image": "news_images/OGEA_HOUSE.png",
+    "video": "",
+    "category": 1,
+    "date_posted": "2025-10-06T22:53:47.166Z",
+    "is_featured": true
+  }
+},
+{
+  "model": "news.news",
+  "pk": 2,
+  "fields": {
+    "title": "THAAA",
+    "slug": "thaaa",
+    "content": "PLEASE COME THRU",
+    "author": [
+      "lixtronics"
+    ],
+    "image": "news_images/fta_staff.jpg",
+    "video": "",
+    "category": 1,
+    "date_posted": "2025-10-08T00:14:32.941Z",
+    "is_featured": true
+  }
+},
+{
+  "model": "news.news",
+  "pk": 3,
+  "fields": {
+    "title": "Tovolea tale mada",
+    "slug": "tovolea-tale-mada",
+    "content": "In light of the conference’s theme, “Butu Mawe Solesolevaki kei na Cavuisausau” (following footsteps, collaborating and attaining excellence), President Katonivere emphasized the significance of sustaining principles, supporting change, and collaboration.\r\n\r\n\r\nHe also recognized the important roles played by Fiji’s educators, both past and present, who have improved the country’s educational system and motivated students to constantly aim higher.\r\n\r\n\r\n“In this day and age, when youth are exposed to so many social evils, peer pressure, illicit drugs, and cyberbullying, it is appropriate for parents and teachers to share experiences and lessons on positive discipline techniques.”\r\n\r\n\r\nThe President went on to say that in response to the changing nature of education, the reforms and programs that are currently the cornerstone of our country’s educational system have undergone constant adaptation.\r\n\r\n\r\nThe teaching profession is expected to experience additional advancement with the implementation of the Coalition Government’s National Development Plan. I implore you all to take an active role in the advancement of our country, guided by the principles of the Sustainable Development Goals, particularly Goal Four on Education, and your dedication to meeting national objectives.\r\n\r\n\r\nThe Head of State also congratulated those educators who also serve as moms and guardians, raising their kids in pleasant, orderly settings.\r\n\r\n\r\n“I grew raised in a really disciplined environment. I learned to respect my elders, appreciate time, pay attention to details, make moral decisions, and act without expecting praise or acclaim in return. My mom enforced rules hard. Looking back, I think that the discipline I experienced during my early years helped to shape both my traditional leadership style and my position as our country’s leader.\r\n\r\n\r\nIn closing, the President reminded educators that the importance of their education cannot be overstated because it is a driving force behind revolutionary change that upholds the sustainability and prosperity of Vanua, our country, our communities, and our families.\r\n\r\n\r\nThis is largely due to the quality of formal and informal education, which includes instilling compassion in our children and young people.",
+    "author": [
+      "lixtronics"
+    ],
+    "image": "news_images/Katonivere-5.webp",
+    "video": "",
+    "category": 1,
+    "date_posted": "2025-10-08T00:29:08.726Z",
+    "is_featured": false
+  }
+},
+{
+  "model": "news.news",
+  "pk": 4,
+  "fields": {
+    "title": "Teachers’ welfare tops submission list",
+    "slug": "teachers-welfare-tops-submission-list",
+    "content": "The Fijian Teachers Association will be making a submission during the National Education Summit to review all policies that were implemented in the past sixteen years.\r\nFTA President, Netani Druavesi says teachers have raised concerns regarding their welfare and they want to address them.\r\nDruavesi claims teachers have been denied a lot of things in the past.\r\n\r\n“What they have been receiving before in the last 16 years, sorry to say, in the last 16 years, they have been denied. Everything, I’ll just put it short. Everything that you can think of regarding the betterment of our education system in Fiji, that is all in our submission.”\r\n\r\nDruavesi is thankful the Ministry of Education has made some readjustments in the past six months regarding teacher welfare.\r\nThe National Education Summit will be held on the 21st and 22nd of this month in Nadi.\r\n\r\n\r\nSource > FBC, Sept 2023",
+    "author": [
+      "lixtronics"
+    ],
+    "image": "news_images/Fiji-TAEACHERS-Association-1.jpg",
+    "video": "",
+    "category": 3,
+    "date_posted": "2025-10-08T22:10:23.230Z",
+    "is_featured": false
+  }
+},
+{
+  "model": "news.news",
+  "pk": 5,
+  "fields": {
+    "title": "$26M building project launched",
+    "slug": "26m-building-project-launched",
+    "content": "<p>The Fijian Teachers Association will be making a submission during the National Education Summit to review all policies that were implemented in the past sixteen years.</p>\r\n\r\n<p>FTA President, Netani Druavesi says teachers have raised concerns regarding their welfare and they want to address them.</p>\r\n\r\n<p>Druavesi claims teachers have been denied a lot of things in the past.</p>\r\n\r\n<p><em>&ldquo;What they have been receiving before in the last 16 years, sorry to say, in the last 16 years, they have been denied. Everything, I&rsquo;ll just put it short. Everything that you can think of regarding the betterment of our education system in Fiji, that is all in our submission.&rdquo;</em></p>\r\n\r\n<p>Druavesi is thankful the Ministry of Education has made some readjustments in the past six months regarding teacher welfare.</p>\r\n\r\n<p>The National Education Summit will be held on the 21st and 22nd of this month in Nadi.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Source&gt; FBC News&gt; Aug 2025</p>\r\n\r\n<p>&nbsp;</p>",
+    "author": [
+      "lixtronics"
+    ],
+    "image": "news_images/Fiji-Teachers-Union-.png",
+    "video": "",
+    "category": 3,
+    "date_posted": "2025-10-08T23:48:51.538Z",
+    "is_featured": false
+  }
+},
+{
+  "model": "events.event",
+  "pk": 2,
+  "fields": {
+    "title": "Deewali",
+    "slug": "deewali",
+    "description": "Deepawali celebration",
+    "location": "Suva",
+    "start": "2025-10-13T00:30:42Z",
+    "end": "2025-10-16T00:30:44Z",
+    "all_day": true,
+    "organizer": [
+      "lixtronics"
+    ],
+    "capacity": null,
+    "status": "published",
+    "created_at": "2025-10-13T00:31:02.752Z",
+    "updated_at": "2025-10-13T00:31:02.752Z",
+    "created_by": null
+  }
+},
+{
+  "model": "events.event",
+  "pk": 4,
+  "fields": {
+    "title": "Varovaro",
+    "slug": "varovaro",
+    "description": "A \"full history catalogue\" typically refers to a large, comprehensive collection of historical records, with the National Archives Catalog being the most prominent example for U.S. history. These digital portals provide access to the descriptions, and sometimes digitized versions, of records from national archives, presidential libraries, and other institutions. Similar to the National Archives Catalog, other national libraries also maintain online",
+    "location": "Namadi",
+    "start": "2025-10-22T12:00:00Z",
+    "end": "2025-10-20T06:00:00Z",
+    "all_day": false,
+    "organizer": null,
+    "capacity": null,
+    "status": "published",
+    "created_at": "2025-10-13T02:28:31.983Z",
+    "updated_at": "2025-10-13T02:28:31.983Z",
+    "created_by": null
+  }
+},
+{
+  "model": "events.event",
+  "pk": 5,
+  "fields": {
+    "title": "Kana BABAKAU",
+    "slug": "kana-babakau",
+    "description": "A \"full history catalogue\" typically refers to a large, comprehensive collection of historical records, with the National Archives Catalog being the most prominent example for U.S. history. These digital portals provide access to the descriptions, and sometimes digitized versions, of records from national archives, presidential libraries, and other institutions. Similar to the National Archives Catalog, other national libraries also maintain online",
+    "location": "NASOLE",
+    "start": "2025-10-25T06:00:00Z",
+    "end": "2025-10-27T00:00:00Z",
+    "all_day": false,
+    "organizer": null,
+    "capacity": null,
+    "status": "published",
+    "created_at": "2025-10-13T03:38:30.140Z",
+    "updated_at": "2025-10-13T03:38:30.140Z",
+    "created_by": null
+  }
+},
+{
+  "model": "events.event",
+  "pk": 6,
+  "fields": {
+    "title": "Tagi",
+    "slug": "tagi",
+    "description": "Sa tagi ona",
+    "location": "Rakiraki",
+    "start": "2025-10-15T12:00:00Z",
+    "end": null,
+    "all_day": false,
+    "organizer": null,
+    "capacity": null,
+    "status": "published",
+    "created_at": "2025-10-13T04:08:45.160Z",
+    "updated_at": "2025-10-13T04:08:45.160Z",
+    "created_by": null
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 1,
+  "fields": {
+    "name": "Suva Area",
+    "slug": "suva",
+    "summary": "The main Central Area of Suva Nausori corridor.",
+    "order": 1
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 2,
+  "fields": {
+    "name": "Nausori Area",
+    "slug": "nausori-area",
+    "summary": "The Nausori FTA Area",
+    "order": 2
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 3,
+  "fields": {
+    "name": "Tailevu North",
+    "slug": "tailevu-north",
+    "summary": "",
+    "order": 3
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 4,
+  "fields": {
+    "name": "Ra",
+    "slug": "ra",
+    "summary": "",
+    "order": 4
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 5,
+  "fields": {
+    "name": "Ba/ Tavua/ Vatukoula",
+    "slug": "ba-tavua-vatukoula",
+    "summary": "",
+    "order": 5
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 6,
+  "fields": {
+    "name": "Lautoka/ Nadi",
+    "slug": "lautoka-nadi",
+    "summary": "",
+    "order": 6
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 7,
+  "fields": {
+    "name": "Yasawa",
+    "slug": "yasawa",
+    "summary": "",
+    "order": 7
+  }
+},
+{
+  "model": "reps.area",
+  "pk": 8,
+  "fields": {
+    "name": "Nadroga/ Navosa",
+    "slug": "nadroga-navosa",
+    "summary": "",
+    "order": 8
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 1,
+  "fields": {
+    "area": 1,
+    "name": "Suva Central",
+    "address": "",
+    "latitude": "-18.145218000",
+    "longitude": "178.431801000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 2,
+  "fields": {
+    "area": 1,
+    "name": "Suva South",
+    "address": "",
+    "latitude": "-18.158856000",
+    "longitude": "178.425898000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 3,
+  "fields": {
+    "area": 1,
+    "name": "Lami",
+    "address": "",
+    "latitude": "-18.110832000",
+    "longitude": "178.415310000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 4,
+  "fields": {
+    "area": 1,
+    "name": "Nasinu",
+    "address": "",
+    "latitude": "-18.083590000",
+    "longitude": "178.503341000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 5,
+  "fields": {
+    "area": 1,
+    "name": "Education Officers",
+    "address": "",
+    "latitude": "-18.144207000",
+    "longitude": "178.425602000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 6,
+  "fields": {
+    "area": 1,
+    "name": "FNU Nasinu",
+    "address": "",
+    "latitude": "-18.099697000",
+    "longitude": "178.479488000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 7,
+  "fields": {
+    "area": 1,
+    "name": "FNU Samabula",
+    "address": "",
+    "latitude": "-18.126253000",
+    "longitude": "178.440219000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 8,
+  "fields": {
+    "area": 1,
+    "name": "RFTA",
+    "address": "",
+    "latitude": "-18.145379000",
+    "longitude": "178.432067000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 9,
+  "fields": {
+    "area": 2,
+    "name": "Tailevu South",
+    "address": "",
+    "latitude": "-18.024783000",
+    "longitude": "178.542782000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 10,
+  "fields": {
+    "area": 2,
+    "name": "Rewa",
+    "address": "",
+    "latitude": "-18.120654000",
+    "longitude": "178.560095000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 11,
+  "fields": {
+    "area": 3,
+    "name": "Verata",
+    "address": "",
+    "latitude": "-17.866602000",
+    "longitude": "178.607615000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 12,
+  "fields": {
+    "area": 3,
+    "name": "Tailevu North",
+    "address": "",
+    "latitude": "-17.809026000",
+    "longitude": "178.540762000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 13,
+  "fields": {
+    "area": 4,
+    "name": "Ra East",
+    "address": "",
+    "latitude": "-17.545928000",
+    "longitude": "178.384571000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 14,
+  "fields": {
+    "area": 4,
+    "name": "Rakiraki",
+    "address": "",
+    "latitude": "-17.362029000",
+    "longitude": "178.154805000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 15,
+  "fields": {
+    "area": 4,
+    "name": "Saivou",
+    "address": "",
+    "latitude": "-17.549139000",
+    "longitude": "178.165675000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 16,
+  "fields": {
+    "area": 5,
+    "name": "Ba",
+    "address": "",
+    "latitude": "-17.538970000",
+    "longitude": "177.690402000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 17,
+  "fields": {
+    "area": 5,
+    "name": "Tavua/ Vatukoula",
+    "address": "",
+    "latitude": "-17.441291000",
+    "longitude": "177.863318000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 18,
+  "fields": {
+    "area": 5,
+    "name": "Nadarivatu",
+    "address": "",
+    "latitude": "-17.567047000",
+    "longitude": "177.962025000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 19,
+  "fields": {
+    "area": 6,
+    "name": "Nadi",
+    "address": "",
+    "latitude": "-17.779048000",
+    "longitude": "177.437341000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 20,
+  "fields": {
+    "area": 6,
+    "name": "Lautoka",
+    "address": "",
+    "latitude": "-17.623952000",
+    "longitude": "177.451209000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 21,
+  "fields": {
+    "area": 7,
+    "name": "Naviti",
+    "address": "",
+    "latitude": "-17.112529000",
+    "longitude": "177.234571000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 22,
+  "fields": {
+    "area": 7,
+    "name": "Yasawa Central",
+    "address": "",
+    "latitude": "-16.981559000",
+    "longitude": "177.319357000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 23,
+  "fields": {
+    "area": 7,
+    "name": "Yasawa South",
+    "address": "",
+    "latitude": "-17.341878000",
+    "longitude": "177.136432000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 24,
+  "fields": {
+    "area": 7,
+    "name": "Yasawa North",
+    "address": "",
+    "latitude": "-16.737110000",
+    "longitude": "177.566080000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 25,
+  "fields": {
+    "area": 8,
+    "name": "Nadroga Central",
+    "address": "",
+    "latitude": "-18.141220000",
+    "longitude": "177.518756000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 26,
+  "fields": {
+    "area": 8,
+    "name": "Nadroga West",
+    "address": "",
+    "latitude": "-18.124366000",
+    "longitude": "177.412737000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 27,
+  "fields": {
+    "area": 8,
+    "name": "Nadrova Valley",
+    "address": "",
+    "latitude": "-18.110048000",
+    "longitude": "177.450962000"
+  }
+},
+{
+  "model": "reps.branch",
+  "pk": 28,
+  "fields": {
+    "area": 8,
+    "name": "Mamanuca/ Malolo",
+    "address": "",
+    "latitude": "-17.745721000",
+    "longitude": "177.166521000"
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 1,
+  "fields": {
+    "area": 1,
+    "branch": 1,
+    "name": "Mr Aleveo Turaganivalu",
+    "role": "Branch Co-ordinator",
+    "phone": "999999999",
+    "email": "suva@test.com",
+    "photo": "reps/unknown.jpg",
+    "order": 1
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 2,
+  "fields": {
+    "area": 2,
+    "branch": null,
+    "name": "Mr. Josefa Toganivalu",
+    "role": "",
+    "phone": "",
+    "email": "",
+    "photo": "reps/unknown_YMSgHN0.jpg",
+    "order": 2
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 3,
+  "fields": {
+    "area": 3,
+    "branch": null,
+    "name": "Ms Litiana Vuladromu",
+    "role": "",
+    "phone": "",
+    "email": "",
+    "photo": "reps/unknownfemale.jfif",
+    "order": 3
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 4,
+  "fields": {
+    "area": 4,
+    "branch": null,
+    "name": "Mr Anasa Nasedra",
+    "role": "",
+    "phone": "",
+    "email": "",
+    "photo": "reps/unknown_B0ghtxi.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 5,
+  "fields": {
+    "area": 5,
+    "branch": null,
+    "name": "Mr Peni Maka",
+    "role": "",
+    "phone": "",
+    "email": "",
+    "photo": "reps/unknown_DCyQ3YC.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 6,
+  "fields": {
+    "area": 6,
+    "branch": null,
+    "name": "Mr Adriu Qio",
+    "role": "",
+    "phone": "",
+    "email": "",
+    "photo": "reps/unknown_1i9XSgC.jpg",
+    "order": 6
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 7,
+  "fields": {
+    "area": 7,
+    "branch": null,
+    "name": "Mr. Timoci Cuva",
+    "role": "",
+    "phone": "",
+    "email": "",
+    "photo": "reps/unknown_NXh3sUo.jpg",
+    "order": 7
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 8,
+  "fields": {
+    "area": 8,
+    "branch": null,
+    "name": "Mr. Epi Seru",
+    "role": "",
+    "phone": "",
+    "email": "",
+    "photo": "reps/unknown_RQNj86A.jpg",
+    "order": 8
+  }
+},
+{
+  "model": "reps.representative",
+  "pk": 9,
+  "fields": {
+    "area": 1,
+    "branch": 6,
+    "name": "Testing Somebody",
+    "role": "Who Can",
+    "phone": "777777777",
+    "email": "test@gmail.com",
+    "photo": "reps/unknown_qw6akkD.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "membership.membercategory",
+  "pk": 1,
+  "fields": {
+    "name": "Primary Teacher",
+    "description": "Teaching in Primary Schools"
+  }
+},
+{
+  "model": "membership.membercategory",
+  "pk": 2,
+  "fields": {
+    "name": "Secondary Teacher",
+    "description": "Teaching in Secondary School"
+  }
+},
+{
+  "model": "membership.membercategory",
+  "pk": 3,
+  "fields": {
+    "name": "ECE Educator",
+    "description": "Teaching in ECE"
+  }
+},
+{
+  "model": "membership.membercategory",
+  "pk": 4,
+  "fields": {
+    "name": "Tertiary Employed",
+    "description": "Employed by a Tertiary Institute"
+  }
+},
+{
+  "model": "membership.member",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "mada_e1jv"
+    ],
+    "membership_number": null,
+    "first_name": "Tovolea",
+    "last_name": "Tale",
+    "tpf_number": "FTA20252F182EC7",
+    "email": "mada@duaqo.com",
+    "phone_number": "2333221",
+    "residing_address": "Namadi Heights",
+    "category": 1,
+    "area": 1,
+    "branch": 3,
+    "school": null,
+    "position": "Admin",
+    "start_year": 2023,
+    "membership_status": "pending",
+    "date_joined": "2025-10-15T22:29:36.952Z",
+    "profile_photo": "member_photos/unknown_YuUFsi6.jpg",
+    "id_document": "member_documents/1000001978.jpg"
+  }
+},
+{
+  "model": "membership.member",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "again_e44j"
+    ],
+    "membership_number": null,
+    "first_name": "Once Ag",
+    "last_name": "Again",
+    "tpf_number": "FTA20251597C6AC",
+    "email": "again@email.com",
+    "phone_number": "36654569",
+    "residing_address": "Namadi Heights",
+    "category": 3,
+    "area": 1,
+    "branch": 4,
+    "school": null,
+    "position": "ECE Educator",
+    "start_year": 2024,
+    "membership_status": "pending",
+    "date_joined": "2025-10-15T22:49:06.012Z",
+    "profile_photo": "member_photos/unknownfemale.jfif",
+    "id_document": "member_documents/360_F_216946587_rmug8FCNgpDCPQlstiCJ0CAXJ2sqPRU7.jpg"
+  }
+},
+{
+  "model": "membership.member",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "lixtronics"
+    ],
+    "membership_number": "FTA20251675252E",
+    "first_name": "Dua",
+    "last_name": "Tale",
+    "tpf_number": "TPF81181144",
+    "email": "dua@tale.com",
+    "phone_number": "8787769",
+    "residing_address": "Nadawa",
+    "category": 1,
+    "area": 7,
+    "branch": 21,
+    "school": null,
+    "position": "Head Teacher",
+    "start_year": 2013,
+    "membership_status": "active",
+    "date_joined": "2025-10-15T22:55:35.794Z",
+    "profile_photo": "member_photos/ananaiasa.jpg",
+    "id_document": "member_documents/download.jfif"
+  }
+}
+]

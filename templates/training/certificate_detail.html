@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Certificate{% endblock %}
+
+{% block content %}
+<section class="section-shell pt-16">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="cta-card p-10 text-center">
+      <p class="section-kicker">Certificate of Completion</p>
+      <h1 class="section-title mt-3">Fiji Primary School Principals Association</h1>
+      <p class="section-copy mt-6">This certifies that</p>
+      <h2 class="mt-4 text-4xl font-bold maroon-text">{{ certificate.enrollment.member.full_name }}</h2>
+      <p class="section-copy mt-6">has successfully completed the training program</p>
+      <h3 class="mt-4 text-3xl font-bold text-[#1f5ca8]">{{ certificate.enrollment.course.title }}</h3>
+      <p class="section-copy mt-6">Issued on {{ certificate.issued_at|date:"d M Y" }}</p>
+      <p class="section-copy mt-2">Certificate No: {{ certificate.certificate_number }}</p>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2 text-left">
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <p class="text-sm font-semibold text-slate-500 uppercase tracking-[0.14em]">Completion Status</p>
+          <p class="mt-3 text-xl font-bold maroon-text">{{ certificate.enrollment.get_status_display }}</p>
+          <p class="section-copy mt-2">Progress achieved: {{ certificate.enrollment.progress_percent }}%</p>
+        </div>
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <p class="text-sm font-semibold text-slate-500 uppercase tracking-[0.14em]">Program Details</p>
+          <p class="mt-3 text-xl font-bold maroon-text">{{ certificate.enrollment.course.get_delivery_type_display }}</p>
+          <p class="section-copy mt-2">{{ certificate.enrollment.course.duration_hours }} hour{{ certificate.enrollment.course.duration_hours|pluralize }}</p>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="{% url 'training:certificate_print' certificate.id %}" class="hero-btn hero-btn-primary">Print or Save PDF</a>
+          <a href="{% url 'training:my_learning' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Back to my learning</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

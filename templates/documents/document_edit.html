@@ -1,0 +1,291 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Document — {{ document.title }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-12">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <!-- Top header -->
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA" class="h-12 w-12 rounded-md shadow-sm object-cover">
+        <div>
+          <h1 class="text-2xl font-semibold text-gray-900">Edit Document</h1>
+          <p class="text-sm text-gray-500">
+            Update metadata or replace the attached file for
+            <span class="font-medium text-gray-800">{{ document.title }}</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="{% url 'documents:document_detail' document.pk %}" class="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to document
+        </a>
+      </div>
+    </div>
+
+    <!-- Main card -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+      <div class="md:flex">
+
+        <!-- Left: preview column -->
+        <aside class="md:w-1/3 border-r border-gray-100 p-6 bg-gradient-to-b from-white to-gray-50">
+          <div class="flex flex-col items-center gap-4">
+
+            <div class="w-44 h-44 rounded-lg overflow-hidden border border-gray-100 bg-white flex items-center justify-center shadow-sm">
+              {% if document.file %}
+                {% with url=document.file.url|lower %}
+                  {% if ".pdf" in url %}
+                    <i class="fa-solid fa-file-pdf fa-4x text-red-600"></i>
+                  {% elif ".jpg" in url or ".jpeg" in url or ".png" in url or ".gif" in url %}
+                    <img src="{{ document.file.url }}" alt="{{ document.title }}" class="w-full h-full object-cover">
+                  {% else %}
+                    <i class="fa-solid fa-file fa-4x text-gray-400"></i>
+                  {% endif %}
+                {% endwith %}
+              {% else %}
+                <i class="fa-solid fa-file-lines fa-3x text-gray-300"></i>
+              {% endif %}
+            </div>
+
+            <div class="text-center">
+              <div class="font-medium text-gray-800">{{ document.title }}</div>
+              <div class="text-xs text-gray-500 mt-1">{{ document.file.name|default:"No file attached" }}</div>
+              <div class="text-xs text-gray-400 mt-2">
+                {% if document.uploaded_at %}Uploaded: {{ document.uploaded_at|date:"M d, Y" }}{% elif document.created_at %}Uploaded: {{ document.created_at|date:"M d, Y" }}{% endif %}
+              </div>
+            </div>
+
+            <div class="w-full mt-4 space-y-2">
+              {% if document.file %}
+                <a href="{{ document.file.url }}" target="_blank" class="w-full inline-flex justify-center items-center gap-2 px-3 py-2 rounded-md border border-gray-200 text-sm text-gray-700 hover:bg-gray-50">
+                  <i class="fa-solid fa-up-right-from-square"></i>
+                  Open file
+                </a>
+                <a href="{% url 'documents:document_download' document.pk %}" class="w-full inline-flex justify-center items-center gap-2 px-3 py-2 rounded-md border bg-green-50 text-sm text-green-700 hover:bg-green-100">
+                  <i class="fa-solid fa-download"></i>
+                  Download
+                </a>
+              {% else %}
+                <div class="text-sm text-gray-500 text-center">No file available</div>
+              {% endif %}
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right: form column -->
+        <div class="md:flex-1 p-6">
+          <form method="post" enctype="multipart/form-data" id="document-edit-form" class="space-y-6" novalidate>
+            {% csrf_token %}
+
+            <!-- Title -->
+            <div>
+              <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700">Title <span class="text-red-500">*</span></label>
+              <div class="mt-2">
+                {{ form.title }}
+              </div>
+              {% if form.title.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.title.errors.0 }}</p>
+              {% else %}
+                <p class="mt-1 text-xs text-gray-400">Give the document a short, descriptive title (5–120 characters).</p>
+              {% endif %}
+            </div>
+
+            <!-- Category & Subcategory -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="{{ form.category.id_for_label }}" class="block text-sm font-medium text-gray-700">Category <span class="text-red-500">*</span></label>
+                <div class="mt-2">{{ form.category }}</div>
+                {% if form.category.errors %}
+                  <p class="mt-1 text-sm text-red-600">{{ form.category.errors.0 }}</p>
+                {% else %}
+                  <p class="mt-1 text-xs text-gray-400">Choose the main category for this document.</p>
+                {% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.subcategory.id_for_label }}" class="block text-sm font-medium text-gray-700">Subcategory</label>
+                <div class="mt-2">{{ form.subcategory }}</div>
+                {% if form.subcategory.errors %}
+                  <p class="mt-1 text-sm text-red-600">{{ form.subcategory.errors.0 }}</p>
+                {% else %}
+                  <p class="mt-1 text-xs text-gray-400">Optional — refine where this document should appear.</p>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Replace file -->
+            <div>
+              <label for="{{ form.file.id_for_label }}" class="block text-sm font-medium text-gray-700">Replace file</label>
+              <div class="mt-2">{{ form.file }}</div>
+              {% if form.file.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.file.errors.0 }}</p>
+              {% else %}
+                <p class="mt-1 text-xs text-gray-400">Optional. PDF and images recommended. Max 10 MB.</p>
+              {% endif %}
+
+              <!-- Replacement preview -->
+              <div id="preview-panel" class="mt-4 hidden">
+                <div class="border border-gray-100 rounded-md p-3 bg-white">
+                  <div id="preview-content" class="w-full"></div>
+                  <div id="preview-filename" class="mt-2 text-xs text-gray-500"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div>
+              <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700">Description</label>
+              <div class="mt-2">{{ form.description }}</div>
+              {% if form.description.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+              {% else %}
+                <p class="mt-1 text-xs text-gray-400">Optional. Add context, instructions, or notes (max 2000 chars).</p>
+              {% endif %}
+            </div>
+
+            <!-- Groups -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Access groups <span class="text-red-500">*</span></label>
+              <div class="mt-2 border border-gray-100 rounded-md p-3 bg-gray-50 max-h-48 overflow-y-auto">
+                {{ form.groups }}
+              </div>
+              {% if form.groups.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.groups.errors.0 }}</p>
+              {% else %}
+                <p class="mt-1 text-xs text-gray-400">Select which groups should be able to view this document.</p>
+              {% endif %}
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-between gap-4 pt-3 border-t border-gray-100">
+              <div class="flex items-center gap-3">
+                <a href="{% url 'documents:document_detail' document.pk %}" class="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 text-sm text-gray-700 hover:bg-gray-50">
+                  Cancel
+                </a>
+
+                <button type="reset" id="btn-reset" class="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 text-sm text-gray-700 hover:bg-gray-50">
+                  Reset
+                </button>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <button type="submit" id="btn-submit" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#800000] hover:bg-[#6b0000] text-white font-semibold shadow">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  Save changes
+                </button>
+
+                <form method="post" action="{% url 'documents:document_delete' document.pk %}" class="inline-block ml-2" onsubmit="return confirm('Delete this document permanently?');">
+                  {% csrf_token %}
+                  <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white border border-red-200 text-sm text-red-700 hover:bg-red-50">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+
+          </form>
+        </div> <!-- end right column -->
+      </div> <!-- end md:flex -->
+    </div> <!-- end card -->
+
+  </div>
+</div>
+
+<!-- Client-side JS for preview + lightweight validation -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('document-edit-form');
+  const fileInput = document.getElementById('{{ form.file.id_for_label }}') || document.getElementById('id_file');
+  const previewPanel = document.getElementById('preview-panel');
+  const previewContent = document.getElementById('preview-content');
+  const previewFilename = document.getElementById('preview-filename');
+  const submitBtn = document.getElementById('btn-submit');
+  const resetBtn = document.getElementById('btn-reset');
+
+  const MAX_SIZE = 10 * 1024 * 1024;
+  const IMAGE_TYPES = ['image/jpeg','image/png','image/gif','image/webp'];
+  const PDF_TYPE = 'application/pdf';
+
+  function clearPreview() {
+    previewContent.innerHTML = '';
+    previewFilename.textContent = '';
+    previewPanel.classList.add('hidden');
+  }
+
+  function showPreview(file) {
+    previewContent.innerHTML = '';
+    previewFilename.textContent = file.name || '';
+    previewPanel.classList.remove('hidden');
+
+    if (IMAGE_TYPES.includes(file.type)) {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.alt = file.name;
+      img.className = 'w-full h-auto rounded-md object-contain';
+      previewContent.appendChild(img);
+      img.onload = () => URL.revokeObjectURL(img.src);
+      return;
+    }
+
+    if (file.type === PDF_TYPE || file.name.toLowerCase().endsWith('.pdf')) {
+      const obj = document.createElement('object');
+      obj.data = URL.createObjectURL(file);
+      obj.type = 'application/pdf';
+      obj.className = 'w-full h-64 rounded-md border';
+      obj.innerHTML = `<p class="text-sm text-gray-500">Inline preview not supported — <a href="#" target="_blank" class="text-indigo-600 underline">open file</a></p>`;
+      previewContent.appendChild(obj);
+      return;
+    }
+
+    // fallback: simple file block
+    const fallback = document.createElement('div');
+    fallback.className = 'flex items-center gap-3';
+    fallback.innerHTML = `
+      <i class="fa-solid fa-file fa-2x text-gray-400"></i>
+      <div>
+        <div class="text-sm font-medium text-gray-800">${file.name}</div>
+        <div class="text-xs text-gray-500">Preview unavailable</div>
+      </div>
+    `;
+    previewContent.appendChild(fallback);
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', (e) => {
+      const f = fileInput.files && fileInput.files[0];
+      if (!f) { clearPreview(); return; }
+      if (f.size > MAX_SIZE) {
+        alert('File too large (max 10 MB).');
+        fileInput.value = '';
+        clearPreview();
+        return;
+      }
+      showPreview(f);
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      clearPreview();
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', (ev) => {
+      // disable submit to prevent double submit
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      }
+    });
+  }
+});
+</script>
+{% endblock %}
+

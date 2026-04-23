@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<section class="section-shell pt-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        {% if course.thumbnail %}
+          <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}" class="w-full max-h-[420px] object-cover rounded-[1.8rem] shadow-lg mb-8">
+        {% endif %}
+        <p class="section-kicker">{{ course.get_delivery_type_display }}</p>
+        <h1 class="section-title mt-3">{{ course.title }}</h1>
+        <p class="section-copy mt-4 text-lg">{{ course.short_description }}</p>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-3">
+          <div class="feature-card !p-4"><strong>Duration</strong><p class="section-copy mt-2">{{ course.duration_hours }} hour{{ course.duration_hours|pluralize }}</p></div>
+          <div class="feature-card !p-4"><strong>Modules</strong><p class="section-copy mt-2">{{ course.modules.count }}</p></div>
+          <div class="feature-card !p-4"><strong>Lessons</strong><p class="section-copy mt-2">{{ course.lesson_count }}</p></div>
+        </div>
+
+        <div class="feature-card mt-8">
+          <h2 class="text-2xl font-bold maroon-text">Overview</h2>
+          <div class="section-copy mt-4 prose max-w-none">{{ course.description|safe }}</div>
+          {% if course.learning_outcomes %}
+            <h3 class="text-xl font-bold maroon-text mt-6">Learning outcomes</h3>
+            <div class="section-copy mt-3 prose max-w-none">{{ course.learning_outcomes|safe }}</div>
+          {% endif %}
+          {% if course.target_audience %}
+            <h3 class="text-xl font-bold maroon-text mt-6">Target audience</h3>
+            <p class="section-copy mt-3">{{ course.target_audience }}</p>
+          {% endif %}
+        </div>
+
+        <div class="feature-card mt-8">
+          <h2 class="text-2xl font-bold maroon-text">Course content</h2>
+          <div class="mt-5 space-y-4">
+            {% for module in course.modules.all %}
+              <div class="rounded-2xl border border-slate-200 p-5">
+                <h3 class="text-xl font-bold maroon-text">{{ module.order }}. {{ module.title }}</h3>
+                {% if module.overview %}<div class="section-copy mt-2 prose max-w-none">{{ module.overview|safe }}</div>{% endif %}
+                <ul class="mt-4 space-y-3">
+                  {% for lesson in module.lessons.all %}
+                    <li class="flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-4 py-3">
+                      <div>
+                        <div class="font-semibold text-slate-800">{{ lesson.title }}</div>
+                        <div class="text-sm text-slate-500">{{ lesson.duration_minutes }} min{% if lesson.is_preview %} • Preview available{% endif %}</div>
+                      </div>
+                    </li>
+                  {% empty %}
+                    <li class="text-sm text-slate-500">No lessons added yet.</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% empty %}
+              <p class="section-copy">Modules will appear here once course content is added.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cta-card p-6 sticky top-28">
+          <h2 class="text-2xl font-bold maroon-text">Enrollment</h2>
+          {% if enrollment %}
+            <p class="section-copy mt-3">You are enrolled in this program.</p>
+            <div class="mt-4 rounded-xl bg-slate-50 p-4">
+              <div class="flex justify-between text-sm font-semibold text-slate-700">
+                <span>Status</span>
+                <span>{{ enrollment.get_status_display }}</span>
+              </div>
+              <div class="mt-3">
+                <div class="h-3 rounded-full bg-slate-200 overflow-hidden">
+                  <div class="h-full bg-[#1f5ca8]" style="width: {{ enrollment.progress_percent }}%"></div>
+                </div>
+                <p class="text-sm text-slate-500 mt-2">{{ enrollment.progress_percent }}% complete</p>
+              </div>
+            </div>
+            <div class="mt-5">
+              <a href="{% url 'training:learning_detail' enrollment.id %}" class="hero-btn hero-btn-primary">Continue learning</a>
+            </div>
+          {% else %}
+            <p class="section-copy mt-3">Members can enroll in this course and complete the lessons online.</p>
+            {% if user.is_authenticated %}
+              <form method="post" action="{% url 'training:enroll_in_course' course.slug %}" class="mt-5 space-y-4">
+                {% csrf_token %}
+                {% if schedules %}
+                  <div>
+                    <label for="schedule_id" class="block text-sm font-semibold text-slate-700 mb-2">Select workshop session</label>
+                    <select id="schedule_id" name="schedule_id" class="w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1f5ca8]">
+                      <option value="">No specific session</option>
+                      {% for schedule in schedules %}
+                        <option value="{{ schedule.id }}">
+                          {{ schedule.title }} - {{ schedule.start_datetime|date:"d M Y H:i" }}
+                          {% if schedule.location %} - {{ schedule.location }}{% endif %}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endif %}
+                <button type="submit" class="hero-btn hero-btn-primary w-full justify-center">Enroll now</button>
+              </form>
+            {% else %}
+              <div class="mt-5">
+                <a href="{% url 'login' %}" class="hero-btn hero-btn-primary">Login to enroll</a>
+              </div>
+            {% endif %}
+          {% endif %}
+
+          {% if schedules %}
+            <div class="mt-8">
+              <h3 class="text-xl font-bold maroon-text">Upcoming schedules</h3>
+              <div class="mt-4 space-y-3">
+                {% for schedule in schedules %}
+                  <div class="rounded-xl border border-slate-200 p-4">
+                    <div class="font-semibold text-slate-800">{{ schedule.title }}</div>
+                    <p class="text-sm text-slate-500 mt-1">{{ schedule.start_datetime|date:"d M Y H:i" }} to {{ schedule.end_datetime|date:"d M Y H:i" }}</p>
+                    {% if schedule.location %}<p class="text-sm text-slate-500">{{ schedule.location }}</p>{% endif %}
+                    {% if schedule.meeting_link %}<a href="{{ schedule.meeting_link }}" target="_blank" rel="noopener noreferrer" class="text-sm text-[#1f5ca8] font-semibold">Meeting link</a>{% endif %}
+                    {% if schedule.seats_remaining != None %}<p class="text-sm text-slate-500 mt-1">{{ schedule.seats_remaining }} seat{{ schedule.seats_remaining|pluralize }} remaining</p>{% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

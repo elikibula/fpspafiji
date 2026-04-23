@@ -1,0 +1,139 @@
+<!-- templates/helpdesk/staff/my_tickets.html -->
+{% extends "helpdesk/staff/base_staff.html" %}
+
+{% block title %}{{ page_title }} - FPSPA Help Desk{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">{{ page_title }}</h1>
+                <p class="text-gray-600 mt-2">Tickets assigned to you for resolution</p>
+            </div>
+            <div class="mt-4 lg:mt-0 flex space-x-3">
+                <a href="{% url 'helpdesk:staff_create_ticket' %}" 
+                   class="inline-flex items-center bg-[#800000] text-white py-2 px-4 rounded-md hover:bg-[#600000] transition">
+                    <i class="fas fa-plus mr-2"></i>
+                    Create Ticket
+                </a>
+                <a href="{% url 'helpdesk:staff_ticket_list' %}" 
+                   class="inline-flex items-center bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 transition">
+                    View All Tickets
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Filter -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="flex flex-wrap gap-2">
+            <a href="{% url 'helpdesk:staff_my_tickets' %}" 
+               class="px-3 py-1 rounded-full text-sm {% if not status_filter %}bg-[#800000] text-white{% else %}bg-gray-100 text-gray-700 hover:bg-gray-200{% endif %} transition">
+                All ({{ page_obj.paginator.count }})
+            </a>
+            {% for status in page_obj.object_list|slice:":5" %}
+            <a href="{% url 'helpdesk:staff_my_tickets' %}?status={{ status.status.name }}" 
+               class="px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 transition">
+                {{ status.status.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Tickets List -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        {% if page_obj %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ticket</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created By</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Updated</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for ticket in page_obj %}
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div>
+                                <div class="text-sm font-medium text-gray-900">#{{ ticket.ticket_number }}</div>
+                                <div class="text-sm text-gray-500">{{ ticket.title|truncatewords:6 }}</div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="text-sm text-gray-900">{{ ticket.category.name|default:"-" }}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 text-xs rounded-full text-white" style="background-color: {{ ticket.priority.color }};">
+                                {{ ticket.priority.name }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 text-xs rounded-full text-white" style="background-color: {{ ticket.status.color }};">
+                                {{ ticket.status.name }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">{{ ticket.created_by.get_full_name|default:ticket.created_by.username }}</div>
+                            <div class="text-sm text-gray-500">{{ ticket.stream.name }}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ ticket.updated_at|timesince }} ago
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="{% url 'helpdesk:staff_ticket_detail' ticket.ticket_number %}" 
+                               class="text-[#800000] hover:text-[#600000]">
+                                Manage
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-12">
+            <i class="fas fa-inbox text-4xl text-gray-300 mb-3"></i>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">No tickets assigned to you</h3>
+            <p class="text-gray-600">You're all caught up! Check the main ticket list for unassigned tickets.</p>
+            <a href="{% url 'helpdesk:staff_ticket_list' %}?assigned=unassigned" class="inline-block mt-4 text-[#800000] hover:text-[#600000]">
+                View unassigned tickets →
+            </a>
+        </div>
+        {% endif %}
+
+        <!-- Pagination -->
+        {% if page_obj.paginator.num_pages > 1 %}
+        <div class="px-6 py-4 border-t border-gray-200">
+            <div class="flex justify-between items-center">
+                <div class="text-sm text-gray-700">
+                    Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} results
+                </div>
+                <div class="flex space-x-2">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}" 
+                       class="px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">
+                        Previous
+                    </a>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}" 
+                       class="px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">
+                        Next
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

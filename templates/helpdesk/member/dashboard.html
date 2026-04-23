@@ -1,0 +1,161 @@
+<!-- templates/helpdesk/member/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Member Dashboard - FPSPA Help Desk{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Welcome Section -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Member Dashboard</h1>
+        <p class="text-gray-600 mt-2">Welcome back, {{ user.get_full_name|default:user.username }}!</p>
+        
+        <!-- Member Profile Info -->
+        {% if user_profile %}
+        <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div class="flex items-center space-x-4">
+                {% if user_profile.profile_photo %}
+                <img src="{{ user_profile.profile_photo.url }}" alt="Profile Photo" class="w-16 h-16 rounded-full object-cover">
+                {% else %}
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user text-blue-500 text-xl"></i>
+                </div>
+                {% endif %}
+                <div>
+                    <h3 class="font-semibold text-gray-900">{{ user_profile.full_name }}</h3>
+                    <p class="text-sm text-gray-600">TPF: {{ user_profile.tpf_number }}</p>
+                    <p class="text-sm text-gray-600">{{ user_profile.school.name }} • {{ user_profile.position }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                    <i class="fas fa-ticket-alt text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-2xl font-bold text-gray-900">{{ total_tickets }}</h3>
+                    <p class="text-gray-600">Total Tickets</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                    <i class="fas fa-clock text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-2xl font-bold text-gray-900">{{ open_tickets }}</h3>
+                    <p class="text-gray-600">Open Tickets</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                    <i class="fas fa-check-circle text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-2xl font-bold text-gray-900">{{ resolved_tickets }}</h3>
+                    <p class="text-gray-600">Resolved Tickets</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Recent Tickets -->
+        <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900">Recent Support Tickets</h2>
+            </div>
+            <div class="p-6">
+                {% if recent_tickets %}
+                <div class="space-y-4">
+                    {% for ticket in recent_tickets %}
+                    <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <span class="font-mono text-sm text-gray-500">#{{ ticket.ticket_number }}</span>
+                                <span class="px-2 py-1 text-xs rounded-full text-white" style="background-color: {{ ticket.status.color }};">
+                                    {{ ticket.status.name }}
+                                </span>
+                            </div>
+                            <h3 class="font-medium text-gray-900">{{ ticket.title }}</h3>
+                            <p class="text-sm text-gray-600 mt-1">{{ ticket.category.name|default:"No Category" }}</p>
+                        </div>
+                        <a href="{% url 'helpdesk:ticket_detail' ticket.ticket_number %}" 
+                           class="text-[#800000] hover:text-[#600000] font-medium">
+                            View
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-8">
+                    <i class="fas fa-ticket-alt text-4xl text-gray-300 mb-3"></i>
+                    <p class="text-gray-600">No support tickets yet</p>
+                </div>
+                {% endif %}
+                <div class="mt-4">
+                    <a href="{% url 'helpdesk:create_ticket' %}" 
+                       class="block text-center bg-[#800000] text-white py-2 px-4 rounded-md hover:bg-[#600000] transition">
+                        Create New Ticket
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="space-y-6">
+            <!-- Create Ticket -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
+                <div class="space-y-3">
+                    <a href="{% url 'helpdesk:create_ticket' %}" 
+                       class="w-full flex items-center justify-center bg-[#800000] text-white py-3 px-4 rounded-md hover:bg-[#600000] transition">
+                        <i class="fas fa-plus mr-2"></i>
+                        Create Support Ticket
+                    </a>
+                    <a href="{% url 'helpdesk:ticket_list' %}" 
+                       class="w-full flex items-center justify-center bg-gray-100 text-gray-700 py-3 px-4 rounded-md hover:bg-gray-200 transition">
+                        <i class="fas fa-list mr-2"></i>
+                        View All My Tickets
+                    </a>
+                    <a href="{% url 'helpdesk:faq_list' %}" 
+                       class="w-full flex items-center justify-center bg-gray-100 text-gray-700 py-3 px-4 rounded-md hover:bg-gray-200 transition">
+                        <i class="fas fa-question-circle mr-2"></i>
+                        Browse FAQs
+                    </a>
+                </div>
+            </div>
+
+            <!-- Support Information -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-blue-900 mb-3">Support Information</h3>
+                <div class="space-y-2 text-sm text-blue-800">
+                    <div class="flex items-center">
+                        <i class="fas fa-clock mr-2"></i>
+                        <span>Response Time: 24 hours</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone mr-2"></i>
+                        <span>Phone: (+679) 9921113 / 7084299</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>Email: info@fpspa.org.fj</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

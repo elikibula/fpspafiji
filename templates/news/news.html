@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+{% load news_filters %}
+{% load humanize %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative hero-bg2 bg-cover bg-center text-center text-white overflow-hidden">
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+  <!-- Floating Search -->
+  <div class="absolute top-6 right-8 z-20 w-72" data-aos="fade-left">
+    <form class="relative">
+      <input 
+        type="search"
+        class="w-full py-2 pl-4 pr-10 rounded-full bg-white bg-opacity-90 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-[color:#800000] transition"
+        placeholder="Search the site...">
+      <button type="submit" class="absolute right-3 top-2.5 text-[color:#800000] hover:text-red-900 transition">
+        <i data-feather="search"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- Hero Text -->
+  <div class="relative z-10 container mx-auto px-6 py-32 flex flex-col items-center justify-center">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 animate-hero" data-aos="fade-down">
+      <span class="text-[color:#FFD700] animate-shimmer-pulse">Our Latest News Updates</span>
+    </h1>
+    <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-6" data-aos="fade-up">
+      Stay informed with the latest announcements, events, and developments.
+    </p>
+    <p class="text-xl italic font-semibold gold-text mb-10 typewriter" data-aos="fade-up" data-aos-delay="100">
+      “Service Before Self”
+    </p>
+  </div>
+
+  <!-- Maroon Waves -->
+  <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 24 150 28" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="maroonGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#800000" />
+        <stop offset="100%" stop-color="#800000" />
+      </linearGradient>
+      <path id="gentle-wave"
+        d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#maroonGradient)" opacity="0.7" />
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#maroonGradient)" opacity="0.5" />
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#maroonGradient)" opacity="0.3" />
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#maroonGradient)" opacity="1" />
+    </g>
+  </svg>
+</section>
+
+<!-- News Section -->
+<section class="py-16 maroon-bg text-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    {% if page_obj and page_obj.object_list %}
+      <!-- News Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up" data-aos-delay="100">
+        {% for news in page_obj %}
+        <div class="border-2 border-[#FFD700] rounded-2xl shadow-lg hover:shadow-[0_0_25px_rgba(255,215,0,0.6)] transition-all duration-300 overflow-hidden">
+          {# Safe URL generation: use slug if available, otherwise fall back to photo_news_detail by pk #}
+          {% if news.slug %}
+            {% url 'news:news_detail' news.slug as item_url %}
+          {% else %}
+            {% url 'news:photo_news_detail' news.pk as item_url %}
+          {% endif %}
+
+          <a href="{{ item_url }}" 
+            class="group bg-white text-gray-800 rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 h-[380px] flex flex-col">
+
+            <!-- Image -->
+            {% if news.image %}
+              <img src="{{ news.image.url }}" alt="{{ news.title }}" class="w-full h-48 object-cover rounded-t-2xl group-hover:opacity-90 transition">
+            {% else %}
+              <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-t-2xl">
+                <span class="text-gray-400 font-semibold">No Image Available</span>
+              </div>
+            {% endif %}
+
+            <!-- Content -->
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xl font-semibold text-maroon-800 mb-2 group-hover:text-[color:#FFD700] transition">
+                  {{ news.title }}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                  {{ news.content|striptags|truncatewords:25 }}
+                </p>
+              </div>
+              <time class="text-sm text-gray-400 flex items-center gap-2">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <span>{{ news.date_posted|naturaltime }}</span>
+                </time>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <span>{{ news.date_posted|date:"d M, Y" }}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination Controls -->
+      <nav class="mt-10 flex items-center justify-center" aria-label="Pagination">
+        <ul class="inline-flex items-center space-x-2">
+
+          {# Prev button #}
+          {% if page_obj.has_previous %}
+            <li>
+              <a href="?page={{ page_obj.previous_page_number }}" 
+                class="px-3 py-2 bg-white text-maroon-800 rounded-md shadow hover:bg-gray-100 transition">
+                ← Prev
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <span class="px-3 py-2 bg-gray-200 text-gray-400 rounded-md">← Prev</span>
+            </li>
+          {% endif %}
+
+          {# Page numbers #}
+          {% if page_obj.paginator.num_pages <= 10 %}
+            {% for num in page_obj.paginator.page_range %}
+              {% if num == page_obj.number %}
+                <li><span class="px-3 py-2 bg-fta-gold text-maroon-900 rounded-md font-semibold">{{ num }}</span></li>
+              {% else %}
+                <li><a href="?page={{ num }}" class="px-3 py-2 bg-white text-maroon-800 rounded-md shadow hover:bg-gray-100 transition">{{ num }}</a></li>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <li>
+              <span class="px-4 py-2 text-sm text-gray-200 bg-gray-800 rounded-md">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+              </span>
+            </li>
+          {% endif %}
+
+          {# Next button #}
+          {% if page_obj.has_next %}
+            <li>
+              <a href="?page={{ page_obj.next_page_number }}" 
+                class="px-3 py-2 bg-white text-maroon-800 rounded-md shadow hover:bg-gray-100 transition">
+                Next →
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <span class="px-3 py-2 bg-gray-200 text-gray-400 rounded-md">Next →</span>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+
+    {% else %}
+      <p class="text-center text-gray-300 mt-10">No news available at the moment. Please check back later.</p>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

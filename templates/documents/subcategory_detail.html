@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ subcategory.name }} — Documents{% endblock %}
+
+{% block content %}
+<div class="min-h-screen maroon-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-6">
+      <!-- Sidebar -->
+      <aside class="w-full lg:w-72 bg-white rounded-2xl shadow-sm p-4 sticky top-6 h-[calc(100vh-4rem)] overflow-y-auto">
+        <div class="mb-4">
+          <h6 class="text-lg font-semibold maroon-text uppercase tracking-wide">Document Categories</h6>
+        </div>
+
+        <div class="space-y-3">
+          {% for category in categories %}
+          <div class="group">
+            <button
+              type="button"
+              class="w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              aria-expanded="false"
+              data-toggle="collapse"
+              data-target="#cat-{{ forloop.counter }}">
+              <span class="flex items-center gap-2 text-sm font-medium maroon-text">
+                <i class="fa-solid fa-folder-open text-sm text-gray-400"></i>
+                <span>{{ category.name }}</span>
+              </span>
+              <span class="text-xs text-gray-400">{{ category.subcategories.count }} sub</span>
+            </button>
+
+            <div id="cat-{{ forloop.counter }}" class="mt-2 ml-1 hidden">
+              <ul class="space-y-1">
+                {% for subcat in category.subcategories.all %}
+                <li>
+                  <a href="{% url 'documents:subcategory_detail' subcat.id %}"
+                     class="block text-sm px-3 py-2 rounded-md transition-colors
+                            {% if subcat.id == subcategory.id %}bg-indigo-600 text-white font-semibold{% else %}text-gray-600 hover:bg-gray-100{% endif %}">
+                    <span class="flex items-center gap-2">
+                      <i class="fa-solid fa-chevron-right text-xs"></i>
+                      <span class="truncate">{{ subcat.name }}</span>
+                    </span>
+                  </a>
+                </li>
+                {% endfor %}
+                {% if category.subcategories.count == 0 %}
+                <li class="text-xs text-gray-400 px-3 py-2">No subcategories</li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          {% empty %}
+          <div class="text-sm text-gray-500">No categories available</div>
+          {% endfor %}
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="flex-1">
+        <div class="flex items-start justify-between gap-4 mb-6">
+          <div>
+            <h1 class="text-2xl font-semibold gold-text mb-1">{{ subcategory.name }}</h1>
+            <nav class="text-sm gold-text" aria-label="Breadcrumb">
+              <ol class="inline-flex items-center space-x-2">
+                <li><a href="{% url 'documents:document_list' %}" class="hover:underline">Documents</a></li>
+                <li>/</li>
+                <li class="gold-text">{{ subcategory.name }}</li>
+              </ol>
+            </nav>
+          </div>
+
+          <div class="flex items-center gap-2">
+            {% if user.is_staff or user.is_superuser %}
+            <a href="{% url 'documents:upload_document' %}"
+               class="inline-flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+              <i class="fa-solid fa-upload"></i>
+              Upload Document
+            </a>
+            {% endif %}
+            
+          </div>
+        </div>
+
+        {% if subcategory.description %}
+        <div class="mb-6">
+          <div class="bg-white rounded-2xl shadow-sm p-4">
+            <h2 class="text-sm font-semibold text-gray-700 mb-1">About</h2>
+            <p class="text-sm text-gray-600">{{ subcategory.description }}</p>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="space-y-6">
+          <!-- Documents card -->
+          <section class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div class="px-4 py-4 border-b border-gray-100 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <h3 class="text-lg font-medium text-gray-800">Documents</h3>
+                <span class="text-sm text-gray-500">({{ documents.count }})</span>
+              </div>
+              <div class="text-sm text-gray-500">
+                {% with documents|dictsortreversed:"uploaded_at" as sorted_docs %}
+                    {% if sorted_docs %}
+                        <h3 class="text-success">
+                        {{ sorted_docs.0.uploaded_at|date:"M d" }}
+                        </h3>
+                    {% else %}
+                        <h3 class="text-success">N/A</h3>
+                    {% endif %}
+                {% endwith %}
+              </div>
+            </div>
+
+            <div class="p-4">
+              {% if documents %}
+              <div class="overflow-x-auto">
+                <table class="min-w-full text-sm align-middle">
+                  <thead class="text-left text-xs text-gray-500 border-b border-gray-100">
+                    <tr>
+                      <th class="py-2 px-3">Name</th>
+                      <th class="py-2 px-3">Type</th>
+                      <th class="py-2 px-3 text-right">Size</th>
+                      <th class="py-2 px-3">Uploaded</th>
+                      <th class="py-2 px-3 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y">
+                    {% for document in documents %}
+                    <tr class="hover:bg-gray-50">
+                      <td class="py-3 px-3 align-top" style="min-width:380px;">
+                        <div class="flex items-start gap-3">
+                          <div class="flex-shrink-0 mt-0.5">
+                            {% with name=document.file.name|lower %}
+                                {% if ".pdf" in name %}
+                                    <i class="fa-solid fa-file-pdf fa-2x text-red-500"></i>
+                                {% elif ".docx" in name or ".doc" in name %}
+                                    <i class="fa-solid fa-file-word fa-2x text-blue-600"></i>
+                                {% elif ".xlsx" in name or ".xls" in name %}
+                                    <i class="fa-solid fa-file-excel fa-2x text-green-600"></i>
+                                {% elif ".pptx" in name or ".ppt" in name %}
+                                    <i class="fa-solid fa-file-powerpoint fa-2x text-yellow-500"></i>
+                                {% elif ".zip" in name or ".rar" in name %}
+                                    <i class="fa-solid fa-file-archive fa-2x text-gray-500"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-file fa-2x text-gray-400"></i>
+                                {% endif %}
+                            {% endwith %}
+                          </div>
+
+                          <div>
+                            <div class="font-semibold text-gray-800">{{ document.title }}</div>
+                            {% if document.description %}
+                            <div class="text-xs text-gray-500 mt-1">{{ document.description|truncatewords:12 }}</div>
+                            {% endif %}
+                            <div class="text-xs text-gray-400 mt-1">
+                              {% if document.author %}{{ document.author.get_full_name|default:document.author.username }}{% else %}—{% endif %} • {{ document.uploaded_at|date:"M d, Y H:i" }}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="py-3 px-3 align-top">
+                        <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700">
+                          {{ document.file.name|slice:'-4:'|upper }}
+                        </span>
+                      </td>
+
+                      <td class="py-3 px-3 text-right align-top">
+                        <div class="text-xs text-gray-500">{{ document.file.size|filesizeformat }}</div>
+                      </td>
+
+                      <td class="py-3 px-3 align-top">
+                        <div class="text-sm text-gray-500">{{ document.uploaded_at|date:"M d, Y" }}</div>
+                      </td>
+
+                      <td class="py-3 px-3 text-right align-top">
+                        <div class="inline-flex items-center gap-2">
+                          <a href="{{ document.file.url }}" download="{{ document.title }}{{ document.file.name|slice:'-4:' }}"
+                             class="inline-flex items-center px-2 py-1 border border-gray-200 rounded text-sm hover:bg-gray-50"
+                             title="Download">
+                            <i class="fa-solid fa-download text-gray-600"></i>
+                          </a>
+
+                          <a href="{{ document.file.url }}" target="_blank"
+                             class="inline-flex items-center px-2 py-1 border border-gray-200 rounded text-sm hover:bg-gray-50"
+                             title="View">
+                            <i class="fa-solid fa-eye text-gray-600"></i>
+                          </a>
+
+                          {% if user.is_staff or user.is_superuser %}
+                          <a href="{% url 'admin:documents_document_change' document.id %}"
+                             class="inline-flex items-center px-2 py-1 border border-yellow-300 rounded text-sm hover:bg-yellow-50"
+                             title="Edit">
+                            <i class="fa-solid fa-edit text-yellow-600"></i>
+                          </a>
+                          {% endif %}
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              {% else %}
+              <div class="py-8 text-center text-gray-500">
+                <i class="fa-solid fa-folder-open fa-3x text-gray-300 mb-3"></i>
+                <h4 class="text-lg font-medium">No documents found</h4>
+                <p class="text-sm mt-1">There are no documents in this subcategory yet.</p>
+                {% if user.is_staff or user.is_superuser %}
+                <div class="mt-4">
+                  <a href="{% url 'admin:documents_document_add' %}?subcategory={{ subcategory.id }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700">
+                    <i class="fa-solid fa-upload mr-2"></i> Upload first document
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+              {% endif %}
+            </div>
+          </section>
+
+          <!-- Quick stat cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white rounded-2xl shadow-sm p-4">
+              <div class="text-sm text-gray-500">Total documents</div>
+              <div class="text-2xl font-semibold text-gray-800 mt-1">{{ documents.count }}</div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm p-4">
+              <div class="text-sm text-gray-500">Last uploaded</div>
+              <div class="text-2xl font-semibold text-gray-800 mt-1">
+                {% with documents|dictsortreversed:"uploaded_at" as sorted_docs %}
+                    {% if sorted_docs %}
+                        <h3 class="text-success">{{ sorted_docs.0.uploaded_at|date:"M d" }}</h3>
+                    {% else %}
+                        <h3 class="text-success">N/A</h3>
+                    {% endif %}
+                {% endwith %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Collapse/expand category lists
+  document.querySelectorAll('[data-toggle="collapse"]').forEach(btn => {
+    const target = btn.getAttribute('data-target');
+    if (!target) return;
+    const panel = document.querySelector(target);
+    btn.addEventListener('click', function () {
+      const isOpen = !panel.classList.contains('hidden');
+      if (isOpen) {
+        panel.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        panel.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Auto-open the category that contains the active subcategory
+  (function openActive() {
+    // find a link that matches the current subcategory detail URL
+    const activeHref = "{% url 'documents:subcategory_detail' subcategory.id %}";
+    const active = document.querySelector('a[href="' + activeHref + '"]');
+    if (!active) {
+      const highlighted = document.querySelector('a.bg-indigo-600');
+      if (highlighted) highlighted.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    const panel = active.closest('[id^="cat-"]');
+    if (panel) {
+      panel.classList.remove('hidden');
+      setTimeout(() => active.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+    }
+  })();
+
+  // Analytics hook for downloads (non-blocking)
+  document.querySelectorAll('a[download]').forEach(link => {
+    link.addEventListener('click', function () {
+      const file = this.getAttribute('download') || this.href.split('/').pop();
+      const payload = JSON.stringify({ file, ts: Date.now() });
+      const url = '/_internal/analytics/download';
+      try {
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(url, payload);
+        } else {
+          fetch(url, { method: 'POST', body: payload, keepalive: true });
+        }
+      } catch (e) {
+        // ignore analytics errors
+      }
+    });
+  });
+});
+</script>
+{% endblock %}

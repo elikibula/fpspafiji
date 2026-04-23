@@ -1,0 +1,356 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}FPSPA Membership Registration{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div class="mx-auto w-24 h-24 bg-[#800000] rounded-full flex items-center justify-center mb-4">
+        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-bold text-[#800000]">Join Fiji Primary School Principals Association</h1>
+      <p class="text-gray-600 mt-2 text-lg">Complete your membership registration below</p>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <!-- Progress Steps -->
+      <div class="bg-gray-100 px-6 py-4 border-b">
+        <div class="flex items-center justify-center space-x-8">
+          <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full bg-[#800000] text-white flex items-center justify-center text-sm font-semibold">1</div>
+            <span class="ml-2 text-sm font-medium text-[#800000]">Account Info</span>
+          </div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center text-sm font-semibold">2</div>
+            <span class="ml-2 text-sm font-medium text-gray-500">Personal Info</span>
+          </div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center text-sm font-semibold">3</div>
+            <span class="ml-2 text-sm font-medium text-gray-500">Professional Info</span>
+          </div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center text-sm font-semibold">4</div>
+            <span class="ml-2 text-sm font-medium text-gray-500">Documents</span>
+          </div>
+        </div>
+      </div>
+
+      <form method="POST" enctype="multipart/form-data" class="p-8" id="registration-form">
+        {% csrf_token %}
+        
+        {% if messages %}
+        <div class="mb-6">
+          {% for message in messages %}
+          <div class="p-4 rounded-md {% if message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-green-50 text-green-700 border border-green-200{% endif %}">
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Account Information Section -->
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Account Information</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Username *</label>
+              {{ form.username }}
+              <p class="text-xs text-gray-500 mt-1">Choose a unique username for logging into your account</p>
+              {% if form.username.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.username.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+              {{ form.email }}
+              <p class="text-xs text-gray-500 mt-1">Your email address for communication</p>
+              {% if form.email.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.email.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+              {{ form.password }}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
+              {{ form.confirm_password }}
+            </div>
+          </div>
+          {% if form.password.errors or form.confirm_password.errors %}
+          <div class="text-red-600 text-sm mt-2">
+            {{ form.password.errors }}
+            {{ form.confirm_password.errors }}
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Personal Information Section -->
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Personal Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+              {{ form.first_name }}
+              {% if form.first_name.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.first_name.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+              {{ form.last_name }}
+              {% if form.last_name.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.last_name.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+              {{ form.phone_number }}
+              {% if form.phone_number.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.phone_number.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">TPF Number *</label>
+              {{ form.tpf_number }}
+              {% if form.tpf_number.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.tpf_number.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Residing Address *</label>
+            {{ form.residing_address }}
+            {% if form.residing_address.errors %}
+            <div class="text-red-600 text-sm mt-1">{{ form.residing_address.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Professional Information Section -->
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Professional Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Teacher Category *</label>
+              {{ form.category }}
+              {% if form.category.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.category.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Area/Division *</label>
+              {{ form.area }}
+              {% if form.area.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.area.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Branch *</label>
+              {{ form.branch }}
+              {% if form.branch.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.branch.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">School</label>
+              {{ form.school }}
+              {% if form.school.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.school.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Position *</label>
+              {{ form.position }}
+              {% if form.position.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.position.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Year Started Teaching *</label>
+              {{ form.start_year }}
+              <p class="text-xs text-gray-500 mt-1">We'll automatically calculate your years of service</p>
+              {% if form.start_year.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.start_year.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Documents Section -->
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Documents & Identification</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Profile Photo</label>
+              {{ form.profile_photo }}
+              <p class="text-xs text-gray-500 mt-1">Optional: Upload a professional headshot</p>
+              {% if form.profile_photo.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.profile_photo.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">ID Document</label>
+              {{ form.id_document }}
+              <p class="text-xs text-gray-500 mt-1">Upload your Voter ID or TIN & FNPF ID</p>
+              {% if form.id_document.errors %}
+              <div class="text-red-600 text-sm mt-1">{{ form.id_document.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Terms and Submit -->
+        <div class="bg-gray-50 rounded-lg p-6 mb-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <input type="checkbox" id="terms" name="terms" required 
+                     class="w-6 h-6 text-[#800000] border-gray-300 rounded focus:ring-[#800000] focus:ring-2">
+            </div>
+            <label for="terms" class="text-sm text-gray-700">
+              I hereby declare that all information provided is true and accurate. I agree to abide by the 
+              Fiji Primary School Principals Association constitution and code of conduct. I understand that my membership 
+              is subject to approval by the FPSPA executive committee.
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" 
+                class="w-full bg-[#800000] text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-[#600000] transition duration-300 transform hover:scale-105">
+          Complete Registration
+        </button>
+
+        <p class="text-center text-gray-500 text-sm mt-4">
+          Already have an account? 
+          <a href="{% url 'account_login' %}" class="text-[#800000] hover:underline">Sign in here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+function loadBranches() {
+    const areaId = document.getElementById('id_area').value;
+    const branchSelect = document.getElementById('id_branch');
+    const schoolSelect = document.getElementById('id_school');
+    
+    if (areaId) {
+        fetch(`/membership/ajax/get-branches/?area_id=${areaId}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCSRFToken()
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            branchSelect.innerHTML = '<option value="">Select Branch</option>';
+            data.forEach(branch => {
+                branchSelect.innerHTML += `<option value="${branch.id}">${branch.name}</option>`;
+            });
+            schoolSelect.innerHTML = '<option value="">Select School</option>';
+        })
+        .catch(error => console.error('Error loading branches:', error));
+    } else {
+        branchSelect.innerHTML = '<option value="">Select Branch</option>';
+        schoolSelect.innerHTML = '<option value="">Select School</option>';
+    }
+}
+
+function loadSchools() {
+    const branchId = document.getElementById('id_branch').value;
+    const schoolSelect = document.getElementById('id_school');
+    
+    if (branchId) {
+        fetch(`/membership/ajax/get-schools/?branch_id=${branchId}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCSRFToken()
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            schoolSelect.innerHTML = '<option value="">Select School</option>';
+            data.forEach(school => {
+                schoolSelect.innerHTML += `<option value="${school.id}">${school.name}</option>`;
+            });
+        })
+        .catch(error => console.error('Error loading schools:', error));
+    } else {
+        schoolSelect.innerHTML = '<option value="">Select School</option>';
+    }
+}
+
+// Real-time username availability check (optional enhancement)
+function checkUsernameAvailability() {
+    const username = document.getElementById('id_username').value;
+    const usernameField = document.getElementById('id_username');
+    
+    if (username.length >= 3) {
+        fetch(`/membership/ajax/check-username/?username=${username}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCSRFToken()
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.available) {
+                usernameField.classList.remove('border-red-300');
+                usernameField.classList.add('border-green-300');
+            } else {
+                usernameField.classList.remove('border-green-300');
+                usernameField.classList.add('border-red-300');
+            }
+        })
+        .catch(error => console.error('Error checking username:', error));
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const areaSelect = document.getElementById('id_area');
+    const branchSelect = document.getElementById('id_branch');
+    const usernameField = document.getElementById('id_username');
+    
+    if (areaSelect) areaSelect.addEventListener('change', loadBranches);
+    if (branchSelect) branchSelect.addEventListener('change', loadSchools);
+    
+    // Optional: Add real-time username checking
+    if (usernameField) {
+        usernameField.addEventListener('blur', checkUsernameAvailability);
+        usernameField.addEventListener('input', function() {
+            // Reset border color when user starts typing again
+            this.classList.remove('border-red-300', 'border-green-300');
+        });
+    }
+});
+</script>
+{% endblock %}

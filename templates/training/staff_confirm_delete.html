@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete {{ object_type }}{% endblock %}
+
+{% block content %}
+<section class="section-shell pt-16">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="cta-card p-8">
+      <h1 class="section-title text-4xl">Delete {{ object_type }}</h1>
+      <p class="section-copy mt-4">Are you sure you want to delete <strong>{{ object_name }}</strong>? This action cannot be undone.</p>
+      <form method="post" class="mt-6 flex flex-wrap gap-3">
+        {% csrf_token %}
+        <button type="submit" class="hero-btn hero-btn-primary !bg-red-600">Delete</button>
+        <a href="{{ back_url }}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Cancel</a>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

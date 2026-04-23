@@ -1,0 +1,38 @@
+{% load static %}
+
+<aside class="lg:sticky lg:top-24 self-start rounded-[1.8rem] bg-white shadow-xl border border-slate-100 overflow-hidden">
+  <div class="bg-gradient-to-br from-[#0f2f5f] to-[#800000] p-6 text-white">
+    <div class="flex items-center gap-3">
+      <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA logo" class="h-12 w-12 rounded-xl bg-white p-1 object-contain">
+      <div>
+        <p class="text-xs uppercase tracking-[0.22em] text-white/70">FPSPA Portal</p>
+        <h2 class="text-xl font-bold">{% if dashboard_role == "staff" or user.role == "staff" or user.role == "admin" %}Staff Workspace{% else %}Member Hub{% endif %}</h2>
+      </div>
+    </div>
+  </div>
+
+  <nav class="p-4 space-y-2 text-sm">
+    {% if dashboard_role == "staff" or user.role == "staff" or user.role == "admin" %}
+      <a href="{% url 'staff_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-gauge text-[#1f5ca8] w-5"></i> Dashboard Overview</a>
+      <a href="{% url 'news:news_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-newspaper text-[#1f5ca8] w-5"></i> News Management</a>
+      <a href="{% url 'events:events_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-calendar-days text-[#1f5ca8] w-5"></i> Events Management</a>
+      <a href="{% url 'helpdesk:staff_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-headset text-[#1f5ca8] w-5"></i> Helpdesk Tickets</a>
+      <a href="{% url 'documents:document_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-folder-open text-[#1f5ca8] w-5"></i> Documents</a>
+      <a href="{% url 'training:staff_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-graduation-cap text-[#1f5ca8] w-5"></i> Training & Workshops</a>
+      <a href="{% url 'training:staff_course_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-qrcode text-[#1f5ca8] w-5"></i> QR Attendance Setup</a>
+      <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> Areas & Reps</a>
+      <a href="{% url 'admin:index' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-users-gear text-[#1f5ca8] w-5"></i> Membership Admin</a>
+    {% else %}
+      <a href="{% url 'member_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-house-user text-[#1f5ca8] w-5"></i> My Dashboard</a>
+      <a href="{% url 'profile' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-id-card text-[#1f5ca8] w-5"></i> Membership Profile</a>
+      <a href="{% url 'news:news_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-newspaper text-[#1f5ca8] w-5"></i> News</a>
+      <a href="{% url 'events:list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-calendar-check text-[#1f5ca8] w-5"></i> Events</a>
+      <a href="{% url 'helpdesk:ticket_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-headset text-[#1f5ca8] w-5"></i> My Helpdesk Tickets</a>
+      <a href="{% url 'helpdesk:create_ticket' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-circle-plus text-[#1f5ca8] w-5"></i> Request Support</a>
+      <a href="{% url 'documents:public_downloads' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-file-arrow-down text-[#1f5ca8] w-5"></i> Documents</a>
+      <a href="{% url 'training:course_catalog' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-book-open-reader text-[#1f5ca8] w-5"></i> Training Catalog</a>
+      <a href="{% url 'training:my_learning' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-qrcode text-[#1f5ca8] w-5"></i> Training & QR Attendance</a>
+      <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> Area Representatives</a>
+    {% endif %}
+  </nav>
+</aside>

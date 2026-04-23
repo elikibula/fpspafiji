@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Events Dashboard - FPSPA{% endblock %}
+
+{% block content %}
+<div class="min-h-screen maroon-bg py-10">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Welcome Header -->
+    <div class="rounded-2xl shadow-lg mb-6 overflow-hidden" style="box-shadow: 0 0 0 3px #FFD700, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);">
+        <div class="bg-gradient-to-r from-[#800000] via-[#8B0000] to-[#4B0000] px-6 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA" class="h-12 w-auto rounded-md bg-white/10 p-2">
+                  <div>
+                    <h1 class="text-2xl font-bold gold-text">Events Dashboard</h1>
+                    <p class="gold-text mt-1">Welcome back, {{ user.get_full_name|default:user.username }}!</p>
+                  </div>
+                </div>
+                <div class="mt-1" data-aos="fade-up" data-aos-delay="200">
+                    <a href="{% url 'dashboard' %}"
+                      class="bg-[color:#800000] gold-text font-semibold py-3 px-8 rounded-full text-lg shadow-lg 
+                              transition duration-300 ease-in-out transform hover:bg-yellow-500 hover:scale-105 hover:animate-glow-bounce">
+                        Staff Dashboard
+                    </a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-200">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-600">Total Events</p>
+            <h3 class="text-2xl font-bold maroon-text mt-1">{{ total_events }}</h3>
+            <p class="text-xs text-gray-500 mt-1">{{ recent_events }} new this week</p>
+          </div>
+          <div class="p-3 bg-blue-100 rounded-lg">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-200">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-600">Published</p>
+            <h3 class="text-2xl font-bold maroon-text mt-1">{{ published_events }}</h3>
+            <p class="text-xs text-gray-500 mt-1">{{ upcoming_events }} upcoming</p>
+          </div>
+          <div class="p-3 bg-green-100 rounded-lg">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-200">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-600">Drafts</p>
+            <h3 class="text-2xl font-bold maroon-text mt-1">{{ draft_events }}</h3>
+            <p class="text-xs text-gray-500 mt-1">Awaiting publication</p>
+          </div>
+          <div class="p-3 bg-yellow-100 rounded-lg">
+            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-200">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-600">Need Attention</p>
+            <h3 class="text-2xl font-bold maroon-text mt-1">{{ events_needing_attention }}</h3>
+            <p class="text-xs text-gray-500 mt-1">Requires review</p>
+          </div>
+          <div class="p-3 bg-red-100 rounded-lg">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions & Upcoming Events -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Quick Actions -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-lg font-semibold maroon-text">Quick Actions</h2>
+        </div>
+        <div class="p-6">
+          <div class="grid grid-cols-1 gap-4">
+            <a href="{% url 'events:create_event' %}" class="group flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200">
+              <div class="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <span class="font-medium text-gray-700 group-hover:text-blue-700">Create New Event</span>
+                <p class="text-sm text-gray-500">Schedule a new event</p>
+              </div>
+            </a>
+
+            <a href="{% url 'events:events_admin_list' %}" class="group flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all duration-200">
+              <div class="p-2 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <span class="font-medium text-gray-700 group-hover:text-green-700">Manage All Events</span>
+                <p class="text-sm text-gray-500">Edit, update, or delete events</p>
+              </div>
+            </a>
+
+            <a href="{% url 'events:list' %}" class="group flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 hover:border-yellow-500 hover:bg-yellow-50 transition-all duration-200">
+              <div class="p-2 bg-yellow-100 rounded-lg group-hover:bg-yellow-200 transition-colors">
+                <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <span class="font-medium text-gray-700 group-hover:text-yellow-700">View Public Calendar</span>
+                <p class="text-sm text-gray-500">See events as members see them</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-lg font-semibold maroon-text">Upcoming Events</h2>
+        </div>
+        <div class="p-6">
+          <div class="space-y-4">
+            {% for event in upcoming_events_list %}
+            <a href="{% url 'events:detail' slug=event.slug %}" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 group">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex flex-col items-center justify-center">
+                <span class="text-sm font-bold text-blue-600">{{ event.start|date:"d" }}</span>
+                <span class="text-xs text-blue-500">{{ event.start|date:"M" }}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-gray-900 group-hover:text-blue-600 truncate">{{ event.title }}</p>
+                <p class="text-xs text-gray-500">
+                  {{ event.start|date:"M d, Y" }} 
+                  {% if event.location %} • {{ event.location }}{% endif %}
+                </p>
+              </div>
+              <div class="flex-shrink-0">
+                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  {{ event.status }}
+                </span>
+              </div>
+            </a>
+            {% empty %}
+            <div class="text-center py-8">
+              <svg class="w-12 h-12 text-gray-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <p class="text-gray-500 text-sm">No upcoming events</p>
+              <p class="text-gray-400 text-xs mt-1">Create your first event to get started</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Drafts & Status Overview -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Recent Drafts -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-lg font-semibold maroon-text">Recent Drafts</h2>
+        </div>
+        <div class="p-6">
+          <div class="space-y-3">
+            {% for event in recent_drafts %}
+            <a href="{% url 'events:update_event' slug=event.slug %}" class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <span class="text-sm font-medium text-gray-700 group-hover:text-yellow-700">{{ event.title }}</span>
+              </div>
+              <span class="text-xs text-gray-500">{{ event.created_at|date:"M d" }}</span>
+            </a>
+            {% empty %}
+            <div class="text-center py-4">
+              <p class="text-gray-500 text-sm">No draft events</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Events Status Overview -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-lg font-semibold maroon-text">Events Overview</h2>
+        </div>
+        <div class="p-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-gray-700">Published Events</span>
+              <div class="flex items-center gap-2">
+                <div class="w-24 bg-gray-200 rounded-full h-2">
+                  <div class="bg-green-600 h-2 rounded-full" style="width: {% widthratio published_events total_events 100 %}%"></div>
+                </div>
+                <span class="text-sm font-medium text-gray-700 w-8 text-right">{{ published_events }}</span>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-gray-700">Draft Events</span>
+              <div class="flex items-center gap-2">
+                <div class="w-24 bg-gray-200 rounded-full h-2">
+                  <div class="bg-yellow-600 h-2 rounded-full" style="width: {% widthratio draft_events total_events 100 %}%"></div>
+                </div>
+                <span class="text-sm font-medium text-gray-700 w-8 text-right">{{ draft_events }}</span>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-gray-700">Upcoming (30 days)</span>
+              <span class="text-lg font-bold maroon-text">{{ upcoming_events }}</span>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-gray-700">Past Events</span>
+              <span class="text-lg font-bold maroon-text">{{ past_events }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

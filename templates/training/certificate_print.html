@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ certificate.certificate_number }}</title>
+  <style>
+    body { font-family: Georgia, serif; background: #f4f6fb; margin: 0; padding: 32px; color: #10233f; }
+    .actions { text-align: center; margin-bottom: 20px; }
+    .btn { display: inline-block; padding: 12px 18px; margin: 0 8px; border-radius: 999px; text-decoration: none; font-weight: 700; }
+    .btn-primary { background: #0f2f5f; color: white; }
+    .btn-light { background: #e8edf8; color: #0f2f5f; }
+    .certificate { max-width: 980px; margin: 0 auto; background: white; border: 8px solid #f2c14e; box-shadow: 0 20px 60px rgba(8,28,58,.16); padding: 56px; }
+    .kicker { text-transform: uppercase; letter-spacing: .24em; font-size: 12px; color: #1f5ca8; font-weight: 700; text-align: center; }
+    .title { text-align: center; font-size: 48px; color: #0f2f5f; margin: 18px 0 8px; }
+    .subtitle, .body-copy, .meta { text-align: center; font-family: Arial, sans-serif; color: #4e5d73; }
+    .name { text-align: center; font-size: 40px; margin: 26px 0; color: #0f2f5f; }
+    .course { text-align: center; font-size: 30px; color: #1f5ca8; margin: 18px 0; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    .meta-card { background: #f8fafc; border: 1px solid #dde5f2; border-radius: 18px; padding: 20px; }
+    @media print { .actions { display: none; } body { background: white; padding: 0; } .certificate { box-shadow: none; margin: 0; max-width: none; } }
+  </style>
+</head>
+<body>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+    <a href="{% url 'training:certificate_detail' certificate.id %}" class="btn btn-light">Back</a>
+  </div>
+  <div class="certificate">
+    <div class="kicker">Certificate of Completion</div>
+    <div class="title">Fiji Primary School Principals Association</div>
+    <p class="subtitle">This certificate is proudly awarded to</p>
+    <div class="name">{{ certificate.enrollment.member.full_name }}</div>
+    <p class="body-copy">for successfully completing the program</p>
+    <div class="course">{{ certificate.enrollment.course.title }}</div>
+    <p class="body-copy">through the FPSPA online training and workshops platform.</p>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="kicker">Issued On</div>
+        <p class="meta">{{ certificate.issued_at|date:"d M Y" }}</p>
+      </div>
+      <div class="meta-card">
+        <div class="kicker">Certificate Number</div>
+        <p class="meta">{{ certificate.certificate_number }}</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

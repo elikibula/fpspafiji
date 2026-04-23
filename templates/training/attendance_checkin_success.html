@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance Confirmed{% endblock %}
+
+{% block content %}
+<section class="section-shell pt-16">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="cta-card p-10 text-center">
+      <p class="section-kicker">Seminar Check-In</p>
+      <h1 class="section-title mt-3">Attendance recorded</h1>
+      <p class="section-copy mt-4">Your attendance for <strong>{{ schedule.title }}</strong> has been marked successfully.</p>
+      <div class="mt-8 grid gap-4 md:grid-cols-2 text-left">
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <div class="text-sm font-semibold text-slate-500 uppercase tracking-[0.14em]">Course</div>
+          <p class="mt-3 text-xl font-bold maroon-text">{{ schedule.course.title }}</p>
+        </div>
+        <div class="rounded-2xl bg-slate-50 p-5">
+          <div class="text-sm font-semibold text-slate-500 uppercase tracking-[0.14em]">Status</div>
+          <p class="mt-3 text-xl font-bold maroon-text">{{ enrollment.get_status_display }}</p>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="{% url 'training:learning_detail' enrollment.id %}" class="hero-btn hero-btn-primary">Open learning page</a>
+        <a href="{% url 'training:my_learning' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">My learning</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

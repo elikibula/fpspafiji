@@ -1,0 +1,168 @@
+<!-- templates/helpdesk/staff/ticket_create.html -->
+{% extends "helpdesk/staff/base_staff.html" %}
+
+{% block title %}{{ page_title }} - FPSPA Help Desk{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="flex items-center space-x-4">
+            <a href="{% url 'helpdesk:staff_dashboard' %}" 
+               class="inline-flex items-center text-gray-600 hover:text-gray-900">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Dashboard
+            </a>
+            <div class="flex-1">
+                <h1 class="text-3xl font-bold text-gray-900">{{ page_title }}</h1>
+                <p class="text-gray-600 mt-2">Create a new support ticket from various sources</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Form -->
+    <div class="bg-white rounded-lg shadow-lg">
+        <!-- Card Header -->
+        <div class="bg-[#800000] text-white px-6 py-4 rounded-t-lg">
+            <div class="flex items-center">
+                <div class="bg-[#600000] p-2 rounded-lg mr-3">
+                    <i class="fas fa-ticket-alt text-white"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold">New Ticket Details</h2>
+                    <p class="text-red-100 text-sm">Complete all required fields to create the ticket</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Content -->
+        <div class="p-6">
+            <form method="post" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+                
+                <!-- Source and Assignment Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Source -->
+                    <div>
+                        <label for="id_source" class="block text-sm font-medium text-gray-700 mb-2">
+                            Source <span class="text-red-500">*</span>
+                        </label>
+                        {{ form.source }}
+                        {% if form.source.errors %}
+                        <div class="text-red-600 text-sm mt-1">{{ form.source.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Assigned To -->
+                    <div>
+                        <label for="id_assigned_to" class="block text-sm font-medium text-gray-700 mb-2">
+                            Assign To
+                        </label>
+                        {{ form.assigned_to }}
+                        {% if form.assigned_to.errors %}
+                        <div class="text-red-600 text-sm mt-1">{{ form.assigned_to.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Title Field -->
+                <div>
+                    <label for="id_title" class="block text-sm font-medium text-gray-700 mb-2">
+                        Subject <span class="text-red-500">*</span>
+                    </label>
+                    {{ form.title }}
+                    {% if form.title.errors %}
+                    <div class="text-red-600 text-sm mt-1">{{ form.title.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Category and Priority Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Category -->
+                    <div>
+                        <label for="id_category" class="block text-sm font-medium text-gray-700 mb-2">
+                            Category <span class="text-red-500">*</span>
+                        </label>
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                        <div class="text-red-600 text-sm mt-1">{{ form.category.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Priority -->
+                    <div>
+                        <label for="id_priority" class="block text-sm font-medium text-gray-700 mb-2">
+                            Priority <span class="text-red-500">*</span>
+                        </label>
+                        {{ form.priority }}
+                        {% if form.priority.errors %}
+                        <div class="text-red-600 text-sm mt-1">{{ form.priority.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label for="id_description" class="block text-sm font-medium text-gray-700 mb-2">
+                        Description <span class="text-red-500">*</span>
+                    </label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                    <div class="text-red-600 text-sm mt-1">{{ form.description.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Attachment -->
+                <div>
+                    <label for="id_attachment" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-paperclip mr-2"></i>Attachment
+                    </label>
+                    {{ form.attachment }}
+                    {% if form.attachment.errors %}
+                    <div class="text-red-600 text-sm mt-1">{{ form.attachment.errors }}</div>
+                    {% endif %}
+                    <p class="text-gray-500 text-sm mt-1">Upload any relevant files or screenshots</p>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex justify-between items-center pt-6 border-t border-gray-200">
+                    <div class="text-sm text-gray-600">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Ticket will be created in the appropriate stream based on source
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="{% url 'helpdesk:staff_dashboard' %}" 
+                           class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">
+                            Cancel
+                        </a>
+                        <button type="submit" 
+                                class="px-6 py-2 bg-[#800000] text-white rounded-md hover:bg-[#600000] transition flex items-center">
+                            <i class="fas fa-plus mr-2"></i>
+                            Create Ticket
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Source Information -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-blue-100 p-3 rounded-lg inline-block mb-4">
+                <i class="fas fa-envelope text-blue-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Email & Web Tickets</h3>
+            <p class="text-gray-600 text-sm">Will be assigned to Staff Internal stream for follow-up and resolution.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-green-100 p-3 rounded-lg inline-block mb-4">
+                <i class="fas fa-phone text-green-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Phone & Walk-in</h3>
+            <p class="text-gray-600 text-sm">Will be assigned to Reception stream for immediate attention and logging.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

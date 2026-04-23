@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About FPSPA{% endblock %}
+
+{% block content %}
+<section class="hero-bg2 text-white">
+  <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 text-center">
+    <p class="hero-chip justify-center mx-auto"><i class="fas fa-school"></i> About the Association</p>
+    <h1 class="hero-heading animate-hero">Fiji Primary School Principals Association</h1>
+    <p class="hero-subtext mt-6 mx-auto">A professional network for primary school principals focused on advocacy, collaboration, school leadership, and the continuous improvement of education in Fiji.</p>
+  </div>
+  <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="aboutWave" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f2f5f" />
+        <stop offset="100%" stop-color="#153f7a" />
+      </linearGradient>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#aboutWave)" opacity="0.7"/>
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#aboutWave)" opacity="0.5"/>
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#aboutWave)" opacity="0.3"/>
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#aboutWave)" opacity="1"/>
+    </g>
+  </svg>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6 grid gap-8 lg:grid-cols-[1fr_0.9fr] items-center">
+    <div>
+      <p class="section-kicker">Who We Are</p>
+      <h2 class="section-title mt-3">A strong voice for primary school leadership</h2>
+      <p class="section-copy mt-4">FPSPA exists to bring principals together around shared priorities: effective school leadership, practical support, policy engagement, and better learning environments for children across Fiji.</p>
+      <p class="section-copy mt-4">The association provides a platform for collaboration, professional dialogue, and coordinated representation while preserving the app logic and workflows already built into this project.</p>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        <div class="feature-card !p-5">
+          <div class="feature-icon"><i class="fas fa-bullhorn"></i></div>
+          <h3 class="mt-3 text-xl font-bold maroon-text">Advocacy</h3>
+          <p class="section-copy mt-2">Representing principal perspectives in national education discussions.</p>
+        </div>
+        <div class="feature-card !p-5">
+          <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3 class="mt-3 text-xl font-bold maroon-text">Innovation</h3>
+          <p class="section-copy mt-2">Sharing strategies that improve leadership practice and school outcomes.</p>
+        </div>
+        <div class="feature-card !p-5">
+          <div class="feature-icon"><i class="fas fa-handshake-angle"></i></div>
+          <h3 class="mt-3 text-xl font-bold maroon-text">Support</h3>
+          <p class="section-copy mt-2">Creating a trusted network of peer support across Fiji.</p>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card p-4">
+      <img src="{% static 'assets/images/fpspa/conference-leaders.jpg' %}" alt="FPSPA principals and leaders in association attire" class="h-[420px] w-full rounded-[1.6rem] object-cover shadow-xl">
+      <div class="mt-4 flex items-center gap-4">
+        <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA crest" class="w-20 h-20 object-contain">
+        <p class="section-copy">FPSPA's identity is carried by the leaders who serve schools, communities, and children across Fiji.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell pt-0">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="feature-card !p-0 overflow-hidden">
+        <img src="{% static 'assets/images/fpspa/president-address.jpg' %}" alt="FPSPA leader addressing members" class="h-56 w-full object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-bold maroon-text">Leadership Voice</h3>
+          <p class="section-copy mt-3">Principals contributing to national and regional education conversations.</p>
+        </div>
+      </div>
+      <div class="feature-card !p-0 overflow-hidden">
+        <img src="{% static 'assets/images/fpspa/principals-audience.webp' %}" alt="Principals attending a FPSPA conference session" class="h-56 w-full object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-bold maroon-text">Member Participation</h3>
+          <p class="section-copy mt-3">Conference and workshop spaces where members learn together.</p>
+        </div>
+      </div>
+      <div class="feature-card !p-0 overflow-hidden">
+        <img src="{% static 'assets/images/fpspa/headteachers-forum.jpg' %}" alt="FPSPA headteachers forum panel" class="h-56 w-full object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-bold maroon-text">Shared Direction</h3>
+          <p class="section-copy mt-3">Executive and partner engagement supporting primary school leadership.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell accent-panel">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto">
+      <p class="section-kicker">Mission and Vision</p>
+      <h2 class="section-title mt-3">Leadership that lifts schools and communities</h2>
+      <p class="section-copy mt-4">FPSPA promotes principled leadership, strong school governance, and a collaborative professional culture for primary school leaders.</p>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <h3 class="text-2xl font-bold">Mission</h3>
+        <p class="mt-3 text-white/80">To support, represent, and empower primary school principals through advocacy, professional growth, and practical partnership.</p>
+      </div>
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <h3 class="text-2xl font-bold">Vision</h3>
+        <p class="mt-3 text-white/80">A confident and connected community of school leaders driving excellent education outcomes across Fiji.</p>
+      </div>
+      <div class="feature-card !bg-white/10 !border-white/10 text-white">
+        <h3 class="text-2xl font-bold">Values</h3>
+        <p class="mt-3 text-white/80">Integrity, service, stewardship, professionalism, and shared leadership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div class="feature-card">
+        <p class="section-kicker">What We Do</p>
+        <h2 class="section-title mt-3 text-4xl">How the association serves principals</h2>
+        <ul class="mt-6 space-y-4 section-copy">
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Coordinate leadership support and shared responses to professional issues.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Promote development opportunities, forums, and practical learning resources.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Strengthen area and branch connections so principals remain supported locally.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Maintain a professional platform that highlights news, events, documents, and association services.</span></li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <p class="section-kicker">Executive Team</p>
+        <h2 class="section-title mt-3 text-4xl">Leadership in service of members</h2>
+        <p class="section-copy mt-4">The existing staff member records continue to drive this section. The content is now presented as the FPSPA executive and leadership network.</p>
+
+        {% if staff_members %}
+          <div class="mt-8 grid gap-4 md:grid-cols-2">
+            {% for member in staff_members|slice:":6" %}
+              <div class="info-card !p-4 flex items-center gap-4">
+                <div class="w-16 h-16 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
+                  {% if member.photo %}
+                    <img src="{{ member.photo.url }}" alt="{{ member.display_name }}" class="w-full h-full object-cover">
+                  {% else %}
+                    <span class="font-bold text-slate-500">{{ member.display_name|slice:":1" }}</span>
+                  {% endif %}
+                </div>
+                <div>
+                  <h3 class="font-bold maroon-text text-lg">{{ member.display_name }}</h3>
+                  <p class="section-copy">{{ member.position }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="mt-6">
+            <a href="{% url 'staff_members:team' %}" class="hero-btn hero-btn-primary">Meet the full executive team</a>
+          </div>
+        {% else %}
+          <p class="section-copy mt-4">Executive profiles will appear here once staff member entries are available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="cta-card p-8 lg:p-10 text-center">
+      <p class="section-kicker">Membership</p>
+      <h2 class="section-title mt-3">Be part of Fiji’s principal leadership network</h2>
+      <p class="section-copy mt-4 max-w-3xl mx-auto">Use the existing membership and account apps to join, manage your profile, and stay connected with association updates and services.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="{% url 'register' %}" class="hero-btn hero-btn-primary">Create your FPSPA account</a>
+        <a href="{% url 'contact' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Contact the association</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

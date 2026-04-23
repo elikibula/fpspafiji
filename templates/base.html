@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Fiji Primary School Principals Association{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+
+     <!--FAVICON-->
+    <!-- Basic Favicon -->
+    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/x-icon">    
+    <!-- Recommended: Modern PNG version -->
+    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" sizes="32x32">
+    <!-- Primary Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">    
+    <!-- PNG Favicons -->
+    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/png">    
+    <!-- Apple Touch Icon (iOS) -->
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}" sizes="180x180">    
+    <!-- Android & Others -->
+    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
+</head>
+<body class="site-body">
+    <div class="site-shell">
+        <nav class="site-nav sticky top-0 z-50" x-data="{ mobileOpen: false }">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between py-3">
+                    <a href="{% url 'home' %}" class="brand-mark">
+                        <img class="brand-logo" src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA Logo">
+                        <div class="brand-copy">
+                            <span class="brand-kicker">National Education Leadership Network</span>
+                            <span class="brand-title">Fiji Primary School Principals Association</span>
+                        </div>
+                    </a>
+
+                    <div class="hidden xl:flex items-center gap-2">
+                        <a href="{% url 'home' %}" class="site-link {% if request.resolver_match.url_name == 'home' %}site-link-active{% endif %}">
+                            <i class="fas fa-house"></i><span>Home</span>
+                        </a>
+
+                        <div class="relative group">
+                            <a href="{% url 'about' %}" class="site-link {% if request.resolver_match.url_name == 'about' or request.resolver_match.url_name == 'services' or request.resolver_match.url_name == 'resources' %}site-link-active{% endif %}">
+                                <i class="fas fa-circle-info"></i><span>About</span><i class="fas fa-chevron-down text-xs"></i>
+                            </a>
+                            <div class="site-dropdown">
+                                <a href="{% url 'about' %}" class="site-dropdown-link">Association Profile</a>
+                                <a href="{% url 'services' %}" class="site-dropdown-link">Member Services</a>
+                                <a href="{% url 'resources' %}" class="site-dropdown-link">Resources Hub</a>
+                            </div>
+                        </div>
+
+                        <a href="{% url 'news:news_list' %}" class="site-link {% if request.resolver_match.app_name == 'news' %}site-link-active{% endif %}">
+                            <i class="fas fa-newspaper"></i><span>News</span>
+                        </a>
+                        <a href="{% url 'training:course_catalog' %}" class="site-link {% if request.resolver_match.app_name == 'training' %}site-link-active{% endif %}">
+                            <i class="fas fa-graduation-cap"></i><span>Training</span>
+                        </a>
+                        <a href="{% url 'contact' %}" class="site-link {% if request.resolver_match.url_name == 'contact' %}site-link-active{% endif %}">
+                            <i class="fas fa-envelope"></i><span>Contact</span>
+                        </a>
+
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="site-cta site-cta-outline">
+                                <i class="fas fa-gauge-high"></i><span>Dashboard</span>
+                            </a>
+                            <a href="{% url 'logout' %}" class="site-cta">
+                                <i class="fas fa-arrow-right-from-bracket"></i><span>Logout</span>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="site-cta site-cta-outline">
+                                <i class="fas fa-right-to-bracket"></i><span>Login</span>
+                            </a>
+                            <a href="{% url 'register' %}" class="site-cta">
+                                <i class="fas fa-user-plus"></i><span>Create Account</span>
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <button @click="mobileOpen = !mobileOpen" class="xl:hidden mobile-toggle" aria-label="Open menu">
+                        <i data-feather="menu" x-show="!mobileOpen"></i>
+                        <i data-feather="x" x-show="mobileOpen"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div x-show="mobileOpen" x-transition class="xl:hidden mobile-drawer">
+                <div class="px-4 pb-5 space-y-2">
+                    <a href="{% url 'home' %}" class="mobile-link {% if request.resolver_match.url_name == 'home' %}mobile-link-active{% endif %}">Home</a>
+                    <a href="{% url 'about' %}" class="mobile-link {% if request.resolver_match.url_name == 'about' %}mobile-link-active{% endif %}">Association Profile</a>
+                    <a href="{% url 'services' %}" class="mobile-link {% if request.resolver_match.url_name == 'services' %}mobile-link-active{% endif %}">Member Services</a>
+                    <a href="{% url 'resources' %}" class="mobile-link {% if request.resolver_match.url_name == 'resources' %}mobile-link-active{% endif %}">Resources Hub</a>
+                    <a href="{% url 'news:news_list' %}" class="mobile-link {% if request.resolver_match.app_name == 'news' %}mobile-link-active{% endif %}">News</a>
+                    <a href="{% url 'training:course_catalog' %}" class="mobile-link {% if request.resolver_match.app_name == 'training' %}mobile-link-active{% endif %}">Training</a>
+                    <a href="{% url 'contact' %}" class="mobile-link {% if request.resolver_match.url_name == 'contact' %}mobile-link-active{% endif %}">Contact</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="mobile-link">Dashboard</a>
+                        <a href="{% url 'logout' %}" class="mobile-link">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="mobile-link">Login</a>
+                        <a href="{% url 'register' %}" class="mobile-link">Create Account</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% if user.is_authenticated %}
+            <div class="bg-slate-50" x-data="{ portalSidebarOpen: false }">
+                <div class="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 py-6">
+                    <button type="button" @click="portalSidebarOpen = true" class="lg:hidden mb-4 inline-flex items-center gap-2 rounded-2xl bg-[#0f2f5f] px-4 py-3 text-sm font-semibold text-white shadow">
+                        <i class="fas fa-bars"></i>
+                        Portal menu
+                    </button>
+
+                    <div x-show="portalSidebarOpen" x-transition class="fixed inset-0 z-[80] lg:hidden">
+                        <div class="absolute inset-0 bg-slate-950/60" @click="portalSidebarOpen = false"></div>
+                        <div class="absolute left-0 top-0 h-full w-[88%] max-w-sm overflow-y-auto bg-slate-50 p-4 shadow-2xl">
+                            <div class="mb-3 flex justify-end">
+                                <button type="button" @click="portalSidebarOpen = false" class="rounded-full bg-white px-3 py-2 text-slate-700 shadow">
+                                    <i class="fas fa-xmark"></i>
+                                </button>
+                            </div>
+                            {% include 'accounts/_dashboard_sidebar.html' %}
+                        </div>
+                    </div>
+
+                    <div class="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+                        <div class="hidden lg:block">
+                            {% include 'accounts/_dashboard_sidebar.html' %}
+                        </div>
+                        <main class="min-w-0">
+        {% else %}
+            <main>
+        {% endif %}
+                            {% block content %}{% endblock %}
+            </main>
+        {% if user.is_authenticated %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <footer class="site-footer">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid gap-8 md:grid-cols-3">
+                    <div>
+                        <div class="footer-brand">
+                            <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA Logo" class="footer-logo">
+                            <div>
+                                <p class="footer-title">FPSPA</p>
+                                <p class="footer-text">Championing leadership, professional excellence, and collaborative support for primary school principals across Fiji.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="footer-heading">Quick Links</p>
+                        <div class="footer-links">
+                            <a href="{% url 'about' %}">About the Association</a>
+                            <a href="{% url 'services' %}">Member Services</a>
+                            <a href="{% url 'resources' %}">Resources Hub</a>
+                            <a href="{% url 'contact' %}">Contact</a>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="footer-heading">Connect</p>
+                        <div class="footer-links">
+                            <a href="mailto:info@fpspa.org.fj">info@fpspa.org.fj</a>
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook Community</a>
+                            <span>Suva, Fiji</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {% now "Y" %} Fiji Primary School Principals Association. All rights reserved.</p>
+                    <p>Developed by <a href="https://faithtech.pythonanywhere.com/" target="_blank" rel="noopener noreferrer">Faith Technology</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof AOS !== "undefined") {
+                AOS.init({ duration: 700, once: true });
+            }
+            if (typeof feather !== "undefined") {
+                feather.replace();
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

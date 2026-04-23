@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold mb-6 text-center maroon-text">Forms & Documents</h1>
+
+    <!-- Filter & Search -->
+    <form method="get" class="mb-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+        <div class="flex items-center gap-2">
+            <label for="subcategory" class="font-medium">Subcategory:</label>
+            <select name="subcategory" id="subcategory"
+                    class="border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">All</option>
+                {% for subcat in all_subcategories %}
+                    <option value="{{ subcat.id }}" {% if subcat.id|stringformat:"s" == selected_subcat_id %}selected{% endif %}>
+                        {{ subcat.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <label for="q" class="font-medium">Search:</label>
+            <input type="text" name="q" id="q" value="{{ request.GET.q|default:'' }}"
+                   placeholder="Enter document title or description"
+                   class="border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <button type="submit" class="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Apply
+        </button>
+    </form>
+
+    {% if subcategories %}
+        {% for subcat in subcategories %}
+            {% if subcat.document_set.all %}
+                <div class="mb-8">
+                    <!-- Subcategory Heading -->
+                    <h2 class="text-xl font-semibold maroon-text mb-3 text-center">{{ subcat.name }}</h2>
+
+                    <!-- Desktop Table View -->
+                    <div class="hidden md:block overflow-x-auto border rounded-lg shadow-sm">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="maroon-bg">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Document</th>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Description</th>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-white">Uploaded On</th>
+                                    <th class="px-4 py-2 text-center text-sm font-medium text-white">Download</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                {% for doc in subcat.document_set.all %}
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2">{{ doc.title }}</td>
+                                        <td class="px-4 py-2">{{ doc.description|default:"-" }}</td>
+                                        <td class="px-4 py-2">{{ doc.date_posted|date:"d M, Y" }}</td>
+                                        <td class="px-4 py-2 text-center">
+                                            <a href="{{ doc.file.url }}" target="_blank"
+                                               class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
+                                               Download
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div class="md:hidden space-y-6">
+                        {% for doc in subcat.document_set.all %}
+                            <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-4 mx-2 sm:mx-4 flex flex-col items-center text-center break-words">
+                                
+                                <!-- Document Info -->
+                                <div class="mb-3">
+                                    <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ doc.title }}</h3>
+                                    {% if doc.description %}
+                                        <p class="text-gray-600 mb-1">{{ doc.description }}</p>
+                                    {% endif %}
+                                    <p class="text-gray-500 text-sm">Uploaded: {{ doc.uploaded_at|date:"M d, Y" }}</p>
+                                </div>
+
+                                <!-- Download Button -->
+                                <a href="{{ doc.file.url }}" target="_blank"
+                                   class="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                                   Download
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p class="text-center text-gray-600">No documents available for this subcategory or search query.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

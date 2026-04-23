@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static i18n widget_tweaks %}
+
+{% block content %}
+<div class="min-h-screen maroon-bg py-10">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+      <!-- header -->
+      <div class="bg-gradient-to-r from-sky-600 to-indigo-600 px-6 py-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA" class="h-10 w-auto rounded-md bg-white/10 p-1">
+            <div>
+              <h1 class="maroon-text text-lg font-semibold">Complete Your Member Profile</h1>
+              <p class="text-sm maroon-text">Tell us a bit more about yourself so we can finish setting up your account.</p>
+            </div>
+          </div>
+
+          <div class="text-sm text-white/90">
+            <span class="inline-block bg-white/20 px-3 py-1 rounded-full">Step 2 of 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-8">
+        {% if form.non_field_errors %}
+          <div class="mb-6 rounded-md bg-red-50 p-4 text-sm text-red-800 border border-red-100">
+            <strong class="block">Please fix the following:</strong>
+            <ul class="mt-2 list-disc list-inside">
+              {% for err in form.non_field_errors %}
+                <li>{{ err }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="space-y-6" novalidate>
+
+          {% csrf_token %}
+
+          <!-- Personal Information -->
+          <section class="bg-white rounded-lg border p-5">
+            <h2 class="text-lg font-medium maroon-text mb-4">Personal Information</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">First Name <span class="text-red-500">*</span></label>
+                {{ form.first_name|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.first_name.help_text %}<p class="text-xs text-gray-400 mt-1">{{ form.first_name.help_text }}</p>{% endif %}
+                {% if form.first_name.errors %}<p class="mt-1 text-sm text-red-600">{{ form.first_name.errors.0 }}</p>{% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Last Name <span class="text-red-500">*</span></label>
+                {{ form.last_name|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.last_name.errors %}<p class="mt-1 text-sm text-red-600">{{ form.last_name.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label for="{{ form.tpf_number.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">TPF Number <span class="text-red-500">*</span></label>
+                {{ form.tpf_number|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.tpf_number.errors %}<p class="mt-1 text-sm text-red-600">{{ form.tpf_number.errors.0 }}</p>{% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.phone_number.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
+                {{ form.phone_number|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.phone_number.errors %}<p class="mt-1 text-sm text-red-600">{{ form.phone_number.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label for="{{ form.residing_address.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Residing Address <span class="text-red-500">*</span></label>
+              {{ form.residing_address|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+              {% if form.residing_address.errors %}<p class="mt-1 text-sm text-red-600">{{ form.residing_address.errors.0 }}</p>{% endif %}
+            </div>
+          </section>
+
+          <!-- Professional Information -->
+          <section class="bg-white rounded-lg border p-5">
+            <h2 class="text-lg font-medium maroon-text mb-4">Professional Information</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="{{ form.category.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Category <span class="text-red-500">*</span></label>
+                {{ form.category|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.category.errors %}<p class="mt-1 text-sm text-red-600">{{ form.category.errors.0 }}</p>{% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.area.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Area <span class="text-red-500">*</span></label>
+                {{ form.area|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.area.errors %}<p class="mt-1 text-sm text-red-600">{{ form.area.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label for="{{ form.branch.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Branch <span class="text-red-500">*</span></label>
+                {{ form.branch|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.branch.errors %}<p class="mt-1 text-sm text-red-600">{{ form.branch.errors.0 }}</p>{% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.school.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">School</label>
+                {{ form.school|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.school.errors %}<p class="mt-1 text-sm text-red-600">{{ form.school.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label for="{{ form.position.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Position <span class="text-red-500">*</span></label>
+                {{ form.position|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.position.errors %}<p class="mt-1 text-sm text-red-600">{{ form.position.errors.0 }}</p>{% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.start_year.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Start Year <span class="text-red-500">*</span></label>
+                {{ form.start_year|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.start_year.errors %}<p class="mt-1 text-sm text-red-600">{{ form.start_year.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+          </section>
+
+          <!-- Documents -->
+          <section class="bg-white rounded-lg border p-5">
+            <h2 class="text-lg font-medium maroon-text mb-4">Documents</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="{{ form.profile_photo.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Profile Photo</label>
+                {{ form.profile_photo|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm file:bg-gray-100 file:border-0 file:rounded file:py-2 file:px-3 file:text-sm shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.profile_photo.errors %}<p class="mt-1 text-sm text-red-600">{{ form.profile_photo.errors.0 }}</p>{% endif %}
+              </div>
+
+              <div>
+                <label for="{{ form.id_document.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">ID Document</label>
+                {{ form.id_document|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm file:bg-gray-100 file:border-0 file:rounded file:py-2 file:px-3 file:text-sm shadow-sm hover:shadow-md transition-all duration-200" }}
+                {% if form.id_document.errors %}<p class="mt-1 text-sm text-red-600">{{ form.id_document.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+          </section>
+
+          <div class="flex items-center justify-between gap-4">
+            <a href="{% url 'profile' %}" class="inline-flex items-center px-4 py-2 rounded-lg border maroon-bg text-sm text-white hover:shadow transition-shadow">Cancel</a>
+
+            <button type="submit" class="ml-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-lg maroon-bg text-white font-semibold hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition-all duration-200 shadow-md hover:shadow-lg">
+              Save & Continue
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
