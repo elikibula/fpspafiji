@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.db import transaction
 from django.db import IntegrityError
 import logging
+from django.contrib.auth import get_user_model
 from .forms import MemberRegistrationForm, CustomUserCreationForm, CustomAuthenticationForm
 from membership.models import Member, School
 from django.contrib.auth import authenticate, login, logout
@@ -20,6 +21,7 @@ from documents.models import Document
 from training.models import Course, CourseSchedule, Enrollment
 from django.http import JsonResponse
 from django.db.models import Q
+from .notifications import send_user_registration_notification
 
 
 
@@ -129,6 +131,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            transaction.on_commit(lambda: send_user_registration_notification(user, request))
             login(request, user)
             messages.success(request, 'Registration successful!')
             
@@ -281,6 +284,9 @@ def staff_dashboard(request):
     # Recent activity (last 7 days)
     one_week_ago = timezone.now() - timedelta(days=7)
     recent_members = Member.objects.filter(date_joined__gte=one_week_ago).count()
+    User = get_user_model()
+    recent_accounts_qs = User.objects.filter(date_joined__gte=one_week_ago).order_by("-date_joined")
+    recent_accounts = recent_accounts_qs[:5]
     # use 'created_at' or a safe fallback if your field differs
     try:
         recent_tickets = HelpdeskTicket.objects.filter(created_at__gte=one_week_ago).count()
@@ -328,6 +334,7 @@ def staff_dashboard(request):
             'active_tickets': active_tickets,
             'in_progress_tickets': in_progress_tickets,
             'recent_members': recent_members,
+            'recent_accounts': recent_accounts_qs.count(),
             'recent_tickets': recent_tickets,
             'total_schools': total_schools,
             'total_news_articles': total_news_articles,
@@ -339,6 +346,7 @@ def staff_dashboard(request):
             'active_training_enrollments': active_training_enrollments,
         },
         'recent_news': recent_news,
+        'recent_accounts': recent_accounts,
         'upcoming_events': upcoming_events,
         'recent_documents': recent_documents,
         'upcoming_qr_schedules': upcoming_qr_schedules,

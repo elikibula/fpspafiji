@@ -7,18 +7,46 @@
   {{ module_media }}
   {{ schedule_media }}
   {{ quiz_media }}
+  <style>
+    .staff-course-manage,
+    .staff-course-manage * {
+      min-width: 0;
+    }
+
+    .staff-course-manage .info-card,
+    .staff-course-manage .cta-card,
+    .staff-course-manage .feature-card {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .staff-course-manage input,
+    .staff-course-manage select,
+    .staff-course-manage textarea,
+    .staff-course-manage .django_ckeditor_5,
+    .staff-course-manage .ck,
+    .staff-course-manage .ck-editor,
+    .staff-course-manage .ck-editor__main,
+    .staff-course-manage .ck-content {
+      max-width: 100%;
+    }
+
+    .staff-course-manage .ck-toolbar__items {
+      flex-wrap: wrap !important;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}
-<section class="section-shell pt-16">
-  <div class="max-w-7xl mx-auto px-6">
+<section class="section-shell pt-16 staff-course-manage">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 min-w-0">
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
-      <div>
+      <div class="min-w-0">
         {% if course.thumbnail %}
           <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}" class="w-full max-w-sm object-cover rounded-2xl shadow-lg mb-5">
         {% endif %}
         <p class="section-kicker">Course Management</p>
-        <h1 class="section-title mt-3">{{ course.title }}</h1>
+        <h1 class="section-title mt-3 break-words">{{ course.title }}</h1>
         <p class="section-copy mt-3">{{ course.short_description }}</p>
       </div>
       <div class="flex flex-wrap gap-3">
@@ -34,16 +62,16 @@
       <div class="feature-card !p-5"><strong class="text-3xl maroon-text">{{ course.quiz_questions.count }}</strong><p class="section-copy mt-2">Quiz Questions</p></div>
     </div>
 
-    <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-      <div class="space-y-6">
+    <div class="grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)]">
+      <div class="space-y-6 min-w-0">
         <div class="info-card">
           <h2 class="text-2xl font-bold maroon-text">Modules and lessons</h2>
           <div class="mt-5 space-y-5">
             {% for module in course.modules.all %}
               <div class="rounded-2xl border border-slate-200 p-5">
-                <div class="flex items-center justify-between gap-4">
-                  <div>
-                    <h3 class="text-xl font-bold maroon-text">{{ module.order }}. {{ module.title }}</h3>
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div class="min-w-0">
+                    <h3 class="text-xl font-bold maroon-text break-words">{{ module.order }}. {{ module.title }}</h3>
                     {% if module.overview %}<div class="section-copy mt-2 prose max-w-none">{{ module.overview|safe }}</div>{% endif %}
                   </div>
                   <div class="flex flex-wrap gap-2">
@@ -54,9 +82,9 @@
 
                 <div class="mt-4 space-y-3">
                   {% for lesson in module.lessons.all %}
-                    <div class="rounded-xl bg-slate-50 px-4 py-3 flex items-center justify-between gap-4">
-                      <div>
-                        <div class="font-semibold text-slate-800">{{ lesson.title }}</div>
+                    <div class="rounded-xl bg-slate-50 px-4 py-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div class="min-w-0">
+                        <div class="font-semibold text-slate-800 break-words">{{ lesson.title }}</div>
                         <div class="text-sm text-slate-500">{{ lesson.duration_minutes }} min{% if lesson.video_url %} • Video linked{% endif %}{% if lesson.resource_file %} • Resource attached{% endif %}</div>
                       </div>
                       <div class="flex flex-wrap items-center gap-3">
@@ -100,10 +128,10 @@
           <div class="mt-4 space-y-3">
             {% for question in course.quiz_questions.all %}
               <div class="rounded-xl border border-slate-200 p-4">
-                <div class="flex items-center justify-between gap-3">
-                  <div>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div class="min-w-0">
                     <div class="font-semibold text-slate-800">Question {{ question.order }}</div>
-                    <p class="text-sm text-slate-500 mt-1">{{ question.question_text }}</p>
+                    <p class="text-sm text-slate-500 mt-1 break-words">{{ question.question_text }}</p>
                   </div>
                   <div class="flex flex-wrap gap-2">
                     <a href="{% url 'training:staff_quiz_question_edit' question.id %}" class="text-sm font-semibold text-[#1f5ca8]">Edit</a>
@@ -148,7 +176,7 @@
         </div>
       </div>
 
-      <div class="space-y-6">
+      <div class="space-y-6 min-w-0">
         <div class="cta-card p-6">
           <h2 class="text-2xl font-bold maroon-text">Add module</h2>
           <form method="post" class="mt-5 space-y-4">
@@ -202,8 +230,8 @@
           <div class="mt-4 space-y-3">
             {% for schedule in course.schedules.all %}
               <div class="rounded-xl border border-slate-200 p-4">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="font-semibold text-slate-800">{{ schedule.title }}</div>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div class="font-semibold text-slate-800 break-words">{{ schedule.title }}</div>
                   <div class="flex flex-wrap gap-2">
                     <a href="{% url 'training:staff_schedule_edit' schedule.id %}" class="text-sm font-semibold text-[#1f5ca8]">Edit</a>
                     <a href="{% url 'training:staff_schedule_attendance' schedule.id %}" class="text-sm font-semibold text-[#1f5ca8]">Attendance</a>

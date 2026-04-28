@@ -174,6 +174,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Email configuration (for development)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@fpspafiji.org')
+REGISTRATION_NOTIFICATION_EMAILS = [
+    email.strip()
+    for email in os.getenv(
+        'REGISTRATION_NOTIFICATION_EMAILS',
+        os.getenv('CONTACT_EMAIL', 'elikibula@gmail.com'),
+    ).split(',')
+    if email.strip()
+]
 
 # For production, use:
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
