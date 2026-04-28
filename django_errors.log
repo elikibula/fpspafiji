@@ -23874,3 +23874,1584 @@ WARNING 2026-04-23 14:56:16,455 basehttp 24996 12308 "GET /static/images/site.we
 WARNING 2026-04-23 14:56:16,742 basehttp 24996 26904 "GET /static/images/site.webmanifest HTTP/1.1" 404 1883
 WARNING 2026-04-23 14:56:26,213 basehttp 24996 23220 "GET /static/images/site.webmanifest HTTP/1.1" 404 1883
 WARNING 2026-04-23 14:56:26,692 basehttp 24996 5836 "GET /static/images/site.webmanifest HTTP/1.1" 404 1883
+WARNING 2026-04-23 19:01:07,662 log 2 125140380145536 Not Found: /static/assets/images/fpspa/headteachers-forum.jpg
+WARNING 2026-04-23 19:01:07,705 log 2 125140380145536 Not Found: /static/assets/images/fpspa_logo.png
+WARNING 2026-04-23 19:01:07,748 log 2 125140380145536 Not Found: /static/css/styles.css
+WARNING 2026-04-23 19:01:08,313 log 2 125140380145536 Not Found: /static/assets/images/fpspa/annual-conference.webp
+WARNING 2026-04-23 19:01:08,392 log 2 125140380145536 Not Found: /static/assets/images/fpspa/district-symposium.webp
+WARNING 2026-04-23 19:01:08,614 log 2 125140380145536 Not Found: /static/assets/images/fpspa/member-session.webp
+WARNING 2026-04-23 19:01:08,911 log 2 125140380145536 Not Found: /static/css/styles.css
+WARNING 2026-04-23 19:01:08,974 log 2 125140380145536 Not Found: /static/assets/images/fpspa_logo.png
+WARNING 2026-04-23 19:01:09,671 log 2 125140380145536 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:01:09,805 log 2 125140380145536 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-23 19:01:10,108 log 2 125140380145536 Not Found: /static/images/favicon.ico
+WARNING 2026-04-23 19:01:10,414 log 2 125140380145536 Not Found: /static/favicon.ico
+WARNING 2026-04-23 19:01:10,725 log 2 125140380145536 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-23 19:02:28,070 log 2 125517273446272 Not Found: /static/assets/images/fpspa_logo.png
+WARNING 2026-04-23 19:02:28,075 log 2 125517273446272 Not Found: /static/css/styles.css
+WARNING 2026-04-23 19:02:28,081 log 2 125517273446272 Not Found: /static/assets/images/fpspa/headteachers-forum.jpg
+WARNING 2026-04-23 19:02:28,549 log 2 125517273446272 Not Found: /static/assets/images/fpspa/district-symposium.webp
+WARNING 2026-04-23 19:02:28,556 log 2 125517273446272 Not Found: /static/assets/images/fpspa/annual-conference.webp
+WARNING 2026-04-23 19:02:28,567 log 2 125517273446272 Not Found: /static/assets/images/fpspa/member-session.webp
+WARNING 2026-04-23 19:02:29,267 log 2 125517273446272 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:03:30,436 log 2 125517273446272 Not Found: /static/css/styles.css
+WARNING 2026-04-23 19:03:30,490 log 2 125517273446272 Not Found: /static/assets/images/fpspa_logo.png
+WARNING 2026-04-23 19:03:30,505 log 2 125517273446272 Not Found: /static/assets/images/fpspa/headteachers-forum.jpg
+WARNING 2026-04-23 19:03:30,729 log 2 125517273446272 Not Found: /static/assets/images/fpspa/annual-conference.webp
+WARNING 2026-04-23 19:03:30,795 log 2 125517273446272 Not Found: /static/assets/images/fpspa/district-symposium.webp
+WARNING 2026-04-23 19:03:30,814 log 2 125517273446272 Not Found: /static/assets/images/fpspa/member-session.webp
+WARNING 2026-04-23 19:03:31,712 log 2 125517273446272 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:03:50,985 log 2 140648466265984 Not Found: /static/css/styles.css
+WARNING 2026-04-23 19:03:50,992 log 2 140648466265984 Not Found: /static/assets/images/fpspa_logo.png
+WARNING 2026-04-23 19:03:50,998 log 2 140648466265984 Not Found: /static/assets/images/fpspa/headteachers-forum.jpg
+WARNING 2026-04-23 19:03:51,332 log 2 140648466265984 Not Found: /static/assets/images/fpspa/member-session.webp
+WARNING 2026-04-23 19:03:51,342 log 2 140648466265984 Not Found: /static/assets/images/fpspa/annual-conference.webp
+WARNING 2026-04-23 19:03:51,349 log 2 140648466265984 Not Found: /static/assets/images/fpspa/district-symposium.webp
+WARNING 2026-04-23 19:03:51,355 log 2 140648466265984 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:03:51,659 log 2 140648466265984 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:06:38,665 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:06:59,449 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:07:01,185 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:07:14,436 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:07:54,147 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:15:43,113 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:15:52,368 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:17:34,397 log 2 137491168200576 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-23 19:17:34,408 log 2 137491168200576 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-23 19:17:34,693 log 2 137491168200576 Not Found: /static/images/favicon.ico
+ERROR 2026-04-24 09:02:38,926 log 5 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:02:39,641 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:24,083 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:25,084 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:26,354 log 2 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:27,076 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:29,078 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:30,096 log 2 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:31,107 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:31,365 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+ERROR 2026-04-24 09:03:32,373 log 8 128717878552448 Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.fpspafiji.org'. You may need to add 'www.fpspafiji.org' to ALLOWED_HOSTS.
+WARNING 2026-04-24 09:04:43,638 log 5 132430717048704 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:04:43,810 log 5 132430717048704 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 09:04:44,092 log 8 132430717048704 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 09:15:49,539 log 5 132430717048704 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 09:15:49,547 log 5 132430717048704 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 09:18:03,814 log 5 132430717048704 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:18:09,268 log 5 132430717048704 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:18:14,847 log 5 132430717048704 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:20:03,126 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:38:10,393 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:49:26,599 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:49:27,069 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:50:17,184 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:50:40,789 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:51:04,253 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:51:08,597 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:51:25,201 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:51:26,457 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 09:51:53,278 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 10:09:40,459 log 6 124846659544960 Not Found: /favicon.ico
+WARNING 2026-04-24 12:14:50,159 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 12:15:31,152 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 12:15:31,155 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 12:15:31,164 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 12:15:31,438 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 12:15:31,449 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 14:26:31,303 log 5 124846659544960 Not Found: /ads.txt
+WARNING 2026-04-24 15:17:08,636 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:17:09,391 log 5 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:17:09,997 log 5 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:17:10,029 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:17:15,549 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:17:15,550 log 5 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:17:15,963 log 5 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:17:16,113 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:17:16,243 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:17:31,711 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:17:31,720 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:17:31,746 log 2 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:17:31,960 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:17:32,143 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:17:32,227 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:17:32,475 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:17:32,521 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:17:50,418 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:17:51,093 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:17:52,677 log 6 124846659544960 Not Found: /.well-known/traffic-advice
+WARNING 2026-04-24 15:17:54,926 log 2 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:17:54,994 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:17:55,262 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:17:56,151 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:17:56,152 log 5 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:17:56,436 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:17:56,714 log 5 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:18:13,129 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:18:13,152 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:18:14,892 log 5 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:18:15,209 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:18:15,754 log 5 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:18:18,892 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:18:20,291 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:18:36,483 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:18:36,749 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:18:36,749 log 5 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:18:37,082 log 2 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:18:37,311 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:18:37,372 log 5 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:18:44,253 log 2 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:18:44,259 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:18:45,022 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:18:48,047 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:18:53,717 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:19:01,457 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:19:01,560 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:19:05,546 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:19:13,697 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:19:27,420 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:19:27,421 log 5 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:19:29,309 log 5 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:19:29,570 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:19:29,579 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:19:35,074 log 5 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:19:35,098 log 5 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:19:35,816 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:19:52,424 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:20:11,617 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:20:11,629 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:20:11,709 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:20:12,133 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:20:12,438 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:20:19,724 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-24 15:21:05,003 log 6 124846659544960 Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 132, in register
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-24 15:21:05,498 log 5 124846659544960 Not Found: /favicon.ico
+WARNING 2026-04-24 15:21:08,955 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:21:11,110 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:21:11,141 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:21:11,432 log 2 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:21:11,712 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:21:11,741 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:21:17,316 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:21:26,148 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-24 15:21:57,322 log 6 124846659544960 Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 132, in register
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-24 15:21:58,777 log 6 124846659544960 Not Found: /favicon.ico
+WARNING 2026-04-24 15:22:04,059 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-24 15:22:09,322 log 6 124846659544960 Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 132, in register
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-24 15:22:10,170 log 6 124846659544960 Not Found: /favicon.ico
+ERROR 2026-04-24 15:22:30,383 log 6 124846659544960 Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 132, in register
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-24 15:22:31,027 log 6 124846659544960 Not Found: /favicon.ico
+WARNING 2026-04-24 15:22:38,268 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:23:05,940 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:23:23,267 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:23:23,344 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:23:23,347 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:23:24,031 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:23:25,422 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:24:10,137 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:24:24,802 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:24:31,919 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:24:57,190 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:25:20,124 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:25:23,316 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:25:23,318 log 2 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:25:24,526 log 2 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:25:25,407 log 2 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:25:25,409 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:25:30,757 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:25:34,683 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:25:49,358 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:26:12,680 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:26:31,876 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:26:31,896 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:26:32,176 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:26:32,374 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:26:32,495 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 15:26:42,440 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:27:00,593 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:27:11,509 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:27:13,078 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:27:18,336 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:27:43,049 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:27:51,275 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:27:54,717 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:28:12,623 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:28:18,962 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:28:20,893 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:28:23,159 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:28:36,546 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:29:19,309 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:29:33,553 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:31:13,129 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 15:31:14,043 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 15:31:14,635 log 2 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 15:31:14,652 log 5 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 15:31:15,451 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 16:37:34,321 log 5 124846659544960 Forbidden (Referer checking failed - no Referer.): /
+WARNING 2026-04-24 16:37:34,426 log 5 124846659544960 Forbidden (Referer checking failed - no Referer.): /
+WARNING 2026-04-24 16:37:34,532 log 5 124846659544960 Forbidden (Referer checking failed - no Referer.): /
+WARNING 2026-04-24 16:37:34,640 log 6 124846659544960 Not Found: /.git/config
+WARNING 2026-04-24 16:37:34,758 log 6 124846659544960 Forbidden (Referer checking failed - no Referer.): /
+WARNING 2026-04-24 16:37:34,870 log 5 124846659544960 Not Found: /.env
+WARNING 2026-04-24 16:37:34,976 log 6 124846659544960 Not Found: /.env.local
+WARNING 2026-04-24 16:43:33,609 log 2 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 16:43:33,611 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 16:43:33,856 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 16:43:34,110 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 16:43:34,131 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 17:28:13,132 log 6 124846659544960 Not Found: /robots.txt
+WARNING 2026-04-24 18:40:00,569 log 6 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 18:40:00,573 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 18:40:00,581 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 18:40:00,852 log 5 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 18:40:01,136 log 2 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 20:19:59,137 log 2 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-24 20:19:59,447 log 5 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-24 20:19:59,720 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-24 20:19:59,789 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-24 20:20:00,108 log 5 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-24 20:23:15,755 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 00:10:53,805 log 6 124846659544960 Not Found: /robots.txt
+WARNING 2026-04-25 00:16:26,112 log 6 124846659544960 Forbidden (CSRF cookie not set.): /accounts/register/
+WARNING 2026-04-25 00:16:27,015 log 5 124846659544960 Not Found: /favicon.ico
+WARNING 2026-04-25 01:35:16,706 log 5 124846659544960 Not Found: /robots.txt
+WARNING 2026-04-25 06:51:04,756 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-25 06:51:04,928 log 2 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-25 06:51:05,174 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 06:51:05,200 log 2 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-25 06:51:05,461 log 6 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-25 08:06:53,719 log 5 124846659544960 Not Found: /static/images/favicon.ico
+WARNING 2026-04-25 08:06:53,825 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 08:06:53,854 log 6 124846659544960 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-25 08:06:53,999 log 6 124846659544960 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-25 08:06:54,267 log 5 124846659544960 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-25 09:15:16,508 log 5 124846659544960 Not Found: /robots.txt
+WARNING 2026-04-25 10:57:00,777 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 11:17:03,343 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-25 11:17:46,537 log 6 124846659544960 Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 132, in register
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-25 11:17:48,145 log 6 124846659544960 Not Found: /favicon.ico
+WARNING 2026-04-25 11:17:54,986 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 11:18:16,623 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-25 11:19:16,446 log 5 124846659544960 Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 132, in register
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-25 11:19:48,425 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 11:20:15,429 log 6 124846659544960 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 11:20:23,395 log 6 124846659544960 Not Found: /static/admin/css/base.css
+WARNING 2026-04-25 11:20:23,411 log 6 124846659544960 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-25 11:20:24,013 log 6 124846659544960 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-25 11:20:24,054 log 6 124846659544960 Not Found: /static/admin/css/login.css
+WARNING 2026-04-25 11:20:24,222 log 5 124846659544960 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-25 11:20:24,312 log 2 124846659544960 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-25 11:20:24,648 log 6 124846659544960 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-25 11:20:24,668 log 5 124846659544960 Not Found: /static/admin/css/login.css
+WARNING 2026-04-25 11:20:24,682 log 5 124846659544960 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-25 11:20:24,684 log 5 124846659544960 Not Found: /static/admin/css/responsive.css
+ERROR 2026-04-25 11:20:50,394 log 6 124846659544960 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
+    auth_login(self.request, form.get_user())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:20:56,352 log 6 124846659544960 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
+    auth_login(self.request, form.get_user())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:21:17,060 log 6 124846659544960 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
+    auth_login(self.request, form.get_user())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:21:23,499 log 5 124846659544960 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
+    auth_login(self.request, form.get_user())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:21:31,349 log 6 124846659544960 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
+    auth_login(self.request, form.get_user())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:22:05,782 log 6 124846659544960 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:22:14,378 log 6 124846659544960 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-25 11:22:18,834 log 5 124846659544960 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-25 11:22:36,465 log 5 124846659544960 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:26:08,491 log 5 135491269588864 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-25 11:28:25,698 log 5 135491269588864 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 449, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 108, in form_valid
+    auth_login(self.request, form.get_user())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-25 14:16:58,981 log 5 135491269588864 Not Found: /static/images/favicon.ico
+WARNING 2026-04-25 14:16:59,252 log 5 135491269588864 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 14:16:59,258 log 2 135491269588864 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-25 14:16:59,273 log 8 135491269588864 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-25 14:16:59,539 log 8 135491269588864 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-25 15:01:23,660 log 5 135491269588864 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 15:01:24,451 log 5 135491269588864 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-25 15:01:24,452 log 8 135491269588864 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-25 15:01:41,216 log 8 135491269588864 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 15:01:42,678 log 2 135491269588864 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 18:03:07,743 log 8 135491269588864 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-25 18:03:07,748 log 5 135491269588864 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-25 18:03:07,750 log 2 135491269588864 Not Found: /static/images/favicon.ico
+WARNING 2026-04-25 18:03:08,116 log 8 135491269588864 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-25 18:03:08,378 log 5 135491269588864 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-25 20:51:37,325 log 8 135491269588864 Not Found: /info.php
+WARNING 2026-04-25 20:51:37,327 log 2 135491269588864 Not Found: /.env.staging
+WARNING 2026-04-25 20:51:37,325 log 5 135491269588864 Not Found: /.env.test
+WARNING 2026-04-25 20:51:37,343 log 8 135491269588864 Not Found: /.npmrc
+WARNING 2026-04-25 20:51:37,345 log 5 135491269588864 Not Found: /phpversion.php
+WARNING 2026-04-25 20:51:37,346 log 2 135491269588864 Not Found: /.htpasswd
+WARNING 2026-04-25 20:51:37,346 log 8 135491269588864 Not Found: /debug.php
+WARNING 2026-04-25 20:51:37,348 log 5 135491269588864 Not Found: /.env.dev
+WARNING 2026-04-25 20:51:37,350 log 5 135491269588864 Not Found: /php.php
+WARNING 2026-04-25 20:51:37,352 log 5 135491269588864 Not Found: /.htpasswd
+WARNING 2026-04-25 20:51:37,354 log 2 135491269588864 Not Found: /.env.development
+WARNING 2026-04-25 20:51:37,355 log 8 135491269588864 Not Found: /.netrc
+WARNING 2026-04-25 20:51:37,355 log 5 135491269588864 Not Found: /.env
+WARNING 2026-04-25 20:51:37,385 log 8 135491269588864 Not Found: /php-info.php
+WARNING 2026-04-25 20:51:37,389 log 8 135491269588864 Not Found: /.pgpass
+WARNING 2026-04-25 20:51:37,393 log 2 135491269588864 Not Found: /.env.production
+WARNING 2026-04-25 20:51:37,396 log 8 135491269588864 Not Found: /.pypirc
+WARNING 2026-04-25 20:51:37,422 log 5 135491269588864 Not Found: /.env.prod
+WARNING 2026-04-25 20:51:37,424 log 5 135491269588864 Not Found: /test/phpinfo.php
+WARNING 2026-04-25 20:51:37,430 log 5 135491269588864 Not Found: /.composer/auth.json
+WARNING 2026-04-25 20:51:37,434 log 8 135491269588864 Not Found: /.env.local
+WARNING 2026-04-25 20:51:37,436 log 5 135491269588864 Not Found: /status.php
+WARNING 2026-04-25 20:51:37,437 log 8 135491269588864 Not Found: /wp-config.php.bak
+WARNING 2026-04-25 20:51:37,438 log 5 135491269588864 Not Found: /phptest.php
+WARNING 2026-04-25 20:51:37,440 log 8 135491269588864 Not Found: /.env.dev
+WARNING 2026-04-25 20:51:37,442 log 5 135491269588864 Not Found: /.env.staging
+WARNING 2026-04-25 20:51:37,444 log 5 135491269588864 Not Found: /server-status
+WARNING 2026-04-25 20:51:37,446 log 5 135491269588864 Not Found: /wp-config.php.old
+WARNING 2026-04-25 20:51:37,448 log 8 135491269588864 Not Found: /%77%70%2D%63%6F%6E%66%69%67.%70%68%70.%62%61%6B
+WARNING 2026-04-25 20:51:37,466 log 8 135491269588864 Not Found: /.env.development
+WARNING 2026-04-25 20:51:37,475 log 8 135491269588864 Not Found: /wp-config.php.save
+WARNING 2026-04-25 20:51:37,486 log 8 135491269588864 Not Found: /wp-config.php~
+WARNING 2026-04-25 20:51:37,495 log 8 135491269588864 Not Found: /wp-config.php.swp
+WARNING 2026-04-25 20:51:37,501 log 8 135491269588864 Not Found: /.env;.css
+WARNING 2026-04-25 20:51:37,506 log 5 135491269588864 Not Found: /i.php
+WARNING 2026-04-25 20:51:37,506 log 8 135491269588864 Not Found: /probe.php
+WARNING 2026-04-25 20:51:37,510 log 5 135491269588864 Not Found: /.env.test
+WARNING 2026-04-25 20:51:37,511 log 8 135491269588864 Not Found: /.env::$DATA
+WARNING 2026-04-25 20:51:37,513 log 5 135491269588864 Not Found: /wp-config.php.txt
+WARNING 2026-04-25 20:51:37,512 log 8 135491269588864 Not Found: /wp-config-backup.php
+WARNING 2026-04-25 20:51:37,515 log 8 135491269588864 Not Found: /.env.backup
+WARNING 2026-04-25 20:51:37,518 log 5 135491269588864 Not Found: /.env;.jpg
+WARNING 2026-04-25 20:51:37,520 log 8 135491269588864 Not Found: /backup/wp-config.php
+WARNING 2026-04-25 20:51:37,532 log 5 135491269588864 Not Found: /wp-config.php::$DATA
+WARNING 2026-04-25 20:51:37,536 log 8 135491269588864 Not Found: /config/database.php
+WARNING 2026-04-25 20:51:37,551 log 8 135491269588864 Not Found: /.env.bak
+WARNING 2026-04-25 20:51:37,561 log 8 135491269588864 Not Found: /.env.save
+WARNING 2026-04-25 20:51:37,566 log 5 135491269588864 Not Found: /.env.old
+WARNING 2026-04-25 20:51:37,567 log 8 135491269588864 Not Found: /config/mail.php
+WARNING 2026-04-25 20:51:37,568 log 5 135491269588864 Not Found: /config/database.php::$DATA
+WARNING 2026-04-25 20:51:37,571 log 8 135491269588864 Not Found: /.env.backup
+WARNING 2026-04-26 01:56:55,016 log 8 135491269588864 Not Found: /robots.txt
+WARNING 2026-04-26 09:03:57,231 log 8 135491269588864 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-26 13:44:06,248 log 5 135491269588864 Not Found: /static/images/favicon.ico
+WARNING 2026-04-26 13:44:06,532 log 8 135491269588864 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-26 13:44:06,697 log 8 135491269588864 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-26 13:44:07,388 log 8 135491269588864 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-26 13:44:07,388 log 5 135491269588864 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-26 18:49:47,209 log 5 135491269588864 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-26 18:49:47,305 log 2 135491269588864 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-26 18:49:47,366 log 8 135491269588864 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-26 22:15:29,072 log 8 135732688041856 Not Found: /robots.txt
+WARNING 2026-04-26 22:15:47,335 log 8 135732688041856 Not Found: /static/images/favicon.ico
+WARNING 2026-04-26 22:15:50,256 log 8 135732688041856 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-26 22:15:57,940 log 8 135732688041856 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-26 22:15:58,543 log 5 135732688041856 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-26 22:15:59,167 log 5 135732688041856 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-27 09:56:25,138 log 8 135732688041856 Not Found: /static/images/apple-touch-icon.png
+WARNING 2026-04-27 09:56:25,138 log 5 135732688041856 Not Found: /static/images/favicon-32x32.png
+WARNING 2026-04-27 09:56:25,237 log 2 135732688041856 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-27 10:51:09,109 log 8 135732688041856 Not Found: /robots.txt
+WARNING 2026-04-27 11:36:52,178 log 8 135732688041856 Not Found: /favicon.ico
+WARNING 2026-04-27 11:36:53,045 log 8 135732688041856 Not Found: /robots.txt
+WARNING 2026-04-27 11:36:53,068 log 8 135732688041856 Not Found: /sitemap.xml
+WARNING 2026-04-27 11:37:44,990 log 8 135732688041856 Not Found: /robots.txt
+WARNING 2026-04-27 11:37:45,058 log 8 135732688041856 Not Found: /sitemap.xml
+WARNING 2026-04-28 05:00:50,785 log 8 135732688041856 Not Found: /robots.txt
+WARNING 2026-04-28 07:11:18,679 log 5 135732688041856 Not Found: /favicon.ico
+WARNING 2026-04-28 07:11:18,886 log 5 135732688041856 Not Found: /apple-touch-icon.png
+WARNING 2026-04-28 07:33:57,456 log 8 135732688041856 Not Found: /robots.txt
+WARNING 2026-04-28 11:57:06,277 log 8 135732688041856 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 11:57:06,824 log 8 135732688041856 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 11:57:06,984 log 5 135732688041856 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-28 11:57:07,291 log 8 135732688041856 Not Found: /static/images/favicon.ico
+WARNING 2026-04-28 12:20:02,105 log 5 135732688041856 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 12:55:12,175 log 8 126592478914432 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 12:55:14,307 log 8 126592478914432 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 12:55:16,821 log 8 126592478914432 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 12:55:18,383 log 8 126592478914432 Not Found: /static/images/favicon-16x16.png
+WARNING 2026-04-28 12:55:18,386 log 8 126592478914432 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 12:55:18,665 log 8 126592478914432 Not Found: /static/images/favicon.ico
+WARNING 2026-04-28 12:56:27,322 log 2 128868336576384 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 12:59:21,437 log 8 128868336576384 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 13:00:06,414 log 5 128868336576384 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-28 13:08:39,582 log 2 128868336576384 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-28 13:08:39,933 log 2 128868336576384 Not Found: /favicon.ico
+ERROR 2026-04-28 13:08:47,277 log 2 128868336576384 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+ERROR 2026-04-28 13:09:14,397 log 5 128868336576384 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-28 13:23:53,872 log 8 128868336576384 Not Found: /static/images/site.webmanifest
+ERROR 2026-04-28 13:24:15,307 log 8 128868336576384 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-28 13:24:15,634 log 8 128868336576384 Not Found: /favicon.ico
+ERROR 2026-04-28 13:25:03,944 log 8 138860204050304 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/fpspafiji/fpspafiji/accounts/views.py", line 154, in custom_login
+    login(request, user)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 187, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 432, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 70, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 196, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/contrib/sessions/backends/cached_db.py", line 77, in exists
+    and (self.cache_key_prefix + session_key) in self._cache
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/base.py", line 301, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 211, in has_key
+    return self._cache.has_key(key)
+           ^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 173, in _cache
+    return self._class(self._servers, **self._options)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fpspafiji/.virtualenvs/fpspa_venv/lib/python3.13/site-packages/django/core/cache/backends/redis.py", line 40, in __init__
+    import redis
+ModuleNotFoundError: No module named 'redis'
+WARNING 2026-04-28 13:36:02,073 log 5 126463884220288 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 13:36:02,071 log 8 126463884220288 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 13:36:02,077 log 2 126463884220288 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 13:36:02,355 log 8 126463884220288 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 13:36:02,616 log 5 126463884220288 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 13:36:02,665 log 8 126463884220288 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 13:36:02,668 log 2 126463884220288 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 13:36:07,450 log 2 126463884220288 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 13:36:07,451 log 5 126463884220288 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 13:36:07,456 log 8 126463884220288 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 13:36:07,460 log 2 126463884220288 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 13:36:07,466 log 2 126463884220288 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 13:36:07,462 log 5 126463884220288 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 13:36:07,473 log 8 126463884220288 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 13:36:42,445 log 5 131064113850240 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 13:36:42,777 log 8 131064113850240 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 13:36:42,998 log 8 131064113850240 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 13:36:43,000 log 5 131064113850240 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 13:36:43,012 log 8 131064113850240 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 13:36:43,030 log 5 131064113850240 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 13:36:43,041 log 2 131064113850240 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 13:36:43,299 log 8 131064113850240 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 13:36:43,301 log 5 131064113850240 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 13:36:47,178 log 5 131064113850240 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 13:36:47,188 log 8 131064113850240 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 13:36:47,471 log 8 131064113850240 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 13:36:47,738 log 8 131064113850240 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 13:36:47,753 log 8 131064113850240 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 13:36:47,754 log 5 131064113850240 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 13:36:47,765 log 2 131064113850240 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 13:36:48,049 log 8 131064113850240 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 13:36:48,053 log 5 131064113850240 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 13:36:48,353 log 8 131064113850240 Not Found: /favicon.ico
+WARNING 2026-04-28 14:06:14,002 log 2 140497891403648 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 14:06:14,165 log 8 140497891403648 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 14:06:14,179 log 2 140497891403648 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 14:06:14,189 log 8 140497891403648 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 14:06:14,199 log 2 140497891403648 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 14:06:14,435 log 8 140497891403648 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 14:06:14,600 log 5 140497891403648 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 14:06:14,894 log 8 140497891403648 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 14:06:14,898 log 5 140497891403648 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 14:06:14,902 log 8 140497891403648 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 14:06:14,902 log 2 140497891403648 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 14:06:17,307 log 8 140497891403648 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 14:06:17,309 log 2 140497891403648 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 14:06:17,315 log 5 140497891403648 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 14:06:17,316 log 8 140497891403648 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 14:06:17,323 log 5 140497891403648 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 14:06:17,325 log 2 140497891403648 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 14:06:17,329 log 5 140497891403648 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 14:06:21,625 log 5 140497891403648 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 14:06:21,628 log 2 140497891403648 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 14:06:21,906 log 5 140497891403648 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 14:06:22,238 log 8 140497891403648 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 14:06:22,239 log 5 140497891403648 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 14:06:22,239 log 2 140497891403648 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 14:06:22,244 log 8 140497891403648 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 14:06:22,519 log 5 140497891403648 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 14:06:22,812 log 5 140497891403648 Not Found: /favicon.ico
+WARNING 2026-04-28 14:08:10,015 log 8 140497891403648 Not Found: /static/admin/css/base.css
+WARNING 2026-04-28 14:08:10,028 log 2 140497891403648 Not Found: /static/admin/css/dark_mode.css
+WARNING 2026-04-28 14:08:10,315 log 8 140497891403648 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 14:08:10,556 log 5 140497891403648 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2026-04-28 14:08:10,557 log 8 140497891403648 Not Found: /static/admin/js/theme.js
+WARNING 2026-04-28 14:08:10,587 log 8 140497891403648 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2026-04-28 14:08:10,599 log 8 140497891403648 Not Found: /static/admin/css/dashboard.css
+WARNING 2026-04-28 14:08:10,846 log 5 140497891403648 Not Found: /static/admin/css/responsive.css
+WARNING 2026-04-28 14:23:31,684 log 8 129065090291584 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 15:12:59,777 log 8 129065090291584 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 15:13:30,278 log 5 129065090291584 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 15:13:47,229 log 8 129065090291584 Not Found: /static/images/site.webmanifest
+WARNING 2026-04-28 17:19:20,496 log 8 129065090291584 Not Found: /static/images/site.webmanifest

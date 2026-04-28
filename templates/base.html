@@ -19,16 +19,16 @@
 
      <!--FAVICON-->
     <!-- Basic Favicon -->
-    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/x-icon">    
+    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/x-icon">
     <!-- Recommended: Modern PNG version -->
     <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" sizes="32x32">
     <!-- Primary Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">    
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">
     <!-- PNG Favicons -->
     <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/png">    
+    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/png">
     <!-- Apple Touch Icon (iOS) -->
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}" sizes="180x180">    
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}" sizes="180x180">
     <!-- Android & Others -->
     <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
 </head>
@@ -83,7 +83,7 @@
                                 <i class="fas fa-right-to-bracket"></i><span>Login</span>
                             </a>
                             <a href="{% url 'register' %}" class="site-cta">
-                                <i class="fas fa-user-plus"></i><span>Create Account</span>
+                                <i class="fas fa-user-plus"></i><span>Register</span>
                             </a>
                         {% endif %}
                     </div>
@@ -109,7 +109,7 @@
                         <a href="{% url 'logout' %}" class="mobile-link">Logout</a>
                     {% else %}
                         <a href="{% url 'login' %}" class="mobile-link">Login</a>
-                        <a href="{% url 'register' %}" class="mobile-link">Create Account</a>
+                        <a href="{% url 'register' %}" class="mobile-link">Register</a>
                     {% endif %}
                 </div>
             </div>
@@ -183,7 +183,7 @@
                 </div>
                 <div class="footer-bottom">
                     <p>&copy; {% now "Y" %} Fiji Primary School Principals Association. All rights reserved.</p>
-                    <p>Developed by <a href="https://faithtech.pythonanywhere.com/" target="_blank" rel="noopener noreferrer">Faith Technology</a></p>
+                    <p>Powered by <a href="https://faithtech.pythonanywhere.com/" target="_blank" rel="noopener noreferrer">Faith Technology</a></p>
                 </div>
             </div>
         </footer>
