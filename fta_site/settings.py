@@ -16,7 +16,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key-for-dev')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['www.fpspafiji.org']
+ALLOWED_HOSTS = [
+    'www.fpspafiji.org',
+    'fpspafiji.org',
+    'fpspafiji.pythonanywhere.com',
+]
 
 # Security settings for production
 if not DEBUG:
@@ -340,9 +344,9 @@ LOGGING = {
 FTA_SETTINGS = {
     'SITE_NAME': 'Fiji Primary School Principals Association',
     'SITE_ACRONYM': 'FPSPA',
-    'CONTACT_EMAIL': 'info@fpspa.org.fj',
-    'SUPPORT_EMAIL': 'support@fpspa.org.fj',
-    'MEMBERSHIP_FEE': 50.00,  # Annual membership fee in FJD
+    'CONTACT_EMAIL': 'elikibula@gmail.com',
+    'SUPPORT_EMAIL': 'elikibula@gmail.com',
+    'MEMBERSHIP_FEE': 50.00,
 }
 
 # Cache configuration (for production)
