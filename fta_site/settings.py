@@ -16,7 +16,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key-for-dev')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.fpspa.org.fj']
+ALLOWED_HOSTS = [
+    'www.fpspafiji.org',
+    'fpspafiji.org',
+    'fpspafiji.pythonanywhere.com',
+]
 
 # Security settings for production
 if not DEBUG:
@@ -132,21 +136,11 @@ WSGI_APPLICATION = 'fta_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'fta_db'),
-        'USER': os.getenv('DB_USER', 'fta_admin'),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
-
-# For development, you can use SQLite as fallback
-if DEBUG and not all([os.getenv('DB_NAME'), os.getenv('DB_USER'), os.getenv('DB_PASSWORD')]):
-    DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
 
 
 # ==============================================================================
@@ -174,15 +168,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Email configuration (for development)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@fpspafiji.org')
-REGISTRATION_NOTIFICATION_EMAILS = [
-    email.strip()
-    for email in os.getenv(
-        'REGISTRATION_NOTIFICATION_EMAILS',
-        os.getenv('CONTACT_EMAIL', 'elikibula@gmail.com'),
-    ).split(',')
-    if email.strip()
-]
 
 # For production, use:
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -359,9 +344,9 @@ LOGGING = {
 FTA_SETTINGS = {
     'SITE_NAME': 'Fiji Primary School Principals Association',
     'SITE_ACRONYM': 'FPSPA',
-    'CONTACT_EMAIL': 'info@fpspa.org.fj',
-    'SUPPORT_EMAIL': 'support@fpspa.org.fj',
-    'MEMBERSHIP_FEE': 50.00,  # Annual membership fee in FJD
+    'CONTACT_EMAIL': 'elikibula@gmail.com',
+    'SUPPORT_EMAIL': 'elikibula@gmail.com',
+    'MEMBERSHIP_FEE': 50.00,
 }
 
 # Cache configuration (for production)
@@ -381,7 +366,7 @@ else:
     }
 
 # Session settings
-SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds
 SESSION_COOKIE_HTTPONLY = True
 
