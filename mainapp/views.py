@@ -75,8 +75,8 @@ def about(request):
     
     context = {
         'staff_members': staff_members,
-        'page_title': 'About FTA - Fijian Teachers Association',
-        'page_description': 'Learn about FTA\'s mission, vision, history, and meet our leadership team serving educators across Fiji since 1934.',
+        'page_title': 'About FPSPA - Fijian Teachers Association',
+        'page_description': 'Learn about FPSPA\'s mission, vision, history, and meet our leadership team serving educators across Fiji since 1934.',
     }
     return render(request, 'about.html', context)
 
@@ -103,7 +103,7 @@ def services(request):
 
     context = {
         'faq_categories': faq_categories,
-        'page_title': 'Our Services - FTA',
+        'page_title': 'Our Services - FPSPA',
         'page_description': 'Learn about the services offered by the Fijian Teachers Association, including membership, welfare, and FAQs.'
     }
     
