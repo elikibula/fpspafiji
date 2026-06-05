@@ -2,6 +2,11 @@ from django.conf import settings
 from django.db import models
 from datetime import date
 
+
+def current_year():
+    return date.today().year
+
+
 class MemberCategory(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
@@ -12,7 +17,6 @@ class MemberCategory(models.Model):
 class School(models.Model):
     name = models.CharField(max_length=300)
     area = models.ForeignKey('reps.Area', on_delete=models.CASCADE)
-    branch = models.ForeignKey('reps.Branch', on_delete=models.CASCADE, related_name='schools')
     school_type = models.ForeignKey(MemberCategory, on_delete=models.CASCADE)
     address = models.TextField()
     
@@ -26,14 +30,16 @@ class Member(models.Model):
         ('suspended', 'Suspended'),
         ('inactive', 'Inactive'),
     ]
-    
+  
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="member_profile")
     membership_number = models.CharField(max_length=20, unique=True, blank=True)
     
     # Personal details
     first_name = models.CharField(max_length=100,null=True)
     last_name = models.CharField(max_length=100, null=True)
+    dob = models.DateField("Date of birth", null=True, blank=True)
     tpf_number = models.CharField(max_length=20, null=True)    
+    ftra_register_num = models.CharField("FTRA registration number", max_length=50, null=True, blank=True, db_index=True)
     email = models.EmailField(null=True)
     phone_number = models.CharField(max_length=20, null=True)
     residing_address = models.TextField(null=True)
@@ -41,10 +47,9 @@ class Member(models.Model):
     # Professional details
     category = models.ForeignKey(MemberCategory, on_delete=models.CASCADE,null=True)
     area = models.ForeignKey('reps.Area', on_delete=models.CASCADE,null=True)
-    branch = models.ForeignKey('reps.Branch', on_delete=models.CASCADE,null=True)
-    school = models.ForeignKey(School, on_delete=models.CASCADE, null=True, blank=True)
+    school = models.CharField(max_length=300, blank=True, null=True)
     position = models.CharField(max_length=200, null=True)
-    start_year = models.IntegerField(default=date.today().year)
+    start_year = models.IntegerField(default=current_year)
     
     # Membership details
     membership_status = models.CharField(max_length=20, choices=MEMBERSHIP_STATUS, default='pending')
@@ -73,7 +78,18 @@ class Member(models.Model):
     
     @property
     def full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name or ''} {self.last_name or ''}".strip()
+
+    @property
+    def age(self):
+        if not self.dob:
+            return None
+        today = date.today()
+        return today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+
+    @property
+    def age_display(self):
+        return f"{self.age} years" if self.age is not None else "Not provided"
     
     @property
     def years_of_service(self):
@@ -81,6 +97,10 @@ class Member(models.Model):
             current_year = date.today().year
             return current_year - self.start_year
         return 0
+
+    @property
+    def years_as_principal(self):
+        return self.years_of_service
     
     @property
     def years_of_service_display(self):
@@ -91,3 +111,7 @@ class Member(models.Model):
             return "1 year"
         else:
             return f"{years} years"
+
+    @property
+    def years_as_principal_display(self):
+        return self.years_of_service_display

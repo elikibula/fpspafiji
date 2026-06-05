@@ -1,11 +1,11 @@
 :root {
-  --fpspa-navy: #0f2f5f;
-  --fpspa-navy-deep: #091c3a;
-  --fpspa-blue: #1f5ca8;
+  --fpspa-navy: #005fb7;
+  --fpspa-navy-deep: #030b35;
+  --fpspa-blue: #030b35;
   --fpspa-gold: #f2c14e;
-  --fpspa-gold-soft: #f8e7a5;
+  --fpspa-gold-soft: #fde339;
   --fpspa-ink: #112033;
-  --fpspa-muted: #5f6f85;
+  --fpspa-muted: #005fb7;
   --fpspa-surface: #f6f7fb;
   --fpspa-white: #ffffff;
   --fpspa-shadow: 0 20px 60px rgba(8, 28, 58, 0.16);
@@ -111,7 +111,7 @@ h1, h2, h3, h4, .display-font {
 
 .site-cta-outline {
   color: var(--fpspa-navy);
-  background: rgba(242, 193, 78, 0.18);
+  background: var(--fpspa-gold-soft);
   box-shadow: none;
 }
 
@@ -180,9 +180,9 @@ h1, h2, h3, h4, .display-font {
   position: relative;
   overflow: hidden;
   color: var(--fpspa-white);
-  background:
-    linear-gradient(120deg, rgba(9, 28, 58, 0.92), rgba(15, 47, 95, 0.82)),
-    url("https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+  min-height: 100vh;          /* ADD THIS */
+  display: flex;              /* ADD THIS */
+  align-items: center;        /* ADD THIS */
 }
 
 .premium-hero::before {
@@ -260,7 +260,7 @@ h1, h2, h3, h4, .display-font {
 
 .hero-btn-primary {
   color: var(--fpspa-navy);
-  background: linear-gradient(135deg, var(--fpspa-gold-soft), var(--fpspa-gold));
+  background: var(--fpspa-gold-soft);
 }
 
 .hero-btn-secondary {

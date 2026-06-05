@@ -81,6 +81,194 @@
             <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.published_training_count }}</h3>
             <p class="text-sm text-slate-500">{{ stats.active_training_enrollments }} active enrollments</p>
           </div>
+          <div class="info-card !p-5">
+            <p class="text-sm text-slate-500">Districts Represented</p>
+            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.represented_districts }}</h3>
+            <p class="text-sm text-slate-500">Current member distribution</p>
+          </div>
+          <div class="info-card !p-5">
+            <p class="text-sm text-slate-500">Schools Recorded</p>
+            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.total_schools }}</h3>
+            <p class="text-sm text-slate-500">Typed by members</p>
+          </div>
+          <div class="info-card !p-5">
+            <p class="text-sm text-slate-500">Average Age</p>
+            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.average_member_age|default:"-" }}</h3>
+            <p class="text-sm text-slate-500">From DOB records</p>
+          </div>
+          <div class="info-card !p-5">
+            <p class="text-sm text-slate-500">Avg. Years as Principal</p>
+            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.average_principal_years|default:"-" }}</h3>
+            <p class="text-sm text-slate-500">Based on start year</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p class="section-kicker">Member Approval</p>
+              <h2 class="section-title mt-2 text-3xl">Pending registration approvals</h2>
+              <p class="section-copy mt-3">Approve members only after their account and profile details have been reviewed.</p>
+            </div>
+            <span class="rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700">{{ stats.pending_approvals }} waiting</span>
+          </div>
+
+          <div class="mt-6 overflow-x-auto">
+            <table class="min-w-full divide-y divide-slate-200">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Member</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Username</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">District</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Age</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Principal Years</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Submitted</th>
+                  <th class="px-4 py-3 text-right text-xs font-bold uppercase tracking-wide text-slate-500">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                {% for member in pending_members %}
+                  <tr>
+                    <td class="px-4 py-4">
+                      <div class="font-bold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</div>
+                      <div class="text-sm text-slate-500">{{ member.email|default:"No email" }}</div>
+                    </td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.user.username|default:"-" }}</td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.area|default:"-" }}</td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.school|default:"-" }}</td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.age_display }}</td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.years_as_principal_display }}</td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.date_joined|date:"d M Y H:i" }}</td>
+                    <td class="px-4 py-4">
+                      <div class="flex justify-end gap-2">
+                        <form method="post" action="{% url 'approve_member' member.id %}">
+                          {% csrf_token %}
+                          <button type="submit" class="rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white hover:bg-green-700">Approve</button>
+                        </form>
+                        <form method="post" action="{% url 'reject_member' member.id %}">
+                          {% csrf_token %}
+                          <button type="submit" class="rounded-full bg-slate-200 px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-300">Reject</button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="9" class="px-4 py-8 text-center text-slate-500">No pending registrations are waiting for approval.</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p class="section-kicker">Membership Datatable</p>
+              <h2 class="section-title mt-2 text-3xl">Executive member intelligence</h2>
+              <p class="section-copy mt-3">A complete view of members, districts, schools, age profile, FTRA registration, and principal experience.</p>
+            </div>
+            <span class="rounded-full bg-[#0f2f5f]/5 px-4 py-2 text-sm font-bold text-[#0f2f5f]">{{ all_members|length }} records</span>
+          </div>
+
+          <div class="mt-6 overflow-x-auto">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Member</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">District</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">TPF No.</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">DOB / Age</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Principal Since</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Status</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Contact</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                {% for member in all_members %}
+                  <tr>
+                    <td class="px-4 py-4">
+                      <div class="font-bold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</div>
+                      <div class="text-xs text-slate-500">{{ member.category.name|default:"No category" }}</div>
+                    </td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.area|default:"-" }}</td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.school|default:"-" }}</td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.tpf_number|default:"-" }}</td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.dob|date:"d M Y"|default:"-" }}<br><span class="text-xs text-slate-500">{{ member.age_display }}</span></td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.start_year|default:"-" }}<br><span class="text-xs text-slate-500">{{ member.years_as_principal_display }}</span></td>
+                    <td class="px-4 py-4"><span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">{{ member.get_membership_status_display }}</span></td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.phone_number|default:"-" }}<br><span class="text-xs text-slate-500">{{ member.email|default:"No email" }}</span></td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="9" class="px-4 py-8 text-center text-slate-500">No member records are available yet.</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div>
+            <p class="section-kicker">District Datatables</p>
+            <h2 class="section-title mt-2 text-3xl">Members by district area</h2>
+            <p class="section-copy mt-3">Use these grouped tables to compare district coverage and principal experience across the 12 FPSPA districts.</p>
+          </div>
+
+          <div class="mt-6 grid gap-4">
+            {% for district in district_groups %}
+              <details class="rounded-2xl border border-slate-200 bg-white p-4" {% if district.total %}open{% endif %}>
+                <summary class="cursor-pointer list-none">
+                  <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <h3 class="text-xl font-bold maroon-text">{{ district.label }}</h3>
+                      <p class="text-sm text-slate-500">{{ district.total }} member{{ district.total|pluralize }} • {{ district.active }} active • {{ district.pending }} pending</p>
+                    </div>
+                    <span class="rounded-full bg-[#f2c14e]/20 px-4 py-2 text-sm font-bold text-[#0f2f5f]">Avg principal years: {{ district.average_principal_years|default:"-" }}</span>
+                  </div>
+                </summary>
+
+                <div class="mt-4 overflow-x-auto">
+                  <table class="min-w-full divide-y divide-slate-200 text-sm">
+                    <thead class="bg-slate-50">
+                      <tr>
+                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Member</th>
+                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
+                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Age</th>
+                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Principal Since</th>
+                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
+                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 bg-white">
+                      {% for member in district.members %}
+                        <tr>
+                          <td class="px-4 py-3 font-semibold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</td>
+                          <td class="px-4 py-3 text-slate-600">{{ member.school|default:"-" }}</td>
+                          <td class="px-4 py-3 text-slate-600">{{ member.age_display }}</td>
+                          <td class="px-4 py-3 text-slate-600">{{ member.start_year|default:"-" }} ({{ member.years_as_principal_display }})</td>
+                          <td class="px-4 py-3 text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
+                          <td class="px-4 py-3 text-slate-600">{{ member.get_membership_status_display }}</td>
+                        </tr>
+                      {% empty %}
+                        <tr>
+                          <td colspan="6" class="px-4 py-5 text-center text-slate-500">No members recorded in this district yet.</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            {% endfor %}
+          </div>
         </div>
 
         <div class="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">

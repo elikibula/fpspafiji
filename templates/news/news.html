@@ -5,9 +5,7 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="relative hero-bg2 bg-cover bg-center text-center text-white overflow-hidden">
-  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-
+<section class="premium-hero min-h-screen flex items-center justify-center" style="background: linear-gradient(120deg, rgba(9, 28, 58, 0.92), rgba(15, 47, 95, 0.82)), url('{% static 'assets/images/fpspa/homeackground.png' %}') center/cover no-repeat;">
   <!-- Floating Search -->
   <div class="absolute top-6 right-8 z-20 w-72" data-aos="fade-left">
     <form class="relative">
@@ -28,19 +26,15 @@
     </h1>
     <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-6" data-aos="fade-up">
       Stay informed with the latest announcements, events, and developments.
-    </p>
-    <p class="text-xl italic font-semibold gold-text mb-10 typewriter" data-aos="fade-up" data-aos-delay="100">
-      “Service Before Self”
-    </p>
+    </p>    
   </div>
 
-  <!-- Maroon Waves -->
   <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg"
     viewBox="0 24 150 28" preserveAspectRatio="none">
     <defs>
       <linearGradient id="maroonGradient" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#800000" />
-        <stop offset="100%" stop-color="#800000" />
+        <stop offset="0%" stop-color="#fde339" />
+        <stop offset="100%" stop-color="#fde339" />
       </linearGradient>
       <path id="gentle-wave"
         d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />

@@ -17,8 +17,14 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key-for-dev')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
-    'www.fpspafiji.org',
+    '127.0.0.1',
+    'localhost',
+    '0.0.0.0',
+    '::1',
+    '[::1]',
+    'testserver',
     'fpspafiji.org',
+    'www.fpspafiji.org',
     'fpspafiji.pythonanywhere.com',
 ]
 
@@ -98,6 +104,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'accounts.middleware.PendingMemberApprovalMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',

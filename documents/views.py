@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, FileResponse, Http404
 from django.contrib import messages
-from django.db.models import Count, Prefetch, ForeignKey
+from django.db.models import Count, Prefetch, ForeignKey, Q
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.core.exceptions import FieldDoesNotExist
@@ -12,6 +12,7 @@ from django.views.decorators.http import require_GET
 from django.db import IntegrityError, transaction
 import logging
 from django.contrib.auth import get_user_model
+
 
 
 logger = logging.getLogger(__name__)
@@ -137,34 +138,49 @@ def upload_document(request):
 
 
 def public_downloads(request):
-    category = get_object_or_404(DocumentCategory, name__iexact="Downloads")
-    all_subcategories = SubCategory.objects.filter(category=category)
+    category = DocumentCategory.objects.filter(name__iexact="Downloads").first()
+
+    if not category:
+        context = {
+            "category": None,
+            "all_subcategories": [],
+            "subcategories": [],
+            "selected_subcat_id": None,
+            "query": "",
+            "error_message": "Downloads category has not been created yet.",
+        }
+        return render(request, "documents/public_downloads.html", context)
 
     selected_subcat_id = request.GET.get("subcategory")
     query = request.GET.get("q", "").strip()
 
+    documents_qs = Document.objects.all()
+
+    if query:
+        documents_qs = documents_qs.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query)
+        )
+
+    all_subcategories = SubCategory.objects.filter(category=category).order_by("name")
+
     subcategories = all_subcategories
 
-    # Filter by selected subcategory
     if selected_subcat_id:
         subcategories = subcategories.filter(id=selected_subcat_id)
 
-    # Prefetch documents for efficiency
-    subcategories = subcategories.prefetch_related("document_set")
-
-    # Apply search filter
-    if query:
-        for subcat in subcategories:
-            subcat.document_set.all = subcat.document_set.filter(
-                title__icontains=query
-            ) | subcat.document_set.filter(description__icontains=query)
+    subcategories = subcategories.prefetch_related(
+        Prefetch("document_set", queryset=documents_qs, to_attr="filtered_documents")
+    )
 
     context = {
         "category": category,
         "all_subcategories": all_subcategories,
         "subcategories": subcategories,
         "selected_subcat_id": selected_subcat_id,
+        "query": query,
     }
+
     return render(request, "documents/public_downloads.html", context)
 # ------------------------
 # Category / Subcategory

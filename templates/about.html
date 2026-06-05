@@ -4,7 +4,7 @@
 {% block title %}About FPSPA{% endblock %}
 
 {% block content %}
-<section class="hero-bg2 text-white">
+<section class="premium-hero min-h-screen flex items-center justify-center" style="background: linear-gradient(120deg, rgba(9, 28, 58, 0.92), rgba(15, 47, 95, 0.82)), url('{% static 'assets/images/fpspa/homeackground.png' %}') center/cover no-repeat;">
   <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 text-center">
     <p class="hero-chip justify-center mx-auto"><i class="fas fa-school"></i> About the Association</p>
     <h1 class="hero-heading animate-hero">Fiji Primary School Principals Association</h1>
@@ -13,8 +13,8 @@
   <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
     <defs>
       <linearGradient id="aboutWave" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0f2f5f" />
-        <stop offset="100%" stop-color="#153f7a" />
+        <stop offset="0%" stop-color="#fde339" />
+        <stop offset="100%" stop-color="#fde339" />
       </linearGradient>
       <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
     </defs>
@@ -32,8 +32,8 @@
     <div>
       <p class="section-kicker">Who We Are</p>
       <h2 class="section-title mt-3">A strong voice for primary school leadership</h2>
-      <p class="section-copy mt-4">FPSPA exists to bring principals together around shared priorities: effective school leadership, practical support, policy engagement, and better learning environments for children across Fiji.</p>
-      <p class="section-copy mt-4">The association provides a platform for collaboration, professional dialogue, and coordinated representation while preserving the app logic and workflows already built into this project.</p>
+      <p class="section-copy mt-4">FPSPA exists to bring primary school principals together around shared priorities: effective school leadership, practical support, policy engagement, and better learning environments for children across Fiji.</p>
+      <p class="section-copy mt-4">The Association has grown from a small group of committed educators into a nationally recognized professional body. It continues to strengthen school leadership, improve service delivery, and contribute to the overall development of education in Fiji.</p>
       <div class="mt-8 grid gap-4 md:grid-cols-3">
         <div class="feature-card !p-5">
           <div class="feature-icon"><i class="fas fa-bullhorn"></i></div>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="glass-card p-4">
-      <img src="{% static 'assets/images/fpspa/conference-leaders.jpg' %}" alt="FPSPA principals and leaders in association attire" class="h-[420px] w-full rounded-[1.6rem] object-cover shadow-xl">
+      <img src="{% static 'assets/images/fpspa/about.jpg' %}" alt="FPSPA principals and leaders in association attire" class="h-[420px] w-full rounded-[1.6rem] object-cover shadow-xl">
       <div class="mt-4 flex items-center gap-4">
         <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA crest" class="w-20 h-20 object-contain">
         <p class="section-copy">FPSPA's identity is carried by the leaders who serve schools, communities, and children across Fiji.</p>
@@ -64,9 +64,66 @@
 
 <section class="section-shell pt-0">
   <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto mb-10">
+      <p class="section-kicker">Historical Overview</p>
+      <h2 class="section-title mt-3">From district beginnings to national service</h2>
+      <p class="section-copy mt-4">The Association's history reflects decades of principal leadership, district collaboration, and renewed national commitment to professional support for Heads of Schools.</p>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-3">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-seedling"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Early formation</h3>
+        <p class="section-copy mt-3">In the early 1980s, around 1980-1981, the late Chattar Pal, originally from Ba and then serving as a Head Teacher in Suva, initiated discussions that led to the formation of the Ba association for school leaders. Several senior Head Teachers from Ba strongly supported the initiative.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-people-roof"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">First national conference</h3>
+        <p class="section-copy mt-3">The first national conference was held at the former Nasinu Teachers College Hall from 18-19 November 1982. Annual conferences continued successfully until 1987.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-arrows-rotate"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Continuity and revival</h3>
+        <p class="section-copy mt-3">After the events of 1987, many senior members resigned or migrated, affecting continuity. Despite this, committed Head Teachers sustained the work and helped maintain and later revive the Ba branch. In 1988, Mr. Pal was appointed as an Education Officer and stepped back from active participation.</p>
+      </div>
+    </div>
+
+    <div class="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] items-stretch">
+      <div class="feature-card">
+        <p class="section-kicker">Revival and Expansion</p>
+        <h3 class="section-title mt-3 text-4xl">Renewed leadership in the West</h3>
+        <p class="section-copy mt-4">In 1996, after his appointment as Head Teacher of Votualevu Public School, Mr. Pal, with support from fellow educators, played a significant role in reviving the Nadi association for school leaders. That revival inspired similar efforts across other districts.</p>
+        <p class="section-copy mt-4">The Western districts later formed a regional association for school leaders and organized several conferences. These initiatives contributed to the full revival of the national Association.</p>
+        <p class="section-copy mt-4">Mr. Pal went on to serve as President at district, regional, and national levels before becoming Divisional Education Officer Western.</p>
+      </div>
+      <div class="feature-card">
+        <p class="section-kicker">Growth and Current Status</p>
+        <h3 class="section-title mt-3 text-4xl">A professional body for Heads of Schools</h3>
+        <p class="section-copy mt-4">From humble beginnings, FPSPA has developed into a strong professional body representing Heads of Schools across Fiji. The Association continues to evolve with member needs, maintain collaboration with the Ministry of Education, and enhance service delivery and professional support systems.</p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-3">
+          <div class="info-card !p-5 text-center">
+            <strong class="text-3xl maroon-text">43</strong>
+            <p class="section-copy mt-1">Years of establishment recorded in the source history</p>
+          </div>
+          <div class="info-card !p-5 text-center">
+            <strong class="text-3xl maroon-text">12</strong>
+            <p class="section-copy mt-1">District networks represented</p>
+          </div>
+          <div class="info-card !p-5 text-center">
+            <strong class="text-3xl maroon-text">735</strong>
+            <p class="section-copy mt-1">Heads of Schools in the current distribution</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell pt-0">
+  <div class="max-w-7xl mx-auto px-6">
     <div class="grid gap-6 md:grid-cols-3">
       <div class="feature-card !p-0 overflow-hidden">
-        <img src="{% static 'assets/images/fpspa/president-address.jpg' %}" alt="FPSPA leader addressing members" class="h-56 w-full object-cover">
+        <img src="{% static 'assets/images/fpspa/president-address.jpg' %}" alt="FPSPA leader addressing members" class="h-56 w-full bg-cover">
         <div class="p-6">
           <h3 class="text-2xl font-bold maroon-text">Leadership Voice</h3>
           <p class="section-copy mt-3">Principals contributing to national and regional education conversations.</p>
@@ -80,7 +137,7 @@
         </div>
       </div>
       <div class="feature-card !p-0 overflow-hidden">
-        <img src="{% static 'assets/images/fpspa/headteachers-forum.jpg' %}" alt="FPSPA headteachers forum panel" class="h-56 w-full object-cover">
+        <img src="{% static 'assets/images/fpspa/about1.png' %}" alt="FPSPA headteachers forum panel" class="h-56 w-full bg-cover">
         <div class="p-6">
           <h3 class="text-2xl font-bold maroon-text">Shared Direction</h3>
           <p class="section-copy mt-3">Executive and partner engagement supporting primary school leadership.</p>
@@ -121,10 +178,12 @@
         <p class="section-kicker">What We Do</p>
         <h2 class="section-title mt-3 text-4xl">How the association serves principals</h2>
         <ul class="mt-6 space-y-4 section-copy">
-          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Coordinate leadership support and shared responses to professional issues.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Represent and advocate for Heads of Schools at district, divisional, and national levels.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Address professional concerns and grievances of members.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Promote effective school leadership and management practices.</span></li>
           <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Promote development opportunities, forums, and practical learning resources.</span></li>
           <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Strengthen area and branch connections so principals remain supported locally.</span></li>
-          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Maintain a professional platform that highlights news, events, documents, and association services.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check text-[#1f5ca8] mt-1"></i><span>Support Ministry of Education initiatives and policies.</span></li>
         </ul>
       </div>
       <div class="feature-card">
@@ -168,7 +227,7 @@
       <h2 class="section-title mt-3">Be part of Fiji’s principal leadership network</h2>
       <p class="section-copy mt-4 max-w-3xl mx-auto">Use the existing membership and account apps to join, manage your profile, and stay connected with association updates and services.</p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="{% url 'register' %}" class="hero-btn hero-btn-primary">Create your FPSPA account</a>
+        <a href="{% url 'complete_member_profile' %}" class="hero-btn hero-btn-primary">Create your FPSPA account</a>
         <a href="{% url 'contact' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Contact the association</a>
       </div>
     </div>

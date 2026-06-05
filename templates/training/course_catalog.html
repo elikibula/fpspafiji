@@ -3,29 +3,47 @@
 {% block title %}FPSPA Training and Workshops{% endblock %}
 
 {% block content %}
+<style>
+@keyframes zoom-blink {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  25%       { transform: scale(1.12); opacity: 1; }
+  50%       { transform: scale(1.23); opacity: 0; }
+  75%       { transform: scale(1);   opacity: 0; }
+}
+
+.animate-zoom-blink {
+  animation: zoom-blink 1s ease-in-out infinite;
+  display: inline-block;
+}
+</style>
 <section class="hero-bg3 text-white">
   <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 text-center">
     <p class="hero-chip justify-center mx-auto"><i class="fas fa-graduation-cap"></i> Online Training and Workshops</p>
     <h1 class="hero-heading animate-hero">Learn, enroll, and earn certificates online</h1>
     <p class="hero-subtext mt-6 mx-auto">The training app gives FPSPA members a place to enroll in online courses and workshops, follow lesson content, track progress, and complete certificate-ready learning.</p>
+    <h1 class="hero-heading text-red-600 animate-zoom-blink">Coming Soon!</h1>
   </div>
-  <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+  <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 24 150 28" preserveAspectRatio="none">
     <defs>
-      <linearGradient id="trainingWave" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0f2f5f" />
-        <stop offset="100%" stop-color="#153f7a" />
+      <linearGradient id="maroonGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fde339" />
+        <stop offset="100%" stop-color="#fde339" />
       </linearGradient>
-      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+      <path id="gentle-wave"
+        d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
     </defs>
     <g class="parallax">
-      <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#trainingWave)" opacity="0.7"/>
-      <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#trainingWave)" opacity="0.5"/>
-      <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#trainingWave)" opacity="0.3"/>
-      <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#trainingWave)" opacity="1"/>
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#maroonGradient)" opacity="0.7" />
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#maroonGradient)" opacity="0.5" />
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#maroonGradient)" opacity="0.3" />
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#maroonGradient)" opacity="1" />
     </g>
   </svg>
 </section>
 
+
+    <!--
 <section class="section-shell">
   <div class="max-w-7xl mx-auto px-6">
     <div class="cta-card p-6 mb-10">
@@ -46,6 +64,8 @@
         <button type="submit" class="hero-btn hero-btn-primary justify-center h-[52px]">Filter</button>
       </form>
     </div>
+
+    
 
     {% if featured_courses %}
       <div class="mb-12">
@@ -97,6 +117,7 @@
         {% endfor %}
       </div>
     </div>
+    -->
   </div>
 </section>
 {% endblock %}

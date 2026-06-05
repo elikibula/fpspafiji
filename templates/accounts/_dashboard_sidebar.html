@@ -20,7 +20,7 @@
       <a href="{% url 'documents:document_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-folder-open text-[#1f5ca8] w-5"></i> Documents</a>
       <a href="{% url 'training:staff_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-graduation-cap text-[#1f5ca8] w-5"></i> Training & Workshops</a>
       <a href="{% url 'training:staff_course_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-qrcode text-[#1f5ca8] w-5"></i> QR Attendance Setup</a>
-      <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> Areas & Reps</a>
+      <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> Districts & Reps</a>
       <a href="{% url 'admin:index' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-users-gear text-[#1f5ca8] w-5"></i> Membership Admin</a>
     {% else %}
       <a href="{% url 'member_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-house-user text-[#1f5ca8] w-5"></i> My Dashboard</a>
@@ -29,10 +29,10 @@
       <a href="{% url 'events:list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-calendar-check text-[#1f5ca8] w-5"></i> Events</a>
       <a href="{% url 'helpdesk:ticket_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-headset text-[#1f5ca8] w-5"></i> My Helpdesk Tickets</a>
       <a href="{% url 'helpdesk:create_ticket' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-circle-plus text-[#1f5ca8] w-5"></i> Request Support</a>
-      <a href="{% url 'documents:public_downloads' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-file-arrow-down text-[#1f5ca8] w-5"></i> Documents</a>
+      <a href="{% url 'documents:document_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-file-arrow-down text-[#1f5ca8] w-5"></i> Documents</a>
       <a href="{% url 'training:course_catalog' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-book-open-reader text-[#1f5ca8] w-5"></i> Training Catalog</a>
       <a href="{% url 'training:my_learning' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-qrcode text-[#1f5ca8] w-5"></i> Training & QR Attendance</a>
-      <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> Area Representatives</a>
+      <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> District Representatives</a>
     {% endif %}
   </nav>
 </aside>

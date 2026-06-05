@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}FPSPA Areas & Representatives{% endblock %}
+{% block title %}FPSPA Districts & Representatives{% endblock %}
 
 {% block content %}
 <div class="py-12 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-6">
-      <h2 class="text-base maroon-text font-semibold tracking-wide uppercase">Where are we?</h2>
+      <h2 class="text-base maroon-text font-semibold tracking-wide uppercase">District Network</h2>
       <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight sm:text-4xl maroon-text">
-        We are represented Fiji wide
+        FPSPA's 12 districts
       </p>
     </div>
 
@@ -22,7 +22,29 @@
       {% endfor %}
     </div>
 
-    <p class="text-center text-sm text-gray-500 mb-6">Click an area to view branches and representatives.</p>
+    <p class="text-center text-sm text-gray-500 mb-6">Click a district to view the current Heads of Schools count and any available branches or representatives. FPSPA's current distribution records 735 Heads of Schools across 12 districts.</p>
+
+    <div class="mb-8 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <table class="min-w-full text-left text-sm">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-4 py-3 font-semibold">District</th>
+            <th class="px-4 py-3 font-semibold text-right">Number of HOS</th>
+            <th class="px-4 py-3 font-semibold">District</th>
+            <th class="px-4 py-3 font-semibold text-right">Number of HOS</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="px-4 py-2">Suva</td><td class="px-4 py-2 text-right">80</td><td class="px-4 py-2">Tavua/Vatukoula/Nadarivatu</td><td class="px-4 py-2 text-right">19</td></tr>
+          <tr><td class="px-4 py-2">Nausori</td><td class="px-4 py-2 text-right">119</td><td class="px-4 py-2">Rakiraki</td><td class="px-4 py-2 text-right">43</td></tr>
+          <tr><td class="px-4 py-2">Nadi</td><td class="px-4 py-2 text-right">33</td><td class="px-4 py-2">Macuata</td><td class="px-4 py-2 text-right">71</td></tr>
+          <tr><td class="px-4 py-2">Nadroga/Navosa</td><td class="px-4 py-2 text-right">63</td><td class="px-4 py-2">Bua</td><td class="px-4 py-2 text-right">29</td></tr>
+          <tr><td class="px-4 py-2">Lautoka/Yasawa</td><td class="px-4 py-2 text-right">52</td><td class="px-4 py-2">Cakaudrove</td><td class="px-4 py-2 text-right">66</td></tr>
+          <tr><td class="px-4 py-2">Ba</td><td class="px-4 py-2 text-right">43</td><td class="px-4 py-2">Eastern</td><td class="px-4 py-2 text-right">117</td></tr>
+          <tr class="bg-gray-50 font-bold"><td class="px-4 py-3" colspan="3">Total Heads of Schools</td><td class="px-4 py-3 text-right">735</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- Optional: Overview grid fallback (shows first 6 areas) -->
      <!--
@@ -53,7 +75,7 @@
             
           </div>
           <div class="flex-1">
-            <h3 id="dialog-title-{{ area.id }}" class="text-lg font-semibold text-gray-900">{{ area.name }}</h3>
+            <h3 id="dialog-title-{{ area.id }}" class="text-lg font-semibold text-gray-900">{{ area.name }} District</h3>
             {% if area.summary %}
               <p class="text-sm text-gray-500 mt-1">{{ area.summary }}</p>
             {% endif %}

@@ -4,17 +4,17 @@
 {% block title %}FPSPA Services{% endblock %}
 
 {% block content %}
-<section class="hero-bg3 text-white">
+<section class="premium-hero min-h-screen flex items-center justify-center" style="background: linear-gradient(120deg, rgba(9, 28, 58, 0.92), rgba(15, 47, 95, 0.82)), url('{% static 'assets/images/fpspa/homeackground.png' %}') center/cover no-repeat;">
   <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 text-center">
     <p class="hero-chip justify-center mx-auto"><i class="fas fa-briefcase"></i> Member Services</p>
     <h1 class="hero-heading animate-hero">Services designed for school leaders</h1>
-    <p class="hero-subtext mt-6 mx-auto">FPSPA keeps the project’s original service logic while refocusing the message on primary school principals, professional leadership, and practical support.</p>
+    <p class="hero-subtext mt-6 mx-auto">FPSPA supports Heads of Schools through advocacy, professional learning, leadership practice, collaboration, and practical member services.</p>
   </div>
   <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
     <defs>
       <linearGradient id="servicesWave" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0f2f5f" />
-        <stop offset="100%" stop-color="#153f7a" />
+        <stop offset="0%" stop-color="#fde339" />
+        <stop offset="100%" stop-color="#fde339" />
       </linearGradient>
       <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
     </defs>
@@ -36,7 +36,7 @@
       <div>
         <p class="section-kicker">Support in Practice</p>
         <h2 class="section-title mt-3">Services shaped by real principal gatherings</h2>
-        <p class="section-copy mt-4">FPSPA services are not abstract website features. They support the same work members already do through district symposia, conferences, professional dialogue, and peer-to-peer leadership support.</p>
+        <p class="section-copy mt-4">FPSPA services support the same work members already do through district symposia, conferences, professional dialogue, and peer-to-peer leadership support. The Association's service role is grounded in representation, member care, professional development, and collaboration with education partners.</p>
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           <div class="info-card !p-5">
             <h3 class="font-bold maroon-text text-xl">Training</h3>
@@ -57,39 +57,75 @@
     <div class="text-center mb-10">
       <p class="section-kicker">Association Support</p>
       <h2 class="section-title mt-3">What members can access through FPSPA</h2>
-      <p class="section-copy mt-3 max-w-3xl mx-auto">These service categories preserve the site’s structure while speaking directly to the needs of primary school principals and education leaders.</p>
+      <p class="section-copy mt-3 max-w-3xl mx-auto">These service categories reflect the Association's core functions and speak directly to the needs of primary school principals and education leaders.</p>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       <div class="feature-card">
         <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
         <h3 class="mt-4 text-2xl font-bold maroon-text">Advocacy and representation</h3>
-        <p class="section-copy mt-3">Support with school leadership issues, professional representation, and collective engagement on sector matters.</p>
+        <p class="section-copy mt-3">Representing and advocating for Heads of Schools at district, divisional, and national levels.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><i class="fas fa-heart"></i></div>
-        <h3 class="mt-4 text-2xl font-bold maroon-text">Member welfare</h3>
-        <p class="section-copy mt-3">Member-centered support pathways that can continue to be managed through the existing app structure.</p>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Professional concerns</h3>
+        <p class="section-copy mt-3">Addressing professional concerns and grievances of members through coordinated support pathways.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><i class="fas fa-book-open-reader"></i></div>
         <h3 class="mt-4 text-2xl font-bold maroon-text">Professional learning</h3>
-        <p class="section-copy mt-3">Leadership workshops, shared learning sessions, and development opportunities for principals.</p>
+        <p class="section-copy mt-3">Facilitating professional development and capacity building for effective school leadership.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-folder-open"></i></div>
-        <h3 class="mt-4 text-2xl font-bold maroon-text">Resources and documents</h3>
-        <p class="section-copy mt-3">Access downloadable forms, important circulars, and practical reference materials.</p>
+        <div class="feature-icon"><i class="fas fa-chalkboard-user"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Leadership practice</h3>
+        <p class="section-copy mt-3">Promoting effective school leadership and management practices that strengthen teaching, learning, and operations.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon"><i class="fas fa-users"></i></div>
-        <h3 class="mt-4 text-2xl font-bold maroon-text">Area and branch network</h3>
-        <p class="section-copy mt-3">Stay connected with local representatives and association structures around the country.</p>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Collaboration network</h3>
+        <p class="section-copy mt-3">Strengthening collaboration among school leaders through area, branch, and national networks.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-headset"></i></div>
-        <h3 class="mt-4 text-2xl font-bold maroon-text">Help desk access</h3>
-        <p class="section-copy mt-3">Use the same integrated helpdesk workflow for member questions, requests, and support tickets.</p>
+        <div class="feature-icon"><i class="fas fa-landmark"></i></div>
+        <h3 class="mt-4 text-2xl font-bold maroon-text">Ministry partnership</h3>
+        <p class="section-copy mt-3">Supporting Ministry of Education initiatives and policies through informed principal engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-shell pt-0">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto mb-10">
+      <p class="section-kicker">21st-Century Practice</p>
+      <h2 class="section-title mt-3">Best practices promoted by FPSPA</h2>
+      <p class="section-copy mt-4">In response to evolving educational demands, FPSPA promotes practical leadership approaches that help principals strengthen schools, staff, learners, and communities.</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div class="info-card">
+        <h3 class="text-xl font-bold maroon-text">Instructional leadership</h3>
+        <p class="section-copy mt-2">Enhancing teaching and learning outcomes through focused leadership.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="text-xl font-bold maroon-text">Digital integration</h3>
+        <p class="section-copy mt-2">Encouraging appropriate use of technology in schools.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="text-xl font-bold maroon-text">Inclusive education</h3>
+        <p class="section-copy mt-2">Ensuring equity and access for all learners.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="text-xl font-bold maroon-text">Community engagement</h3>
+        <p class="section-copy mt-2">Strengthening partnerships with parents and stakeholders.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="text-xl font-bold maroon-text">Data-driven decisions</h3>
+        <p class="section-copy mt-2">Improving planning, accountability, and school improvement work.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="text-xl font-bold maroon-text">Student wellbeing</h3>
+        <p class="section-copy mt-2">Supporting the holistic development of learners.</p>
       </div>
     </div>
   </div>
@@ -127,7 +163,7 @@
         <p class="section-copy mt-3">Use the existing registration, FAQ, and helpdesk pages to engage with the updated FPSPA site experience.</p>
       </div>
       <div class="flex flex-wrap gap-3 lg:justify-end">
-        <a href="{% url 'register' %}" class="hero-btn hero-btn-primary">Join FPSPA</a>
+        <a href="{% url 'complete_member_profile' %}" class="hero-btn hero-btn-primary">Join FPSPA</a>
         <a href="{% url 'faq_list' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">View FAQs</a>
       </div>
     </div>

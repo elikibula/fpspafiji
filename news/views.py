@@ -48,12 +48,12 @@ def delete_news(request, pk=None, slug=None):
         news = get_object_or_404(News, slug=slug)
     else:
         messages.error(request, "No news identifier provided.")
-        return redirect('news_list')  # or some fallback page
+        return redirect('news:news_admin_list')
 
     if request.method == 'POST':
         news.delete()
         messages.success(request, "News deleted successfully.")
-        return redirect('news_list')
+        return redirect('news:news_admin_list')
 
     return render(request, 'news/delete_news.html', {'news': news})
 

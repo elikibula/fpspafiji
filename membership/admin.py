@@ -16,10 +16,10 @@ class MemberCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(School)
 class SchoolAdmin(admin.ModelAdmin):
-    list_display = ['name', 'area', 'branch', 'school_type', 'address_preview']
-    list_filter = ['area', 'branch', 'school_type']
+    list_display = ['name', 'area', 'school_type', 'address_preview']
+    list_filter = ['area', 'school_type']
     search_fields = ['name', 'address']
-    list_select_related = ['area', 'branch', 'school_type']
+    list_select_related = ['area', 'school_type']
     list_per_page = 25
     
     def address_preview(self, obj):
@@ -30,11 +30,11 @@ class SchoolAdmin(admin.ModelAdmin):
 class MemberAdmin(admin.ModelAdmin):
     list_display = [
         'tpf_number', 'full_name', 'email', 'category', 
-        'area', 'branch', 'years_of_service_display_admin', 
+        'area', 'years_of_service_display_admin', 
         'membership_status', 'date_joined'
     ]
     list_filter = [
-        'membership_status', 'category', 'area', 'branch', 
+        'membership_status', 'category', 'area',  
         'start_year', 'date_joined'
     ]
     search_fields = [
@@ -45,7 +45,7 @@ class MemberAdmin(admin.ModelAdmin):
         'date_joined', 'years_of_service_display_admin',
         'profile_photo_preview'
     ]
-    list_select_related = ['user', 'category', 'area', 'branch', 'school']
+    list_select_related = ['user', 'category', 'area','school']
     list_per_page = 50
     
     fieldsets = (
@@ -57,7 +57,7 @@ class MemberAdmin(admin.ModelAdmin):
         }),
         ('Professional Details', {
             'fields': (
-                'category', 'area', 'branch', 'school', 'position', 
+                'category', 'area', 'school', 'position', 
                 'start_year', 'years_of_service_display_admin'
             )
         }),

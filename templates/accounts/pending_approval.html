@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registration Pending - FPSPA{% endblock %}
+
+{% block content %}
+<section class="min-h-screen bg-slate-50 py-16">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="info-card text-center">
+      <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA Logo" class="mx-auto h-20 w-auto mb-6">
+      <p class="section-kicker">Registration Submitted</p>
+      <h1 class="section-title mt-3">Your profile is waiting for staff approval</h1>
+      <p class="section-copy mt-4">
+        Thank you, {{ request.user.get_full_name|default:request.user.username }}. Your FPSPA account and member profile have been received.
+        A staff member must approve your registration before you can access member-only content.
+      </p>
+      <div class="mt-8 rounded-2xl bg-amber-50 border border-amber-100 p-5 text-left">
+        <h2 class="font-bold maroon-text">Current status</h2>
+        <p class="mt-2 text-slate-700">{{ member.get_membership_status_display }}</p>
+      </div>
+      <div class="mt-8 flex justify-center">
+        <a href="{% url 'logout' %}" class="hero-btn hero-btn-primary w-full max-w-xs text-lg py-4 flex items-center justify-center">
+          Logout Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

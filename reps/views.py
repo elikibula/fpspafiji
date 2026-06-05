@@ -5,35 +5,53 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 from .models import Area, Branch, Representative
 
+DISTRICT_DISTRIBUTION = [
+    ("suva", "Suva", 80),
+    ("nausori", "Nausori", 119),
+    ("nadi", "Nadi", 33),
+    ("nadroga-navosa", "Nadroga/Navosa", 63),
+    ("lautoka-yasawa", "Lautoka/Yasawa", 52),
+    ("ba", "Ba", 43),
+    ("tavua-vatukoula-nadarivatu", "Tavua/Vatukoula/Nadarivatu", 19),
+    ("rakiraki", "Rakiraki", 43),
+    ("macuata", "Macuata", 71),
+    ("bua", "Bua", 29),
+    ("cakaudrove", "Cakaudrove", 66),
+    ("eastern", "Eastern", 117),
+]
+
+
+class _EmptyRelation:
+    def all(self):
+        return []
+
+
+class DistrictArea:
+    branches = _EmptyRelation()
+    reps = _EmptyRelation()
+
+    def __init__(self, slug, name, hos_count):
+        self.id = slug
+        self.slug = slug
+        self.name = name
+        self.hos_count = hos_count
+        self.summary = f"{hos_count} Heads of Schools recorded in the current FPSPA district distribution."
+
+
+def _district_areas():
+    return [DistrictArea(slug, name, hos_count) for slug, name, hos_count in DISTRICT_DISTRIBUTION]
+
+
 def reps_list(request):
     reps = Representative.objects.select_related('area', 'branch').all()
     return render(request, 'reps/reps_list.html', {'reps': reps})
 
 def areas(request):
-    # Fetch all areas
-    areas = Area.objects.prefetch_related('branches', 'reps').all()
+    areas = _district_areas()
 
     # Prepare JSON-safe data for branches (for maps/modals)
     branches_data = []
-    for branch in Branch.objects.all():
-        branches_data.append({
-            'id': branch.id,
-            'name': branch.name,
-            'address': branch.address or '',
-            'lat': float(branch.latitude) if branch.latitude else None,
-            'lng': float(branch.longitude) if branch.longitude else None,
-            'area_id': branch.area.id if branch.area else None,
-            'reps': [
-                {
-                    'name': rep.name,
-                    'role': rep.role,
-                    'phone': rep.phone,
-                    'email': rep.email,
-                }
-                for rep in branch.reps.all()
-
-            ],
-        })
+    branches_data = []
 
     context = {
         'areas': areas,
@@ -45,35 +63,11 @@ def areas(request):
 
 
 def areas_list(request):
-    # Prefetch branches + reps for each area to minimize queries
-    areas = Area.objects.prefetch_related(
-        Prefetch('branches', queryset=Branch.objects.prefetch_related('reps'))
-    ).all()
+    areas = _district_areas()
 
     # Build branches JSON for map markers (only branches with coords)
     branches_data = []
-    for area in areas:
-        for branch in area.branches.all():
-            if branch.latitude is None or branch.longitude is None:
-                continue
-            reps = []
-            for rep in branch.reps.all():
-                reps.append({
-                    'name': rep.name,
-                    'role': rep.role,
-                    'phone': rep.phone,
-                    'email': rep.email,
-                })
-            branches_data.append({
-                'id': branch.id,
-                'name': branch.name,
-                'address': branch.address,
-                'lat': float(branch.latitude),
-                'lng': float(branch.longitude),
-                'area_id': area.id,
-                'area_name': area.name,
-                'reps': reps,
-            })
+    branches_data = []
 
     context = {
         'areas': areas,

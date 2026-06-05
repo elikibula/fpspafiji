@@ -4,33 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Fiji Primary School Principals Association{% endblock %}</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Official website of the Fiji Primary School Principals Association (FPSPA). Access news, events, documents, educational resources, and member services.">
+    <meta name="keywords" content="FPSPA, Fiji schools, Fiji education, school principals, Fiji Primary School Principals Association">
+    <meta name="author" content="Faith Technology">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Fiji Primary School Principals Association">
+    <meta property="og:title" content="{% block og_title %}Fiji Primary School Principals Association{% endblock %}">
+    <meta property="og:description" content="Official FPSPA website providing educational news, resources, events, and member services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'images/logo.png' %}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Fiji Primary School Principals Association{% endblock %}">
+    <meta name="twitter:description" content="Official FPSPA website providing educational news, resources, events, and member services.">
+    <meta name="twitter:image" content="{% static 'images/logo.png' %}">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" sizes="32x32">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">
+    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}" sizes="180x180">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    <!-- JS Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-    {% block extra_head %}{% endblock %}
 
-     <!--FAVICON-->
-    <!-- Basic Favicon -->
-    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/x-icon">
-    <!-- Recommended: Modern PNG version -->
-    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" sizes="32x32">
-    <!-- Primary Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">
-    <!-- PNG Favicons -->
-    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/png">
-    <!-- Apple Touch Icon (iOS) -->
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}" sizes="180x180">
-    <!-- Android & Others -->
-    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XVW8S0B0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XVW8S0B0M');
+</script>
+
+    {% block extra_head %}{% endblock %}
 </head>
 <body class="site-body">
     <div class="site-shell">
@@ -72,17 +106,17 @@
                         </a>
 
                         {% if user.is_authenticated %}
-                            <a href="{% url 'dashboard' %}" class="site-cta site-cta-outline">
+                            <a href="{% url 'dashboard' %}" class="site-cta">
                                 <i class="fas fa-gauge-high"></i><span>Dashboard</span>
                             </a>
-                            <a href="{% url 'logout' %}" class="site-cta">
+                            <a href="{% url 'logout' %}" class="site-cta site-cta-outline">
                                 <i class="fas fa-arrow-right-from-bracket"></i><span>Logout</span>
                             </a>
                         {% else %}
                             <a href="{% url 'login' %}" class="site-cta site-cta-outline">
                                 <i class="fas fa-right-to-bracket"></i><span>Login</span>
                             </a>
-                            <a href="{% url 'register' %}" class="site-cta">
+                            <a href="{% url 'complete_member_profile' %}" class="site-cta">
                                 <i class="fas fa-user-plus"></i><span>Register</span>
                             </a>
                         {% endif %}
@@ -109,7 +143,7 @@
                         <a href="{% url 'logout' %}" class="mobile-link">Logout</a>
                     {% else %}
                         <a href="{% url 'login' %}" class="mobile-link">Login</a>
-                        <a href="{% url 'register' %}" class="mobile-link">Register</a>
+                        <a href="{% url 'complete_member_profile' %}" class="mobile-link">Register</a>
                     {% endif %}
                 </div>
             </div>
