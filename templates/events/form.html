@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{% if create %}Create Event{% else %}Update Event{% endif %} - FPSPA{% endblock %}
+{% block title %}{% if create %}Create Event{% else %}Update Event{% endif %} - FHTA{% endblock %}
 
 {% block content %}
 <div class="min-h-screen maroon-bg py-10">
@@ -11,7 +11,7 @@
       <div class="bg-gradient-to-r from-sky-600 to-indigo-600 px-6 py-6">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-4">
-            <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA" class="h-10 w-auto rounded-md bg-white/10 p-1">
+            <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FHTA" class="h-10 w-auto rounded-md bg-white/10 p-1">
             <div>
               <h1 class="text-xl font-bold text-white">
                 {% if create %}Create New Event{% else %}Update Event{% endif %}

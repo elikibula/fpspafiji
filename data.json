@@ -168,7 +168,7 @@
     "author": [
       "lixtronics"
     ],
-    "image": "news_images/FPSPA_staff.jpg",
+    "image": "news_images/FHTA_staff.jpg",
     "video": "",
     "category": 1,
     "date_posted": "2025-10-08T00:14:32.941Z",
@@ -198,7 +198,7 @@
   "fields": {
     "title": "Teachers� welfare tops submission list",
     "slug": "teachers-welfare-tops-submission-list",
-    "content": "The Fiji Primary School Principals Association will be making a submission during the National Education Summit to review all policies that were implemented in the past sixteen years.\r\nFPSPA President, Netani Druavesi says teachers have raised concerns regarding their welfare and they want to address them.\r\nDruavesi claims teachers have been denied a lot of things in the past.\r\n\r\n�What they have been receiving before in the last 16 years, sorry to say, in the last 16 years, they have been denied. Everything, I�ll just put it short. Everything that you can think of regarding the betterment of our education system in Fiji, that is all in our submission.�\r\n\r\nDruavesi is thankful the Ministry of Education has made some readjustments in the past six months regarding teacher welfare.\r\nThe National Education Summit will be held on the 21st and 22nd of this month in Nadi.\r\n\r\n\r\nSource > FBC, Sept 2023",
+    "content": "The Fiji Head Teachers Association will be making a submission during the National Education Summit to review all policies that were implemented in the past sixteen years.\r\nFHTA President, Netani Druavesi says teachers have raised concerns regarding their welfare and they want to address them.\r\nDruavesi claims teachers have been denied a lot of things in the past.\r\n\r\n�What they have been receiving before in the last 16 years, sorry to say, in the last 16 years, they have been denied. Everything, I�ll just put it short. Everything that you can think of regarding the betterment of our education system in Fiji, that is all in our submission.�\r\n\r\nDruavesi is thankful the Ministry of Education has made some readjustments in the past six months regarding teacher welfare.\r\nThe National Education Summit will be held on the 21st and 22nd of this month in Nadi.\r\n\r\n\r\nSource > FBC, Sept 2023",
     "author": [
       "lixtronics"
     ],
@@ -215,7 +215,7 @@
   "fields": {
     "title": "$26M building project launched",
     "slug": "26m-building-project-launched",
-    "content": "<p>The Fiji Primary School Principals Association will be making a submission during the National Education Summit to review all policies that were implemented in the past sixteen years.</p>\r\n\r\n<p>FPSPA President, Netani Druavesi says teachers have raised concerns regarding their welfare and they want to address them.</p>\r\n\r\n<p>Druavesi claims teachers have been denied a lot of things in the past.</p>\r\n\r\n<p><em>&ldquo;What they have been receiving before in the last 16 years, sorry to say, in the last 16 years, they have been denied. Everything, I&rsquo;ll just put it short. Everything that you can think of regarding the betterment of our education system in Fiji, that is all in our submission.&rdquo;</em></p>\r\n\r\n<p>Druavesi is thankful the Ministry of Education has made some readjustments in the past six months regarding teacher welfare.</p>\r\n\r\n<p>The National Education Summit will be held on the 21st and 22nd of this month in Nadi.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Source&gt; FBC News&gt; Aug 2025</p>\r\n\r\n<p>&nbsp;</p>",
+    "content": "<p>The Fiji Head Teachers Association will be making a submission during the National Education Summit to review all policies that were implemented in the past sixteen years.</p>\r\n\r\n<p>FHTA President, Netani Druavesi says teachers have raised concerns regarding their welfare and they want to address them.</p>\r\n\r\n<p>Druavesi claims teachers have been denied a lot of things in the past.</p>\r\n\r\n<p><em>&ldquo;What they have been receiving before in the last 16 years, sorry to say, in the last 16 years, they have been denied. Everything, I&rsquo;ll just put it short. Everything that you can think of regarding the betterment of our education system in Fiji, that is all in our submission.&rdquo;</em></p>\r\n\r\n<p>Druavesi is thankful the Ministry of Education has made some readjustments in the past six months regarding teacher welfare.</p>\r\n\r\n<p>The National Education Summit will be held on the 21st and 22nd of this month in Nadi.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Source&gt; FBC News&gt; Aug 2025</p>\r\n\r\n<p>&nbsp;</p>",
     "author": [
       "lixtronics"
     ],
@@ -320,7 +320,7 @@
   "fields": {
     "name": "Nausori Area",
     "slug": "nausori-area",
-    "summary": "The Nausori FPSPA Area",
+    "summary": "The Nausori FHTA Area",
     "order": 2
   }
 },
@@ -466,7 +466,7 @@
   "pk": 8,
   "fields": {
     "area": 1,
-    "name": "RFPSPA",
+    "name": "RFHTA",
     "address": "",
     "latitude": "-18.145379000",
     "longitude": "178.432067000"
@@ -860,7 +860,7 @@
     "membership_number": null,
     "first_name": "Tovolea",
     "last_name": "Tale",
-    "tpf_number": "FPSPA20252F182EC7",
+    "tpf_number": "FHTA20252F182EC7",
     "email": "mada@duaqo.com",
     "phone_number": "2333221",
     "residing_address": "Namadi Heights",
@@ -886,7 +886,7 @@
     "membership_number": null,
     "first_name": "Once Ag",
     "last_name": "Again",
-    "tpf_number": "FPSPA20251597C6AC",
+    "tpf_number": "FHTA20251597C6AC",
     "email": "again@email.com",
     "phone_number": "36654569",
     "residing_address": "Namadi Heights",
@@ -909,7 +909,7 @@
     "user": [
       "lixtronics"
     ],
-    "membership_number": "FPSPA20251675252E",
+    "membership_number": "FHTA20251675252E",
     "first_name": "Dua",
     "last_name": "Tale",
     "tpf_number": "TPF81181144",

@@ -45,7 +45,7 @@ class DistrictArea:
         self.slug = slug
         self.name = name
         self.hos_count = hos_count
-        self.summary = f"{hos_count} Heads of Schools recorded in the current FPSPA district distribution."
+        self.summary = f"{hos_count} Heads of Schools recorded in the current FHTA district distribution."
 
 
 def _district_areas():
@@ -131,8 +131,8 @@ def about(request):
     
     context = {
         'staff_members': staff_members,
-        'page_title': 'About FPSPA - Fiji Primary School Principals Association',
-        'page_description': 'Learn about FPSPA history, mission, functions, and leadership support for primary school principals across Fiji.',
+        'page_title': 'About FHTA - Fiji Head Teachers Association',
+        'page_description': 'Learn about FHTA history, mission, functions, and leadership support for primary school head teachers across Fiji.',
     }
     return render(request, 'about.html', context)
 
@@ -159,8 +159,8 @@ def services(request):
 
     context = {
         'faq_categories': faq_categories,
-        'page_title': 'Our Services - FPSPA',
-        'page_description': 'Learn about FPSPA services, advocacy, professional development, leadership practice, member support, and FAQs.'
+        'page_title': 'Our Services - FHTA',
+        'page_description': 'Learn about FHTA services, advocacy, professional development, leadership practice, member support, and FAQs.'
     }
     
     return render(request, 'services.html', context)

@@ -9,7 +9,7 @@
       <div class="bg-gradient-to-r from-sky-600 to-indigo-600 px-6 py-6">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-4">
-            <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA" class="h-10 w-auto rounded-md bg-white/10 p-1">
+            <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FHTA" class="h-10 w-auto rounded-md bg-white/10 p-1">
             <div>
               <h1 class="maroon-text text-lg font-semibold">Complete Your Member Profile</h1>
               <p class="text-sm maroon-text">Tell us a bit more about yourself. After submission, staff will review and approve your access.</p>
@@ -123,7 +123,7 @@
               </div>
 
               <div>
-                <label for="{{ form.start_year.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Starting Year as Principal or Acting Principal <span class="text-red-500">*</span></label>
+                <label for="{{ form.start_year.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Starting Year as Head Teacher or Acting Head Teacher <span class="text-red-500">*</span></label>
                 {{ form.start_year|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
                 {% if form.start_year.errors %}<p class="mt-1 text-sm text-red-600">{{ form.start_year.errors.0 }}</p>{% endif %}
               </div>

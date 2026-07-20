@@ -4,7 +4,7 @@ from django.apps import AppConfig
 class MembershipConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'membership'
-    verbose_name = 'FPSPA Membership Management'
+    verbose_name = 'FHTA Membership Management'
        
     def ready(self):
         import membership.signals

@@ -76,7 +76,7 @@ def helpdesk_dashboard(request):
     context = {
         'faq_categories': faq_categories,
         'user_tickets': user_tickets,
-        'page_title': 'FPSPA Helpdesk - Get Support'
+        'page_title': 'FHTA Helpdesk - Get Support'
     }
     return render(request, 'helpdesk/dashboard.html', context)
 

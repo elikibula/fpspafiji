@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Member Dashboard - FPSPA{% endblock %}
+{% block title %}Member Dashboard - FHTA{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50">
@@ -11,7 +11,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-3xl font-bold gold-text">FPSPA Member Dashboard</h1>
+          <h1 class="text-3xl font-bold gold-text">FHTA Member Dashboard</h1>
           <p class="gold-text mt-2 text-xl">Ni sa bula vinaka, {{ member.first_name }}!</p>
         </div>
         <div class="text-right">
@@ -371,7 +371,7 @@
           <h2 class="text-xl font-semibold text-gray-800 mb-4">Do you need Support?</h2>
           <div class="space-y-3">
             <a href="#" class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition duration-300 block text-center">
-             FPSPA Helpdesk Ticket
+             FHTA Helpdesk Ticket
             </a>
           </div>
         </div>
@@ -380,13 +380,13 @@
           <h2 class="text-xl font-semibold maroon-text mb-4">Quick Actions</h2>
           <div class="space-y-3">
             <a href="https://member.fpspa.org.fj/Account/Login?ReturnUrl=%2F" class="w-full border border-[#800000] text-[#800000] py-3 px-4 rounded-lg font-semibold hover:bg-[#800000] hover:text-white transition duration-300 block text-center" target="blank">
-              FPSPA Loan Portal
+              FHTA Loan Portal
             </a>
             <a href="{% url 'resources' %}" class="w-full border border-[#800000] text-[#800000] py-3 px-4 rounded-lg font-semibold hover:bg-[#800000] hover:text-white transition duration-300 block text-center">
-              Download FPSPA Documents
+              Download FHTA Documents
             </a>
             <a href="{% url 'services' %}" class="w-full border border-[#800000] text-[#800000] py-3 px-4 rounded-lg font-semibold hover:bg-[#800000] hover:text-white transition duration-300 block text-center">
-              Check out what FPSPA offers
+              Check out what FHTA offers
             </a>
             <a href="#" class="w-full border border-[#800000] text-[#800000] py-3 px-4 rounded-lg font-semibold hover:bg-[#800000] hover:text-white transition duration-300 block text-center">
               Branch Member Directory

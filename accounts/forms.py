@@ -43,7 +43,7 @@ class MemberRegistrationForm(forms.ModelForm):
         self.fields['area'].label = 'Area'
         self.fields['ftra_register_num'].label = 'FTRA Registration Number'
         self.fields['school'].label = 'School'
-        self.fields['start_year'].label = 'Starting Year as Principal'
+        self.fields['start_year'].label = 'Starting Year as Head Teacher'
 
         self.fields['area'].empty_label = 'Select Area'
 

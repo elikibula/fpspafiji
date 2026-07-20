@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Staff Dashboard - FPSPA{% endblock %}
+{% block title %}Staff Dashboard - FHTA{% endblock %}
 
 {% block content %}
 <section class="min-h-screen bg-slate-50 py-10">
@@ -12,14 +12,14 @@
             <div>
               <p class="uppercase tracking-[0.28em] text-xs text-[#f8e7a5] font-semibold">Staff Dashboard</p>
               <h1 class="mt-3 text-3xl lg:text-4xl font-bold">Welcome back, {{ user.get_full_name|default:user.username }}</h1>
-              <p class="mt-3 text-white/80 max-w-3xl">Manage FPSPA operations from one workspace: members, news, events, helpdesk, documents, representatives, training, workshops, certificates, and QR attendance.</p>
+              <p class="mt-3 text-white/80 max-w-3xl">Manage FHTA operations from one workspace: members, news, events, helpdesk, documents, representatives, training, workshops, certificates, and QR attendance.</p>
               <div class="mt-6 flex flex-wrap gap-3">
                 <a href="{% url 'training:staff_dashboard' %}" class="hero-btn hero-btn-primary">Training Management</a>
                 <a href="{% url 'helpdesk:staff_dashboard' %}" class="hero-btn hero-btn-secondary">Helpdesk Queue</a>
               </div>
             </div>
             <div class="rounded-3xl bg-white/10 p-5 border border-white/10">
-              <img src="{% static 'assets/images/fpspa/fpspa1.png' %}" alt="FPSPA leaders" class="h-40 w-full rounded-2xl object-cover">
+              <img src="{% static 'assets/images/fpspa/fpspa1.png' %}" alt="FHTA leaders" class="h-40 w-full rounded-2xl object-cover">
               <p class="mt-4 text-sm text-white/75">Staff tools are grouped in the sidebar; the main dashboard highlights what needs attention today.</p>
             </div>
           </div>
@@ -32,7 +32,7 @@
               <div>
                 <p class="section-kicker">Registration Notifications</p>
                 <h2 class="mt-1 text-2xl font-bold maroon-text">{{ stats.recent_accounts }} new account{{ stats.recent_accounts|pluralize }} this week</h2>
-                <p class="section-copy mt-2">Staff can review newly registered FPSPA accounts from the admin area.</p>
+                <p class="section-copy mt-2">Staff can review newly registered FHTA accounts from the admin area.</p>
               </div>
             </div>
             <a href="{% url 'admin:index' %}" class="hero-btn hero-btn-primary whitespace-nowrap">Review accounts</a>
@@ -97,7 +97,7 @@
             <p class="text-sm text-slate-500">From DOB records</p>
           </div>
           <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Avg. Years as Principal</p>
+            <p class="text-sm text-slate-500">Avg. Years as Head Teacher</p>
             <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.average_principal_years|default:"-" }}</h3>
             <p class="text-sm text-slate-500">Based on start year</p>
           </div>
@@ -123,7 +123,7 @@
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">District</th>
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Age</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Principal Years</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Head Teacher Years</th>
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Submitted</th>
                   <th class="px-4 py-3 text-right text-xs font-bold uppercase tracking-wide text-slate-500">Action</th>
                 </tr>
@@ -170,7 +170,7 @@
             <div>
               <p class="section-kicker">Membership Datatable</p>
               <h2 class="section-title mt-2 text-3xl">Executive member intelligence</h2>
-              <p class="section-copy mt-3">A complete view of members, districts, schools, age profile, FTRA registration, and principal experience.</p>
+              <p class="section-copy mt-3">A complete view of members, districts, schools, age profile, FTRA registration, and head teacher experience.</p>
             </div>
             <span class="rounded-full bg-[#0f2f5f]/5 px-4 py-2 text-sm font-bold text-[#0f2f5f]">{{ all_members|length }} records</span>
           </div>
@@ -185,7 +185,7 @@
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">TPF No.</th>
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">DOB / Age</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Principal Since</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Head Teacher Since</th>
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Status</th>
                   <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Contact</th>
                 </tr>
@@ -220,7 +220,7 @@
           <div>
             <p class="section-kicker">District Datatables</p>
             <h2 class="section-title mt-2 text-3xl">Members by district area</h2>
-            <p class="section-copy mt-3">Use these grouped tables to compare district coverage and principal experience across the 12 FPSPA districts.</p>
+            <p class="section-copy mt-3">Use these grouped tables to compare district coverage and head teacher experience across the 12 FHTA districts.</p>
           </div>
 
           <div class="mt-6 grid gap-4">
@@ -232,7 +232,7 @@
                       <h3 class="text-xl font-bold maroon-text">{{ district.label }}</h3>
                       <p class="text-sm text-slate-500">{{ district.total }} member{{ district.total|pluralize }} • {{ district.active }} active • {{ district.pending }} pending</p>
                     </div>
-                    <span class="rounded-full bg-[#f2c14e]/20 px-4 py-2 text-sm font-bold text-[#0f2f5f]">Avg principal years: {{ district.average_principal_years|default:"-" }}</span>
+                    <span class="rounded-full bg-[#f2c14e]/20 px-4 py-2 text-sm font-bold text-[#0f2f5f]">Avg head teacher years: {{ district.average_principal_years|default:"-" }}</span>
                   </div>
                 </summary>
 
@@ -243,7 +243,7 @@
                         <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Member</th>
                         <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
                         <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Age</th>
-                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Principal Since</th>
+                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Head Teacher Since</th>
                         <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
                         <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Status</th>
                       </tr>
@@ -404,7 +404,7 @@
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
             <div>
               <p class="section-kicker">Application Shortcuts</p>
-              <h2 class="section-title mt-2 text-3xl">Manage the whole FPSPA website</h2>
+              <h2 class="section-title mt-2 text-3xl">Manage the whole FHTA website</h2>
               <p class="section-copy mt-3">The sidebar keeps every major app one click away, while these shortcuts focus on common staff actions.</p>
             </div>
             <div class="flex flex-wrap gap-3">

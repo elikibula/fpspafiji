@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}FPSPA Services{% endblock %}
+{% block title %}FHTA Services{% endblock %}
 
 {% block content %}
 <section class="premium-hero min-h-screen flex items-center justify-center" style="background: linear-gradient(120deg, rgba(9, 28, 58, 0.92), rgba(15, 47, 95, 0.82)), url('{% static 'assets/images/fpspa/homeackground.png' %}') center/cover no-repeat;">
   <div class="max-w-7xl mx-auto px-6 py-24 relative z-10 text-center">
     <p class="hero-chip justify-center mx-auto"><i class="fas fa-briefcase"></i> Member Services</p>
     <h1 class="hero-heading animate-hero">Services designed for school leaders</h1>
-    <p class="hero-subtext mt-6 mx-auto">FPSPA supports Heads of Schools through advocacy, professional learning, leadership practice, collaboration, and practical member services.</p>
+    <p class="hero-subtext mt-6 mx-auto">FHTA supports Heads of Schools through advocacy, professional learning, leadership practice, collaboration, and practical member services.</p>
   </div>
   <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
     <defs>
@@ -31,12 +31,12 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] items-center">
       <div class="feature-card !p-0 overflow-hidden">
-        <img src="{% static 'assets/images/fpspa/district-symposium.webp' %}" alt="FPSPA district symposium leadership gathering" class="h-[380px] w-full object-cover">
+        <img src="{% static 'assets/images/fpspa/district-symposium.webp' %}" alt="FHTA district symposium leadership gathering" class="h-[380px] w-full object-cover">
       </div>
       <div>
         <p class="section-kicker">Support in Practice</p>
-        <h2 class="section-title mt-3">Services shaped by real principal gatherings</h2>
-        <p class="section-copy mt-4">FPSPA services support the same work members already do through district symposia, conferences, professional dialogue, and peer-to-peer leadership support. The Association's service role is grounded in representation, member care, professional development, and collaboration with education partners.</p>
+        <h2 class="section-title mt-3">Services shaped by real head teacher gatherings</h2>
+        <p class="section-copy mt-4">FHTA services support the same work members already do through district symposia, conferences, professional dialogue, and peer-to-peer leadership support. The Association's service role is grounded in representation, member care, professional development, and collaboration with education partners.</p>
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           <div class="info-card !p-5">
             <h3 class="font-bold maroon-text text-xl">Training</h3>
@@ -56,8 +56,8 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-10">
       <p class="section-kicker">Association Support</p>
-      <h2 class="section-title mt-3">What members can access through FPSPA</h2>
-      <p class="section-copy mt-3 max-w-3xl mx-auto">These service categories reflect the Association's core functions and speak directly to the needs of primary school principals and education leaders.</p>
+      <h2 class="section-title mt-3">What members can access through FHTA</h2>
+      <p class="section-copy mt-3 max-w-3xl mx-auto">These service categories reflect the Association's core functions and speak directly to the needs of primary school head teachers and education leaders.</p>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -89,7 +89,7 @@
       <div class="feature-card">
         <div class="feature-icon"><i class="fas fa-landmark"></i></div>
         <h3 class="mt-4 text-2xl font-bold maroon-text">Ministry partnership</h3>
-        <p class="section-copy mt-3">Supporting Ministry of Education initiatives and policies through informed principal engagement.</p>
+        <p class="section-copy mt-3">Supporting Ministry of Education initiatives and policies through informed head teacher engagement.</p>
       </div>
     </div>
   </div>
@@ -99,8 +99,8 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center max-w-4xl mx-auto mb-10">
       <p class="section-kicker">21st-Century Practice</p>
-      <h2 class="section-title mt-3">Best practices promoted by FPSPA</h2>
-      <p class="section-copy mt-4">In response to evolving educational demands, FPSPA promotes practical leadership approaches that help principals strengthen schools, staff, learners, and communities.</p>
+      <h2 class="section-title mt-3">Best practices promoted by FHTA</h2>
+      <p class="section-copy mt-4">In response to evolving educational demands, FHTA promotes practical leadership approaches that help head teachers strengthen schools, staff, learners, and communities.</p>
     </div>
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       <div class="info-card">
@@ -135,7 +135,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center max-w-4xl mx-auto">
       <p class="section-kicker">How It Works</p>
-      <h2 class="section-title mt-3">Using FPSPA services is straightforward</h2>
+      <h2 class="section-title mt-3">Using FHTA services is straightforward</h2>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-3">
       <div class="feature-card !bg-white/10 !border-white/10 text-white">
@@ -160,10 +160,10 @@
       <div>
         <p class="section-kicker">Next Steps</p>
         <h2 class="section-title mt-3">Need support or ready to join?</h2>
-        <p class="section-copy mt-3">Use the existing registration, FAQ, and helpdesk pages to engage with the updated FPSPA site experience.</p>
+        <p class="section-copy mt-3">Use the existing registration, FAQ, and helpdesk pages to engage with the updated FHTA site experience.</p>
       </div>
       <div class="flex flex-wrap gap-3 lg:justify-end">
-        <a href="{% url 'complete_member_profile' %}" class="hero-btn hero-btn-primary">Join FPSPA</a>
+        <a href="{% url 'complete_member_profile' %}" class="hero-btn hero-btn-primary">Join FHTA</a>
         <a href="{% url 'faq_list' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">View FAQs</a>
       </div>
     </div>

@@ -191,7 +191,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Pacific/Fiji'  # More appropriate for Fiji Primary School Principals Association
+TIME_ZONE = 'Pacific/Fiji'  # More appropriate for Fiji Head Teachers Association
 
 USE_I18N = True
 
@@ -349,8 +349,8 @@ LOGGING = {
 
 # Custom settings for your application
 FTA_SETTINGS = {
-    'SITE_NAME': 'Fiji Primary School Principals Association',
-    'SITE_ACRONYM': 'FPSPA',
+    'SITE_NAME': 'Fiji Head Teachers Association',
+    'SITE_ACRONYM': 'FHTA',
     'CONTACT_EMAIL': 'elikibula@gmail.com',
     'SUPPORT_EMAIL': 'elikibula@gmail.com',
     'MEMBERSHIP_FEE': 50.00,

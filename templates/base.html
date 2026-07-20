@@ -5,35 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Fiji Primary School Principals Association{% endblock %}</title>
+    <title>{% block title %}Fiji Head Teachers Association{% endblock %}</title>
 
     <!-- SEO -->
-    <meta name="description" content="Official website of the Fiji Primary School Principals Association (FPSPA). Access news, events, documents, educational resources, and member services.">
-    <meta name="keywords" content="FPSPA, Fiji schools, Fiji education, school principals, Fiji Primary School Principals Association">
+    <meta name="description" content="Official website of the Fiji Head Teachers Association (FHTA). Access news, events, documents, educational resources, and member services.">
+    <meta name="keywords" content="FHTA, Fiji schools, Fiji education, school head teachers, Fiji Head Teachers Association">
     <meta name="author" content="Faith Technology">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:site_name" content="Fiji Primary School Principals Association">
-    <meta property="og:title" content="{% block og_title %}Fiji Primary School Principals Association{% endblock %}">
-    <meta property="og:description" content="Official FPSPA website providing educational news, resources, events, and member services.">
+    <meta property="og:site_name" content="Fiji Head Teachers Association">
+    <meta property="og:title" content="{% block og_title %}Fiji Head Teachers Association{% endblock %}">
+    <meta property="og:description" content="Official FHTA website providing educational news, resources, events, and member services.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:image" content="{% static 'images/logo.png' %}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% block twitter_title %}Fiji Primary School Principals Association{% endblock %}">
-    <meta name="twitter:description" content="Official FPSPA website providing educational news, resources, events, and member services.">
+    <meta name="twitter:title" content="{% block twitter_title %}Fiji Head Teachers Association{% endblock %}">
+    <meta name="twitter:description" content="Official FHTA website providing educational news, resources, events, and member services.">
     <meta name="twitter:image" content="{% static 'images/logo.png' %}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/x-icon">
-    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" sizes="32x32">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">
-    <link rel="icon" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{% static 'images/favicon-16x16.png' %}" type="image/png">
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}" sizes="180x180">
+    <link rel="icon" href="{% static 'favicon-16x16.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon-32x32.png' %}" type="image/png" sizes="32x32">
+    <link rel="icon" href="{% static 'favicon.ico' %}" sizes="any">
+    <link rel="icon" href="{% static 'favicon-32x32.png' %}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{% static 'favicon-16x16.png' %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}" sizes="180x180">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -72,10 +72,10 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between py-3">
                     <a href="{% url 'home' %}" class="brand-mark">
-                        <img class="brand-logo" src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA Logo">
+                        <img class="brand-logo" src="{% static 'assets/images/FHTA_Logo.png' %}" alt="FHTA Logo">
                         <div class="brand-copy">
                             <span class="brand-kicker">National Education Leadership Network</span>
-                            <span class="brand-title">Fiji Primary School Principals Association</span>
+                            <span class="brand-title">Fiji Head Teachers Association</span>
                         </div>
                     </a>
 
@@ -190,10 +190,10 @@
                 <div class="grid gap-8 md:grid-cols-3">
                     <div>
                         <div class="footer-brand">
-                            <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA Logo" class="footer-logo">
+                            <img src="{% static 'assets/images/FHTA_Logo.png' %}" alt="FHTA Logo" class="footer-logo">
                             <div>
-                                <p class="footer-title">FPSPA</p>
-                                <p class="footer-text">Championing leadership, professional excellence, and collaborative support for primary school principals across Fiji.</p>
+                                <p class="footer-title">FHTA</p>
+                                <p class="footer-text">Championing leadership, professional excellence, and collaborative support for primary school head teachers across Fiji.</p>
                             </div>
                         </div>
                     </div>
@@ -209,15 +209,14 @@
                     <div>
                         <p class="footer-heading">Connect</p>
                         <div class="footer-links">
-                            <a href="mailto:info@fpspa.org.fj">fpspafiji@gmail.com</a>
+                            <a href="mailto:info@fpspa.org.fj">fijiheadteachersassociation@gmail.com</a>
                             <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook Community</a>
                             <span>Suva, Fiji</span>
                         </div>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; {% now "Y" %} Fiji Primary School Principals Association. All rights reserved.</p>
-                    <p>Powered by <a href="https://faithtech.pythonanywhere.com/" target="_blank" rel="noopener noreferrer">Faith Technology</a></p>
+                <div class="footer-bottom item-center">
+                    <p>&copy; {% now "Y" %} Fiji Head Teachers Association. All rights reserved.</p>                    
                 </div>
             </div>
         </footer>

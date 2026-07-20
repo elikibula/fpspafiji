@@ -35,7 +35,7 @@ class DistrictArea:
         self.slug = slug
         self.name = name
         self.hos_count = hos_count
-        self.summary = f"{hos_count} Heads of Schools recorded in the current FPSPA district distribution."
+        self.summary = f"{hos_count} Heads of Schools recorded in the current FHTA district distribution."
 
 
 def _district_areas():

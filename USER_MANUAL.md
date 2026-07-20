@@ -1,19 +1,19 @@
-# FPSPA Website User Manual
+# FHTA Website User Manual
 
 Version: 1.0  
-Project: Fiji Primary School Principals Association Website  
+Project: Fiji Head Teachers Association Website
 Audience: Members, staff users, administrators, and content managers
 
 ---
 
 ## 1. Introduction
 
-The FPSPA website is a member and staff portal for the Fiji Primary School Principals Association. It brings together association news, events, membership profiles, representatives, documents, helpdesk support, and online training/workshops in one system.
+The FHTA website is a member and staff portal for the Fiji Head Teachers Association. It brings together association news, events, membership profiles, representatives, documents, helpdesk support, and online training/workshops in one system.
 
 The project supports two main user groups:
 
-- **Members**: Primary school principals and association members who use the website to access news, events, documents, representatives, helpdesk support, and training.
-- **Staff/Admin Users**: FPSPA staff or administrators who manage content, documents, events, helpdesk tickets, members, courses, workshops, certificates, and QR attendance.
+- **Members**: Primary school head teachers and association members who use the website to access news, events, documents, representatives, helpdesk support, and training.
+- **Staff/Admin Users**: FHTA staff or administrators who manage content, documents, events, helpdesk tickets, members, courses, workshops, certificates, and QR attendance.
 
 ---
 
@@ -21,7 +21,7 @@ The project supports two main user groups:
 
 ### 2.1 Accessing the Website
 
-Open the FPSPA website in your browser. The top navigation gives access to public pages such as:
+Open the FHTA website in your browser. The top navigation gives access to public pages such as:
 
 - Home
 - About
@@ -31,7 +31,7 @@ Open the FPSPA website in your browser. The top navigation gives access to publi
 - Training
 - Contact
 
-When you log in, the system also displays the **FPSPA Portal sidebar**, making it easier to move between the main apps.
+When you log in, the system also displays the **FHTA Portal sidebar**, making it easier to move between the main apps.
 
 ### 2.2 Creating an Account
 
@@ -116,7 +116,7 @@ From the Member Dashboard, members should regularly:
 
 1. Check their membership profile.
 2. Review latest news and announcements.
-3. View upcoming FPSPA events.
+3. View upcoming FHTA events.
 4. Continue enrolled training courses.
 5. Use QR check-in for workshops and seminars.
 6. Download forms and documents.
@@ -126,7 +126,7 @@ From the Member Dashboard, members should regularly:
 
 ## 5. Staff Dashboard
 
-The Staff Dashboard is the main operational area for FPSPA staff and administrators.
+The Staff Dashboard is the main operational area for FHTA staff and administrators.
 
 Staff can see:
 
@@ -193,7 +193,7 @@ Member status may show as:
 - Suspended
 - Inactive
 
-If your status is incorrect, contact FPSPA support through the helpdesk.
+If your status is incorrect, contact FHTA support through the helpdesk.
 
 ---
 
@@ -231,7 +231,7 @@ Staff can:
 ### 8.1 Viewing Events as a Member
 
 1. Click **Events** from the sidebar or public navigation.
-2. Browse upcoming FPSPA events.
+2. Browse upcoming FHTA events.
 3. Open an event to view details such as date, time, location, and description.
 
 ### 8.2 Managing Events as Staff
@@ -257,7 +257,7 @@ Staff can:
 
 ## 9. Documents and Resources
 
-The document system stores FPSPA forms, policies, templates, circulars, and other downloadable materials.
+The document system stores FHTA forms, policies, templates, circulars, and other downloadable materials.
 
 ### 9.1 Viewing Documents as a Member
 
@@ -326,7 +326,7 @@ Tickets may be open, in progress, resolved, or closed depending on the configure
 
 ## 11. Representatives and Areas
 
-The representatives app helps members find FPSPA area and branch contacts.
+The representatives app helps members find FHTA area and branch contacts.
 
 ### 11.1 Viewing Area Representatives
 
@@ -343,7 +343,7 @@ Staff/Admin users can manage representative records through the appropriate staf
 
 ## 12. Training and Workshops
 
-The training app manages FPSPA courses, lessons, quizzes, workshops, attendance, and certificates.
+The training app manages FHTA courses, lessons, quizzes, workshops, attendance, and certificates.
 
 ### 12.1 Browsing Courses as a Member
 
@@ -616,7 +616,7 @@ On mobile devices:
 
 - Log out after using a shared computer.
 - Do not share passwords.
-- Upload only approved FPSPA documents and images.
+- Upload only approved FHTA documents and images.
 - Avoid posting private member information in public news or event descriptions.
 - Use helpdesk tickets for support issues instead of sharing sensitive information publicly.
 - Review QR attendance lists after each workshop to ensure records are correct.
@@ -655,9 +655,8 @@ On mobile devices:
 
 ## 21. Support
 
-For help using the FPSPA website:
+For help using the FHTA website:
 
 1. Submit a helpdesk ticket through the portal.
-2. Contact FPSPA staff through the Contact page.
+2. Contact FHTA staff through the Contact page.
 3. Reach out to area representatives for local association support.
-

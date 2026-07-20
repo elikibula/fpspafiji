@@ -235,7 +235,7 @@ class Certificate(models.Model):
     def save(self, *args, **kwargs):
         if not self.certificate_number:
             timestamp = timezone.now().strftime("%Y%m%d")
-            base_number = f"FPSPA-CERT-{timestamp}"
+            base_number = f"FHTA-CERT-{timestamp}"
             candidate = base_number
             suffix = 1
             while Certificate.objects.exclude(pk=self.pk).filter(certificate_number=candidate).exists():

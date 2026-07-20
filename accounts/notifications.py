@@ -33,10 +33,10 @@ def send_user_registration_notification(user, request=None):
     if request is not None:
         staff_dashboard_url = request.build_absolute_uri(staff_dashboard_url)
 
-    subject = f"New FPSPA user registered: {user.get_full_name() or user.username}"
+    subject = f"New FHTA user registered: {user.get_full_name() or user.username}"
     message = "\n".join(
         [
-            "A new user has registered on the FPSPA website.",
+            "A new user has registered on the FHTA website.",
             "",
             f"Name: {user.get_full_name() or '-'}",
             f"Username: {user.username}",

@@ -3,9 +3,9 @@
 <aside class="lg:sticky lg:top-24 self-start rounded-[1.8rem] bg-white shadow-xl border border-slate-100 overflow-hidden">
   <div class="bg-gradient-to-br from-[#0f2f5f] to-[#800000] p-6 text-white">
     <div class="flex items-center gap-3">
-      <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FPSPA logo" class="h-12 w-12 rounded-xl bg-white p-1 object-contain">
+      <img src="{% static 'assets/images/fpspa_logo.png' %}" alt="FHTA logo" class="h-12 w-12 rounded-xl bg-white p-1 object-contain">
       <div>
-        <p class="text-xs uppercase tracking-[0.22em] text-white/70">FPSPA Portal</p>
+        <p class="text-xs uppercase tracking-[0.22em] text-white/70">FHTA Portal</p>
         <h2 class="text-xl font-bold">{% if dashboard_role == "staff" or user.role == "staff" or user.role == "admin" %}Staff Workspace{% else %}Member Hub{% endif %}</h2>
       </div>
     </div>

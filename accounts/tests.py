@@ -28,7 +28,7 @@ class RegistrationNotificationTests(TestCase):
 
         notification = mail.outbox[0]
         self.assertEqual(notification.to, ["staff@example.com"])
-        self.assertIn("New FPSPA user registered", notification.subject)
+        self.assertIn("New FHTA user registered", notification.subject)
         self.assertIn("Username: newmember", notification.body)
         self.assertIn("Email: newmember@example.com", notification.body)
 
