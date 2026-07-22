@@ -7,7 +7,6 @@ from django.contrib.auth import login
 from datetime import date
 import uuid
 from .models import Member, School
-from reps.models import Branch
 from events.models import Event
 from django.utils import timezone
 from datetime import date
@@ -21,20 +20,6 @@ from allauth.account.views import SignupView
 
 def registration_success(request):
     return render(request, 'membership/registration_success.html')
-
-def get_branches(request):
-    area_id = request.GET.get('area_id')
-    if area_id:
-        branches = Branch.objects.filter(area_id=area_id).values('id', 'name')
-        return JsonResponse(list(branches), safe=False)
-    return JsonResponse([], safe=False)
-
-def get_schools(request):
-    branch_id = request.GET.get('branch_id')
-    if branch_id:
-        schools = School.objects.filter(branch_id=branch_id).values('id', 'name')
-        return JsonResponse(list(schools), safe=False)
-    return JsonResponse([], safe=False)
 
 @login_required
 def member_dashboard(request):

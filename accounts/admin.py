@@ -19,8 +19,8 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     
     # Fields to display in the list view
-    list_display = ('username', 'email', 'first_name', 'last_name', 'role', 'is_staff', 'is_active')
-    list_filter = ('role', 'is_staff', 'is_active', 'date_joined')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'role', 'assigned_district', 'is_staff', 'is_active')
+    list_filter = ('role', 'assigned_district', 'is_staff', 'is_active', 'date_joined')
     search_fields = ('username', 'email', 'first_name', 'last_name')
     ordering = ('username',)
     
@@ -28,7 +28,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'email', 'phone_number', 'date_of_birth', 'profile_picture')}),
-        ('Role Information', {'fields': ('role', 'department', 'position')}),
+        ('Role Information', {'fields': ('role', 'assigned_district', 'department', 'position')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
     )
@@ -37,7 +37,7 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'first_name', 'last_name', 'role', 'password1', 'password2'),
+            'fields': ('username', 'email', 'first_name', 'last_name', 'role', 'assigned_district', 'password1', 'password2'),
         }),
     )
     

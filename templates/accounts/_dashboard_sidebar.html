@@ -12,7 +12,7 @@
   </div>
 
   <nav class="p-4 space-y-2 text-sm">
-    {% if dashboard_role == "staff" or user.role == "staff" or user.role == "admin" %}
+    {% if dashboard_role == "staff" or user.role == "staff" or user.role == "admin" or user.role == "district_staff" %}
       <a href="{% url 'staff_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-gauge text-[#1f5ca8] w-5"></i> Dashboard Overview</a>
       <a href="{% url 'news:news_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-newspaper text-[#1f5ca8] w-5"></i> News Management</a>
       <a href="{% url 'events:events_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-calendar-days text-[#1f5ca8] w-5"></i> Events Management</a>
@@ -21,7 +21,7 @@
       <a href="{% url 'training:staff_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-graduation-cap text-[#1f5ca8] w-5"></i> Training & Workshops</a>
       <a href="{% url 'training:staff_course_list' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-qrcode text-[#1f5ca8] w-5"></i> QR Attendance Setup</a>
       <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> Districts & Reps</a>
-      <a href="{% url 'admin:index' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-users-gear text-[#1f5ca8] w-5"></i> Membership Admin</a>
+      {% if user.is_superuser or user.role == 'admin' %}<a href="{% url 'admin:index' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-users-gear text-[#1f5ca8] w-5"></i> Membership Admin</a>{% endif %}
     {% else %}
       <a href="{% url 'member_dashboard' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-house-user text-[#1f5ca8] w-5"></i> My Dashboard</a>
       <a href="{% url 'profile' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-id-card text-[#1f5ca8] w-5"></i> Membership Profile</a>
@@ -34,5 +34,7 @@
       <a href="{% url 'training:my_learning' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-qrcode text-[#1f5ca8] w-5"></i> Training & QR Attendance</a>
       <a href="{% url 'reps:areas' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-map-location-dot text-[#1f5ca8] w-5"></i> District Representatives</a>
     {% endif %}
+    <a href="{% url 'password_change' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-key text-[#1f5ca8] w-5"></i> Change password</a>
+    <a href="{% url 'logout' %}" class="flex items-center gap-3 rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#0f2f5f]/5"><i class="fas fa-right-from-bracket text-[#1f5ca8] w-5"></i> Log out</a>
   </nav>
 </aside>

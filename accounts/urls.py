@@ -17,5 +17,8 @@ urlpatterns = [
     path('api/inprogress/trend/', views.inprogress_trend, name='api_inprogress_trend'),
     path('staff-dashboard/approve-member/<int:member_id>/', views.approve_member, name='approve_member'),
     path('staff-dashboard/reject-member/<int:member_id>/', views.reject_member, name='reject_member'),
+    path('staff-dashboard/return-member/<int:member_id>/', views.return_member, name='return_member'),
+    path('account/password/change/', views.CustomPasswordChangeView.as_view(), name='password_change'),
+    path('account/password/change/done/', views.CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
     
 ]

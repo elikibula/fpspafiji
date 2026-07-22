@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from .models import CustomUser
 from membership.models import Member
+from reps.models import District
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -40,16 +41,17 @@ class MemberRegistrationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['dob'].label = 'Date of Birth'
-        self.fields['area'].label = 'Area'
+        self.fields['district'].label = 'District'
         self.fields['ftra_register_num'].label = 'FTRA Registration Number'
         self.fields['school'].label = 'School'
         self.fields['start_year'].label = 'Starting Year as Head Teacher'
 
-        self.fields['area'].empty_label = 'Select Area'
+        self.fields['district'].empty_label = 'Select District'
+        self.fields['district'].queryset = District.objects.filter(is_active=True).order_by('order', 'name')
 
         for field_name in [
             'first_name', 'last_name', 'dob', 'tpf_number', 'ftra_register_num',
-            'phone_number', 'residing_address', 'category', 'area',
+            'phone_number', 'residing_address', 'category', 'district',
             'school', 'position', 'start_year'
         ]:
             self.fields[field_name].required = True
@@ -58,7 +60,7 @@ class MemberRegistrationForm(forms.ModelForm):
         model = Member
         fields = [
             'first_name', 'last_name', 'dob', 'tpf_number', 'ftra_register_num',
-            'phone_number', 'residing_address', 'category', 'area',
+            'phone_number', 'residing_address', 'category', 'district',
             'school', 'position', 'start_year',
             'profile_photo', 'id_document'
         ]

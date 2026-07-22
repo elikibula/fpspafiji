@@ -19,9 +19,14 @@ from events.models import Event
 from documents.models import Document
 from training.models import Course, CourseSchedule, Enrollment
 from django.http import JsonResponse
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from .notifications import send_user_registration_notification
-from reps.models import Area  # ADD THIS
+from reps.models import District
+from membership.models import MembershipApprovalAudit
+from .permissions import get_staff_district, is_national_administrator, require_application_access
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+from django.urls import reverse_lazy
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +48,7 @@ def complete_member_profile(request):
     try:
         existing_member = Member.objects.get(user=user)
         messages.info(request, "Your member profile is already complete.")
-        if user.role in ['admin', 'staff']:
+        if user.role in ['admin', 'staff', 'district_staff']:
             return redirect("staff_dashboard")
         if existing_member.membership_status != 'active':
             return redirect("pending_approval")
@@ -71,7 +76,7 @@ def complete_member_profile(request):
 
                 messages.success(request, "Member profile saved successfully. Staff will review your registration.")
 
-                if user.role in ['admin', 'staff']:
+                if user.role in ['admin', 'staff', 'district_staff']:
                     return redirect("staff_dashboard")
                 else:
                     return redirect("pending_approval")
@@ -88,7 +93,7 @@ def complete_member_profile(request):
                         request,
                         "You can continue to use the site, but please contact support to fix your profile."
                     )
-                    if user.role in ['admin', 'staff']:
+                    if user.role in ['admin', 'staff', 'district_staff']:
                         return redirect("staff_dashboard")
                     else:
                         return redirect("member_dashboard")
@@ -170,7 +175,7 @@ def custom_logout(request):
 
 @login_required
 def pending_approval(request):
-    if request.user.role in ['admin', 'staff']:
+    if request.user.role in ['admin', 'staff', 'district_staff']:
         return redirect('staff_dashboard')
 
     member = None
@@ -203,7 +208,7 @@ def profile(request):
 
 @login_required
 def dashboard(request):
-    if request.user.role in ['admin', 'staff']:
+    if request.user.role in ['admin', 'staff', 'district_staff']:
         return redirect('staff_dashboard')
     else:
         return redirect('member_dashboard')
@@ -211,16 +216,20 @@ def dashboard(request):
 
 @login_required
 def staff_dashboard(request):
-    if request.user.role not in ['admin', 'staff']:
+    if request.user.role not in ['admin', 'staff', 'district_staff'] and not request.user.is_superuser:
         messages.error(request, 'Access denied.')
         return redirect('member_dashboard')
 
-    # Member statistics
-    total_members = Member.objects.count()
-    active_members = Member.objects.filter(membership_status='active').count()
-    pending_approvals = Member.objects.filter(membership_status='pending').count()
-    members_qs = Member.objects.select_related('user', 'category', 'area').order_by(
-        'area', 'last_name', 'first_name'
+    staff_district = get_staff_district(request.user)
+    district_unassigned = request.user.role == 'district_staff' and staff_district is None
+    members_scope = Member.objects.none() if district_unassigned else Member.objects.all()
+    if staff_district:
+        members_scope = members_scope.filter(district=staff_district)
+    total_members = members_scope.count()
+    active_members = members_scope.filter(membership_status='active').count()
+    pending_approvals = members_scope.filter(membership_status='pending').count()
+    members_qs = members_scope.select_related('user', 'category', 'district').order_by(
+        'district', 'last_name', 'first_name'
     )
     all_members = list(members_qs)
     pending_members = [
@@ -296,7 +305,7 @@ def staff_dashboard(request):
 
     # School and area statistics
     total_schools = Member.objects.exclude(school='').values('school').distinct().count()
-    represented_districts = Member.objects.exclude(area__isnull=True).values('area').distinct().count()
+    represented_districts = members_scope.exclude(district__isnull=True).values('district').distinct().count()
 
     members_with_age = [member.age for member in all_members if member.age is not None]
     principal_years = [member.years_as_principal for member in all_members if member.start_year]
@@ -305,8 +314,9 @@ def staff_dashboard(request):
 
     # Area groups (replaces district_groups)
     district_groups = []
-    for area_obj in Area.objects.all():
-        area_members = [m for m in all_members if m.area_id == area_obj.id]
+    districts = District.objects.all() if is_national_administrator(request.user) else District.objects.filter(pk=getattr(staff_district, 'pk', None))
+    for area_obj in districts:
+        area_members = [m for m in all_members if m.district_id == area_obj.id]
         area_years = [m.years_as_principal for m in area_members if m.start_year]
         district_groups.append({
             'value': area_obj.id,
@@ -318,7 +328,7 @@ def staff_dashboard(request):
             'average_principal_years': round(sum(area_years) / len(area_years), 1) if area_years else None,
         })
 
-    unassigned_members = [m for m in all_members if m.area_id is None]
+    unassigned_members = [m for m in all_members if m.district_id is None]
 
     # News
     recent_news = News.objects.all().order_by('-date_posted')[:5]
@@ -378,6 +388,11 @@ def staff_dashboard(request):
         'all_members': all_members,
         'district_groups': district_groups,
         'unassigned_members': unassigned_members,
+        'assigned_district': staff_district,
+        'district_unassigned': district_unassigned,
+        'returned_members': members_scope.filter(membership_status='returned')[:25],
+        'rejected_members': members_scope.filter(membership_status='rejected')[:25],
+        'recent_approval_activity': MembershipApprovalAudit.objects.filter(application__in=members_scope).select_related('acting_user', 'staff_district', 'application')[:10],
     }
     return render(request, 'accounts/staff_dashboard.html', context)
 
@@ -425,13 +440,18 @@ def member_dashboard(request):
 @login_required
 @require_POST
 def approve_member(request, member_id):
-    if request.user.role not in ['admin', 'staff']:
-        messages.error(request, 'Access denied.')
-        return redirect('member_dashboard')
-
-    member = get_object_or_404(Member, pk=member_id)
-    member.membership_status = 'active'
-    member.save(update_fields=['membership_status'])
+    member = get_object_or_404(Member.objects.select_related('district', 'user'), pk=member_id)
+    require_application_access(request.user, member)
+    if not member.district_id:
+        messages.error(request, 'Assign a district before approving this application.')
+        return redirect('staff_dashboard')
+    if member.user_id == request.user.id:
+        raise PermissionDenied('You cannot approve your own application.')
+    with transaction.atomic():
+        previous = member.membership_status
+        member.membership_status = 'active'
+        member.save(update_fields=['membership_status'])
+        MembershipApprovalAudit.objects.create(application=member, action='approved', acting_user=request.user, staff_district=get_staff_district(request.user), previous_status=previous, new_status='active', comment=request.POST.get('comment', '').strip())
     messages.success(request, f'{member.full_name} has been approved.')
     return redirect('staff_dashboard')
 
@@ -439,15 +459,40 @@ def approve_member(request, member_id):
 @login_required
 @require_POST
 def reject_member(request, member_id):
-    if request.user.role not in ['admin', 'staff']:
-        messages.error(request, 'Access denied.')
-        return redirect('member_dashboard')
-
-    member = get_object_or_404(Member, pk=member_id)
-    member.membership_status = 'inactive'
-    member.save(update_fields=['membership_status'])
-    messages.success(request, f'{member.full_name} has been marked inactive.')
+    member = get_object_or_404(Member.objects.select_related('district'), pk=member_id)
+    require_application_access(request.user, member)
+    reason = request.POST.get('comment', '').strip()
+    with transaction.atomic():
+        previous = member.membership_status
+        member.membership_status = 'rejected'
+        member.save(update_fields=['membership_status'])
+        MembershipApprovalAudit.objects.create(application=member, action='rejected', acting_user=request.user, staff_district=get_staff_district(request.user), previous_status=previous, new_status='rejected', comment=reason)
+    messages.success(request, f'{member.full_name} has been rejected.')
     return redirect('staff_dashboard')
+
+
+@login_required
+@require_POST
+def return_member(request, member_id):
+    member = get_object_or_404(Member.objects.select_related('district'), pk=member_id)
+    require_application_access(request.user, member)
+    comment = request.POST.get('comment', '').strip()
+    with transaction.atomic():
+        previous = member.membership_status
+        member.membership_status = 'returned'
+        member.save(update_fields=['membership_status'])
+        MembershipApprovalAudit.objects.create(application=member, action='returned', acting_user=request.user, staff_district=get_staff_district(request.user), previous_status=previous, new_status='returned', comment=comment)
+    messages.success(request, f'{member.full_name} has been returned for correction.')
+    return redirect('staff_dashboard')
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'accounts/password_change.html'
+    success_url = reverse_lazy('password_change_done')
+
+
+class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'accounts/password_change_done.html'
 
 
 def inprogress_trend(request):

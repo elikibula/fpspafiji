@@ -54,8 +54,8 @@
               <h3 class="mt-1 text-2xl font-bold maroon-text">{{ open_tickets|length }}</h3>
             </div>
             <div class="info-card !p-5">
-              <p class="text-sm text-slate-500">Area Network</p>
-              <h3 class="mt-1 text-2xl font-bold maroon-text">{{ member.area.name|default:'Not set' }}</h3>
+              <p class="text-sm text-slate-500">District</p>
+              <h3 class="mt-1 text-2xl font-bold maroon-text">{{ member.district.name|default:'District not assigned' }}</h3>
             </div>
           </div>
 
@@ -105,7 +105,7 @@
               <div class="mt-6 grid gap-3">
                 <a href="{% url 'profile' %}" class="rounded-2xl border border-slate-100 p-4 hover:bg-slate-50 font-semibold text-slate-700"><i class="fas fa-id-card text-[#1f5ca8] mr-2"></i> Update membership profile</a>
                 <a href="{% url 'documents:public_downloads' %}" class="rounded-2xl border border-slate-100 p-4 hover:bg-slate-50 font-semibold text-slate-700"><i class="fas fa-file-arrow-down text-[#1f5ca8] mr-2"></i> Download documents and forms</a>
-                <a href="{% url 'reps:areas' %}" class="rounded-2xl border border-slate-100 p-4 hover:bg-slate-50 font-semibold text-slate-700"><i class="fas fa-map-location-dot text-[#1f5ca8] mr-2"></i> Find area representatives</a>
+                <a href="{% url 'reps:district_representatives' %}" class="rounded-2xl border border-slate-100 p-4 hover:bg-slate-50 font-semibold text-slate-700"><i class="fas fa-users text-[#1f5ca8] mr-2"></i> District representatives</a>
                 <a href="{% url 'helpdesk:ticket_list' %}" class="rounded-2xl border border-slate-100 p-4 hover:bg-slate-50 font-semibold text-slate-700"><i class="fas fa-headset text-[#1f5ca8] mr-2"></i> Track helpdesk tickets</a>
               </div>
             </div>

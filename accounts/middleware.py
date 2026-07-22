@@ -12,6 +12,7 @@ class PendingMemberApprovalMiddleware:
         "/accounts/pending-approval/",
         "/accounts/logout/",
         "/accounts/login/",
+        "/accounts/account/password/change/",
         "/static/",
         "/media/",
     )

@@ -16,7 +16,7 @@ class MemberCategory(models.Model):
 
 class School(models.Model):
     name = models.CharField(max_length=300)
-    area = models.ForeignKey('reps.Area', on_delete=models.CASCADE)
+    district = models.ForeignKey('reps.District', on_delete=models.CASCADE)
     school_type = models.ForeignKey(MemberCategory, on_delete=models.CASCADE)
     address = models.TextField()
     
@@ -29,6 +29,8 @@ class Member(models.Model):
         ('active', 'Active'),
         ('suspended', 'Suspended'),
         ('inactive', 'Inactive'),
+        ('returned', 'Returned for correction'),
+        ('rejected', 'Rejected'),
     ]
   
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="member_profile")
@@ -46,7 +48,7 @@ class Member(models.Model):
     
     # Professional details
     category = models.ForeignKey(MemberCategory, on_delete=models.CASCADE,null=True)
-    area = models.ForeignKey('reps.Area', on_delete=models.CASCADE,null=True)
+    district = models.ForeignKey('reps.District', on_delete=models.PROTECT, null=True, blank=True, related_name='members')
     school = models.CharField(max_length=300, blank=True, null=True)
     position = models.CharField(max_length=200, null=True)
     start_year = models.IntegerField(default=current_year)
@@ -115,3 +117,18 @@ class Member(models.Model):
     @property
     def years_as_principal_display(self):
         return self.years_of_service_display
+
+
+class MembershipApprovalAudit(models.Model):
+    ACTIONS = [('approved', 'Approved'), ('returned', 'Returned'), ('rejected', 'Rejected')]
+    application = models.ForeignKey(Member, related_name='approval_audits', on_delete=models.CASCADE)
+    action = models.CharField(max_length=20, choices=ACTIONS)
+    acting_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='membership_actions', on_delete=models.PROTECT)
+    staff_district = models.ForeignKey('reps.District', null=True, blank=True, on_delete=models.PROTECT)
+    previous_status = models.CharField(max_length=20)
+    new_status = models.CharField(max_length=20)
+    comment = models.TextField(blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-timestamp']

@@ -7,6 +7,7 @@
 <section class="min-h-screen bg-slate-50 py-10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <div class="space-y-6">
+      {% if district_unassigned %}<div class="rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-900">Your account has not been assigned to a district. Please contact the FHTA administrator.</div>{% elif assigned_district %}<div class="rounded-2xl border border-blue-200 bg-blue-50 p-5 text-blue-900"><strong>Assigned district:</strong> {{ assigned_district.name }}</div>{% endif %}
         <div class="rounded-[2rem] overflow-hidden bg-gradient-to-r from-[#0f2f5f] via-[#153f7a] to-[#800000] text-white shadow-xl">
           <div class="grid gap-6 lg:grid-cols-[1fr_300px] items-center p-6 lg:p-8">
             <div>
@@ -137,7 +138,7 @@
                     </td>
                     <td class="px-4 py-4 text-sm text-slate-600">{{ member.user.username|default:"-" }}</td>
                     <td class="px-4 py-4 text-sm text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.area|default:"-" }}</td>
+                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.district|default:"District not assigned" }}</td>
                     <td class="px-4 py-4 text-sm text-slate-600">{{ member.school|default:"-" }}</td>
                     <td class="px-4 py-4 text-sm text-slate-600">{{ member.age_display }}</td>
                     <td class="px-4 py-4 text-sm text-slate-600">{{ member.years_as_principal_display }}</td>
@@ -197,7 +198,7 @@
                       <div class="font-bold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</div>
                       <div class="text-xs text-slate-500">{{ member.category.name|default:"No category" }}</div>
                     </td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.area|default:"-" }}</td>
+                    <td class="px-4 py-4 text-slate-600">{{ member.district|default:"District not assigned" }}</td>
                     <td class="px-4 py-4 text-slate-600">{{ member.school|default:"-" }}</td>
                     <td class="px-4 py-4 text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
                     <td class="px-4 py-4 text-slate-600">{{ member.tpf_number|default:"-" }}</td>

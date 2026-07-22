@@ -104,8 +104,9 @@
               </div>
 
               <div>
-                <label for="{{ form.district_area.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">District Area <span class="text-red-500">*</span></label>
-                {{ form.area|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                <label for="{{ form.district.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">District <span class="text-red-500">*</span></label>
+                {{ form.district|add_class:"block w-full rounded-lg border-2 border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:border-sky-500 shadow-sm hover:shadow-md transition-all duration-200" }}
+                {{ form.district.errors }}
                 {% if form.district_area.errors %}<p class="mt-1 text-sm text-red-600">{{ form.district_area.errors.0 }}</p>{% endif %}
               </div>
             </div>
