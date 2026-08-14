@@ -23,11 +23,10 @@ ALLOWED_HOSTS = [
     '::1',
     '[::1]',
     'testserver',
-    'fpspafiji.org',
-    'www.fpspafiji.org',
+    'fhtafiji.org',
+    'www.fhtafiji.org',
     'fpspafiji.pythonanywhere.com',
 ]
-
 # Security settings for production
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
