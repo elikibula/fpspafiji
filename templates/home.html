@@ -58,74 +58,604 @@
 
 <script> document.addEventListener("DOMContentLoaded", function () { const carouselElement = document.getElementById( "fhta-image-carousel" ); if (!carouselElement || typeof Splide === "undefined") { return; } new Splide(carouselElement, { type: "loop", autoplay: true, interval: 5000, speed: 1200, pauseOnHover: false, pauseOnFocus: false, resetProgress: false, arrows: true, pagination: true, keyboard: "global", drag: true, waitForTransition: true, rewind: false, perPage: 1, perMove: 1, reducedMotion: { speed: 0, rewindSpeed: 0, autoplay: true, }, }).mount(); }); </script>
 
-<section class="premium-hero min-h-screen flex items-center justify-center" style="background: linear-gradient(120deg, rgba(9, 28, 58, 0.92), rgba(15, 47, 95, 0.82)), url('{% static 'assets/images/fpspa/homeackground.png' %}') center/cover no-repeat;">
-  <div class="max-w-7xl mx-auto py-6 px-6 hero-panel">
-    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-center">
-      <div data-aos="fade-up">
-        <span class="hero-chip"><i class="fas fa-star"></i> Leadership. Advocacy. Excellence.</span>
-        <h1 class="hero-heading animate-hero">
-          Strengthening <span class="hero-highlight">primary school leadership</span> across Fiji.
-        </h1>
-        <p class="hero-subtext mt-6">
-          The Fiji Head Teachers Association supports school leaders with national advocacy, professional development, practical resources, and a connected network of peers working for stronger schools and student outcomes.
-        </p>
-        <p class="mt-6 text-lg font-semibold text-[#f8e7a5]">Leading schools. Shaping futures.</p>
 
-        <div class="hero-actions">
-          <a href="{% url 'complete_member_profile' %}" class="hero-btn hero-btn-primary">
-            <i class="fas fa-user-plus"></i> Join FHTA
+{% load static %}
+
+<section
+  class="premium-hero relative flex min-h-screen items-center justify-center overflow-hidden"
+  style="
+    background:
+      linear-gradient(
+        120deg,
+        rgba(9, 28, 58, 0.94),
+        rgba(15, 47, 95, 0.84)
+      ),
+      url('{% static "assets/images/fpspa/homeackground.png" %}')
+      center / cover no-repeat;
+  "
+>
+
+  <div class="hero-panel relative z-10 mx-auto w-full max-w-7xl px-6 py-14 lg:py-20">
+
+    <div class="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+
+      <!-- =====================================================
+           LEFT SIDE — FHTA HERO MESSAGE
+      ====================================================== -->
+      <div data-aos="fade-up">
+
+        <span class="hero-chip">
+          <i class="fas fa-star"></i>
+          Leadership. Advocacy. Excellence.
+        </span>
+
+        <h1 class="hero-heading animate-hero mt-5">
+          Leading with
+          <span class="hero-highlight">
+            Vision, Empowering Schools,
+            Enriching Lives, Shaping
+          </span>
+          Fiji’s Future.
+        </h1>
+
+        <p class="hero-subtext mt-6">
+          The Fiji Head Teachers Association supports school leaders
+          through national advocacy, professional development,
+          practical resources, and a connected network of peers
+          working for stronger schools and better student outcomes.
+        </p>
+
+        <p class="mt-6 text-lg font-semibold text-[#f8e7a5]">
+          Leading schools. Shaping futures.
+        </p>
+
+        <!-- HERO ACTIONS -->
+        <div class="hero-actions mt-8 flex flex-wrap gap-3">
+
+          <a
+            href="{% url 'complete_member_profile' %}"
+            class="hero-btn hero-btn-primary"
+          >
+            <i class="fas fa-user-plus"></i>
+            Join FHTA
           </a>
-          <a href="{% url 'services' %}" class="hero-btn hero-btn-secondary">
-            <i class="fas fa-compass"></i> Explore Services
+
+          <a
+            href="{% url 'staff_members:team' %}"
+            class="hero-btn hero-btn-secondary"
+          >
+            <i class="fas fa-users"></i>
+            Meet the Executives
           </a>
+
+          <a
+            href="{% url 'services' %}"
+            class="hero-btn hero-btn-secondary"
+          >
+            <i class="fas fa-compass"></i>
+            Explore Services
+          </a>
+
         </div>
 
-        <div class="hero-stats">
+        <!-- HERO STATS -->
+        <div class="hero-stats mt-10">
+
           <div class="hero-stat">
             <strong>735</strong>
-            <span>Heads of Schools represented across the current district distribution</span>
+            <span>
+              Heads of Schools represented across the current
+              district distribution
+            </span>
           </div>
+
           <div class="hero-stat">
             <strong>12</strong>
-            <span>District networks connecting primary school leaders across Fiji</span>
+            <span>
+              District networks connecting primary school leaders
+              across Fiji
+            </span>
           </div>
+
           <div class="hero-stat">
             <strong>43</strong>
-            <span>Years of establishment recorded in the Association history</span>
+            <span>
+              Years of establishment recorded in the Association history
+            </span>
           </div>
-        </div>        
+
+        </div>
+
       </div>
 
-      <div class="glass-card p-4 lg:p-5" data-aos="fade-left">
-        <div class="relative overflow-hidden rounded-[1.8rem] shadow-2xl">
-          <img src="{% static 'assets/images/fpspa/homepage.png' %}" alt="FHTA leaders at a headteachers forum" class="h-[450px] w-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#06162f]/90 via-[#06162f]/20 to-transparent"></div>
+
+      <!-- =====================================================
+           RIGHT SIDE — MINISTER MESSAGE GLASS CARD
+      ====================================================== -->
+      <div
+        class="glass-card overflow-hidden !p-0"
+        data-aos="fade-left"
+      >
+
+        <!-- PHOTO -->
+        <div class="relative h-[330px] overflow-hidden sm:h-[380px] lg:h-[360px]">
+
+          <img
+            src="{% static 'assets/images/fpspa/Aseri.png' %}"
+            alt="Honourable Minister for Education"
+            class="h-full w-full object-cover object-top"
+          >
+
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-[#06162f]/95 via-[#06162f]/20 to-transparent"
+          ></div>
+
+          <!-- PHOTO LABEL -->
           <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <p class="text-sm uppercase tracking-[0.25em] text-[#f8e7a5]">FHTA in action</p>
-            <h2 class="mt-2 text-3xl font-bold">Real leaders, real conversations, real service.</h2>
-            <p class="mt-3 text-white/80">Association forums and national gatherings keep head teachers connected to the issues that shape Fiji's primary schools.</p>
+
+            <p
+              class="text-xs font-bold uppercase tracking-[0.22em] text-[#fde339]"
+            >
+              Official Message
+            </p>
+
+            <h2 class="mt-2 text-2xl font-bold sm:text-3xl">
+              Honourable Aseri Masivou Radrodro
+            </h2>
+
+            <p class="mt-1 text-sm text-white/75">
+              Minister for Education
+            </p>
+
           </div>
+
         </div>
+
+
+        <!-- MESSAGE BODY -->
+        <div class="bg-white/95 p-6 backdrop-blur-xl sm:p-7">
+
+          <div class="flex items-center gap-3">
+
+            <span class="h-px w-8 bg-[#fde339]"></span>
+
+            <p
+              class="text-xs font-bold uppercase tracking-[0.18em] text-[#1f5ca8]"
+            >
+              Message from the Minister
+            </p>
+
+          </div>
+
+
+          <!-- THEME -->
+          <div
+            class="relative mt-5 rounded-2xl border-l-4 border-[#fde339] bg-[#0f2f5f]/5 p-5"
+          >
+
+            <i
+              class="fas fa-quote-left absolute right-4 top-3 text-4xl text-[#0f2f5f]/5"
+              aria-hidden="true"
+            ></i>
+
+            <p
+              class="relative text-lg font-semibold italic leading-7 text-[#0f2f5f]"
+            >
+              “Leading with Vision, Empowering Schools,
+              Enriching Lives, Shaping Fiji’s Future.”
+            </p>
+
+          </div>
+
+
+          <!-- EXCERPT -->
+          <div class="mt-5 space-y-3 text-sm leading-7 text-slate-600">
+
+            <p>
+              Bula Vinaka and warm greetings to everyone.
+            </p>
+
+            <p>
+              It is a pleasure to join you for the launch of the
+              Fiji Head Teachers Association website, an important
+              step towards strengthening communication, collaboration
+              and professional engagement among head teachers and
+              education stakeholders across Fiji.
+            </p>
+
+          </div>
+
+
+          <!-- READ FULL MESSAGE -->
+          <div class="mt-6">
+
+            <button
+              type="button"
+              id="openMinisterMessage"
+              class="hero-btn hero-btn-primary inline-flex items-center gap-2"
+            >
+              <i class="fas fa-book-open"></i>
+              Read Full Message
+              <i class="fas fa-arrow-right text-sm"></i>
+            </button>
+
+          </div>
+
+        </div>
+
       </div>
+
     </div>
+
   </div>
-    <svg class="waves absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+
+
+  <!-- =========================================================
+       HERO WAVES
+  ========================================================== -->
+  <svg
+    class="waves absolute bottom-0 left-0 w-full"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 24 150 28"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+
     <defs>
-      <linearGradient id="aboutWave" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#fde339" />
-        <stop offset="100%" stop-color="#fde339" />
+
+      <linearGradient
+        id="aboutWave"
+        x1="0"
+        y1="0"
+        x2="0"
+        y2="1"
+      >
+        <stop offset="0%" stop-color="#fde339"></stop>
+        <stop offset="100%" stop-color="#fde339"></stop>
       </linearGradient>
-      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+
+      <path
+        id="gentle-wave"
+        d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"
+      ></path>
+
     </defs>
+
     <g class="parallax">
-      <use xlink:href="#gentle-wave" x="48" y="0" fill="url(#aboutWave)" opacity="0.7"/>
-      <use xlink:href="#gentle-wave" x="48" y="3" fill="url(#aboutWave)" opacity="0.5"/>
-      <use xlink:href="#gentle-wave" x="48" y="5" fill="url(#aboutWave)" opacity="0.3"/>
-      <use xlink:href="#gentle-wave" x="48" y="7" fill="url(#aboutWave)" opacity="1"/>
+
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="0"
+        fill="url(#aboutWave)"
+        opacity="0.7"
+      ></use>
+
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="3"
+        fill="url(#aboutWave)"
+        opacity="0.5"
+      ></use>
+
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="5"
+        fill="url(#aboutWave)"
+        opacity="0.3"
+      ></use>
+
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="7"
+        fill="url(#aboutWave)"
+        opacity="1"
+      ></use>
+
     </g>
+
   </svg>
-  
+
 </section>
+
+
+<!-- =========================================================
+     FULL MINISTER MESSAGE MODAL
+========================================================== -->
+<div
+  id="ministerMessageModal"
+  class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm"
+  aria-hidden="true"
+>
+
+  <div
+    class="relative max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] bg-white shadow-2xl"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ministerMessageTitle"
+  >
+
+    <!-- CLOSE BUTTON -->
+    <button
+      type="button"
+      id="closeMinisterMessage"
+      class="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-xl text-slate-700 shadow-lg transition hover:bg-[#6f1d2c] hover:text-white"
+      aria-label="Close Minister message"
+    >
+      <i class="fas fa-times"></i>
+    </button>
+
+
+    <!-- MODAL HEADER -->
+    <div
+      class="relative overflow-hidden rounded-t-[2rem] bg-gradient-to-br from-[#0f2f5f] to-[#06162f] px-7 py-9 text-white sm:px-10"
+    >
+
+      <div
+        class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#fde339]/15 blur-3xl"
+      ></div>
+
+      <p
+        class="text-xs font-bold uppercase tracking-[0.22em] text-[#fde339]"
+      >
+        Fiji Head Teachers Association
+      </p>
+
+      <h2
+        id="ministerMessageTitle"
+        class="mt-3 max-w-3xl text-3xl font-bold sm:text-4xl"
+      >
+        Message from the Honourable Minister for Education
+      </h2>
+
+    </div>
+
+
+    <!-- MODAL BODY -->
+    <div class="px-7 py-9 sm:px-10 sm:py-12">
+
+      <!-- MINISTER PROFILE -->
+      <div
+        class="mb-8 flex flex-col gap-5 border-b border-slate-200 pb-7 sm:flex-row sm:items-center"
+      >
+
+        <img
+          src="{% static 'assets/images/fpspa/Aseri.png' %}"
+          alt="Honourable Minister for Education"
+          class="h-24 w-24 rounded-2xl object-cover object-top shadow-lg"
+        >
+
+        <div>
+
+          <p class="text-xl font-bold text-[#0f2f5f]">
+            Honourable Aseri Masivou Radrodro
+          </p>
+
+          <p class="mt-1 text-sm font-semibold text-slate-500">
+            Minister for Education
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- MESSAGE -->
+      <div class="space-y-5 text-[1.03rem] leading-8 text-slate-700">
+
+        <p>
+          Bula Vinaka and warm greetings to everyone.
+        </p>
+
+        <p>
+          It is a pleasure to join you for the launch of the Fiji
+          Head Teachers Association website, an important step towards
+          strengthening communication, collaboration and professional
+          engagement among head teachers and education stakeholders
+          across Fiji.
+        </p>
+
+        <p>
+          This website provides a modern platform for the Association
+          to share information, promote professional development,
+          highlight achievements and keep its members connected,
+          regardless of where they serve.
+        </p>
+
+        <blockquote
+          class="my-8 rounded-2xl border-l-4 border-[#fde339] bg-[#0f2f5f]/5 p-6 text-xl font-semibold italic leading-8 text-[#0f2f5f]"
+        >
+          “Leading with Vision, Empowering Schools, Enriching Lives,
+          Shaping Fiji’s Future.”
+        </blockquote>
+
+        <p>
+          This theme reflects the important role our head teachers
+          play in our educational system.
+        </p>
+
+        <p>
+          Our head teachers are at the forefront of turning national
+          education priorities into meaningful outcomes at the school
+          level. Their leadership, commitment and dedication are
+          essential to strengthening the quality of education in Fiji.
+        </p>
+
+        <p>
+          As we embrace digital transformation, I encourage the
+          Fiji Head Teachers Association to use this platform to
+          strengthen its professional network and share the good work
+          being done by school leaders across the country.
+        </p>
+
+        <p>
+          The Ministry of Education remains committed to working
+          alongside the Association and all education stakeholders
+          to strengthen school leadership and improve learning
+          outcomes for every child.
+        </p>
+
+        <p>
+          I congratulate the Fiji Head Teachers Association on this
+          important milestone and wish the Association every success
+          as it continues to lead with vision, empower schools,
+          enrich lives and shape Fiji’s future.
+        </p>
+
+      </div>
+
+
+      <!-- SIGNATURE -->
+      <div class="mt-10 border-t border-slate-200 pt-7">
+
+        <p class="font-bold text-[#0f2f5f]">
+          HONOURABLE ASERI MASIVOU RADRODRO
+        </p>
+
+        <p
+          class="mt-1 text-sm font-semibold uppercase tracking-[0.13em] text-slate-500"
+        >
+          Minister for Education
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- MODAL FOOTER -->
+    <div
+      class="flex justify-end border-t border-slate-200 bg-slate-50 px-7 py-5 sm:px-10"
+    >
+
+      <button
+        type="button"
+        id="closeMinisterMessageFooter"
+        class="hero-btn hero-btn-primary"
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL SCRIPT
+========================================================== -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const modal = document.getElementById(
+    "ministerMessageModal"
+  );
+
+  const openButton = document.getElementById(
+    "openMinisterMessage"
+  );
+
+  const closeButton = document.getElementById(
+    "closeMinisterMessage"
+  );
+
+  const closeFooter = document.getElementById(
+    "closeMinisterMessageFooter"
+  );
+
+
+  function openMinisterModal() {
+
+    if (!modal) {
+      return;
+    }
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    modal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.style.overflow = "hidden";
+
+    closeButton?.focus();
+  }
+
+
+  function closeMinisterModal() {
+
+    if (!modal) {
+      return;
+    }
+
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+
+    modal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.style.overflow = "";
+
+    openButton?.focus();
+  }
+
+
+  openButton?.addEventListener(
+    "click",
+    openMinisterModal
+  );
+
+
+  closeButton?.addEventListener(
+    "click",
+    closeMinisterModal
+  );
+
+
+  closeFooter?.addEventListener(
+    "click",
+    closeMinisterModal
+  );
+
+
+  modal?.addEventListener(
+    "click",
+    function (event) {
+
+      if (event.target === modal) {
+        closeMinisterModal();
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape" &&
+        modal &&
+        !modal.classList.contains("hidden")
+      ) {
+        closeMinisterModal();
+      }
+
+    }
+  );
+
+});
+</script>
 
 <section class="section-shell">
   <div class="max-w-7xl mx-auto px-6">
