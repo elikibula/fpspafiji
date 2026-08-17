@@ -1,10 +1,10 @@
 from itertools import chain
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.db.utils import OperationalError, ProgrammingError
 from django.shortcuts import render
 from django.utils import timezone
 
-from documents.models import DocumentCategory
+from documents.models import Document, DocumentCategory
 from events.models import Event
 from helpdesk.models import FAQCategory, FAQ
 from news.models import News, PhotoNews
@@ -41,7 +41,24 @@ def services(request):
     return render(request, 'services.html', {'faq_categories': categories, 'page_title': 'Our Services - FHTA', 'page_description': 'Learn about FHTA services, advocacy, professional development, leadership practice, member support, and FAQs.'})
 
 def resources(request):
-    category = _safe_first(DocumentCategory.objects.filter(name__iexact='Downloads'))
-    return render(request, 'resources.html', {'downloads_category': category, 'documents': _safe_list(category.document_set.all()) if category else None})
+    query = request.GET.get('q', '').strip()
+    category_id = request.GET.get('category', '').strip()
+
+    public_categories = DocumentCategory.objects.filter(is_public=True).order_by('name')
+    documents = Document.objects.filter(category__is_public=True).select_related(
+        'category', 'subcategory'
+    ).order_by('category__name', 'subcategory__name', '-date_posted', 'title')
+
+    if category_id.isdigit():
+        documents = documents.filter(category_id=category_id)
+    if query:
+        documents = documents.filter(Q(title__icontains=query) | Q(description__icontains=query))
+
+    return render(request, 'resources.html', {
+        'public_categories': _safe_list(public_categories),
+        'public_documents': _safe_list(documents),
+        'selected_category_id': category_id,
+        'query': query,
+    })
 
 def contact(request): return render(request, 'contact.html')

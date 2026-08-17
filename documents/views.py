@@ -11,6 +11,7 @@ from .forms import DocumentForm, DocumentCategoryForm
 from django.views.decorators.http import require_GET
 from django.db import IntegrityError, transaction
 import logging
+from pathlib import Path
 from django.contrib.auth import get_user_model
 
 
@@ -21,7 +22,9 @@ User = get_user_model()
 @login_required
 def upload_document(request):
     user_groups = request.user.groups.all()
-    categories = DocumentCategory.objects.filter(groups__in=user_groups).distinct()
+    categories = DocumentCategory.objects.filter(
+        Q(groups__in=user_groups) | Q(is_public=True)
+    ).distinct()
 
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -189,17 +192,26 @@ def public_downloads(request):
 def category_detail(request, pk):
     user_groups = request.user.groups.all()
 
-    # find category accessible to the user's groups
-    category = DocumentCategory.objects.filter(pk=pk, groups__in=user_groups).distinct().first()
+    # Public folders do not need a group assignment. Private folders still do.
+    category = DocumentCategory.objects.filter(pk=pk).filter(
+        Q(is_public=True) | Q(groups__in=user_groups)
+    ).distinct().first()
     if not category:
         raise Http404("Category not found or access denied")
 
     # Subcategories for this category visible to user
-    subcategories = SubCategory.objects.filter(category=category, groups__in=user_groups).distinct()
+    subcategories = SubCategory.objects.filter(category=category)
+    if not category.is_public:
+        subcategories = subcategories.filter(groups__in=user_groups)
+    subcategories = subcategories.distinct()
 
     # Prefetch subcategories for sidebar/categories
-    subcategory_qs = SubCategory.objects.filter(groups__in=user_groups).distinct()
-    categories = DocumentCategory.objects.filter(groups__in=user_groups).prefetch_related(
+    subcategory_qs = SubCategory.objects.filter(
+        Q(category__is_public=True) | Q(groups__in=user_groups)
+    ).distinct()
+    categories = DocumentCategory.objects.filter(
+        Q(is_public=True) | Q(groups__in=user_groups)
+    ).prefetch_related(
         Prefetch('subcategories', queryset=subcategory_qs)
     ).distinct()
 
@@ -207,11 +219,12 @@ def category_detail(request, pk):
     documents_qs = Document.objects.filter(category=category)
 
     # Filter by groups if Document has groups M2M
-    try:
-        Document._meta.get_field('groups')
-        documents_qs = documents_qs.filter(groups__in=user_groups).distinct()
-    except FieldDoesNotExist:
-        documents_qs = documents_qs.distinct()
+    if not category.is_public:
+        try:
+            Document._meta.get_field('groups')
+            documents_qs = documents_qs.filter(groups__in=user_groups).distinct()
+        except FieldDoesNotExist:
+            documents_qs = documents_qs.distinct()
 
     # Only active if field exists
     try:
@@ -225,7 +238,7 @@ def category_detail(request, pk):
         Document._meta.get_field('created_at')
         documents_qs = documents_qs.order_by('-created_at')
     except FieldDoesNotExist:
-        pass
+        documents_qs = documents_qs.order_by('-date_posted', 'pk')
 
     # Pagination (12 per page)
     paginator = Paginator(documents_qs, 12)
@@ -248,20 +261,27 @@ def category_detail(request, pk):
 def subcategory_detail(request, pk):
     user_groups = request.user.groups.all()
 
-    subcategory = SubCategory.objects.filter(pk=pk, groups__in=user_groups).distinct().first()
+    subcategory = SubCategory.objects.filter(pk=pk).filter(
+        Q(category__is_public=True) | Q(groups__in=user_groups)
+    ).distinct().first()
     if not subcategory:
         raise Http404("Subcategory not found or access denied")
 
     documents_qs = Document.objects.filter(subcategory=subcategory)
-    try:
-        Document._meta.get_field('groups')
-        documents_qs = documents_qs.filter(groups__in=user_groups).distinct()
-    except FieldDoesNotExist:
-        documents_qs = documents_qs.distinct()
+    if not subcategory.category.is_public:
+        try:
+            Document._meta.get_field('groups')
+            documents_qs = documents_qs.filter(groups__in=user_groups).distinct()
+        except FieldDoesNotExist:
+            documents_qs = documents_qs.distinct()
 
     # pagination optional: reuse same pattern if desired (not paginating here)
-    subcategory_qs = SubCategory.objects.filter(groups__in=user_groups).distinct()
-    categories = DocumentCategory.objects.filter(groups__in=user_groups).prefetch_related(
+    subcategory_qs = SubCategory.objects.filter(
+        Q(category__is_public=True) | Q(groups__in=user_groups)
+    ).distinct()
+    categories = DocumentCategory.objects.filter(
+        Q(is_public=True) | Q(groups__in=user_groups)
+    ).prefetch_related(
         Prefetch('subcategories', queryset=subcategory_qs)
     ).distinct()
 
@@ -309,7 +329,12 @@ def document_detail(request, pk):
 @login_required
 def view_document(request, pk):
     document = get_object_or_404(Document, pk=pk)
-    return render(request, 'documents/view_document.html', {'document': document})
+    extension = Path(document.file.name).suffix.lower()
+    return render(request, 'documents/view_document.html', {
+        'document': document,
+        'extension': extension,
+        'can_embed': extension in {'.pdf', '.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.txt'},
+    })
 
 
 @login_required
@@ -319,16 +344,23 @@ def embedded_preview(request, pk):
     Note: this single implementation replaces the duplicate version you had.
     """
     document = get_object_or_404(Document, pk=pk)
-    file_url = request.build_absolute_uri(getattr(document, 'file').url)
-
-    supported_formats = ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx']
-    if not any(file_url.lower().endswith(ext) for ext in supported_formats):
-        return render(request, 'documents/unsupported_format.html', {'document': document})
-
+    extension = Path(document.file.name).suffix.lower()
     return render(request, 'documents/embedded_preview.html', {
         'document': document,
-        'file_url': file_url
+        'extension': extension,
+        'can_embed': extension in {'.pdf', '.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.txt'},
     })
+
+
+@login_required
+def inline_document(request, pk):
+    """Stream a document inline for the authenticated browser viewer."""
+    document = get_object_or_404(Document, pk=pk)
+    return FileResponse(
+        document.file.open('rb'),
+        as_attachment=False,
+        filename=document.file.name.rsplit('/', 1)[-1],
+    )
 
 
 @login_required
@@ -336,6 +368,20 @@ def download_document(request, pk):
     document = get_object_or_404(Document, pk=pk)
     # return FileResponse for streaming download
     return FileResponse(getattr(document, 'file').open(), as_attachment=True, filename=getattr(document, 'file').name)
+
+
+def download_public_document(request, pk):
+    """Download a document only when its folder is explicitly public."""
+    document = get_object_or_404(
+        Document.objects.select_related('category'),
+        pk=pk,
+        category__is_public=True,
+    )
+    return FileResponse(
+        document.file.open('rb'),
+        as_attachment=True,
+        filename=document.file.name.rsplit('/', 1)[-1],
+    )
 
 
 # ------------------------

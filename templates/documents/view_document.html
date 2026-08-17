@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}View {{ document.title }}{% endblock %}
+
+{% block content %}
+<main class="min-h-screen bg-slate-100 py-10 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto">
+    {% include 'documents/_document_viewer.html' %}
+  </div>
+</main>
+{% endblock %}

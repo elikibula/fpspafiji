@@ -22,7 +22,9 @@ class DocumentAdmin(admin.ModelAdmin):
 
 @admin.register(DocumentCategory)
 class DocumentCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'parent_category']
+    list_display = ['name', 'parent_category', 'is_public']
+    list_filter = ['is_public']
+    list_editable = ['is_public']
     filter_horizontal = ('groups',)
 
 

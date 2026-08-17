@@ -3,420 +3,1208 @@
 
 {% block title %}Staff Dashboard - FHTA{% endblock %}
 
+
+{% block extra_css %}
+
+<!-- =========================================================
+     DATATABLES CSS
+========================================================= -->
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css"
+>
+
+<style>
+
+  /* =========================================================
+     FHTA DATATABLES — PREMIUM
+  ========================================================= */
+
+  .fhta-table-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 1.25rem;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    overflow: hidden;
+  }
+
+  .fhta-table-card--accent {
+    border-top: 3px solid #0f2f5f;
+  }
+
+  .fhta-table-card--accent-maroon {
+    border-top: 3px solid #800000;
+  }
+
+  /*
+   These target DataTables' OWN generated markup (.dt-search,
+   .dt-length, .dt-info, .dt-paging) rather than a hand-built
+   toolbar. Letting DataTables render its native controls and
+   just restyling them is what guarantees sorting and paging
+   keep working — a detached custom toolbar has to be manually
+   re-wired to the table API and is easy to get out of sync.
+  */
+
+  .fhta-table-card div.dt-container .dt-layout-row:first-child {
+    padding: 1.1rem 1.25rem;
+    margin: 0;
+    border-bottom: 1px solid #f1f5f9;
+    background: #fafbfc;
+  }
+
+  .fhta-table-card div.dt-container .dt-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .fhta-table-card div.dt-container .dt-search::before {
+    content: "\f002"; /* fa-magnifying-glass */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0.9rem;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    pointer-events: none;
+  }
+
+  .fhta-table-card div.dt-container .dt-search label {
+    display: none; /* the placeholder text carries the label */
+  }
+
+  .fhta-table-card div.dt-container .dt-search input {
+    min-width: 240px;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    padding: 0.6rem 0.85rem 0.6rem 2.35rem;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .fhta-table-card div.dt-container .dt-search input:focus {
+    border-color: #1f5ca8;
+    box-shadow: 0 0 0 3px rgba(31, 92, 168, 0.12);
+  }
+
+  .fhta-table-card div.dt-container .dt-length select {
+    border: 1px solid #cbd5e1;
+    border-radius: 0.65rem;
+    background: #ffffff;
+    padding: 0.45rem 2rem 0.45rem 0.75rem;
+    font-size: 0.82rem;
+    color: #475569;
+  }
+
+  /* =========================================================
+     TABLE
+  ========================================================= */
+
+  .fhta-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table.dataTable {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+  }
+
+  table.dataTable thead {
+    background: #f8fafc;
+  }
+
+  table.dataTable thead th {
+    position: relative;
+    white-space: nowrap;
+    padding: 0.9rem 1.5rem 0.9rem 1rem !important;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    border-bottom: 1px solid #e2e8f0 !important;
+    cursor: pointer;
+  }
+
+  /* Sticky header on the pending-approvals table only */
+  #pending-members-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  /* =========================================================
+     FROZEN MEMBER COLUMN
+     Keeps the first column (Member) pinned while the rest of
+     the table scrolls horizontally inside .fhta-table-scroll,
+     so you can always see whose row you're looking at.
+  ========================================================= */
+
+  .fhta-table-scroll table.dataTable thead th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 3; /* above both the plain sticky header (2) and the frozen body cells (1) */
+    background: #f8fafc; /* must be opaque — sticky cells don't inherit the row-group's painted background */
+    box-shadow: 6px 0 6px -6px rgba(15, 23, 42, 0.15);
+  }
+
+  .fhta-table-scroll table.dataTable tbody td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #ffffff;
+    box-shadow: 6px 0 6px -6px rgba(15, 23, 42, 0.15);
+  }
+
+  .fhta-table-scroll table.dataTable tbody tr:hover td:first-child {
+    background: #f8fafc;
+  }
+
+  /* Custom sort icons replacing DataTables' default background-image ones */
+  table.dataTable thead th.dt-orderable-asc span.dt-column-order,
+  table.dataTable thead th.dt-orderable-desc span.dt-column-order {
+    position: absolute;
+    right: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  table.dataTable thead th.dt-orderable-asc span.dt-column-order::before,
+  table.dataTable thead th.dt-orderable-desc span.dt-column-order::before {
+    content: "\f0dc"; /* fa-sort */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #cbd5e1;
+    font-size: 0.7rem;
+  }
+
+  table.dataTable thead th.dt-ordering-asc span.dt-column-order::before {
+    content: "\f0de"; /* fa-sort-up */
+    color: #1f5ca8;
+  }
+
+  table.dataTable thead th.dt-ordering-desc span.dt-column-order::before {
+    content: "\f0dd"; /* fa-sort-down */
+    color: #1f5ca8;
+  }
+
+  table.dataTable tbody td {
+    padding: 1.05rem 1rem !important;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9 !important;
+  }
+
+  table.dataTable tbody tr {
+    background: #ffffff;
+    border-left: 3px solid transparent;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  table.dataTable tbody tr:hover {
+    background: #f8fafc !important;
+    border-left-color: #0f2f5f;
+  }
+
+  table.dataTable tbody tr:last-child td {
+    border-bottom: 0 !important;
+  }
+
+  /* Avatar initials for the Member column */
+  .fhta-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #0f2f5f;
+    background: #f2c14e;
+    flex-shrink: 0;
+  }
+
+  .fhta-avatar.tint-1 { background: #dbeafe; color: #1f5ca8; }
+  .fhta-avatar.tint-2 { background: #fde68a; color: #92400e; }
+  .fhta-avatar.tint-3 { background: #fecaca; color: #991b1b; }
+  .fhta-avatar.tint-4 { background: #bbf7d0; color: #166534; }
+
+  .fhta-member-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 200px;
+  }
+
+  /* Unified pill/badge family (status, district, etc.) */
+  .fhta-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  /* =========================================================
+     PAGINATION — lighter, outlined current state
+  ========================================================= */
+
+  div.dt-container .dt-layout-row {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+  }
+
+  div.dt-container .dt-info {
+    color: #64748b;
+    font-size: 0.82rem;
+  }
+
+  div.dt-container .dt-paging {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  div.dt-container .dt-paging .dt-paging-button {
+    border-radius: 0.65rem !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    color: #0f2f5f !important;
+    padding: 0.45rem 0.75rem !important;
+    transition: all 0.2s ease;
+  }
+
+  div.dt-container .dt-paging .dt-paging-button:hover {
+    border-color: #0f2f5f !important;
+    background: #f1f5f9 !important;
+  }
+
+  div.dt-container .dt-paging .dt-paging-button.current {
+    background: rgba(128, 0, 0, 0.08) !important;
+    border-color: #800000 !important;
+    color: #800000 !important;
+    font-weight: 700;
+  }
+
+  div.dt-container .dt-paging .dt-paging-button.disabled {
+    opacity: 0.45;
+    cursor: not-allowed !important;
+  }
+
+  /* Empty state */
+  table.dataTable tbody .dt-empty {
+    padding: 3rem 1rem !important;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  /* =========================================================
+     DISTRICT DETAILS
+  ========================================================= */
+
+  .district-details > summary {
+    transition: background-color 0.2s ease;
+  }
+
+  .district-details > summary:hover {
+    background: #f8fafc;
+  }
+
+  .district-details[open] > summary {
+    background: #f8fafc;
+  }
+
+  .district-details .district-chevron {
+    transition: transform 0.2s ease;
+  }
+
+  .district-details[open] .district-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media (max-width: 640px) {
+
+    div.dt-container .dt-layout-row {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    div.dt-container .dt-search input {
+      min-width: 0;
+      width: 100%;
+    }
+
+    div.dt-container .dt-paging {
+      justify-content: center;
+    }
+
+    /* On narrow screens a frozen ~200px column eats most of the
+       viewport — let the whole table scroll together instead. */
+    .fhta-table-scroll table.dataTable thead th:first-child,
+    .fhta-table-scroll table.dataTable tbody td:first-child {
+      position: static;
+      box-shadow: none;
+    }
+
+  }
+
+</style>
+
+{% endblock %}
+
+
+
 {% block content %}
+
 <section class="min-h-screen bg-slate-50 py-10">
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
     <div class="space-y-6">
-      {% if district_unassigned %}<div class="rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-900">Your account has not been assigned to a district. Please contact the FHTA administrator.</div>{% elif assigned_district %}<div class="rounded-2xl border border-blue-200 bg-blue-50 p-5 text-blue-900"><strong>Assigned district:</strong> {{ assigned_district.name }}</div>{% endif %}
-        <div class="rounded-[2rem] overflow-hidden bg-gradient-to-r from-[#0f2f5f] via-[#153f7a] to-[#800000] text-white shadow-xl">
-          <div class="grid gap-6 lg:grid-cols-[1fr_300px] items-center p-6 lg:p-8">
+
+
+      <!-- =====================================================
+           DISTRICT ASSIGNMENT NOTICE
+      ====================================================== -->
+
+      {% if district_unassigned %}
+
+        <div class="rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-900">
+          <div class="flex items-start gap-3">
+            <i class="fas fa-triangle-exclamation mt-1"></i>
             <div>
-              <p class="uppercase tracking-[0.28em] text-xs text-[#f8e7a5] font-semibold">Staff Dashboard</p>
-              <h1 class="mt-3 text-3xl lg:text-4xl font-bold">Welcome back, {{ user.get_full_name|default:user.username }}</h1>
-              <p class="mt-3 text-white/80 max-w-3xl">Manage FHTA operations from one workspace: members, news, events, helpdesk, documents, representatives, training, workshops, certificates, and QR attendance.</p>
-              <div class="mt-6 flex flex-wrap gap-3">
-                <a href="{% url 'training:staff_dashboard' %}" class="hero-btn hero-btn-primary">Training Management</a>
-                <a href="{% url 'helpdesk:staff_dashboard' %}" class="hero-btn hero-btn-secondary">Helpdesk Queue</a>
-              </div>
-            </div>
-            <div class="rounded-3xl bg-white/10 p-5 border border-white/10">
-              <img src="{% static 'assets/images/fpspa/fpspa1.png' %}" alt="FHTA leaders" class="h-40 w-full rounded-2xl object-cover">
-              <p class="mt-4 text-sm text-white/75">Staff tools are grouped in the sidebar; the main dashboard highlights what needs attention today.</p>
+              <strong>District not assigned.</strong>
+              <p class="mt-1 text-sm">
+                Your account has not been assigned to a district.
+                Please contact the FHTA administrator.
+              </p>
             </div>
           </div>
         </div>
 
-        <div class="info-card !p-5 border-l-4 !border-l-[#f2c14e]">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div class="flex items-start gap-4">
-              <span class="feature-icon !w-12 !h-12 shrink-0"><i class="fas fa-bell"></i></span>
-              <div>
-                <p class="section-kicker">Registration Notifications</p>
-                <h2 class="mt-1 text-2xl font-bold maroon-text">{{ stats.recent_accounts }} new account{{ stats.recent_accounts|pluralize }} this week</h2>
-                <p class="section-copy mt-2">Staff can review newly registered FHTA accounts from the admin area.</p>
-              </div>
-            </div>
-            <a href="{% url 'admin:index' %}" class="hero-btn hero-btn-primary whitespace-nowrap">Review accounts</a>
-          </div>
-          {% if recent_accounts %}
-            <div class="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {% for account in recent_accounts %}
-                <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                  <div class="flex items-start justify-between gap-3">
-                    <div class="min-w-0">
-                      <h3 class="font-bold text-slate-800 truncate">{{ account.get_full_name|default:account.username }}</h3>
-                      <p class="text-sm text-slate-500 truncate">{{ account.email|default:"No email provided" }}</p>
-                    </div>
-                    <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase text-[#1f5ca8]">{{ account.get_role_display }}</span>
-                  </div>
-                  <p class="mt-3 text-xs font-semibold text-slate-500">{{ account.date_joined|date:"d M Y H:i" }}</p>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <div class="mt-5 rounded-2xl border border-slate-100 bg-slate-50 p-4">
-              <p class="text-sm font-semibold text-slate-700">No new account registrations this week.</p>
-              <p class="mt-1 text-sm text-slate-500">When someone creates an account, their details will appear here for staff review.</p>
-            </div>
-          {% endif %}
-        </div>
+      {% elif assigned_district %}
 
-        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Members</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.total_members }}</h3>
-            <p class="text-sm text-slate-500">{{ stats.active_members }} active</p>
-          </div>
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Pending Approvals</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.pending_approvals }}</h3>
-            <p class="text-sm text-slate-500">Review membership records</p>
-          </div>
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Open Tickets</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.active_tickets }}</h3>
-            <p class="text-sm text-slate-500">{{ stats.in_progress_tickets }} in progress</p>
-          </div>
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Training</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.published_training_count }}</h3>
-            <p class="text-sm text-slate-500">{{ stats.active_training_enrollments }} active enrollments</p>
-          </div>
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Districts Represented</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.represented_districts }}</h3>
-            <p class="text-sm text-slate-500">Current member distribution</p>
-          </div>
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Schools Recorded</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.total_schools }}</h3>
-            <p class="text-sm text-slate-500">Typed by members</p>
-          </div>
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Average Age</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.average_member_age|default:"-" }}</h3>
-            <p class="text-sm text-slate-500">From DOB records</p>
-          </div>
-          <div class="info-card !p-5">
-            <p class="text-sm text-slate-500">Avg. Years as Head Teacher</p>
-            <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.average_principal_years|default:"-" }}</h3>
-            <p class="text-sm text-slate-500">Based on start year</p>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div class="rounded-2xl border border-blue-200 bg-blue-50 p-5 text-blue-900">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-location-dot"></i>
             <div>
-              <p class="section-kicker">Member Approval</p>
-              <h2 class="section-title mt-2 text-3xl">Pending registration approvals</h2>
-              <p class="section-copy mt-3">Approve members only after their account and profile details have been reviewed.</p>
+              <strong>Assigned district:</strong>
+              {{ assigned_district.name }}
             </div>
-            <span class="rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700">{{ stats.pending_approvals }} waiting</span>
-          </div>
-
-          <div class="mt-6 overflow-x-auto">
-            <table class="min-w-full divide-y divide-slate-200">
-              <thead class="bg-slate-50">
-                <tr>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Member</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Username</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">District</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Age</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Head Teacher Years</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Submitted</th>
-                  <th class="px-4 py-3 text-right text-xs font-bold uppercase tracking-wide text-slate-500">Action</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 bg-white">
-                {% for member in pending_members %}
-                  <tr>
-                    <td class="px-4 py-4">
-                      <div class="font-bold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</div>
-                      <div class="text-sm text-slate-500">{{ member.email|default:"No email" }}</div>
-                    </td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.user.username|default:"-" }}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.district|default:"District not assigned" }}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.school|default:"-" }}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.age_display }}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.years_as_principal_display }}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">{{ member.date_joined|date:"d M Y H:i" }}</td>
-                    <td class="px-4 py-4">
-                      <div class="flex justify-end gap-2">
-                        <form method="post" action="{% url 'approve_member' member.id %}">
-                          {% csrf_token %}
-                          <button type="submit" class="rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white hover:bg-green-700">Approve</button>
-                        </form>
-                        <form method="post" action="{% url 'reject_member' member.id %}">
-                          {% csrf_token %}
-                          <button type="submit" class="rounded-full bg-slate-200 px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-300">Reject</button>
-                        </form>
-                      </div>
-                    </td>
-                  </tr>
-                {% empty %}
-                  <tr>
-                    <td colspan="9" class="px-4 py-8 text-center text-slate-500">No pending registrations are waiting for approval.</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
           </div>
         </div>
 
-        <div class="info-card">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p class="section-kicker">Membership Datatable</p>
-              <h2 class="section-title mt-2 text-3xl">Executive member intelligence</h2>
-              <p class="section-copy mt-3">A complete view of members, districts, schools, age profile, FTRA registration, and head teacher experience.</p>
-            </div>
-            <span class="rounded-full bg-[#0f2f5f]/5 px-4 py-2 text-sm font-bold text-[#0f2f5f]">{{ all_members|length }} records</span>
-          </div>
+      {% endif %}
 
-          <div class="mt-6 overflow-x-auto">
-            <table class="min-w-full divide-y divide-slate-200 text-sm">
-              <thead class="bg-slate-50">
-                <tr>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Member</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">District</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">TPF No.</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">DOB / Age</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Head Teacher Since</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Status</th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Contact</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 bg-white">
-                {% for member in all_members %}
-                  <tr>
-                    <td class="px-4 py-4">
-                      <div class="font-bold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</div>
-                      <div class="text-xs text-slate-500">{{ member.category.name|default:"No category" }}</div>
-                    </td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.district|default:"District not assigned" }}</td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.school|default:"-" }}</td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.tpf_number|default:"-" }}</td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.dob|date:"d M Y"|default:"-" }}<br><span class="text-xs text-slate-500">{{ member.age_display }}</span></td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.start_year|default:"-" }}<br><span class="text-xs text-slate-500">{{ member.years_as_principal_display }}</span></td>
-                    <td class="px-4 py-4"><span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">{{ member.get_membership_status_display }}</span></td>
-                    <td class="px-4 py-4 text-slate-600">{{ member.phone_number|default:"-" }}<br><span class="text-xs text-slate-500">{{ member.email|default:"No email" }}</span></td>
-                  </tr>
-                {% empty %}
-                  <tr>
-                    <td colspan="9" class="px-4 py-8 text-center text-slate-500">No member records are available yet.</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
 
-        <div class="info-card">
+
+      <!-- =====================================================
+           DASHBOARD HERO
+      ====================================================== -->
+
+      <div class="rounded-[2rem] overflow-hidden bg-gradient-to-r from-[#0f2f5f] via-[#153f7a] to-[#800000] text-white shadow-xl">
+        <div class="grid gap-6 lg:grid-cols-[1fr_300px] items-center p-6 lg:p-8">
           <div>
-            <p class="section-kicker">District Datatables</p>
-            <h2 class="section-title mt-2 text-3xl">Members by district area</h2>
-            <p class="section-copy mt-3">Use these grouped tables to compare district coverage and head teacher experience across the 12 FHTA districts.</p>
+            <p class="uppercase tracking-[0.28em] text-xs text-[#f8e7a5] font-semibold">
+              Staff Dashboard
+            </p>
+            <h1 class="mt-3 text-3xl lg:text-4xl font-bold">
+              Welcome back,
+              {{ user.get_full_name|default:user.username }}
+            </h1>
+            <p class="mt-3 text-white/80 max-w-3xl">
+              Manage FHTA operations from one workspace: members,
+              news, events, helpdesk, documents, representatives,
+              training, workshops, certificates, and QR attendance.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="{% url 'training:staff_dashboard' %}" class="hero-btn hero-btn-primary">
+                Training Management
+              </a>
+              <a href="{% url 'helpdesk:staff_dashboard' %}" class="hero-btn hero-btn-secondary">
+                Helpdesk Queue
+              </a>
+            </div>
+          </div>
+          <div class="rounded-3xl bg-white/10 p-5 border border-white/10">
+            <img
+              src="{% static 'assets/images/fpspa/fpspa1.png' %}"
+              alt="FHTA leaders"
+              class="h-40 w-full rounded-2xl object-cover"
+            >
+            <p class="mt-4 text-sm text-white/75">
+              Staff tools are grouped in the sidebar; the main dashboard
+              highlights what needs attention today.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- =====================================================
+           REGISTRATION NOTIFICATIONS
+      ====================================================== -->
+
+      <div class="info-card !p-5 border-l-4 !border-l-[#f2c14e]">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div class="flex items-start gap-4">
+            <span class="feature-icon !w-12 !h-12 shrink-0">
+              <i class="fas fa-bell"></i>
+            </span>
+            <div>
+              <p class="section-kicker">Registration Notifications</p>
+              <h2 class="mt-1 text-2xl font-bold maroon-text">
+                {{ stats.recent_accounts }}
+                new account{{ stats.recent_accounts|pluralize }}
+                this week
+              </h2>
+              <p class="section-copy mt-2">
+                Staff can review newly registered FHTA accounts
+                from the admin area.
+              </p>
+            </div>
+          </div>
+          <a href="{% url 'admin:index' %}" class="hero-btn hero-btn-primary whitespace-nowrap">
+            Review accounts
+          </a>
+        </div>
+
+        {% if recent_accounts %}
+          <div class="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {% for account in recent_accounts %}
+              <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+                <div class="flex items-start justify-between gap-3">
+                  <div class="min-w-0">
+                    <h3 class="font-bold text-slate-800 truncate">
+                      {{ account.get_full_name|default:account.username }}
+                    </h3>
+                    <p class="text-sm text-slate-500 truncate">
+                      {{ account.email|default:"No email provided" }}
+                    </p>
+                  </div>
+                  <span class="fhta-pill bg-white text-[#1f5ca8] uppercase">
+                    {{ account.get_role_display }}
+                  </span>
+                </div>
+                <p class="mt-3 text-xs font-semibold text-slate-500">
+                  {{ account.date_joined|date:"d M Y H:i" }}
+                </p>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="mt-5 rounded-2xl border border-slate-100 bg-slate-50 p-4">
+            <p class="text-sm font-semibold text-slate-700">
+              No new account registrations this week.
+            </p>
+            <p class="mt-1 text-sm text-slate-500">
+              When someone creates an account, their details will
+              appear here for staff review.
+            </p>
+          </div>
+        {% endif %}
+      </div>
+
+
+
+      <!-- =====================================================
+           DASHBOARD STATISTICS
+      ====================================================== -->
+
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Members</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.total_members }}</h3>
+          <p class="text-sm text-slate-500">{{ stats.active_members }} active</p>
+        </div>
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Pending Approvals</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.pending_approvals }}</h3>
+          <p class="text-sm text-slate-500">Review membership records</p>
+        </div>
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Open Tickets</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.active_tickets }}</h3>
+          <p class="text-sm text-slate-500">{{ stats.in_progress_tickets }} in progress</p>
+        </div>
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Training</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.published_training_count }}</h3>
+          <p class="text-sm text-slate-500">{{ stats.active_training_enrollments }} active enrollments</p>
+        </div>
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Districts Represented</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.represented_districts }}</h3>
+          <p class="text-sm text-slate-500">Current member distribution</p>
+        </div>
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Schools Recorded</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.total_schools }}</h3>
+          <p class="text-sm text-slate-500">Typed by members</p>
+        </div>
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Average Age</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.average_member_age|default:"-" }}</h3>
+          <p class="text-sm text-slate-500">From DOB records</p>
+        </div>
+
+        <div class="info-card !p-5">
+          <p class="text-sm text-slate-500">Avg. Years as Head Teacher</p>
+          <h3 class="mt-1 text-3xl font-bold maroon-text">{{ stats.average_principal_years|default:"-" }}</h3>
+          <p class="text-sm text-slate-500">Based on start year</p>
+        </div>
+
+      </div>
+
+
+
+      <!-- =====================================================
+           PENDING MEMBER APPROVAL DATATABLE
+      ====================================================== -->
+
+      <div class="info-card">
+
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p class="section-kicker">Member Approval</p>
+            <h2 class="section-title mt-2 text-3xl">Pending registration approvals</h2>
+            <p class="section-copy mt-3">
+              Review member account and profile information before
+              approving their FHTA membership.
+            </p>
+          </div>
+          <span class="self-start rounded-full bg-amber-50 px-4 py-2 text-sm font-bold text-amber-700 lg:self-auto">
+            {{ stats.pending_approvals }} waiting
+          </span>
+        </div>
+
+        {% if pending_members %}
+
+          <div class="fhta-table-card fhta-table-card--accent mt-6">
+
+            <div class="fhta-table-scroll">
+              <table id="pending-members-table" class="w-full text-sm">
+
+                <thead>
+                  <tr>
+                    <th>Member</th>
+                    <th>Username</th>
+                    <th>FTRA No.</th>
+                    <th>District</th>
+                    <th>School</th>
+                    <th>Age</th>
+                    <th>Head Teacher Years</th>
+                    <th>Submitted</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for member in pending_members %}
+                    <tr>
+
+                      <td>
+                        <div class="fhta-member-cell">
+                          <span class="fhta-avatar tint-{{ forloop.counter0|divisibleby:4|yesno:'1,2' }}">
+                            {{ member.full_name|default:"?"|first|upper }}
+                          </span>
+                          <div class="min-w-0">
+                            <div class="font-bold text-slate-800">
+                              {{ member.full_name|default:"Unnamed member" }}
+                            </div>
+                            <div class="mt-1 text-xs text-slate-500">
+                              {{ member.email|default:"No email" }}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>{{ member.user.username|default:"-" }}</td>
+
+                      <td>{{ member.ftra_register_num|default:"-" }}</td>
+
+                      <td>
+                        {% if member.district %}
+                          <span class="fhta-pill bg-blue-50 text-[#1f5ca8]">{{ member.district }}</span>
+                        {% else %}
+                          <span class="fhta-pill bg-amber-50 text-amber-700">District not assigned</span>
+                        {% endif %}
+                      </td>
+
+                      <td><div class="min-w-[160px]">{{ member.school|default:"-" }}</div></td>
+
+                      <td data-order="{{ member.age_display|default:0 }}">
+                        {{ member.age_display|default:"-" }}
+                      </td>
+
+                      <td data-order="{{ member.start_year|default:0 }}">
+                        {{ member.years_as_principal_display|default:"-" }}
+                      </td>
+
+                      <td data-order="{{ member.date_joined|date:'YmdHis' }}">
+                        <span class="whitespace-nowrap">{{ member.date_joined|date:"d M Y" }}</span>
+                        <div class="text-xs text-slate-400">{{ member.date_joined|date:"H:i" }}</div>
+                      </td>
+
+                      <td>
+                        <div class="flex min-w-[170px] flex-wrap gap-2">
+
+                          <form method="post" action="{% url 'approve_member' member.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-4 py-2 text-xs font-bold text-white transition hover:bg-green-700">
+                              <i class="fas fa-check"></i> Approve
+                            </button>
+                          </form>
+
+                          <form method="post" action="{% url 'reject_member' member.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-slate-200 px-4 py-2 text-xs font-bold text-slate-700 transition hover:bg-slate-300">
+                              <i class="fas fa-times"></i> Reject
+                            </button>
+                          </form>
+
+                        </div>
+                      </td>
+
+                    </tr>
+                  {% endfor %}
+                </tbody>
+
+              </table>
+            </div>
+
           </div>
 
-          <div class="mt-6 grid gap-4">
-            {% for district in district_groups %}
-              <details class="rounded-2xl border border-slate-200 bg-white p-4" {% if district.total %}open{% endif %}>
-                <summary class="cursor-pointer list-none">
-                  <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        {% else %}
+
+          <div class="mt-6 rounded-2xl border border-green-100 bg-green-50 p-8 text-center">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-xl text-green-700">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="mt-4 font-bold text-green-900">All caught up</h3>
+            <p class="mt-2 text-sm text-green-700">
+              No pending registrations are waiting for approval.
+            </p>
+          </div>
+
+        {% endif %}
+
+      </div>
+
+
+
+      <!-- =====================================================
+           MEMBERS BY DISTRICT DATATABLES
+      ====================================================== -->
+
+      <div class="info-card">
+
+        <div>
+          <p class="section-kicker">District Members</p>
+          <h2 class="section-title mt-2 text-3xl">Members by district</h2>
+          <p class="section-copy mt-3 max-w-3xl">
+            Search, sort and paginate membership records within
+            each FHTA district. Select a district below to view
+            its registered members.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-4">
+
+          {% for district in district_groups %}
+
+            <details class="district-details overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:border-slate-300" {% if forloop.first %}open{% endif %}>
+
+              <summary class="cursor-pointer list-none p-5">
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                  <div class="flex items-center gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0f2f5f]/10 text-[#0f2f5f]">
+                      <i class="fas fa-location-dot"></i>
+                    </div>
                     <div>
                       <h3 class="text-xl font-bold maroon-text">{{ district.label }}</h3>
-                      <p class="text-sm text-slate-500">{{ district.total }} member{{ district.total|pluralize }} • {{ district.active }} active • {{ district.pending }} pending</p>
+                      <div class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-500">
+                        <span>{{ district.total }} member{{ district.total|pluralize }}</span>
+                        <span>•</span>
+                        <span class="text-green-700">{{ district.active }} active</span>
+                        <span>•</span>
+                        <span class="text-amber-700">{{ district.pending }} pending</span>
+                      </div>
                     </div>
-                    <span class="rounded-full bg-[#f2c14e]/20 px-4 py-2 text-sm font-bold text-[#0f2f5f]">Avg head teacher years: {{ district.average_principal_years|default:"-" }}</span>
                   </div>
-                </summary>
-
-                <div class="mt-4 overflow-x-auto">
-                  <table class="min-w-full divide-y divide-slate-200 text-sm">
-                    <thead class="bg-slate-50">
-                      <tr>
-                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Member</th>
-                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">School</th>
-                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Age</th>
-                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Head Teacher Since</th>
-                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">FTRA No.</th>
-                        <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-500">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100 bg-white">
-                      {% for member in district.members %}
-                        <tr>
-                          <td class="px-4 py-3 font-semibold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</td>
-                          <td class="px-4 py-3 text-slate-600">{{ member.school|default:"-" }}</td>
-                          <td class="px-4 py-3 text-slate-600">{{ member.age_display }}</td>
-                          <td class="px-4 py-3 text-slate-600">{{ member.start_year|default:"-" }} ({{ member.years_as_principal_display }})</td>
-                          <td class="px-4 py-3 text-slate-600">{{ member.ftra_register_num|default:"-" }}</td>
-                          <td class="px-4 py-3 text-slate-600">{{ member.get_membership_status_display }}</td>
-                        </tr>
-                      {% empty %}
-                        <tr>
-                          <td colspan="6" class="px-4 py-5 text-center text-slate-500">No members recorded in this district yet.</td>
-                        </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <span class="rounded-full bg-[#f2c14e]/20 px-4 py-2 text-sm font-bold text-[#0f2f5f]">
+                      Avg. Head Teacher Years: {{ district.average_principal_years|default:"-" }}
+                    </span>
+                    <span class="district-chevron flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500">
+                      <i class="fas fa-chevron-down"></i>
+                    </span>
+                  </div>
                 </div>
-              </details>
+              </summary>
+
+              <div class="border-t border-slate-100 p-5">
+
+                {% if district.members %}
+
+                  <div class="fhta-table-card fhta-table-card--accent-maroon">
+
+                    <div class="fhta-table-scroll">
+                      <table id="district-table-{{ forloop.counter }}" class="district-datatable w-full text-sm" data-district="{{ district.label }}">
+
+                        <thead>
+                          <tr>
+                            <th>Member</th>
+                            <th>School</th>
+                            <th>Age</th>
+                            <th>Head Teacher Since</th>
+                            <th>Experience</th>
+                            <th>FTRA No.</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for member in district.members %}
+                            <tr>
+
+                              <td>
+                                <div class="fhta-member-cell">
+                                  <span class="fhta-avatar tint-{{ forloop.counter0|divisibleby:4|yesno:'3,4' }}">
+                                    {{ member.full_name|default:"?"|first|upper }}
+                                  </span>
+                                  <div class="min-w-0">
+                                    <p class="font-semibold text-slate-800">{{ member.full_name|default:"Unnamed member" }}</p>
+                                    {% if member.email %}
+                                      <p class="mt-1 text-xs text-slate-400">{{ member.email }}</p>
+                                    {% endif %}
+                                  </div>
+                                </div>
+                              </td>
+
+                              <td><div class="min-w-[180px]">{{ member.school|default:"-" }}</div></td>
+
+                              <td data-order="{{ member.age_display|default:0 }}">
+                                {{ member.age_display|default:"-" }}
+                              </td>
+
+                              <td data-order="{{ member.start_year|default:0 }}">
+                                {{ member.start_year|default:"-" }}
+                              </td>
+
+                              <td data-order="{{ member.start_year|default:0 }}">
+                                {{ member.years_as_principal_display|default:"-" }}
+                              </td>
+
+                              <td>{{ member.ftra_register_num|default:"-" }}</td>
+
+                              <td>
+                                {% if member.membership_status == "active" %}
+                                  <span class="fhta-pill bg-green-50 text-green-700">{{ member.get_membership_status_display }}</span>
+                                {% elif member.membership_status == "pending" %}
+                                  <span class="fhta-pill bg-amber-50 text-amber-700">{{ member.get_membership_status_display }}</span>
+                                {% elif member.membership_status == "rejected" %}
+                                  <span class="fhta-pill bg-red-50 text-red-700">{{ member.get_membership_status_display }}</span>
+                                {% else %}
+                                  <span class="fhta-pill bg-slate-100 text-slate-600">{{ member.get_membership_status_display }}</span>
+                                {% endif %}
+                              </td>
+
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+
+                      </table>
+                    </div>
+
+                  </div>
+
+                {% else %}
+
+                  <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+                    <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm">
+                      <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="mt-4 font-bold text-slate-700">No members yet</h4>
+                    <p class="mt-2 text-sm text-slate-500">
+                      No members have been recorded for {{ district.label }}.
+                    </p>
+                  </div>
+
+                {% endif %}
+
+              </div>
+
+            </details>
+
+          {% empty %}
+
+            <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+              <i class="fas fa-map-location-dot text-3xl text-slate-400"></i>
+              <h3 class="mt-4 font-bold text-slate-700">No districts available</h3>
+              <p class="mt-2 text-sm text-slate-500">
+                District information has not yet been configured.
+              </p>
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =====================================================
+           STAFF PRIORITIES + QR ATTENDANCE
+      ====================================================== -->
+
+      <div class="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+
+        <div class="info-card">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <p class="section-kicker">Staff Priorities</p>
+              <h2 class="section-title mt-2 text-3xl">What needs attention</h2>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-2">
+
+            <a href="{% url 'admin:index' %}" class="rounded-3xl border border-amber-100 bg-amber-50 p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <span class="feature-icon !w-12 !h-12"><i class="fas fa-user-check"></i></span>
+                <div>
+                  <h3 class="font-bold maroon-text">Pending membership approvals</h3>
+                  <p class="text-sm text-slate-600">{{ stats.pending_approvals }} records waiting</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="{% url 'helpdesk:staff_ticket_list' %}" class="rounded-3xl border border-red-100 bg-red-50 p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <span class="feature-icon !w-12 !h-12"><i class="fas fa-headset"></i></span>
+                <div>
+                  <h3 class="font-bold maroon-text">Active helpdesk tickets</h3>
+                  <p class="text-sm text-slate-600">{{ stats.active_tickets }} unresolved tickets</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="{% url 'events:events_dashboard' %}" class="rounded-3xl border border-blue-100 bg-blue-50 p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <span class="feature-icon !w-12 !h-12"><i class="fas fa-calendar-days"></i></span>
+                <div>
+                  <h3 class="font-bold maroon-text">Upcoming events</h3>
+                  <p class="text-sm text-slate-600">{{ stats.total_upcoming_events }} published events</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="{% url 'training:staff_course_list' %}" class="rounded-3xl border border-green-100 bg-green-50 p-5 hover:shadow-md transition">
+              <div class="flex items-center gap-3">
+                <span class="feature-icon !w-12 !h-12"><i class="fas fa-graduation-cap"></i></span>
+                <div>
+                  <h3 class="font-bold maroon-text">Training courses</h3>
+                  <p class="text-sm text-slate-600">{{ stats.training_courses_count }} courses in the system</p>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <p class="section-kicker">QR Attendance</p>
+              <h2 class="section-title mt-2 text-3xl">Seminar check-in desk</h2>
+            </div>
+            <a href="{% url 'training:staff_course_list' %}" class="text-sm font-semibold text-[#1f5ca8]">All courses</a>
+          </div>
+
+          <div class="mt-6 space-y-4">
+            {% for schedule in upcoming_qr_schedules %}
+              <div class="rounded-2xl border border-slate-100 p-4">
+                <h3 class="font-bold maroon-text">{{ schedule.title }}</h3>
+                <p class="text-sm text-slate-500">
+                  {{ schedule.course.title }} • {{ schedule.start_datetime|date:"d M Y H:i" }}
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <a href="{% url 'training:staff_schedule_attendance' schedule.id %}" class="hero-btn hero-btn-primary !px-4 !py-2">Attendance</a>
+                  <a href="{% url 'training:staff_schedule_qr_poster' schedule.id %}" class="hero-btn hero-btn-secondary !px-4 !py-2 !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Print QR Poster</a>
+                </div>
+              </div>
+            {% empty %}
+              <div class="rounded-2xl bg-slate-50 p-5 text-center">
+                <p class="section-copy">No upcoming QR-enabled schedules yet.</p>
+                <a href="{% url 'training:staff_course_list' %}" class="mt-4 inline-flex hero-btn hero-btn-primary">Set up schedules</a>
+              </div>
             {% endfor %}
           </div>
         </div>
 
-        <div class="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-          <div class="info-card">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <p class="section-kicker">Staff Priorities</p>
-                <h2 class="section-title mt-2 text-3xl">What needs attention</h2>
-              </div>
-            </div>
-            <div class="mt-6 grid gap-4 md:grid-cols-2">
-              <a href="{% url 'admin:index' %}" class="rounded-3xl border border-amber-100 bg-amber-50 p-5 hover:shadow-md transition">
-                <div class="flex items-center gap-3">
-                  <span class="feature-icon !w-12 !h-12"><i class="fas fa-user-check"></i></span>
-                  <div>
-                    <h3 class="font-bold maroon-text">Pending membership approvals</h3>
-                    <p class="text-sm text-slate-600">{{ stats.pending_approvals }} records waiting</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{% url 'helpdesk:staff_ticket_list' %}" class="rounded-3xl border border-red-100 bg-red-50 p-5 hover:shadow-md transition">
-                <div class="flex items-center gap-3">
-                  <span class="feature-icon !w-12 !h-12"><i class="fas fa-headset"></i></span>
-                  <div>
-                    <h3 class="font-bold maroon-text">Active helpdesk tickets</h3>
-                    <p class="text-sm text-slate-600">{{ stats.active_tickets }} unresolved tickets</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{% url 'events:events_dashboard' %}" class="rounded-3xl border border-blue-100 bg-blue-50 p-5 hover:shadow-md transition">
-                <div class="flex items-center gap-3">
-                  <span class="feature-icon !w-12 !h-12"><i class="fas fa-calendar-days"></i></span>
-                  <div>
-                    <h3 class="font-bold maroon-text">Upcoming events</h3>
-                    <p class="text-sm text-slate-600">{{ stats.total_upcoming_events }} published events</p>
-                  </div>
-                </div>
-              </a>
-              <a href="{% url 'training:staff_course_list' %}" class="rounded-3xl border border-green-100 bg-green-50 p-5 hover:shadow-md transition">
-                <div class="flex items-center gap-3">
-                  <span class="feature-icon !w-12 !h-12"><i class="fas fa-graduation-cap"></i></span>
-                  <div>
-                    <h3 class="font-bold maroon-text">Training courses</h3>
-                    <p class="text-sm text-slate-600">{{ stats.training_courses_count }} courses in the system</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
+      </div>
 
-          <div class="info-card">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <p class="section-kicker">QR Attendance</p>
-                <h2 class="section-title mt-2 text-3xl">Seminar check-in desk</h2>
-              </div>
-              <a href="{% url 'training:staff_course_list' %}" class="text-sm font-semibold text-[#1f5ca8]">All courses</a>
-            </div>
-            <div class="mt-6 space-y-4">
-              {% for schedule in upcoming_qr_schedules %}
-                <div class="rounded-2xl border border-slate-100 p-4">
-                  <h3 class="font-bold maroon-text">{{ schedule.title }}</h3>
-                  <p class="text-sm text-slate-500">{{ schedule.course.title }} • {{ schedule.start_datetime|date:"d M Y H:i" }}</p>
-                  <div class="mt-3 flex flex-wrap gap-2">
-                    <a href="{% url 'training:staff_schedule_attendance' schedule.id %}" class="hero-btn hero-btn-primary !px-4 !py-2">Attendance</a>
-                    <a href="{% url 'training:staff_schedule_qr_poster' schedule.id %}" class="hero-btn hero-btn-secondary !px-4 !py-2 !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Print QR Poster</a>
-                  </div>
-                </div>
-              {% empty %}
-                <div class="rounded-2xl bg-slate-50 p-5 text-center">
-                  <p class="section-copy">No upcoming QR-enabled schedules yet.</p>
-                  <a href="{% url 'training:staff_course_list' %}" class="mt-4 inline-flex hero-btn hero-btn-primary">Set up schedules</a>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
 
-        <div class="grid gap-6 xl:grid-cols-3">
-          <div class="info-card">
-            <div class="flex items-center justify-between">
-              <h2 class="text-2xl font-bold maroon-text">Recent News</h2>
-              <a href="{% url 'news:news_dashboard' %}" class="text-sm font-semibold text-[#1f5ca8]">Manage</a>
-            </div>
-            <div class="mt-5 space-y-4">
-              {% for news in recent_news %}
-                <a href="{% url 'news:news_detail' news.slug %}" class="block rounded-2xl border border-slate-100 p-4 hover:bg-slate-50">
-                  <p class="text-xs text-[#1f5ca8] font-semibold">{{ news.date_posted|date:"d M Y" }}</p>
-                  <h3 class="mt-1 font-bold text-slate-800">{{ news.title }}</h3>
-                </a>
-              {% empty %}
-                <p class="section-copy">No news has been posted yet.</p>
-              {% endfor %}
-            </div>
-          </div>
 
-          <div class="info-card">
-            <div class="flex items-center justify-between">
-              <h2 class="text-2xl font-bold maroon-text">Upcoming Events</h2>
-              <a href="{% url 'events:events_dashboard' %}" class="text-sm font-semibold text-[#1f5ca8]">Manage</a>
-            </div>
-            <div class="mt-5 space-y-4">
-              {% for event in upcoming_events %}
-                <a href="{% url 'events:detail' event.slug %}" class="block rounded-2xl border border-slate-100 p-4 hover:bg-slate-50">
-                  <p class="text-xs text-[#1f5ca8] font-semibold">{{ event.start|date:"d M Y H:i" }}</p>
-                  <h3 class="mt-1 font-bold text-slate-800">{{ event.title }}</h3>
-                </a>
-              {% empty %}
-                <p class="section-copy">No upcoming events yet.</p>
-              {% endfor %}
-            </div>
-          </div>
+      <!-- =====================================================
+           NEWS / EVENTS / DOCUMENTS
+      ====================================================== -->
 
-          <div class="info-card">
-            <div class="flex items-center justify-between">
-              <h2 class="text-2xl font-bold maroon-text">Recent Documents</h2>
-              <a href="{% url 'documents:document_list' %}" class="text-sm font-semibold text-[#1f5ca8]">Manage</a>
-            </div>
-            <div class="mt-5 space-y-4">
-              {% for document in recent_documents %}
-                <a href="{% url 'documents:document_detail' document.pk %}" class="block rounded-2xl border border-slate-100 p-4 hover:bg-slate-50">
-                  <p class="text-xs text-[#1f5ca8] font-semibold">{{ document.date_posted|date:"d M Y" }}</p>
-                  <h3 class="mt-1 font-bold text-slate-800">{{ document.title }}</h3>
-                </a>
-              {% empty %}
-                <p class="section-copy">No documents uploaded yet.</p>
-              {% endfor %}
-            </div>
+      <div class="grid gap-6 xl:grid-cols-3">
+
+        <div class="info-card">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold maroon-text">Recent News</h2>
+            <a href="{% url 'news:news_dashboard' %}" class="text-sm font-semibold text-[#1f5ca8]">Manage</a>
+          </div>
+          <div class="mt-5 space-y-4">
+            {% for news in recent_news %}
+              <a href="{% url 'news:news_detail' news.slug %}" class="block rounded-2xl border border-slate-100 p-4 hover:bg-slate-50">
+                <p class="text-xs text-[#1f5ca8] font-semibold">{{ news.date_posted|date:"d M Y" }}</p>
+                <h3 class="mt-1 font-bold text-slate-800">{{ news.title }}</h3>
+              </a>
+            {% empty %}
+              <p class="section-copy">No news has been posted yet.</p>
+            {% endfor %}
           </div>
         </div>
 
         <div class="info-card">
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
-            <div>
-              <p class="section-kicker">Application Shortcuts</p>
-              <h2 class="section-title mt-2 text-3xl">Manage the whole FHTA website</h2>
-              <p class="section-copy mt-3">The sidebar keeps every major app one click away, while these shortcuts focus on common staff actions.</p>
-            </div>
-            <div class="flex flex-wrap gap-3">
-              <a href="{% url 'news:create_news' %}" class="hero-btn hero-btn-primary">Create News</a>
-              <a href="{% url 'events:create_event' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Create Event</a>
-              <a href="{% url 'documents:upload_document' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Upload Document</a>
-              <a href="{% url 'training:staff_course_create' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Create Training</a>
-            </div>
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold maroon-text">Upcoming Events</h2>
+            <a href="{% url 'events:events_dashboard' %}" class="text-sm font-semibold text-[#1f5ca8]">Manage</a>
+          </div>
+          <div class="mt-5 space-y-4">
+            {% for event in upcoming_events %}
+              <a href="{% url 'events:detail' event.slug %}" class="block rounded-2xl border border-slate-100 p-4 hover:bg-slate-50">
+                <p class="text-xs text-[#1f5ca8] font-semibold">{{ event.start|date:"d M Y H:i" }}</p>
+                <h3 class="mt-1 font-bold text-slate-800">{{ event.title }}</h3>
+              </a>
+            {% empty %}
+              <p class="section-copy">No upcoming events yet.</p>
+            {% endfor %}
           </div>
         </div>
+
+        <div class="info-card">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold maroon-text">Recent Documents</h2>
+            <a href="{% url 'documents:document_list' %}" class="text-sm font-semibold text-[#1f5ca8]">Manage</a>
+          </div>
+          <div class="mt-5 space-y-4">
+            {% for document in recent_documents %}
+              <a href="{% url 'documents:document_detail' document.pk %}" class="block rounded-2xl border border-slate-100 p-4 hover:bg-slate-50">
+                <p class="text-xs text-[#1f5ca8] font-semibold">{{ document.date_posted|date:"d M Y" }}</p>
+                <h3 class="mt-1 font-bold text-slate-800">{{ document.title }}</h3>
+              </a>
+            {% empty %}
+              <p class="section-copy">No documents uploaded yet.</p>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <!-- =====================================================
+           APPLICATION SHORTCUTS
+      ====================================================== -->
+
+      <div class="info-card">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+          <div>
+            <p class="section-kicker">Application Shortcuts</p>
+            <h2 class="section-title mt-2 text-3xl">Manage the whole FHTA website</h2>
+            <p class="section-copy mt-3">
+              The sidebar keeps every major app one click away,
+              while these shortcuts focus on common staff actions.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="{% url 'news:create_news' %}" class="hero-btn hero-btn-primary">Create News</a>
+            <a href="{% url 'events:create_event' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Create Event</a>
+            <a href="{% url 'documents:upload_document' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Upload Document</a>
+            <a href="{% url 'training:staff_course_create' %}" class="hero-btn hero-btn-secondary !text-[#0f2f5f] !border-[#0f2f5f]/10 !bg-[#0f2f5f]/5">Create Training</a>
+          </div>
+        </div>
+      </div>
+
+
     </div>
+
   </div>
+
 </section>
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<!-- =========================================================
+     DATATABLES
+========================================================= -->
+
+<script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  if (typeof DataTable === "undefined") {
+    console.error("DataTables failed to load.");
+    return;
+  }
+
+  /*
+   DataTables generates its own search box, length menu, info text,
+   and pagination controls (default layout: search+length on top,
+   info+paging on the bottom). We let it do that — restyling the
+   generated .dt-search / .dt-length / .dt-info / .dt-paging markup
+   via CSS — instead of building a detached toolbar that has to be
+   manually kept in sync with the table's sort/page state. This is
+   what guarantees both sorting and pagination actually work.
+  */
+
+  function buildLanguage(noun) {
+    return {
+      searchPlaceholder: "Search " + noun + "...",
+      lengthMenu: "Show _MENU_ " + noun,
+      info: "Showing _START_ to _END_ of _TOTAL_ " + noun,
+      infoEmpty: "No " + noun + " available",
+      infoFiltered: "(filtered from _MAX_ total " + noun + ")",
+      zeroRecords: "No matching " + noun + " found",
+      emptyTable: "No " + noun + " to display",
+      paginate: { first: "First", last: "Last", next: "Next", previous: "Previous" }
+    };
+  }
+
+  /* ========================================================
+     PENDING MEMBERS DATATABLE
+  ======================================================== */
+
+  var pendingTableElement = document.getElementById("pending-members-table");
+
+  // Guard against double-init: something elsewhere on the site
+  // (e.g. a global datatables-init.js) may also target this table.
+  // DataTable.isDataTable() lets us check before calling new DataTable()
+  // instead of assuming we're the only script touching it.
+  if (pendingTableElement && !DataTable.isDataTable(pendingTableElement)) {
+
+    new DataTable(pendingTableElement, {
+      paging: true,
+      ordering: true,
+      searching: true,
+      info: true,
+      pageLength: 10,
+      lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+      order: [[7, "desc"]],
+      // every column sorts except Action (index 8), which has no
+      // meaningful order and would otherwise be searchable clutter
+      columnDefs: [
+        { targets: 8, orderable: false, searchable: false }
+      ],
+      language: buildLanguage("members")
+    });
+
+  } else if (pendingTableElement) {
+    console.warn(
+      "pending-members-table was already a DataTable before this script ran — " +
+      "check for another init (e.g. static/js/datatables-init.js) targeting it."
+    );
+  }
+
+  /* ========================================================
+     DISTRICT DATATABLES
+  ======================================================== */
+
+  var districtTables = new Map();
+
+  document.querySelectorAll(".district-datatable").forEach(function (tableElement) {
+
+    if (DataTable.isDataTable(tableElement)) {
+      console.warn(
+        tableElement.id + " was already a DataTable before this script ran — " +
+        "check for another init (e.g. static/js/datatables-init.js) targeting " +
+        ".district-datatable."
+      );
+      // Reuse the existing instance instead of throwing on re-init
+      districtTables.set(tableElement.id, new DataTable(tableElement));
+      return;
+    }
+
+    var table = new DataTable(tableElement, {
+      paging: true,
+      ordering: true,
+      searching: true,
+      info: true,
+      pageLength: 10,
+      lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+      order: [[0, "asc"]],
+      // all 7 columns (Member, School, Age, Head Teacher Since,
+      // Experience, FTRA No., Status) are orderable — none disabled
+      language: buildLanguage("members")
+    });
+
+    districtTables.set(tableElement.id, table);
+  });
+
+  /* ========================================================
+     RECALCULATE COLUMN WIDTH + PAGING WHEN A CLOSED DETAILS
+     PANEL OPENS. Tables initialized while hidden (display:none
+     inside a closed <details>) get 0 width, which throws off
+     column sizing and can make paging controls misbehave until
+     this runs.
+  ======================================================== */
+
+  document.querySelectorAll(".district-details").forEach(function (detailsElement) {
+
+    detailsElement.addEventListener("toggle", function () {
+
+      if (!detailsElement.open) return;
+
+      var tableElement = detailsElement.querySelector(".district-datatable");
+      if (!tableElement) return;
+
+      var dataTable = districtTables.get(tableElement.id);
+      if (!dataTable) return;
+
+      window.setTimeout(function () {
+        dataTable.columns.adjust();
+        dataTable.draw(false); // false = keep current paging position
+      }, 100);
+
+    });
+
+  });
+
+});
+
+</script>
+
 {% endblock %}

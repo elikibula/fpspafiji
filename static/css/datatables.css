@@ -1,0 +1,71 @@
+/* Shared DataTables controls for every table in the site. */
+.dt-container {
+    color: #334155;
+    font-size: 0.875rem;
+}
+
+.dt-container .dt-layout-row {
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.9rem 0;
+}
+
+.dt-container .dt-search input,
+.dt-container .dt-length select {
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    background: #fff;
+    padding: 0.45rem 0.65rem;
+    color: #0f172a;
+}
+
+.dt-container .dt-search input:focus,
+.dt-container .dt-length select:focus {
+    border-color: #0f2f5f;
+    outline: 2px solid rgba(15, 47, 95, 0.15);
+    outline-offset: 1px;
+}
+
+.dt-container .dt-paging .dt-paging-button {
+    min-width: 2.25rem;
+    margin-left: 0.2rem;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 0.5rem !important;
+    background: #fff !important;
+    color: #334155 !important;
+}
+
+.dt-container .dt-paging .dt-paging-button.current,
+.dt-container .dt-paging .dt-paging-button:hover:not(.disabled) {
+    border-color: #0f2f5f !important;
+    background: #0f2f5f !important;
+    color: #fff !important;
+}
+
+.dt-container .dt-paging .dt-paging-button.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.45;
+}
+
+table.dataTable thead > tr > th.dt-orderable-asc,
+table.dataTable thead > tr > th.dt-orderable-desc {
+    cursor: pointer;
+    padding-right: 2rem;
+}
+
+@media (max-width: 640px) {
+    .dt-container .dt-layout-row {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .dt-container .dt-layout-cell {
+        text-align: left !important;
+    }
+
+    .dt-container .dt-search input {
+        box-sizing: border-box;
+        margin-left: 0;
+        width: 100%;
+    }
+}

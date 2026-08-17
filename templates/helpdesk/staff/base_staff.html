@@ -8,6 +8,8 @@
     <title>{% block title %}FHTA Help Desk - Staff{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.min.css">
+    <link href="{% static 'css/datatables.css' %}" rel="stylesheet">
     <style>
         .sidebar-transition {
             transition: all 0.3s ease-in-out;
@@ -115,5 +117,7 @@
             menu.classList.toggle('hidden');
         }
     </script>
+    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.min.js"></script>
+    <script src="{% static 'js/datatables-init.js' %}?v=2"></script>
 </body>
 </html>

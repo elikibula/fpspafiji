@@ -10,6 +10,10 @@ class DocumentCategory(models.Model):
     groups = models.ManyToManyField(Group)
     parent_category = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='child_categories')
     description = models.TextField(blank=True, null=True)
+    is_public = models.BooleanField(
+        default=False,
+        help_text="Show documents in this folder on the public Resources page.",
+    )
 
     def __str__(self):
         return self.name

@@ -16,8 +16,10 @@ urlpatterns = [
     # Document CRUD & helpers
     path('document/<int:pk>/', views.document_detail, name='document_detail'),
     path('document/<int:pk>/view/', views.view_document, name='document_view'),
+    path('document/<int:pk>/inline/', views.inline_document, name='document_inline'),
     path('document/<int:pk>/preview/', views.embedded_preview, name='document_preview'),
     path('document/<int:pk>/download/', views.download_document, name='document_download'),
+    path('public/<int:pk>/download/', views.download_public_document, name='public_document_download'),
     path('document/<int:pk>/edit/', views.document_edit, name='document_edit'),
     path('document/<int:pk>/delete/', views.delete_document, name='document_delete'),
     

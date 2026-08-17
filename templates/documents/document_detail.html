@@ -33,12 +33,12 @@
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-medium text-gray-700">Category:</span>
-                                    <span class="text-sm text-gray-900">{{ document.category.name }}</span>
+                                    <span class="text-sm text-gray-900">{{ document.category.name|default:"Uncategorised" }}</span>
                                 </div>
                                 
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-medium text-gray-700">Subcategory:</span>
-                                    <span class="text-sm text-gray-900">{{ document.subcategory.name }}</span>
+                                    <span class="text-sm text-gray-900">{{ document.subcategory.name|default:"None" }}</span>
                                 </div>
                                 
                                 <div class="flex items-center justify-between">
@@ -142,14 +142,24 @@
                             <h3 class="text-lg font-semibold maroon-text mb-4">Navigation</h3>
                             
                             <div class="space-y-2">
-                                <a href="{% url 'documents:category_detail' pk=document.category.pk %}" 
-                                   class="block text-sm text-blue-600 hover:text-blue-800">
-                                    ← Back to {{ document.category.name }}
-                                </a>
-                                <a href="{% url 'documents:subcategory_detail' pk=document.subcategory.pk %}" 
-                                   class="block text-sm text-blue-600 hover:text-blue-800">
-                                    ← Back to {{ document.subcategory.name }}
-                                </a>
+                                {% if document.category %}
+                                    <a href="{% url 'documents:category_detail' pk=document.category.pk %}"
+                                       class="block text-sm text-blue-600 hover:text-blue-800">
+                                        ← Back to {{ document.category.name }}
+                                    </a>
+                                {% endif %}
+                                {% if document.subcategory %}
+                                    <a href="{% url 'documents:subcategory_detail' pk=document.subcategory.pk %}"
+                                       class="block text-sm text-blue-600 hover:text-blue-800">
+                                        ← Back to {{ document.subcategory.name }}
+                                    </a>
+                                {% endif %}
+                                {% if document.category.is_public %}
+                                    <a href="{% url 'resources' %}"
+                                       class="block text-sm text-blue-600 hover:text-blue-800">
+                                        ← Back to Public Resources
+                                    </a>
+                                {% endif %}
                                 <a href="{% url 'documents:document_list' %}" 
                                    class="block text-sm text-blue-600 hover:text-blue-800">
                                     ← Back to All Documents
