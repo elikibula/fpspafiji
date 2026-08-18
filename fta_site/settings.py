@@ -62,6 +62,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'mainapp',
+    'livestream',
     'news',
     'events',
     'reps',
@@ -401,6 +402,9 @@ X_FRAME_OPTIONS = 'DENY'
 # Security headers
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
+# YouTube embeds require the embedding site's origin as client identification.
+# This sends only the origin (never the full path/query) to cross-origin players.
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
 
 

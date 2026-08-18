@@ -14,6 +14,7 @@ urlpatterns = [
     path('areas/', include('reps.urls')),
     path('district-representatives/', district_representatives, name='district_representatives'),
     path('training/', include('training.urls')),
+    path('livestream/', include('livestream.urls')),
     path('about/', views.about, name='about'),
     path('services/', views.services, name='services'),
     path('resources/', views.resources, name='resources'),

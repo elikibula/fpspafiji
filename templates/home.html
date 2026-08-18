@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" >
 
-<style> #fhta-image-carousel, #fhta-image-carousel .splide__track, #fhta-image-carousel .splide__list, #fhta-image-carousel .splide__slide { min-height: 100vh; } #fhta-image-carousel .splide__slide { position: relative; overflow: hidden; background: #06162f; } .fhta-carousel-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 7s ease; } #fhta-image-carousel .splide__slide.is-active .fhta-carousel-image { transform: scale(1); } #fhta-image-carousel .splide__pagination { bottom: 2rem; gap: 0.6rem; } #fhta-image-carousel .splide__pagination__page { width: 0.7rem; height: 0.7rem; margin: 0; background: rgba(255, 255, 255, 0.55); opacity: 1; transition: width 0.25s ease, border-radius 0.25s ease, background 0.25s ease; } #fhta-image-carousel .splide__pagination__page.is-active { width: 2.4rem; border-radius: 999px; background: #fde339; transform: none; } #fhta-image-carousel .splide__arrow { width: 3.25rem; height: 3.25rem; background: rgba(6, 22, 47, 0.55); opacity: 1; backdrop-filter: blur(10px); transition: background 0.25s ease, transform 0.25s ease; } #fhta-image-carousel .splide__arrow:hover { background: rgba(6, 22, 47, 0.9); transform: scale(1.05); } #fhta-image-carousel .splide__arrow svg { fill: #ffffff; } #fhta-image-carousel .splide__arrow--prev { left: 1.5rem; } #fhta-image-carousel .splide__arrow--next { right: 1.5rem; } @media (max-width: 768px) { #fhta-image-carousel, #fhta-image-carousel .splide__track, #fhta-image-carousel .splide__list, #fhta-image-carousel .splide__slide { min-height: 100svh; } #fhta-image-carousel .splide__arrow { width: 2.65rem; height: 2.65rem; } #fhta-image-carousel .splide__arrow--prev { left: 0.75rem; } #fhta-image-carousel .splide__arrow--next { right: 0.75rem; } } </style>
+<style> #fhta-image-carousel { position: relative; } #fhta-image-carousel, #fhta-image-carousel .splide__track, #fhta-image-carousel .splide__list, #fhta-image-carousel .splide__slide { min-height: 100vh; } #fhta-image-carousel .splide__slide { position: relative; overflow: hidden; background: #06162f; } .fhta-carousel-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 7s ease; } #fhta-image-carousel .splide__slide.is-active .fhta-carousel-image { transform: scale(1); } #fhta-image-carousel .splide__pagination { bottom: 2rem; gap: 0.6rem; } #fhta-image-carousel .splide__pagination__page { width: 0.7rem; height: 0.7rem; margin: 0; background: rgba(255, 255, 255, 0.55); opacity: 1; transition: width 0.25s ease, border-radius 0.25s ease, background 0.25s ease; } #fhta-image-carousel .splide__pagination__page.is-active { width: 2.4rem; border-radius: 999px; background: #fde339; transform: none; } #fhta-image-carousel .splide__arrow { width: 3.25rem; height: 3.25rem; background: rgba(6, 22, 47, 0.55); opacity: 1; backdrop-filter: blur(10px); transition: background 0.25s ease, transform 0.25s ease; } #fhta-image-carousel .splide__arrow:hover { background: rgba(6, 22, 47, 0.9); transform: scale(1.05); } #fhta-image-carousel .splide__arrow svg { fill: #ffffff; } #fhta-image-carousel .splide__arrow--prev { left: 1.5rem; } #fhta-image-carousel .splide__arrow--next { right: 1.5rem; } @media (max-width: 768px) { #fhta-image-carousel, #fhta-image-carousel .splide__track, #fhta-image-carousel .splide__list, #fhta-image-carousel .splide__slide { min-height: 100svh; } #fhta-image-carousel .splide__arrow { width: 2.65rem; height: 2.65rem; } #fhta-image-carousel .splide__arrow--prev { left: 0.75rem; } #fhta-image-carousel .splide__arrow--next { right: 0.75rem; } } </style>
 
 <section id="fhta-image-carousel" class="splide" aria-label="FHTA image gallery" > <div class="splide__track"> <ul class="splide__list">
 
@@ -52,7 +52,23 @@
 
 </ul>
 
-</div> </section> 
+</div>
+<div class="livestream-carousel-overlay" aria-label="2026 conference livestream">
+  <div class="livestream-carousel-panel">
+    <p class="livestream-overlay-label">FHTA 43rd Annual Conference 2026</p>
+    <h2>Watch the 2026 Conference Livestream</h2>
+    <a href="{% url 'livestream:live' %}" class="livestream-overlay-button{% if live_stream and live_stream.is_live %} is-live{% endif %}">
+      {% if live_stream and live_stream.is_live %}
+        <span class="live-pulse" aria-hidden="true"></span><span>LIVE</span> {{ live_stream.homepage_cta_label }}
+      {% elif live_stream %}
+        <i class="fas fa-circle-play" aria-hidden="true"></i> {{ live_stream.homepage_cta_label }}
+      {% else %}
+        <i class="fas fa-circle-play" aria-hidden="true"></i> View Livestreams
+      {% endif %}
+    </a>
+  </div>
+</div>
+</section>
 
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 

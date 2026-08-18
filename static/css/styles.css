@@ -541,3 +541,54 @@ h1, h2, h3, h4, .display-font {
     flex-direction: column;
   }
 }
+
+/* Livestream */
+.livestream-carousel-overlay { position: absolute; inset: 0; z-index: 5; display: flex; align-items: flex-end; justify-content: center; padding: 2rem 6rem 5rem; pointer-events: none; }
+.livestream-carousel-panel { width: min(760px, 100%); padding: 1.5rem; color: #fff; text-align: center; border: 1px solid rgba(255,255,255,.2); border-radius: 1.5rem; background: linear-gradient(135deg,rgba(3,11,53,.9),rgba(0,95,183,.78)); box-shadow: 0 24px 60px rgba(0,0,0,.35); backdrop-filter: blur(14px); pointer-events: auto; }
+.livestream-overlay-label { margin: 0; color: var(--fpspa-gold-soft); font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.livestream-carousel-panel h2 { margin: .4rem 0 1rem; font-size: clamp(1.5rem,3vw,2.35rem); }
+.livestream-overlay-button { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; padding: .85rem 1.25rem; color: var(--fpspa-navy); background: var(--fpspa-gold-soft); border-radius: 999px; font-weight: 800; text-decoration: none; }
+.livestream-overlay-button.is-live { color: #fff; background: #c5162e; }
+.live-pulse { width: .7rem; height: .7rem; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 currentColor; animation: livestream-pulse 1.5s infinite; }
+@keyframes livestream-pulse { 70% { box-shadow: 0 0 0 9px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.livestream-hero { min-height: 52vh; background: linear-gradient(120deg,rgba(3,11,53,.96),rgba(0,95,183,.86)); }
+.featured-livestream { padding: 0; overflow: hidden; }
+.stream-status-row { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; padding: 1.1rem 1.25rem; background: #fff; }
+.platform-badge,.live-now-badge { display: inline-flex; align-items: center; gap: .45rem; width: max-content; padding: .42rem .72rem; border-radius: 999px; font-size: .78rem; font-weight: 800; }
+.platform-youtube { color: #b00020; background: #fff0f2; }
+.platform-facebook { color: #0866ff; background: #eef5ff; }
+.live-now-badge { color: #fff; background: #c5162e; letter-spacing: .07em; }
+.responsive-player { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #05070c; }
+.responsive-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.featured-stream-copy { padding: clamp(1.4rem,4vw,2.6rem); }
+.stream-date { margin: .65rem 0; color: var(--fpspa-muted); font-size: .9rem; font-weight: 700; }
+.external-stream-link { display: inline-flex; gap: .5rem; align-items: center; margin-top: 1rem; color: var(--fpspa-blue); font-weight: 800; }
+.stream-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: 1rem; }
+.stream-actions .external-stream-link { margin-top: 0; }
+.facebook-share-button { display: inline-flex; align-items: center; gap: .55rem; padding: .72rem 1rem; color: #fff; border-radius: 999px; background: #0866ff; font-weight: 800; text-decoration: none; transition: transform .2s ease, background .2s ease; }
+.facebook-share-button:hover { color: #fff; background: #0757d6; transform: translateY(-1px); }
+.livestream-empty { max-width: 760px; margin: 0 auto; padding: 3.5rem 2rem; text-align: center; }
+.empty-stream-icon { display: inline-grid; place-items: center; width: 4.5rem; height: 4.5rem; margin-bottom: 1.2rem; border-radius: 1.4rem; color: var(--fpspa-navy); background: rgba(242,193,78,.3); font-size: 1.6rem; }
+.previous-streams-section { padding-top: 1rem; }
+.previous-stream-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+.previous-stream-card { padding: 0; overflow: hidden; }
+.stream-thumbnail { position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; overflow: hidden; color: inherit; border: 0; background: #07152f; cursor: pointer; }
+.stream-thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.stream-thumbnail:hover img { transform: scale(1.035); }
+.facebook-thumbnail-fallback { display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; color: #fff; background: linear-gradient(135deg,#0866ff,#071e52); }
+.facebook-thumbnail-fallback i { font-size: 2.8rem; }.facebook-thumbnail-fallback strong { color: var(--fpspa-gold-soft); font-size: 1.4rem; }.facebook-thumbnail-fallback span { font-size: .85rem; }
+.thumbnail-play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; background: rgba(3,11,53,.18); font-size: 3rem; text-shadow: 0 8px 24px #000; }
+.previous-stream-body { display: flex; min-height: 255px; flex-direction: column; align-items: flex-start; padding: 1.35rem; }
+.previous-stream-body h3 { margin: .3rem 0 .55rem; color: var(--fpspa-navy); font-size: 1.35rem; line-height: 1.25; overflow-wrap: anywhere; }
+.previous-stream-body .hero-btn { margin-top: auto; border: 0; cursor: pointer; }
+.archive-empty { grid-column: 1/-1; text-align: center; }
+.stream-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1rem; background: rgba(0,0,0,.9); }
+.stream-modal.is-open { display: flex; }.modal-open { overflow: hidden; }
+.stream-modal-panel { width: min(1200px,100%); color: #fff; }
+.stream-modal-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem 0; }
+.stream-modal-header h2 { margin: 0; font-size: clamp(1.15rem,3vw,1.8rem); overflow-wrap: anywhere; }
+#stream-modal-close { display: grid; flex: 0 0 auto; place-items: center; width: 2.8rem; height: 2.8rem; color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; background: rgba(255,255,255,.1); cursor: pointer; }
+@media (min-width: 640px) { .previous-stream-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (min-width: 1024px) { .previous-stream-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media (max-width: 768px) { .livestream-carousel-overlay { padding: 1rem 3.8rem 5rem; }.livestream-carousel-panel { padding: 1rem; }.livestream-overlay-button { font-size: .85rem; } }
+@media (prefers-reduced-motion: reduce) { .live-pulse { animation: none; } }

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Livestreams | Fiji Head Teachers Association{% endblock %}
+
+{% block content %}
+<section class="livestream-hero premium-hero">
+  <div class="hero-panel mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="hero-chip"><i class="fas fa-broadcast-tower" aria-hidden="true"></i> FHTA Broadcasts</p>
+    <h1 class="hero-heading">FHTA <span class="hero-highlight">Livestream</span></h1>
+    <p class="hero-subtext">Watch conferences, workshops, and official FHTA events live, then revisit previous broadcasts.</p>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {% if featured_stream %}
+      <article class="featured-livestream feature-card">
+        <div class="stream-status-row">
+          <span class="platform-badge platform-{{ featured_stream.platform }}">
+            <i class="fab fa-{{ featured_stream.platform }}" aria-hidden="true"></i>
+            {{ featured_stream.get_platform_display }} Live
+          </span>
+          {% if featured_stream.is_live %}<span class="live-now-badge"><span class="live-pulse" aria-hidden="true"></span> LIVE NOW</span>{% endif %}
+        </div>
+        <div class="responsive-player">
+          <iframe src="{{ featured_stream.embed_url }}" title="{{ featured_stream.title }} video player" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="featured-stream-copy">
+          <p class="section-kicker">Featured Broadcast</p>
+          <h2 class="section-title">{{ featured_stream.title }}</h2>
+          {% if featured_stream.event_date %}<p class="stream-date"><i class="far fa-calendar-alt" aria-hidden="true"></i> {{ featured_stream.event_date|date:"l, j F Y, g:i A" }}</p>{% endif %}
+          {% if featured_stream.description %}<p class="section-copy">{{ featured_stream.description|linebreaksbr }}</p>{% endif %}
+          <div class="stream-actions">
+            <a class="external-stream-link" href="{{ featured_stream.stream_url }}" target="_blank" rel="noopener noreferrer">Open on {{ featured_stream.get_platform_display }} <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            <a class="facebook-share-button" href="{{ featured_stream.facebook_share_url }}" target="_blank" rel="noopener noreferrer" aria-label="Share {{ featured_stream.title }} on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
+          </div>
+        </div>
+      </article>
+    {% else %}
+      <div class="livestream-empty info-card">
+        <span class="empty-stream-icon"><i class="fas fa-video-slash" aria-hidden="true"></i></span>
+        <p class="section-kicker">FHTA Broadcasts</p>
+        <h2 class="section-title">No livestream is currently scheduled</h2>
+        <p class="section-copy">Please check again for upcoming conferences, workshops, and official FHTA events.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section-shell previous-streams-section">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <p class="section-kicker">Broadcast Archive</p>
+    <h2 class="section-title">Previous Livestreams</h2>
+    <p class="section-copy">Catch up on published FHTA broadcasts and event recordings.</p>
+    <div class="previous-stream-grid">
+      {% for stream in previous_streams %}
+        <article class="previous-stream-card feature-card" data-embed-url="{{ stream.embed_url }}" data-title="{{ stream.title|escape }}">
+          <button class="previous-stream-button stream-thumbnail" data-embed-url="{{ stream.embed_url }}" data-title="{{ stream.title|escape }}" aria-label="Watch {{ stream.title }}">
+            {% if stream.display_thumbnail_url %}
+              <img src="{{ stream.display_thumbnail_url }}" alt="Thumbnail for {{ stream.title }}" loading="lazy">
+            {% else %}
+              <span class="facebook-thumbnail-fallback"><i class="fab fa-facebook" aria-hidden="true"></i><strong>FHTA</strong><span>Facebook Broadcast</span></span>
+            {% endif %}
+            <span class="thumbnail-play"><i class="fas fa-circle-play" aria-hidden="true"></i></span>
+          </button>
+          <div class="previous-stream-body">
+            <span class="platform-badge platform-{{ stream.platform }}"><i class="fab fa-{{ stream.platform }}" aria-hidden="true"></i> {{ stream.get_platform_display }}</span>
+            {% if stream.event_date %}<p class="stream-date">{{ stream.event_date|date:"j F Y" }}</p>{% endif %}
+            <h3>{{ stream.title }}</h3>
+            {% if stream.description %}<p class="section-copy">{{ stream.description|truncatewords:22 }}</p>{% endif %}
+            <button class="previous-stream-button hero-btn hero-btn-primary" data-embed-url="{{ stream.embed_url }}" data-title="{{ stream.title|escape }}" aria-label="Watch recording: {{ stream.title }}"><i class="fas fa-play" aria-hidden="true"></i> Watch Recording</button>
+          </div>
+        </article>
+      {% empty %}
+        <div class="info-card archive-empty"><p class="section-copy">There are no previous livestream recordings yet.</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div id="stream-modal" class="stream-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="stream-modal-title">
+  <div class="stream-modal-panel">
+    <div class="stream-modal-header"><h2 id="stream-modal-title">Recording</h2><button id="stream-modal-close" type="button" aria-label="Close video"><i class="fas fa-xmark" aria-hidden="true"></i></button></div>
+    <div class="responsive-player"><iframe id="stream-modal-player" src="" title="Livestream recording player" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}<script src="{% static 'livestream/livestream.js' %}"></script>{% endblock %}
