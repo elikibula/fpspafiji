@@ -12,6 +12,7 @@ class DocumentCategoryForm(forms.ModelForm):
 
 
 class DocumentForm(forms.ModelForm):
+    MAX_FILE_SIZE = 50 * 1024 * 1024
     description = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 10}))
 
     class Meta:
@@ -50,3 +51,9 @@ class DocumentForm(forms.ModelForm):
             self.add_error('subcategory', 'The selected subcategory does not belong to this category.')
 
         return cleaned_data
+
+    def clean_file(self):
+        uploaded_file = self.cleaned_data.get('file')
+        if uploaded_file and uploaded_file.size > self.MAX_FILE_SIZE:
+            raise forms.ValidationError('File is too large. The maximum upload size is 50 MB.')
+        return uploaded_file

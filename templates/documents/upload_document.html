@@ -58,7 +58,7 @@
                 <div class="flex items-start gap-4">
                   <div class="w-full">
                     {{ form.file }}
-                    <p id="help-file" class="mt-1 text-xs text-gray-500">PDF/images preferred. Max 10 MB.</p>
+                    <p id="help-file" class="mt-1 text-xs text-gray-500">PDF/images preferred. Max 50 MB.</p>
                     <p id="err-file" class="mt-1 text-sm text-red-600 hidden"></p>
                     {% if form.file.errors %}
                       <p class="mt-1 text-sm text-red-600">{{ form.file.errors.0 }}</p>
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const previewContent = document.getElementById('preview-content');
   const previewFilename = document.getElementById('preview-filename');
 
-  const MAX_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
+  const MAX_SIZE_BYTES = 50 * 1024 * 1024; // 50 MB
   const VALID_TYPES = [
     'application/pdf',
     'image/jpeg',
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!fileEl) return true;
     const f = fileEl.files && fileEl.files[0];
     if (!f) { showError(errFile, 'Please choose a file to upload.'); return false; }
-    if (f.size > MAX_SIZE_BYTES) { showError(errFile, 'File is too large (max 10 MB).'); return false; }
+    if (f.size > MAX_SIZE_BYTES) { showError(errFile, 'File is too large (max 50 MB).'); return false; }
     if (!VALID_TYPES.includes(f.type)) {
       // allow some UI-friendly fallback: check extension if type is empty
       const ext = (f.name.split('.').pop() || '').toLowerCase();

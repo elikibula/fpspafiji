@@ -125,7 +125,7 @@
               {% if form.file.errors %}
                 <p class="mt-1 text-sm text-red-600">{{ form.file.errors.0 }}</p>
               {% else %}
-                <p class="mt-1 text-xs text-gray-400">Optional. PDF and images recommended. Max 10 MB.</p>
+                <p class="mt-1 text-xs text-gray-400">Optional. PDF and images recommended. Max 50 MB.</p>
               {% endif %}
 
               <!-- Replacement preview -->
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('btn-submit');
   const resetBtn = document.getElementById('btn-reset');
 
-  const MAX_SIZE = 10 * 1024 * 1024;
+  const MAX_SIZE = 50 * 1024 * 1024;
   const IMAGE_TYPES = ['image/jpeg','image/png','image/gif','image/webp'];
   const PDF_TYPE = 'application/pdf';
 
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const f = fileInput.files && fileInput.files[0];
       if (!f) { clearPreview(); return; }
       if (f.size > MAX_SIZE) {
-        alert('File too large (max 10 MB).');
+        alert('File too large (max 50 MB).');
         fileInput.value = '';
         clearPreview();
         return;

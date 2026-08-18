@@ -100,4 +100,33 @@ class PublicDocumentsTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('inline', response.headers['Content-Disposition'])
 
+    def test_document_form_accepts_files_up_to_50_mb(self):
+        uploaded = SimpleUploadedFile('allowed.pdf', b'content', content_type='application/pdf')
+        uploaded.size = DocumentForm.MAX_FILE_SIZE
+        form = DocumentForm(
+            data={
+                'title': 'Allowed public file',
+                'description': 'At the upload limit',
+                'category': self.public_category.pk,
+            },
+            files={'file': uploaded},
+        )
+        form.is_valid()
+        self.assertNotIn('file', form.errors)
+
+    def test_document_form_rejects_files_over_50_mb(self):
+        uploaded = SimpleUploadedFile('too-large.pdf', b'content', content_type='application/pdf')
+        uploaded.size = DocumentForm.MAX_FILE_SIZE + 1
+        form = DocumentForm(
+            data={
+                'title': 'Oversized public file',
+                'description': 'Over the upload limit',
+                'category': self.public_category.pk,
+            },
+            files={'file': uploaded},
+        )
+        form.is_valid()
+        self.assertIn('file', form.errors)
+        self.assertIn('maximum upload size is 50 MB', form.errors['file'][0])
+
 # Create your tests here.

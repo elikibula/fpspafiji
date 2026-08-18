@@ -208,6 +208,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Uploaded documents may be as large as 50 MB. Larger multipart bodies are
+# rejected before they reach the document form.
+DATA_UPLOAD_MAX_MEMORY_SIZE = 52 * 1024 * 1024
+
 # Django 5.x uses STORAGES (STATICFILES_STORAGE was removed).
 STORAGES = {
     'default': {
@@ -231,7 +235,7 @@ STORAGES = {
 CKEDITOR_5_FILE_STORAGE = 'fta_site.storage.CKEditor5MediaStorage'
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = 'staff'
 CKEDITOR_5_UPLOAD_FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
-CKEDITOR_5_MAX_FILE_SIZE = 5 * 1024 * 1024
+CKEDITOR_5_MAX_FILE_SIZE = 50 * 1024 * 1024
 
 CKEDITOR_5_CONFIGS = {
     'default': {
