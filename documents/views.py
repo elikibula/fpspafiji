@@ -218,11 +218,15 @@ def category_detail(request, pk):
     # Build document queryset defensively (respect groups, is_active, ordering if fields exist)
     documents_qs = Document.objects.filter(category=category)
 
-    # Filter by groups if Document has groups M2M
+    # A document without its own group assignment inherits the access granted by
+    # its category.  This is the normal result of the upload form, where a
+    # category is selected but no document-specific group is chosen.
     if not category.is_public:
         try:
             Document._meta.get_field('groups')
-            documents_qs = documents_qs.filter(groups__in=user_groups).distinct()
+            documents_qs = documents_qs.filter(
+                Q(groups__in=user_groups) | Q(groups__isnull=True)
+            ).distinct()
         except FieldDoesNotExist:
             documents_qs = documents_qs.distinct()
 
@@ -271,7 +275,9 @@ def subcategory_detail(request, pk):
     if not subcategory.category.is_public:
         try:
             Document._meta.get_field('groups')
-            documents_qs = documents_qs.filter(groups__in=user_groups).distinct()
+            documents_qs = documents_qs.filter(
+                Q(groups__in=user_groups) | Q(groups__isnull=True)
+            ).distinct()
         except FieldDoesNotExist:
             documents_qs = documents_qs.distinct()
 
@@ -300,7 +306,12 @@ def document_list(request):
     user_groups = request.user.groups.all()
 
     # Annotate categories with subcategory and document counts
-    categories = DocumentCategory.objects.filter(groups__in=user_groups).annotate(
+    # Include public folders as well as folders assigned to the user's groups.
+    # Previously public uploads could be saved successfully but never appeared
+    # on this landing page.
+    categories = DocumentCategory.objects.filter(
+        Q(is_public=True) | Q(groups__in=user_groups)
+    ).annotate(
         subcategory_count=Count('subcategories', distinct=True),
         document_count=Count('document', distinct=True)
     ).distinct()

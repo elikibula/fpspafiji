@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 from django.urls import reverse
@@ -72,6 +73,27 @@ class PublicDocumentsTests(TestCase):
         response = self.client.get(reverse('documents:category_detail', args=[self.public_category.pk]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Public file')
+
+    def test_document_landing_page_includes_public_categories(self):
+        self.client.force_login(self.user)
+
+        response = self.client.get(reverse('documents:document_list'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.public_category.name)
+
+    def test_ungrouped_upload_is_visible_to_users_with_category_access(self):
+        group = Group.objects.create(name='Documents team')
+        self.private_category.groups.add(group)
+        self.user.groups.add(group)
+        self.client.force_login(self.user)
+
+        response = self.client.get(
+            reverse('documents:category_detail', args=[self.private_category.pk])
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.private_document.title)
 
     def test_document_detail_renders_without_subcategory(self):
         self.client.force_login(self.user)
