@@ -13,7 +13,7 @@
 
   <li class="splide__slide">
     <img
-      src="{% static 'assets/images/fpspa/carousel/5.png' %}"
+      src="{% static 'assets/images/fpspa/carousel/1.png' %}"
       alt="FHTA association gathering"
       class="fhta-carousel-image"
     >
@@ -22,14 +22,6 @@
   <li class="splide__slide">
     <img
       src="{% static 'assets/images/fpspa/carousel/2.png' %}"
-      alt="FHTA head teachers event"
-      class="fhta-carousel-image"
-    >
-  </li>
-
-  <li class="splide__slide">
-    <img
-      src="{% static 'assets/images/fpspa/carousel/3.png' %}"
       alt="FHTA professional development session"
       class="fhta-carousel-image"
     >
@@ -37,14 +29,66 @@
 
   <li class="splide__slide">
     <img
-      src="{% static 'assets/images/fpspa/carousel/4.png' %}"
+      src="{% static 'assets/images/fpspa/carousel/11.png' %}"
       alt="FHTA district network gathering"
       class="fhta-carousel-image"
     >
   </li>
   <li class="splide__slide">
     <img
-      src="{% static 'assets/images/fpspa/carousel/1.png' %}"
+      src="{% static 'assets/images/fpspa/carousel/3.png' %}"
+      alt="FHTA district network gathering"
+      class="fhta-carousel-image"
+    >
+  </li>
+    <li class="splide__slide">
+    <img
+      src="{% static 'assets/images/fpspa/carousel/10.png' %}"
+      alt="FHTA district network gathering"
+      class="fhta-carousel-image"
+    >
+  </li>
+  <li class="splide__slide">
+    <img
+      src="{% static 'assets/images/fpspa/carousel/4.png' %}"
+      alt="FHTA association gathering"
+      class="fhta-carousel-image"
+    >
+  </li>
+
+  <li class="splide__slide">
+    <img
+      src="{% static 'assets/images/fpspa/carousel/9.png' %}"
+      alt="FHTA head teachers event"
+      class="fhta-carousel-image"
+    >
+  </li>
+
+  <li class="splide__slide">
+    <img
+      src="{% static 'assets/images/fpspa/carousel/5.png' %}"
+      alt="FHTA professional development session"
+      class="fhta-carousel-image"
+    >
+  </li>
+
+  <li class="splide__slide">
+    <img
+      src="{% static 'assets/images/fpspa/carousel/8.png' %}"
+      alt="FHTA district network gathering"
+      class="fhta-carousel-image"
+    >
+  </li>
+  <li class="splide__slide">
+    <img
+      src="{% static 'assets/images/fpspa/carousel/12.png' %}"
+      alt="FHTA district network gathering"
+      class="fhta-carousel-image"
+    >
+  </li>
+    <li class="splide__slide">
+    <img
+      src="{% static 'assets/images/fpspa/carousel/7.png' %}"
       alt="FHTA district network gathering"
       class="fhta-carousel-image"
     >
@@ -53,21 +97,7 @@
 </ul>
 
 </div>
-<div class="livestream-carousel-overlay" aria-label="2026 conference livestream">
-  <div class="livestream-carousel-panel">
-    <p class="livestream-overlay-label">FHTA 43rd Annual Conference 2026</p>
-    <h2>Watch the 2026 Conference Livestream</h2>
-    <a href="{% url 'livestream:live' %}" class="livestream-overlay-button{% if live_stream and live_stream.is_live %} is-live{% endif %}">
-      {% if live_stream and live_stream.is_live %}
-        <span class="live-pulse" aria-hidden="true"></span><span>LIVE</span> {{ live_stream.homepage_cta_label }}
-      {% elif live_stream %}
-        <i class="fas fa-circle-play" aria-hidden="true"></i> {{ live_stream.homepage_cta_label }}
-      {% else %}
-        <i class="fas fa-circle-play" aria-hidden="true"></i> View Livestreams
-      {% endif %}
-    </a>
-  </div>
-</div>
+
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>

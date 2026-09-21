@@ -89,7 +89,7 @@ class LiveStream(models.Model):
     @property
     def homepage_cta_label(self):
         if self.is_live:
-            return 'Watch Live Now'
+            return 'Videos!'
         if self.event_date and self.event_date < timezone.now():
             return 'Watch Conference Recording'
         return 'View 2026 Conference Livestream'
